@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewData["Title"] = "Escolher UO";
+}
+
+<div class="row">
+    <div class="col-md-offset-3 col-md-6">
+        <div class="ig-panel ig-login-panel panel panel-default ig-dash-green">
+
+            <div class="panel-body">
+                <div class="form-group">
+                    <h5 class="ig-dash-title">ESCOLHA A UNIDADE ORGÂNICA</h5>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Unidade Orgânica</label>
+                    <input id="uo_combobox" style="width: 100%" />
+                </div>
+                <div class="text-right">
+                    <input type="button" class="btn ig-btn-green" value="Confirmar UO" onclick="ConfirmUO()" disabled/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#uo_combobox").kendoComboBox({
+            dataTextField: "nome",
+            dataValueField: "cod_agrupamento",
+            template: "<span>#: cod_agrupamento # - #: nome #</span>",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        url: "@Url.Action("GetUo", "Authentication")"
+                    }
+                }
+            },
+            change: function (e) {
+                $(".btn").prop('disabled', (this.value() == null || this.value() == ""));
+            }
+        });
+    });
+
+    function ConfirmUO() {
+        var obj = $("#uo_combobox").data("kendoComboBox").dataItem();
+        
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("SetUo", "Authentication")",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(obj),
+            success: function (response) {
+                window.location.href = response;
+            },
+            error: function (error) {
+                console.log(error);
+
+                ShowErrorModal(error.responseJSON);
+            }
+        });
+    }
+</script>

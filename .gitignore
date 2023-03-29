@@ -348,3 +348,10 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# appsettings.json
+/GesEdu/appsettings.json
+/GesEdu/appsettings.Development.json
+
+#Client side libraries folder
+/GesEdu/wwwroot/lib

@@ -1,0 +1,42 @@
+﻿@model LoginViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewData["Title"] = "Login";
+}
+
+<div class="row">
+    <div class="col-md-offset-4 col-md-4">
+        <div class="ig-panel ig-login-panel panel panel-default ig-dash-green">
+
+            <form asp-antiforgery="true" asp-controller="Authentication" asp-action="Login" method="post">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <h5 class="ig-dash-title">@ViewData["Title"]</h5>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Username" class="control-label"></label>
+                        <input asp-for="@Model.Username" class="form-control" />
+                        <span asp-validation-for="@Model.Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Password" class="control-label"></label>
+                        <input asp-for="@Model.Password" class="form-control" />
+                        <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                    </div>
+                    <div class="text-right">
+                        <input type="submit" class="btn ig-btn-green" value="Iniciar sessão" />
+                    </div>
+                    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                    {
+                        <div class="form-group">
+                            <p class="text-danger"><b>Login Failed!</b></p>
+                            <p class="text-danger"> @ViewBag.ErrorMessage </p>
+                        </div>
+                    }
+                </div>
+            </form>
+        </div>
+        <a class="ig-sec-login" href="@Url.Action("PasswordRecovery", "Authentication")">Esqueci-me da palavra passe</a>
+    </div>
+</div>
