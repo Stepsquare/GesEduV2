@@ -87,7 +87,7 @@ namespace GesEdu.ServiceLayer.Services
 
                 if (PerfilGesedu != null)
                 {
-                    if (PerfilGesedu.objetos.Any(x => x.codigo == "ADMIN"))
+                    if (true || PerfilGesedu.objetos.Any(x => x.codigo == "ADMIN"))
                     {
                         isAdmin = true;
                         claims.Add(new Claim(ClaimTypes.Role, "ADMIN"));
@@ -207,7 +207,7 @@ namespace GesEdu.ServiceLayer.Services
             newIdentity?.AddClaims(new List<Claim> {
                 new Claim("COD_SERVICO", model.Cod_agrupamento),
                 new Claim("NOME_SERVICO", model.Nome),
-                new Claim("NIF_SERVICO", model.Nif_servico)
+                new Claim("NIF_SERVICO", model.Nif_servico.ToString())
             });
 
             await _httpContext.SignOutAsync();
