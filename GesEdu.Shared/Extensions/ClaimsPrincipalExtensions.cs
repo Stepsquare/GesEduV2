@@ -58,13 +58,15 @@ namespace GesEdu.Shared.Extensions
         public static bool IsAdmin(this ClaimsPrincipal claimsPrincipal)
            => claimsPrincipal.IsInRole("ADMIN");
         public static bool IsUserManager(this ClaimsPrincipal claimsPrincipal)
-           => claimsPrincipal.IsInRole("USER_MEGA_READ");
+           => claimsPrincipal.IsInRole("USER_MANAGER");
         public static bool IsMegaReadUser(this ClaimsPrincipal claimsPrincipal)
            => claimsPrincipal.IsInRole("USER_MEGA_READ");
         public static bool IsMegaWriteUser(this ClaimsPrincipal claimsPrincipal)
            => claimsPrincipal.IsInRole("USER_MEGA_WRITE");
-        public static bool IsAreaReservadaUser(this ClaimsPrincipal claimsPrincipal)
-           => claimsPrincipal.IsInRole("USER_AREA_RSV");
+        public static bool IsAreaReservadaReadUser(this ClaimsPrincipal claimsPrincipal)
+           => claimsPrincipal.IsInRole("USER_AREA_RSV_READ");
+        public static bool IsAreaReservadaWriteUser(this ClaimsPrincipal claimsPrincipal)
+           => claimsPrincipal.IsInRole("USER_AREA_RSV_WRITE");
 
         #endregion
     }

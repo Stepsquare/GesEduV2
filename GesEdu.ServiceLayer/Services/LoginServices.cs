@@ -87,7 +87,7 @@ namespace GesEdu.ServiceLayer.Services
 
                 if (PerfilGesedu != null)
                 {
-                    if (true || PerfilGesedu.objetos.Any(x => x.codigo == "ADMIN"))
+                    if (PerfilGesedu.objetos.Any(x => x.codigo == "ADMIN"))
                     {
                         isAdmin = true;
                         claims.Add(new Claim(ClaimTypes.Role, "ADMIN"));
@@ -114,9 +114,9 @@ namespace GesEdu.ServiceLayer.Services
                         if (perfilAreaRsv != null)
                         {
                             if (perfilAreaRsv.ler == "1")
-                                claims.Add(new Claim(ClaimTypes.Role, "USER_AREA_RSV"));
+                                claims.Add(new Claim(ClaimTypes.Role, "USER_AREA_RSV_READ"));
                             if (perfilAreaRsv.escrever == "1")
-                                claims.Add(new Claim(ClaimTypes.Role, "USER_AREA_RSV"));
+                                claims.Add(new Claim(ClaimTypes.Role, "USER_AREA_RSV_WRITE"));
                         }
                     }
                 }
@@ -207,7 +207,7 @@ namespace GesEdu.ServiceLayer.Services
             newIdentity?.AddClaims(new List<Claim> {
                 new Claim("COD_SERVICO", model.Cod_agrupamento),
                 new Claim("NOME_SERVICO", model.Nome),
-                new Claim("NIF_SERVICO", model.Nif_servico.ToString())
+                new Claim("NIF_SERVICO", model.Nif_servico)
             });
 
             await _httpContext.SignOutAsync();

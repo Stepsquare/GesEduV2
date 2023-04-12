@@ -10,6 +10,6 @@ namespace GesEdu.Shared.WebserviceModels.Manuais
     {
         public string? Cod_agrupamento { get; set; }
         public string? Nome { get; set; }
-        public int Nif_servico { get; set; }
+        public string? Nif_servico { get; set; }
     }
 }
