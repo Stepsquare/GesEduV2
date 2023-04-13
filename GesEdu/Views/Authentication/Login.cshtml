@@ -5,38 +5,41 @@
     ViewData["Title"] = "Login";
 }
 
-<div class="row">
-    <div class="col-md-offset-4 col-md-4">
-        <div class="ig-panel ig-login-panel panel panel-default ig-dash-green">
-
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="ig-card card card-body">
+            <div class="row justify-content-center">
+                <div class="col-5 mt-3 mb-5 text-center">
+                    <img class="img-fluid" src="~/images/logo.svg">
+                </div>
+            </div>
             <form asp-antiforgery="true" asp-controller="Authentication" asp-action="Login" method="post">
-                <div class="panel-body">
-                    <div class="form-group">
-                        <h5 class="ig-dash-title">@ViewData["Title"]</h5>
+                <h4 class="ig-dash-title">@ViewData["Title"]</h4>
+                <div class="mb-3">
+                    <label asp-for="@Model.Username" class="form-label"></label>
+                    <input asp-for="@Model.Username" class="form-control" />
+                    <span asp-validation-for="@Model.Username" class="ig-field-error"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.Password" class="form-label"></label>
+                    <input asp-for="@Model.Password" class="form-control" />
+                    <span asp-validation-for="@Model.Password" class="ig-field-error"></span>
+                </div>
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div class="alert ig-alert-warning mt-3">
+                        <p><i class="fas fa-exclamation-triangle"></i> <strong>Erro no login:</strong></p>
+                        <p class="mb-0">@ViewBag.ErrorMessage </p>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="@Model.Username" class="control-label"></label>
-                        <input asp-for="@Model.Username" class="form-control" />
-                        <span asp-validation-for="@Model.Username" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="@Model.Password" class="control-label"></label>
-                        <input asp-for="@Model.Password" class="form-control" />
-                        <span asp-validation-for="@Model.Password" class="text-danger"></span>
-                    </div>
-                    <div class="text-right">
+                }
+                    <div class="text-end">
                         <input type="submit" class="btn ig-btn-green" value="Iniciar sessão" />
                     </div>
-                    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
-                    {
-                        <div class="form-group">
-                            <p class="text-danger"><b>Login Failed!</b></p>
-                            <p class="text-danger"> @ViewBag.ErrorMessage </p>
-                        </div>
-                    }
-                </div>
+                
             </form>
         </div>
-        <a class="ig-sec-login" href="@Url.Action("PasswordRecovery", "Authentication")">Esqueci-me da palavra passe</a>
+        <div class="mt-5 text-center">
+            <a href="@Url.Action("PasswordRecovery", "Authentication")"><i class="fas fa-lock"></i> Esqueci-me da palavra passe</a>
+        </div>
     </div>
 </div>
