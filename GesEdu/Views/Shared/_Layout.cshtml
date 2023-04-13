@@ -33,7 +33,7 @@
                         <li><a class="dropdown-item" href="#">Estabelecimentos de Ensino Básico e Secundário - Área Reservada</a></li>
                         <li><a class="dropdown-item" href="#">Programa MEGA</a></li>
                         <li><hr class="dropdown-divider"></li>
-                      @*  <li><a class="dropdown-item" href="@Url.Action("Index", "Home")">Início</a></li>*@
+                        <li><a class="dropdown-item" href="@Url.Action("Index", "Home")">Início</a></li>
                     </ul>
                 </li>
             </ul>
@@ -51,24 +51,24 @@
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li>@Html.ActionLink("Escolher UO", "ChooseUo", "Authentication", new {@class = "dropdown-item"})</li>
+                        <li>@Html.ActionLink("Escolher UO", "ChooseUo", "Authentication", null, new {@class ="dropdown-item" } )</li>
                         @if (User.IsAdmin())
                         {
                             <li>
-                                @Html.ActionLink("Escolher UO", "ChooseUo", "Authentication", new {@class = "dropdown-item"})
+                                @Html.ActionLink("Escolher UO", "ChooseUo", "Authentication", null, new {@class ="dropdown-item" } )
                             </li>
                         }
                         <li>
-                            <li>
-                                @Html.ActionLink("Sair", "Logout", "Authentication", new {@class = "dropdown-item"})
-                            </li>
+                        <li>
+                                @Html.ActionLink("Sair", "Logout", "Authentication", null, new {@class ="dropdown-item" })
+                        </li>
                             @*@if (claims.Where(j => j.Type == System.Security.Claims.ClaimTypes.Role).Any(x => x.Value == "RESPONSAVEL" || x.Value == "ADMIN"))
                         {
                         <li>
-                        @Html.ActionLink("Gerir Utilizadores", "Index", "Utilizadores", new {@class = "dropdown-item"})
+                        @Html.ActionLink("Gerir Utilizadores", "Index", "Utilizadores", null, new {@class ="dropdown-item" })
                         </li>
                         <li>
-                        @Html.ActionLink("Criar Utilizadores", "CriarUtilizador", "Utilizadores", new {@class = "dropdown-item"})
+                        @Html.ActionLink("Criar Utilizadores", "CriarUtilizador", "Utilizadores",  null, new {@class ="dropdown-item" })
                         </li>
                         }*@
                     </ul>
@@ -76,41 +76,30 @@
             </ul>
         </div>
     </nav>
- 
 
-    <div id="page-content-wrapper">
-        <div class="container-fluid ig-content">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown button
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-            </div>
-            @RenderBody()
-        </div>
 
-        <footer class="col-md-12 ig-footer">
-            <div class="row">
-                <div class="ig-logo-left col-sm-6">
-                    <img src="~/images/footer/logo-left.png" title="Instituto de Gestão Financeira da Educação" />
-                </div>
-                <div class="ig-logo-right col-sm-6">
-                    <img src="~/images/footer/logo-right.png" title="Ministério da Educação" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
+    <div class="ig-content">
+        @RenderBody()
+    </div>
+    <!--TODO DB: Adaptar a páginas com menu lateral.->
+    <footer class="ig-footer">
+        <div class="container">
+                <div class="ig-footer-logos">
+                    <div class="row g-5 justify-content-center">
+                        <div class="col-auto">
+                            <img src="~/images/footer/logo_igefe_footer.svg" alt="IGeFE - Instituto de Gestão Financeira da Educação, I.P." title="IGeFE - Instituto de Gestão Financeira da Educação, I.P." />
+                        </div>
+                        <div class="col-auto">
+                            <img src="~/images/footer/logo_me_footer.svg" alt="República Portuguesa - Educação" title="República Portuguesa - Educação" />
+                        </div>
+                    </div>
                     <div class="ig-copyright">
-                        @DateTime.Now.Year Instituto de Gestão Financeira da Educação, IP
+                        @DateTime.Now.Year Instituto de Gestão Financeira da Educação, I.P.
                     </div>
                 </div>
             </div>
-        </footer>
-    </div>
+
+    </footer>
 
     <!--MODALS-->
     <!--Modal Erros-->
@@ -192,6 +181,6 @@
             </div>
         </div>
     </div>
-    
+
 </body>
 </html>

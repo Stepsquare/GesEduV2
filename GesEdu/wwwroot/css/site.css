@@ -412,6 +412,7 @@ a.ig-btn-back {
 .ig-biglink-hp:focus {
     text-decoration: none;
     color: var(--ig-blue-1);
+    margin-bottom:1rem;
 }
 
 .ig-biglink-hp img {
@@ -432,6 +433,10 @@ a.ig-btn-back {
 
 /*módulos de notícias e lista documentos*/
 
+.ig-hp-news .list-group.list-group-flush {
+    max-height: calc(100vh - 460px);
+    overflow-y: auto;
+}
 .list-group h5 {
     color: var(--ig-blue-2);
 }
@@ -957,9 +962,24 @@ span.badge {
     font-size: .875em;
 }
 /*Footer*/
-.ig-copyright{
+
+.ig-footer-logos {
+    border-top: solid 1px var(--ig-blue-3);
+    margin-top:5rem;
+    padding:2rem 5rem 0 5rem;
+}
+
+.ig-footer-logos img {
+    height: 50px;
+    -webkit-font-smoothing: antialiased;
+}
+
+footer.ig-footer {
+    margin-top: 5rem;
+}
+.ig-copyright {
     color: var(--ig-green-1);
-    text-align:center;
-    font-size:.875rem;
-    margin-top:3rem;
+    text-align: center;
+    font-size: .875rem;
+    margin: 3rem 0;
 }
