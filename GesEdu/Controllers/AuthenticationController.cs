@@ -114,9 +114,11 @@ namespace GesEdu.Controllers
 
         [Authorize(Roles = "ADMIM")]
         [HttpGet]
-        public async Task<List<GetUoResponse>?> GetUo()
+        public async Task<JsonResult> GetUo()
         {
-            return await _loginServices.GetUo(User.GetIdServico());
+            var result = await _loginServices.GetUo(User.GetIdServico());
+
+            return Json(result?.Select(x => new { Nome = $"{x.Cod_agrupamento} - {x.Nome}", x.Cod_agrupamento }).ToArray());
         }
 
         [Authorize(Roles = "ADMIM")]

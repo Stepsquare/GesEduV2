@@ -7,7 +7,6 @@
       "destination": "wwwroot/lib/jquery/",
       "files": [
         "dist/jquery.min.js",
-        "dist/jquery.min.map"
       ]
     },
     {
@@ -23,16 +22,6 @@
       "destination": "wwwroot/lib/jquery-validation-unobtrusive/",
       "files": [
         "jquery.validate.unobtrusive.min.js"
-      ]
-    },
-    {
-      "library": "bootstrap@5.2.2",
-      "destination": "wwwroot/lib/bootstrap/",
-      "files": [
-        "dist/css/bootstrap.min.css",
-        "dist/css/bootstrap.min.css.map",
-        "dist/js/bootstrap.min.js",
-        "dist/js/bootstrap.min.js.map"
       ]
     },
     {
@@ -52,6 +41,15 @@
         "sprites/brands.svg",
         "sprites/regular.svg",
         "sprites/solid.svg"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "bootstrap@5.2.3",
+      "destination": "wwwroot/lib/bootstrap/",
+      "files": [
+        "js/bootstrap.bundle.min.js",
+        "css/bootstrap.min.css"
       ]
     }
   ]

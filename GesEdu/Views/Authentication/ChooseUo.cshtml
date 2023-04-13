@@ -29,7 +29,7 @@
         $("#uo_combobox").kendoComboBox({
             dataTextField: "nome",
             dataValueField: "cod_agrupamento",
-            template: "<span>#: cod_agrupamento # - #: nome #</span>",
+            filter: "contains",
             dataSource: {
                 transport: {
                     read: {
@@ -39,7 +39,7 @@
                 }
             },
             change: function (e) {
-                $(".btn").prop('disabled', (this.value() == null || this.value() == ""));
+                $(".btn").prop('disabled', (this.selectedIndex == -1));
             }
         });
     });
