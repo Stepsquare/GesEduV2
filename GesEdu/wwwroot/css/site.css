@@ -1,5 +1,26 @@
 /*TYPE*/
 
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''), url('../fonts/inter-v12-latin/inter-v12-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/inter-v12-latin/inter-v12-latin-regular.woff') format('woff');
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+
+/* inter-700 - latin */
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''), url('../fonts/inter-v12-latin/inter-v12-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/inter-v12-latin/inter-v12-latin-700.woff') format('woff');
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 :root {
     --ig-font-family: "Inter", Helvetica, Arial, sans-serif;
     --ig-green-1: #007236;
@@ -106,7 +127,10 @@ span.ig-uo-number, span.ig-uo-user {
     font-size: 0.75rem;
     font-weight: 700;
 }
-.ig-navbar .nav-link{
+span.ig-uo-user{
+    text-align:right;
+}
+.ig-navbar .nav-link {
     border-radius: 1rem;
 }
 .ig-navbar .nav-link:hover, .ig-navbar .nav-link.show  {
@@ -784,7 +808,7 @@ span.badge {
 
 .ig-uo-code {
     background: var(--ig-blue-2);
-    vertical-align: text-bottom;
+    vertical-align: text-top;
 }
 
 
@@ -897,10 +921,7 @@ span.badge {
     background: var(--ig-blue-1-alpha);
 }
 
-
 /*Formulários*/
-
-
 /*Validações*/
 
 .ig-card .form-control.is-valid,
@@ -982,4 +1003,29 @@ footer.ig-footer {
     text-align: center;
     font-size: .875rem;
     margin: 3rem 0;
+}
+/*Kendo*/
+.igk-searchable-ddl span.k-dropdown-wrap {
+    border-radius: 0.5rem;
+    font-family: Inter, sans-serif;
+}
+
+.igk-searchable-ddl.k-combobox .k-select {
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.igk-searchable-ddl.k-combobox > .k-state-focused {
+    border-color: var(--ig-blue-2);
+    box-shadow: var(--ig-focus-shadow);
+}
+.k-list-container .k-nodata {
+    font-family: Inter, sans-serif;
+    font-weight: normal;
+}
+.k-list-container, .k-list-container li{
+    font-family: Inter, sans-serif;
+}
+.k-list .k-item.k-state-selected, .k-list-optionlabel.k-state-selected, .k-list .k-item.k-state-hover.k-state-selected, .k-list .k-item:hover.k-state-selected, .k-list-optionlabel.k-state-hover.k-state-selected, .k-list-optionlabel:hover.k-state-selected {
+    color: var(--ig-blue-1);
+    background-color: var(--ig-blue-4);
 }
