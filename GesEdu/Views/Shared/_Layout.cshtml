@@ -46,31 +46,29 @@
                                 @User.GetNomeServico()
                             </span>
                             <span class="ig-uo-user">
-                                <i class="fas fa-user"></i> @(User.IsAdmin() ? "(ADM)" : "") @User.GetUsername()
+                                <i class="fas fa-user"></i> @User.GetUsername() @(User.IsAdmin() ? "(Admin)" : "")
                             </span>
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li>@Html.ActionLink("Escolher UO", "ChooseUo", "Authentication", null, new {@class ="dropdown-item" } )</li>
                         @if (User.IsAdmin())
                         {
                             <li>
                                 @Html.ActionLink("Escolher UO", "ChooseUo", "Authentication", null, new {@class ="dropdown-item" } )
                             </li>
                         }
-                        <li>
+                        @if (User.IsAdmin() || User.IsUserManager())
+                        {
+                            <li>
+                                @Html.ActionLink("Gerir Utilizadores", "", "", null, new {@class ="dropdown-item" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Criar Utilizadores", "", "",  null, new {@class ="dropdown-item" })
+                            </li>
+                        }
                         <li>
                                 @Html.ActionLink("Sair", "Logout", "Authentication", null, new {@class ="dropdown-item" })
                         </li>
-                            @*@if (claims.Where(j => j.Type == System.Security.Claims.ClaimTypes.Role).Any(x => x.Value == "RESPONSAVEL" || x.Value == "ADMIN"))
-                        {
-                        <li>
-                        @Html.ActionLink("Gerir Utilizadores", "Index", "Utilizadores", null, new {@class ="dropdown-item" })
-                        </li>
-                        <li>
-                        @Html.ActionLink("Criar Utilizadores", "CriarUtilizador", "Utilizadores",  null, new {@class ="dropdown-item" })
-                        </li>
-                        }*@
                     </ul>
                 </li>
             </ul>

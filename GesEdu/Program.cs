@@ -18,7 +18,8 @@ builder.Services.AddDbContext<GesEduDbContext>(x => x.UseSqlServer(connectionStr
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IGenericRestRequests, GenericRestRequests>();
-builder.Services.AddScoped<ILoginServices, LoginServices>();
+builder.Services.AddScoped<ILoginServices, LoginServices>(); 
+builder.Services.AddScoped<INoticiasServices, NoticiasServices>(); 
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>

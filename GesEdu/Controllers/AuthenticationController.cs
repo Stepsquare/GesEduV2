@@ -118,7 +118,7 @@ namespace GesEdu.Controllers
         {
             var result = await _loginServices.GetUo(User.GetIdServico());
 
-            return Json(result?.Select(x => new { Nome = $"{x.Cod_agrupamento} - {x.Nome}", x.Cod_agrupamento }).ToArray());
+            return Json(result?.Select(x => new { nome_text_field = $"{x.Cod_agrupamento} - {x.Nome}", x.Nome, x.Cod_agrupamento }).ToArray());
         }
 
         [Authorize(Roles = "ADMIM")]
