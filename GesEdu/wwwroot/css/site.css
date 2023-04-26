@@ -436,7 +436,9 @@ a.ig-btn-back {
 .ig-biglink-hp:focus {
     text-decoration: none;
     color: var(--ig-blue-1);
-    margin-bottom:1rem;
+    height: calc(50% - .5rem);
+    display: block;
+    margin-bottom: 1rem;
 }
 
 .ig-biglink-hp img {
@@ -445,6 +447,7 @@ a.ig-btn-back {
 
 .ig-biglink-hp .ig-card {
     transition: var(--ig-transition);
+    height: 100%;
 }
 
 .ig-biglink-hp:hover .ig-card,
@@ -453,12 +456,17 @@ a.ig-btn-back {
     transition: var(--ig-transition);
     box-shadow: var(--ig-shadow);
 }
-
+a.ig-biglink-hp .card .card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 /*módulos de notícias e lista documentos*/
 
 .ig-hp-news .list-group.list-group-flush {
-    max-height: calc(100vh - 460px);
+    max-height: calc(100vh - 425px);
     overflow-y: auto;
 }
 .list-group h5 {
@@ -984,25 +992,31 @@ span.badge {
 }
 /*Footer*/
 
-.ig-footer-logos {
+
+footer.ig-footer {
     border-top: solid 1px var(--ig-blue-3);
-    margin-top:5rem;
-    padding:2rem 5rem 0 5rem;
+    padding: 2rem 0;
+    margin-top: 1rem;
 }
 
 .ig-footer-logos img {
-    height: 50px;
+    height: 2rem;
     -webkit-font-smoothing: antialiased;
 }
 
-footer.ig-footer {
-    margin-top: 5rem;
-}
 .ig-copyright {
     color: var(--ig-green-1);
     text-align: center;
     font-size: .875rem;
     margin: 3rem 0;
+}
+.ig-copyright-pages {
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: var(--ig-green-1);
+    font-size: .875rem;
+    justify-content: end;
 }
 /*Kendo*/
 .igk-searchable-ddl span.k-dropdown-wrap {
