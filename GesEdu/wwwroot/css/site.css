@@ -247,7 +247,9 @@ a.ig-btn-back {
 
 
 /*Modals*/
-
+.ig-modal .modal-header {
+    background: var(--ig-blue-2);
+}
 .ig-modal .modal-header h5 {
     font-weight: 600;
     color: var(--ig-white);
@@ -818,10 +820,18 @@ span.badge {
     background: var(--ig-blue-2);
     vertical-align: text-top;
 }
-
-
+.ig-user-permissions {
+    background: var(--ig-blue-4);
+    border: solid 1px var(--ig-blue-3);
+    color: var(--ig-blue-2);
+    display: inline-block;
+    max-width: 20rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: text-top;
+}
 /*exemplos*/
-
 .ig-light-font-ex h2 {
     font-weight: 400;
     margin-bottom: 1.5rem;
@@ -981,6 +991,9 @@ span.badge {
 .ig-check .form-check-input:focus {
     box-shadow: var(--ig-focus-shadow);
     border-color: var(--ig-blue-2);
+}
+.ig-check.form-switch .form-check-input:focus {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23c9f4db'/%3e%3c/svg%3e");
 }
 /*Validações Net Core Forms*/
 
