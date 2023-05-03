@@ -20,19 +20,79 @@
 <body class="ig-body">
     <section class="container-fluid">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2 ig-sidebar">
+                <div class="p-3 sticky-top">
+                    <h3 class="mb-0">GesEdu</h3>
+                    <h4>Sistema de Design</h4>
+                    <hr />
+                    <p><a href="index.html"><strong>Início</strong></a></p>
+                    <p><a href="interface.html">Elementos de interface</a></p>
+                    <p><a href="common.html">Elementos comuns</a></p>
+                    <p><a href="forms.html">Formulários</a></p>
+                    <p><a href="buttons.html">Botões</a></p>
+                    <p><a href="mega.html">Programa MEGA</a></p>
+                    <p><a href="frameworks.html">Frameworks do projeto</a></p>
+                    <p><a href="uxwriting.html">Textos para o GesEdu (UX Writing)</a></p>
+                </div>
 
             </div>
-            <div class="col-md-9">
-                <h1>Sistema de Design do IGeFE</h1>
-                <p>O presente sistema tem como objetivo criar uma maior consistência no interface da aplicação GesEdu, utilizada por 809 agrupamentos de escolas para interagir com o nosso Instituto. </p>
-                <p>Pretende-se, através da migração da aplicação, implementar este novo sistema de modo a que a utilização do GesEdu seja ainda mais intuitiva.</p>
+            <div class="col-md-10 ig-content">
+                <h1 class="mb-5">Sistema de Design GesEdu v2</h1>
+                <div class="row">
+                    <div class="col-md-8">
+
+                        <div class="ig-hp-news">
+                            <div class="card ig-card">
+                                <div class="card-body">
+                                    <h4>Changelog:</h4>
+                                </div>
+                                <div class="list-group list-group-flush">
+                                    <div class="list-group-item">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">Atualização do sistema de design</h5>
+                                            <small class="text-muted"><i class="far fa-calendar"></i> 03/05/2023 16:00</small>
+                                        </div>
+                                        <ul>
+                                            <li>
+                                                <strong>Geral</strong>
+                                                <ul>
+                                                    <li>Alteração nas indentações de elementos dentro de textareas.</li>
+                                                    <li>Normalização das div .card.ig-card, passando a constar nas mesmas a classe .card-body quando adequado.</li>
+                                                    <li>Criação de página inicial com changelog e acesso aos layouts.</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <strong>Interface</strong>
+                                                <ul>
+                                                    <li>Alinhamento vertical ao centro de botões de detalhe nas listagens.</li>
+                                                    <li>Inclusão da especificação de janelas de detalhe (modals).</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <strong>Formulários</strong>
+                                                <ul>
+                                                    <li>Inclusão do tipo de checkbox switch, em conformidade com os layouts de gestão de utilizadores.</li>
+                                                    <li>Inclusão de indicações de descrição (Badges), em conformidade com os layouts de gestão de utilizadores.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ps-3">
+                        <div class="card ig-card card-body">
+                            <h4>Layouts:</h4>
+                            <iframe id="igLayouts" src="../Layouts/" class="ig-ds-layoutlist"></iframe>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
     <script src="../../GesEdu/wwwroot/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 
 </body>
 

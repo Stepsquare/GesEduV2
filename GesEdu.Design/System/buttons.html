@@ -27,6 +27,7 @@
                     <h3 class="mb-0">GesEdu</h3>
                     <h4>Sistema de Design</h4>
                     <hr />
+                    <p><a href="index.html">Início</a></p>
                     <p><a href="interface.html">Elementos de interface</a></p>
                     <p><a href="common.html">Elementos comuns</a></p>
                     <p><a href="forms.html">Formulários</a></p>
@@ -90,28 +91,29 @@
                         </div>
                         <h2 id="igHPButtons">Botões da página inicial</h2>
                         <p class="mb-0">
-                            Os seguintes botões destinam-se a encaminhar o utilizador para as principais
-                            áreas na
-                            aplicação.
+                            Os seguintes botões destinam-se a encaminhar o utilizador para as principais áreas na aplicação.
                         </p>
                         <p>
-                            A sintaxe ao nível de classes foi adaptada em relação à versão anterior do GesEdu, tendo em
-                            vista uma
-                            maior optimização e adaptação ao BS5.
+                            A sintaxe ao nível de classes foi adaptada em relação à versão anterior do GesEdu, tendo em vista uma maior optimização e adaptação ao BS5.
+                        </p>
+                        <p>
+                            Na página inicial, de modo a alinhar-se com o módulo de notícias, o contentor dos botões utiliza a classe <strong>.ig-homebtn-cont</strong>.
                         </p>
                         <h4>Código de exemplo:</h4>
                         <div class="mb-3">
                             <textarea class="form-control ig-code" rows="10" disabled>
-<a class="ig-biglink-hp" href="#" title="Estabelecimentos de Ensino">
-    <div class="card ig-card">
-        <div class="card-body text-center">
-            <img src="../assets/img/icon-estensino.svg">
-            <h4>Estabelecimentos de Ensino Básico e Secundário</h4>
-            <p>Área reservada</p>
+<div class="ig-homebtn-cont">
+    <a class="ig-biglink-hp" href="#" title="Estabelecimentos de Ensino">
+        <div class="card ig-card">
+            <div class="card-body text-center">
+                <img src="../assets/img/icon-estensino.svg">
+                <h4>Estabelecimentos de Ensino Básico e Secundário</h4>
+                <p>Área reservada</p>
+            </div>
         </div>
-    </div>
-</a>
-                    </textarea>
+    </a>
+</div>
+                            </textarea>
                         </div>
                         <h4>Output visual:</h4>
                         <div class="mb-5">
@@ -119,14 +121,12 @@
                                 <div class="card ig-card">
                                     <div class="card-body text-center">
                                         <img src="../../GesEdu/wwwroot/images/icon-estensino.svg">
-                                        <h4>
-                                            Estabelecimentos de Ensino Básico e Secundário</h4>
-                                            <p>Área reservada</p>
+                                        <h4>Estabelecimentos de Ensino Básico e Secundário</h4>
+                                        <p>Área reservada</p>
                                     </div>
                                 </div>
                             </a>
                         </div>
-
                     </div>
                     <div class="col-md-3 ps-5">
                         <div class="sticky-top pt-5">
@@ -144,9 +144,9 @@
 
     <script src="../../GesEdu/wwwroot/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById("igToastConfirmBtn").onclick = function () {
+        document.getElementById("igToastConfirmBtn").onclick = function() {
             var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-            var toastList = toastElList.map(function (toastEl) {
+            var toastList = toastElList.map(function(toastEl) {
                 return new bootstrap.Toast(toastEl)
             })
             toastList.forEach(toast => toast.show())

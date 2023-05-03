@@ -74,7 +74,9 @@ input.ig-code {
     border-radius: 1rem;
     color: var(--ig-red-2);
 }
-
+iframe.ig-ds-layoutlist {
+    height: calc(100vh - 230px);
+}
 
 /*type*/
 
@@ -105,6 +107,7 @@ a:hover {
 .ig-sidebar {
     background: var(--ig-white);
     box-shadow: var(--ig-shadow);
+    height: 100vh;
 }
 
 .ig-content {
@@ -328,7 +331,7 @@ a.ig-btn-back {
 /*Painel estatísticas*/
 
 .ig-statistics-card {
-    padding-left: 0.5rem;
+    padding-left: 1.5rem;
     overflow: hidden;
 }
 
@@ -1032,6 +1035,9 @@ footer.ig-footer {
     justify-content: end;
 }
 /*Kendo*/
+.igk-searchable-ddl{
+    width:100%;
+}
 .igk-searchable-ddl span.k-dropdown-wrap {
     border-radius: 0.5rem;
     font-family: Inter, sans-serif;
