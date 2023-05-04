@@ -10,6 +10,6 @@ namespace GesEdu.Shared.Interfaces.ISevices
 {
     public interface INoticiasServices
     {
-        Task<GetNoticiasResponse?> GetNoticias(string? id);
+        Task<GetNoticiasResponse?> GetNoticias(string? id = null);
     }
 }
