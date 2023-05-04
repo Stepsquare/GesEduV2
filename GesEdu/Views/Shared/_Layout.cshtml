@@ -67,7 +67,7 @@
                             </li>
                         }
                         <li>
-                                @Html.ActionLink("Sair", "Logout", "Authentication", null, new {@class ="dropdown-item" })
+                            @Html.ActionLink("Sair", "Logout", "Authentication", null, new {@class ="dropdown-item" })
                         </li>
                     </ul>
                 </li>
@@ -78,10 +78,11 @@
         @RenderBody()
     </div>
     <!--TODO DB: Adaptar a páginas com menu lateral.-->
-    <footer class="ig-footer">
-        <div class="container">
-                <div class="ig-footer-logos">
-                    <div class="row g-5 justify-content-center">
+    <div class="container">
+        <footer class="ig-footer">
+            <div class="row">
+                <div class="col-md ig-footer-logos">
+                    <div class="row g-5">
                         <div class="col-auto">
                             <img src="~/images/footer/logo_igefe_footer.svg" alt="IGeFE - Instituto de Gestão Financeira da Educação, I.P." title="IGeFE - Instituto de Gestão Financeira da Educação, I.P." />
                         </div>
@@ -89,13 +90,14 @@
                             <img src="~/images/footer/logo_me_footer.svg" alt="República Portuguesa - Educação" title="República Portuguesa - Educação" />
                         </div>
                     </div>
-                    <div class="ig-copyright">
-                        @DateTime.Now.Year — Instituto de Gestão Financeira da Educação, I.P.
-                    </div>
+                </div>
+                <div class="col-md ig-copyright-pages">
+                    @DateTime.Now.Year — Instituto de Gestão Financeira da Educação, I.P.
                 </div>
             </div>
+        </footer>
+    </div>
 
-    </footer>
 
     <!--MODALS-->
     <!--Modal Erros-->
