@@ -21,8 +21,7 @@
 
     <section class="container-fluid">
         <div class="ig-toast-container toast-container">
-            <div id="igToastConfirm" class="ig-toast-success toast hide" role="alert" aria-live="assertive"
-                 aria-atomic="true">
+            <div id="igToastConfirm" class="ig-toast-success toast hide" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                     <strong class="me-auto"><i class="fas fa-check"></i> Sucesso</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -31,8 +30,7 @@
                     As ações foram efetuadas com sucesso
                 </div>
             </div>
-            <div id="igToastConfirm" class="ig-toast-error toast hide" role="alert" aria-live="assertive"
-                 aria-atomic="true">
+            <div id="igToastConfirm" class="ig-toast-error toast hide" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                     <strong class="me-auto"><i class="fas fa-exclamation-triangle"></i> Erro</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -41,8 +39,7 @@
                     Nome do erro ocorrido
                 </div>
             </div>
-            <div id="igToastConfirm" class="ig-toast-error toast hide" role="alert" aria-live="assertive"
-                 aria-atomic="true">
+            <div id="igToastConfirm" class="ig-toast-error toast hide" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                     <strong class="me-auto"><i class="fas fa-exclamation-triangle"></i> Erro</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -51,8 +48,7 @@
                     Nome do erro ocorrido
                 </div>
             </div>
-            <div id="igToastConfirm" class="ig-toast-error toast hide" role="alert" aria-live="assertive"
-                 aria-atomic="true">
+            <div id="igToastConfirm" class="ig-toast-error toast hide" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                     <strong class="me-auto"><i class="fas fa-exclamation-triangle"></i> Erro</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -68,6 +64,7 @@
                     <h3 class="mb-0">GesEdu</h3>
                     <h4>Sistema de Design</h4>
                     <hr />
+                    <p><a href="index.html">Início</a></p>
                     <p><a href="interface.html">Elementos de interface</a></p>
                     <p><a href="common.html"><strong>Elementos comuns</strong></a></p>
                     <p><a href="forms.html">Formulários</a></p>
@@ -80,53 +77,90 @@
             </div>
             <div class="col-md-10 ig-content">
                 <h1>Elementos comuns
-                <span class="badge ig-badge-warning">
+                    <span class="badge ig-badge-warning">
                     <i class="fas fa-exclamation-triangle"></i> Em atualização
                 </span>
                 </h1>
                 <p>Elementos gerais, utilizados em todas as páginas.</p>
                 <div class="row">
                     <div class="col-md-9">
-                        <h2 id="igMPanels">Painel superior</h2>
-                        <p>Mostra .</p>
+                        <h2 id="igCHeader">Cabeçalho</h2>
+                        <p>Mostra o logotipo da aplicação, permite ligar às diferentes áreas da mesma e mostra informações do utilizador que está ligado à mesma.</p>
                         <h4>Código de exemplo:</h4>
                         <div class="mb-3">
                             <textarea class="form-control ig-code" rows="6" disabled>
-<div class="card ig-card">
-                            <div class="card-body">
-        Algum texto aqui...
+<nav class="ig-navbar navbar navbar-expand-lg navbar-light mb-4">
+    <div class="container-fluid">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="ig-brand-ddl nav-link dropdown-toggle" href="#"
+                    id="navbarBrandDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img class="ig-logo" title="GesEdu" src="../../GesEdu/wwwroot/images/logo.svg">
+                    <span class="ig-app-name">Início</span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarBrandDropdown">
+                    <li><a class="dropdown-item" href="#">Estabelecimentos de Ensino Básico e Secundário - Área Reservada</a></li>
+                    <li><a class="dropdown-item" href="#">Programa MEGA</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Início</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="ig-user-ddl nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="ig-userdet-cont">
+
+                        <span class="ig-uo-name">
+                            <span class="badge rounded-pill ig-uo-code">172420</span>
+                            Agrupamento de Escolas de Vila Viçosa
+                        </span>
+                        <span class="ig-uo-user">
+                            <i class="fas fa-user"></i>
+                            david.barradas@squad.pt
+                        </span>
+                    </div>
+                    </strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Gerir utilizadores</a></li>
+                    <li><a class="dropdown-item" href="#">Repor palavra-passe</a></li>
+                    <li><a class="dropdown-item" href="#">Sair</a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
-</div>
-                    </textarea>
+</nav>
+                            </textarea>
                         </div>
                         <h4>Output visual:</h4>
                         <nav class="ig-navbar navbar navbar-expand-lg navbar-light mb-4">
                             <div class="container-fluid">
                                 <ul class="navbar-nav">
                                     <li class="nav-item dropdown">
-                                        <a class="ig-brand-ddl nav-link dropdown-toggle" href="#"
-                                           id="navbarBrandDropdown" role="button" data-bs-toggle="dropdown"
-                                           aria-expanded="false">
+                                        <a class="ig-brand-ddl nav-link dropdown-toggle" href="#" id="navbarBrandDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <img class="ig-logo" title="GesEdu" src="../../GesEdu/wwwroot/images/logo.svg">
                                             <span class="ig-app-name">Início</span>
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarBrandDropdown">
                                             <li><a class="dropdown-item" href="#">Estabelecimentos de Ensino Básico e Secundário - Área Reservada</a></li>
                                             <li><a class="dropdown-item" href="#">Programa MEGA</a></li>
-                                            <li><hr class="dropdown-divider"></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
                                             <li><a class="dropdown-item" href="#">Início</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                     <li class="nav-item dropdown">
-                                        <a class="ig-user-ddl nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <a class="ig-user-ddl nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <div class="ig-userdet-cont">
 
                                                 <span class="ig-uo-name">
-                                                    <span class="badge rounded-pill ig-uo-code">172420</span>
-                                                    Agrupamento de Escolas de Vila Viçosa
+                                                    <span class="badge rounded-pill ig-uo-code">172420</span> Agrupamento de Escolas de Vila Viçosa
                                                 </span>
                                                 <span class="ig-uo-user">
                                                     <i class="fas fa-user"></i>
@@ -144,1820 +178,89 @@
                                 </ul>
                             </div>
                         </nav>
-                        <h2 id="igMCModules">Módulos customizados</h2>
-                        <p>Módulos a utilizar em partes específicas da aplicação</p>
-                        <h3 id="igMCModulesTBar">Barra de título</h3>
-                        <p class="mb-0">
-                            Apresenta o título de cada página, o caminho para se chegar e botões de contexto
-                            caso
-                            seja aplicável.
-                        </p>
-                        <p>
-                            A sintaxe ao nível de classes foi adaptada em relação à versão anterior do GesEdu, tendo em
-                            vista uma
-                            maior optimização e adaptação ao BS5.
-                        </p>
+                        <h2 id="igCFooter">Rodapé</h2>
+                        <p>Mostra os logotipos do Instituto e da tutela no final de cada página da aplicação.</p>
                         <h4>Código de exemplo:</h4>
                         <div class="mb-3">
                             <textarea class="form-control ig-code" rows="10" disabled>
-<div class="ig-pagetitle">
-                            <div class="row">
-                            <div class="col-md">
-                            <h2>
-                Pedido de Parecer à Tutela (Art.º 59 LEO) n.º 5/22
-            </h2>
+<footer class="ig-footer">
+    <div class="row">
+        <div class="col-md ig-footer-logos">
+            <div class="row g-5">
+                <div class="col-auto">
+                    <img src="../../GesEdu/wwwroot/images/footer/logo_igefe_footer.svg" alt="IGeFE - Instituto de Gestão Financeira da Educação, I.P." title="IGeFE - Instituto de Gestão Financeira da Educação, I.P." />
+                </div>
+                <div class="col-auto">
+                    <img src="../../GesEdu/wwwroot/images/footer/logo_me_footer.svg" alt="República Portuguesa - Educação" title="República Portuguesa - Educação" />
+                </div>
+            </div>
         </div>
-                            <div class="col-md-auto text-end">
-                            <a href="javascript:void(0)" class="btn ig-btn-blue">
-                            <i class="fas fa-save"></i>
-                Gravar pedido
-            </a>
-                            <a href="javascript:void(0)" class="btn ig-btn-green">
-                            <i class="fas fa-check"></i>
-                Submeter pedido
-            </a>
+        <div class="col-md ig-copyright-pages">
+            2023 — Instituto de Gestão Financeira da Educação, I.P.
         </div>
     </div>
-                            <div class="d-flex">
-                            <a href="javascript:void(0)" class="btn ig-btn-back" title="Voltar">
-                            <i class="fas fa-arrow-left"></i>
-        </a>
-                            <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                            <a href="#">Página inicial</a>
-            </li>
-                            <li class="breadcrumb-item">
-                            <a href="#"> Estabelecimentos de Ensino Básico e Secundário</a>
-            </li>
-                            <li class="breadcrumb-item active">
-                Pedido de Parecer à Tutela (Art.º 59 LEO) n.º 5/22
-            </li>
-        </ol>
-    </div>
-</div>
-                    </textarea>
+</footer>
+                            </textarea>
                         </div>
                         <h4>Output visual:</h4>
                         <div class="mb-5">
-                            <div class="ig-pagetitle">
+                            <footer class="ig-footer">
                                 <div class="row">
-                                    <div class="col-md">
-                                        <h2>
-                                            Pedido de Parecer à Tutela (Art.º 59 LEO) n.º 5/22
-                                        </h2>
+                                    <div class="col-md ig-footer-logos">
+                                        <div class="row g-5">
+                                            <div class="col-auto">
+                                                <img src="../../GesEdu/wwwroot/images/footer/logo_igefe_footer.svg" alt="IGeFE - Instituto de Gestão Financeira da Educação, I.P." title="IGeFE - Instituto de Gestão Financeira da Educação, I.P." />
+                                            </div>
+                                            <div class="col-auto">
+                                                <img src="../../GesEdu/wwwroot/images/footer/logo_me_footer.svg" alt="República Portuguesa - Educação" title="República Portuguesa - Educação" />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-auto text-end">
-                                        <a href="javascript:void(0)" class="btn ig-btn-blue">
-                                            <i class="fas fa-save"></i>
-                                            Gravar pedido
-                                        </a>
-                                        <a href="javascript:void(0)" class="btn ig-btn-green">
-                                            <i class="fas fa-check"></i>
-                                            Submeter pedido
-                                        </a>
+                                    <div class="col-md ig-copyright-pages">
+                                        2023 — Instituto de Gestão Financeira da Educação, I.P.
                                     </div>
                                 </div>
-                                <div class="d-flex">
-                                    <a href="javascript:void(0)" class="btn ig-btn-back" title="Voltar">
-                                        <i class="fas fa-arrow-left"></i>
-                                    </a>
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item">
-                                            <a href="#">Página inicial</a>
-                                        </li>
-                                        <li class="breadcrumb-item">
-                                            <a href="#"> Estabelecimentos de Ensino Básico e Secundário</a>
-                                        </li>
-                                        <li class="breadcrumb-item active">
-                                            Pedido de Parecer à Tutela (Art.º 59 LEO) n.º 5/22
-                                        </li>
-                                    </ol>
-                                </div>
-                            </div>
+                            </footer>
                         </div>
-                        <h3 id="igMCModulesAlerts">Alertas</h3>
-                        <p class="mb-0">Alertam o utilizador para elementos importantes no interface.</p>
-                        <p>No GesEdu estão previstos os seguintes tipos de alerta:</p>
-                        <ul>
-                            <li>Alerta de informação</li>
-                            <li>Alerta de sucesso</li>
-                            <li>Alerta de erros</li>
-                        </ul>
-                        <h4>Código de exemplo:</h4>
+                        <h2 id="igCLMenu">Menus laterais</h2>
+                        <p class="mb-0">Permitem a escolha pelos utilizadores dos diferentes módulos das áreas do GesEdu.</p>
+                        <p><span class="badge ig-badge-warning">
+                            <i class="fas fa-exclamation-triangle"></i> Em atualização
+                        </span> Aguarda o levantamento dos menus para um desenho mais fidedigno.</p>
+
+                        <!--<h4>Código de exemplo:</h4>
                         <div class="mb-3">
                             <textarea class="form-control ig-code" rows="10" disabled>
-<!--Alerta informativo-->
-<div class="alert ig-alert-info alert-dismissible fade show" role="alert">
-                            <i class="fas fa-info-circle"></i> Boas tardes! Sou um alerta informativo.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
-<!--Alerta de sucesso-->
-<div class="alert ig-alert-success alert-dismissible fade show" role="alert">
-                            <i class="fas fa-check"></i> Boas tardes! Sou um alerta de sucesso.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
-<!--Alerta de erros-->
-<div class="alert ig-alert-error alert-dismissible fade show" role="alert">
-                            <i class="fas fa-exclamation-triangle"></i> Boas tardes! Sou um alerta de erros.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
                     </textarea>
-                        </div>
+                        </div>-->
                         <h4>Output visual:</h4>
                         <div class="mb-5">
-                            <div class="alert ig-alert-info alert-dismissible fade show" role="alert">
-                                <i class="fas fa-info-circle"></i> Boas tardes! Sou um alerta informativo.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div class="alert ig-alert-success alert-dismissible fade show" role="alert">
-                                <i class="fas fa-check"></i> Boas tardes! Sou um alerta de sucesso.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div class="alert ig-alert-warning alert-dismissible fade show" role="alert">
-                                <i class="fas fa-exclamation-triangle"></i> Boas tardes! Sou um alerta de erros.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                            </div>
-                        </div>
-                        <h3 id="igMCModulesPStatistics">Painel de estatísticas</h3>
-                        <p>Mostra estatísticas relevantes no contexto de uma página.</p>
-                        <h4>Código de exemplo:</h4>
-                        <div class="mb-3">
-                            <textarea class="form-control ig-code" rows="10" disabled>
-<div class="card ig-card ig-statistics-card">
-                            <div class="card-body">
-                            <div class="row ">
-                            <div class="col-md">
-                            <h4>Data exportação:</h4>
-                            <h3>03/03/2020 16:06</h3>
-            </div>
-                            <div class="col-md">
-                            <h4>Estado:</h4>
-                            <h3><span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i> Com erros/alertas</span></h3>
-            </div>
-                            <div class="col-md">
-                            <h4>Alunos exportados:</h4>
-                            <h3><i class="fas fa-users"></i> 1234 alunos</h3>
-            </div>
-                            <div class="col-md">
-                            <h4>Alunos com erros:</h4>
-                            <div class="d-flex align-items-baseline justify-content-between">
-                            <h3><i class="fas fa-check"></i> 0%</h3>
-                            <p>0 alunos</p>
-                </div>
-            </div>
-                            <div class="col-md">
-                            <h4>Alunos com alertas:</h4>
-                            <div class="d-flex align-items-baseline justify-content-between">
-                            <h3><span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i> 52.3%</span></h4>
-                            <p>654 alunos</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-                    </textarea>
-                        </div>
-                        <h4>Output visual:</h4>
-                        <div class="card ig-card ig-statistics-card mb-5">
-                            <div class="card-body">
-                                <div class="row ">
-                                    <div class="col-md">
-                                        <h4>Data exportação:</h4>
-                                        <h3>03/03/2020 16:06</h3>
-                                    </div>
-                                    <div class="col-md">
-                                        <h4>Estado:</h4>
-                                        <h3>
-                                            <span class="badge ig-badge-warning">
-                                                <i class="fas fa-exclamation-triangle"></i> Com
-                                                erros/alertas
-                                            </span>
-                                        </h3>
-                                    </div>
-                                    <div class="col-md">
-                                        <h4>Alunos exportados:</h4>
-                                        <h3><i class="fas fa-users"></i> 1234 alunos</h3>
-                                    </div>
-                                    <div class="col-md">
-                                        <h4>Alunos com erros:</h4>
-                                        <div class="d-flex align-items-baseline justify-content-between">
-                                            <h3><i class="fas fa-check"></i> 0%</h3>
-                                            <p>0 alunos</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md">
-                                        <h4>Alunos com alertas:</h4>
-                                        <div class="d-flex align-items-baseline justify-content-between">
-                                            <h3>
-                                                <span class="badge ig-badge-warning">
-                                                    <i class="fas fa-exclamation-triangle"></i>
-                                                    52.3%
-                                                </span></h4>
-                                                <p>654 alunos</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 id="igMCModulesPAlerts">Painel de alertas</h3>
-                        <p>Apresenta uma lista de erros contexto de uma página.</p>
-                        <h4>Código de exemplo:</h4>
-                        <div class="mb-3">
-                            <textarea class="form-control ig-code" rows="9" disabled>
-<div class="alert ig-alert-warning">
-                            <p><i class="fas fa-exclamation-triangle"></i> <strong>Alertas:</strong></p>
-                            <ul class="mb-0">
-                            <li>Isto não está correto;</li>
-                            <li>Isto também não;</li>
-                            <li>E isto também não.</li>
-    </ul>
-</div>
-                    </textarea>
-                        </div>
-                        <h4>Output visual:</h4>
-                        <div class="alert ig-alert-warning mb-5">
-                            <p><i class="fas fa-exclamation-triangle"></i> <strong>Alertas:</strong></p>
-                            <ul class="mb-0">
-                                <li>Isto não está correto;</li>
-                                <li>Isto também não;</li>
-                                <li>E isto também não.</li>
-                            </ul>
-                        </div>
-                        <h3 id="igMCModulesPErrors">Painel de erros</h3>
-                        <p>Apresenta uma lista de erros contexto de uma página.</p>
-                        <h4>Código de exemplo:</h4>
-                        <div class="mb-3">
-                            <textarea class="form-control ig-code" rows="9" disabled>
-<div class="alert ig-alert-error">
-                            <p><i class="fas fa-exclamation-triangle"></i> <strong>Erros:</strong></p>
-                            <ul class="mb-0">
-                            <li>Isto não está correto;</li>
-                            <li>Isto também não;</li>
-                            <li>E isto também não.</li>
-    </ul>
-</div>
-                    </textarea>
-                        </div>
-                        <h4>Output visual:</h4>
-                        <div class="alert ig-alert-error mb-5">
-                            <p><i class="fas fa-exclamation-triangle"></i> <strong>Erros:</strong></p>
-                            <ul class="mb-0">
-                                <li>Isto não está correto;</li>
-                                <li>Isto também não;</li>
-                                <li>E isto também não.</li>
-                            </ul>
-                        </div>
-                        <h3 id="igMCModulesToasts">Toasts de sucesso/erro</h3>
-                        <p class="mb-0">
-                            Dão feedback relativamente a erros e confirmam o sucesso de operações na
-                            aplicação.
-                        </p>
-                        <p class="mb-0">O container tem posição fixa, pelo que deverá ficar no topo da página.</p>
-                        <p><strong>Nota para os toasts de erro:</strong> Deverá ser criado um toast por erro.</p>
-                        <h4>Código de exemplo:</h4>
-                        <div class="mb-3">
-                            <textarea class="form-control ig-code" rows="9" disabled>
-<div class="ig-toast-container toast-container">
-    <!--Toast de sucesso-->
-                            <div id="igToastSuccess" class="ig-toast-success toast hide" role="alert" aria-live="assertive"
-                                 aria-atomic="true">
-                            <div class="toast-header">
-                            <strong class="me-auto"><i class="fas fa-check"></i> Sucesso</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast"
-                                    aria-label="Close"></button>
-        </div>
-                            <div class="toast-body">
-            As ações foram efetuadas com sucesso
-        </div>
-    </div>
-    <!--Toasts de erro-->
-                            <div id="igToastError1" class="ig-toast-error toast hide" role="alert" aria-live="assertive"
-                                 aria-atomic="true">
-                            <div class="toast-header">
-                            <strong class="me-auto"><i class="fas fa-exclamation-triangle"></i> Erro</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast"
-                                    aria-label="Close"></button>
-        </div>
-                            <div class="toast-body">
-            Nome do erro ocorrido
-        </div>
-    </div>
-                            <div id="igToastError2" class="ig-toast-error toast hide" role="alert" aria-live="assertive"
-                                 aria-atomic="true">
-                            <div class="toast-header">
-                            <strong class="me-auto"><i class="fas fa-exclamation-triangle"></i> Erro</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast"
-                                    aria-label="Close"></button>
-        </div>
-                            <div class="toast-body">
-            Nome do erro ocorrido
-        </div>
-    </div>
-                            <div id="igToastError3" class="ig-toast-error toast hide" role="alert" aria-live="assertive"
-                                 aria-atomic="true">
-                            <div class="toast-header">
-                            <strong class="me-auto"><i class="fas fa-exclamation-triangle"></i> Erro</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast"
-                                    aria-label="Close"></button>
-        </div>
-                            <div class="toast-body">
-            Nome do erro ocorrido
-        </div>
-    </div>
-</div>
-                    </textarea>
-                        </div>
-                        <h4>Output visual:</h4>
-                        <button type="button" class="btn ig-btn-green mb-5" id="igToastConfirmBtn">
-                            Mostrar todos os
-                            toasts
-                        </button>
-
-                        <h3 id="igMCModulesCWindow">Janela de confirmação</h3>
-                        <p>Confirma ações efetuadas numa determinada página.</p>
-                        <h4>Código de exemplo:</h4>
-                        <div class="mb-3">
-                            <textarea class="form-control ig-code" rows="9" disabled>
-<div class="modal fade ig-modal ig-modal-confirm" id="igModal01" tabindex="-1" aria-labelledby="igModal01Label" aria-hidden="true">
-                            <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="igModal01Label">Confirmação</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-                            <div class="modal-body">
-            Confirma as ações efetuadas nesta página?
-        </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
-                            <button type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Guardar alterações</button>
-        </div>
-        </div>
-    </div>
-</div>
-                    </textarea>
-                        </div>
-                        <h4>Output visual:</h4>
-                        <button type="button" class="btn ig-btn-green mb-5" data-bs-toggle="modal"
-                                data-bs-target="#igModal01">
-                            Abrir janela de confirmação
-                        </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade ig-modal ig-modal-confirm" id="igModal01" tabindex="-1"
-                             aria-labelledby="igModal01Label" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="igModal01Label">Confirmação</h5>
-                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Confirma as ações efetuadas nesta página?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal">
-                                            <i class="fas fa-times"></i> Cancelar
-                                        </button>
-                                        <button type="button" class="btn ig-btn-green">
-                                            <i class="fas fa-check"></i>
-                                            Guardar alterações
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 id="igMCModulesEWindow">Janela de erros</h3>
-                        <p>Dá feedback relativamente a erros de uma determinada página.</p>
-                        <h4>Código de exemplo:</h4>
-                        <div class="mb-3">
-                            <textarea class="form-control ig-code" rows="9" disabled>
-<div class="modal fade ig-modal ig-modal-errors" id="igModal02" tabindex="-1" aria-labelledby="igModal02Label" aria-hidden="true">
-                            <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="igModal02Label"><i class="fas fa-exclamation-triangle"></i> Erros</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-                            <div class="modal-body">
-                Ocorreram os seguintes erros na aplicação:
-                            <ul>
-                            <li>Primeiro erro</li>
-                            <li>Segundo erro</li>
-                            <li>Terceiro erro</li>
-                            <li>Quarto erro</li>
-                </ul>
-            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Fechar</button>
-            </div>
-        </div>
-    </div>
-</div>
-                      </textarea>
-                        </div>
-                        <h4>Output visual:</h4>
-                        <button type="button" class="btn ig-btn-green mb-5" data-bs-toggle="modal"
-                                data-bs-target="#igModal02">
-                            Abrir janela de erros
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade ig-modal ig-modal-errors" id="igModal02" tabindex="-1"
-                             aria-labelledby="igModal02Label" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="igModal02Label">
-                                            <i class="fas fa-exclamation-triangle"></i> Erros
-                                        </h5>
-                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Ocorreram os seguintes erros na aplicação:
-                                        <ul>
-                                            <li>Primeiro erro</li>
-                                            <li>Segundo erro</li>
-                                            <li>Terceiro erro</li>
-                                            <li>Quarto erro</li>
-                                        </ul>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal">
-                                            <i class="fas fa-times"></i> Fechar
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 id="igMCModulesSearch">Painel de pesquisa</h3>
-                        <p>Permite pesquisar dados na aplicação.</p>
-                        <h4>Código de exemplo:</h4>
-                        <div class="mb-3">
-                            <textarea class="form-control ig-code" rows="10" disabled>
-<div class="card ig-card">
-                            <div class="card-body">
-                            <div class="row">
-                            <div class="col-md mb-3">
-                            <label class="form-label">Dados a pesquisar:</label>
-                            <div class="input-group">
-                            <select class="form-select ig-search-ddl">
-                            <option>Tipo de opção</option>
-                    </select>
-                            <input class="form-control" type="text">
-                            <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Limpar"><i class="far fa-trash-alt"></i></button>
-                </div>
-            </div>
-                            <div class="col-md-auto ig-searchbtn-cont">
-                            <a href="javascript:void(0)" class="btn ig-btn-green btn-block">
-                            <i class="fas fa-search"></i>
-                    Pesquisar
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-                    </textarea>
-                        </div>
-                        <h4>Output visual:</h4>
-                        <div class="mb-5">
-                            <div class="card ig-card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md">
-                                            <label class="form-label">Dados a pesquisar:</label>
-                                            <div class="input-group mb-3">
-                                                <select class="form-select ig-search-ddl">
-                                                    <option>Tipo de opção</option>
-                                                </select>
-                                                <input class="form-control" type="text">
-                                                <button class="btn" type="button" data-bs-toggle="dropdown"
-                                                        aria-expanded="false" title="Limpar">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </button>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-auto ig-searchbtn-cont">
-                                            <a href="javascript:void(0)" class="btn ig-btn-green btn-block">
-                                                <i class="fas fa-search"></i>
-                                                Pesquisar
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 id="igMCModulesNews">Módulo de notícias</h3>
-                        <p class="mb-0">
-                            Este módulo deverá ser usado na página inicial da aplicação, para mostrar
-                            conteúdo
-                            relevante para as escolas no âmbito da plataforma.
-                        </p>
-                        <p>
-                            A sintaxe ao nível de classes foi adaptada em relação à versão anterior do GesEdu, tendo em
-                            vista a
-                            adaptação ao BS5.
-                        </p>
-                        <h4>Código de exemplo:</h4>
-                        <div class="mb-3">
-                            <textarea class="form-control ig-code" rows="10" disabled>
-<div class="ig-hp-news">
-                            <div class="card ig-card">
-                            <div class="card-body">
-                            <h4>Notícias</h4>
-        </div>
-                            <div class="list-group list-group-flush">
-                            <div class="list-group-item">
-                            <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Aquisição de material didático – 1.º Ciclo</h5>
-                            <small class="text-muted"><i class="far fa-calendar"></i> 29-10-2021</small>
-                </div>
-                            <p class="mb-1">Encontra-se disponível na reservada - GesEdu (“Distribuições Orçamento – Outras Atividades”), as verbas atribuídas aos estabelecimentos de ensino público do 1.º ciclo do ensino básico para aquisição de material didático,
-                    de acordo com previsto no artigo 263º da Lei do OE 2021 relativo ao 1.º Ciclo. </p>
-            </div>
-                            <div class="list-group-item">
-                            <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">MEGA - Emissão de vouchers 1º Ciclo, 7º Ano e 10º Ano</h5>
-                            <small class="text-muted"><i class="far fa-calendar"></i> 29-10-2021</small>
-                </div>
-                            <p class="mb-1">Tendo em atenção que ao 1º Ciclo do Ensino Básico não é aplicada a reutilização de manuais escolares e que no próximo ano letivo 2021/2022, é ano de adoção de manuais escolares para o 7º ano do Ensino Básico e 10º ano do
-                    Ensino Secundário, com exceção da disciplina de Matemática, é possível iniciar a emissão de vales para este ciclo e anos escolares, a partir do dia 9 de agosto de 2021, pelo que agradecemos desde já a melhor atenção
-                    e disponibilidade desse AE/ENA no sentido de garantirem, ao longo da 1ª semana de agosto, a exportação dos respetivos alunos/turmas para o MEGA. Informa-se também que o prazo para o registo da devolução de manuais escolares,
-                    foi alargado até dia 4 de agosto. </p>
-            </div>
-                            <div class="list-group-item">
-                            <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Nova opção "Orçamento Pessoal -&gt; Trabalhadores"</h5>
-                            <small class="text-muted"><i class="far fa-calendar"></i> 29-10-2021</small>
-                </div>
-                            <p class="mb-1">Encontra-se disponível uma nova opção na área reservada - GesEdu ("Orçamento Pessoal -&gt; Trabalhadores"), para que possam consultar a informação de todos os funcionários (Docentes e Não Docentes) que estão, ou estiveram
-                    associados à unidade orgânica. Caso verifiquem que esta informação não se encontra correta, deverão proceder à exportação de dados do cadastro de pessoal para o IGeFE, de forma a que esta seja atualizada.</p>
-            </div>
-        </div>
-    </div>
-</div>
-                    </textarea>
-                        </div>
-                        <h4>Output visual:</h4>
-                        <div class="ig-hp-news mb-5">
-                            <div class="card ig-card">
-                                <div class="card-body">
-                                    <h4>Notícias</h4>
-                                </div>
-                                <div class="list-group list-group-flush">
-                                    <div class="list-group-item">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">Aquisição de material didático – 1.º Ciclo</h5>
-                                            <small class="text-muted"><i class="far fa-calendar"></i> 29-10-2021</small>
-                                        </div>
-                                        <p class="mb-1">
-                                            Encontra-se disponível na reservada - GesEdu (“Distribuições
-                                            Orçamento –
-                                            Outras Atividades”), as verbas atribuídas aos estabelecimentos de ensino
-                                            público do
-                                            1.º ciclo do ensino básico para aquisição de material didático,
-                                            de acordo com previsto no artigo 263º da Lei do OE 2021 relativo ao 1.º
-                                            Ciclo.
-                                        </p>
-                                    </div>
-                                    <div class="list-group-item">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">MEGA - Emissão de vouchers 1º Ciclo, 7º Ano e 10º Ano</h5>
-                                            <small class="text-muted"><i class="far fa-calendar"></i> 29-10-2021</small>
-                                        </div>
-                                        <p class="mb-1">
-                                            Tendo em atenção que ao 1º Ciclo do Ensino Básico não é aplicada
-                                            a
-                                            reutilização de manuais escolares e que no próximo ano letivo 2021/2022, é
-                                            ano de
-                                            adoção de manuais escolares para o 7º ano do Ensino Básico e 10º ano do
-                                            Ensino Secundário, com exceção da disciplina de Matemática, é possível
-                                            iniciar a
-                                            emissão de vales para este ciclo e anos escolares, a partir do dia 9 de
-                                            agosto de
-                                            2021, pelo que agradecemos desde já a melhor atenção
-                                            e disponibilidade desse AE/ENA no sentido de garantirem, ao longo da 1ª
-                                            semana de
-                                            agosto, a exportação dos respetivos alunos/turmas para o MEGA. Informa-se
-                                            também que
-                                            o prazo para o registo da devolução de manuais escolares,
-                                            foi alargado até dia 4 de agosto.
-                                        </p>
-                                    </div>
-                                    <div class="list-group-item">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">Nova opção "Orçamento Pessoal -&gt; Trabalhadores"</h5>
-                                            <small class="text-muted"><i class="far fa-calendar"></i> 29-10-2021</small>
-                                        </div>
-                                        <p class="mb-1">
-                                            Encontra-se disponível uma nova opção na área reservada - GesEdu
-                                            ("Orçamento Pessoal -&gt; Trabalhadores"), para que possam consultar a
-                                            informação de
-                                            todos os funcionários (Docentes e Não Docentes) que estão, ou estiveram
-                                            associados à unidade orgânica. Caso verifiquem que esta informação não se
-                                            encontra
-                                            correta, deverão proceder à exportação de dados do cadastro de pessoal para
-                                            o IGeFE,
-                                            de forma a que esta seja atualizada.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 id="igMCModulesDocuments">Lista de documentos</h3>
-                        <p class="mb-0">
-                            As listas encaminham para documentos importantes na aplicação, em particular na
-                            página
-                            inicial da área reservada.
-                        </p>
-                        <p>
-                            A sintaxe ao nível de classes foi adaptada em relação à versão anterior do GesEdu, tendo em
-                            vista uma
-                            maior optimização e adaptação ao BS5.
-                        </p>
-                        <h4>Código de exemplo:</h4>
-                        <div class="mb-3">
-                            <textarea class="form-control ig-code" rows="10" disabled>
-<div class="mb-5">
-                            <div class="card ig-card">
-                            <div class="card-body ">
-                            <h4>Instruções / Manuais</h4>
-        </div>
-                            <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item">
-                            <h5 class="mb-0"><i class="fa-regular fa-file-pdf"></i> Manual GesEdu - Gestão de Utilizadores</h5>
-            </a>
-                            <a href="#" class="list-group-item">
-                            <h5 class="mb-0"><i class="fa-regular fa-file-excel"></i> Mapa Encargos - Bloco C</h5>
-            </a>
-                            <a href="#" class="list-group-item">
-                            <h5 class="mb-0"><i class="fa-regular fa-file-pdf"></i> Justificação de Saldos da Gerência</h5>
-            </a>
-                            <a href="#" class="list-group-item">
-                            <h5 class="mb-0"><i class="fa-regular fa-file-pdf"></i> REACT – Manual de Apoio ao Preenchimento</h5>
-            </a>
-                            <a href="#" class="list-group-item">
-                            <h5 class="mb-0"><i class="fa-regular fa-file-pdf"></i> Compromissos Plurianuais</h5>
-            </a>
-        </div>
-    </div>
-</div>
-                    </textarea>
-                        </div>
-                        <h4>Output visual:</h4>
-                        <div class="mb-5">
-                            <div class="card ig-card">
-                                <div class="card-body ">
-                                    <h4>Instruções / Manuais</h4>
-                                </div>
-                                <div class="list-group list-group-flush">
-                                    <a href="#" class="list-group-item">
-                                        <h5 class="mb-0">
-                                            <i class="fa-regular fa-file-pdf"></i> Manual GesEdu - Gestão
-                                            de
-                                            Utilizadores
-                                        </h5>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <h5 class="mb-0">
-                                            <i class="fa-regular fa-file-excel"></i> Mapa Encargos - Bloco
-                                            C
-                                        </h5>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <h5 class="mb-0">
-                                            <i class="fa-regular fa-file-pdf"></i> Justificação de Saldos
-                                            da
-                                            Gerência
-                                        </h5>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <h5 class="mb-0">
-                                            <i class="fa-regular fa-file-pdf"></i> REACT – Manual de Apoio
-                                            ao
-                                            Preenchimento
-                                        </h5>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <h5 class="mb-0">
-                                            <i class="fa-regular fa-file-pdf"></i> Compromissos Plurianuais
-                                        </h5>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 id="igMCModulesTabs">Separadores</h3>
-                        <p class="mb-0">Destinam-se a dividir diversos tipos de conteúdo no contexto de uma página.</p>
-                        <p>
-                            A sintaxe ao nível de classes foi adaptada em relação à versão anterior do GesEdu, tendo em
-                            vista uma
-                            maior optimização e adaptação ao BS5.
-                        </p>
-                        <h4>Código de exemplo:</h4>
-                        <div class="mb-3">
-                            <textarea class="form-control ig-code" rows="10" disabled>
-<div class="ig-tabs">
-                            <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#ig_extab_01">Primeiro</a>
-        </li>
-                            <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#ig_extab_02">Segundo</a>
-        </li>
-                            <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#ig_extab_03">Terceiro</a>
-        </li>
-    </ul>
-                            <div class="tab-content card ig-card">
-                            <div class="tab-pane active card-body" id="ig_extab_01">Conteúdo do primeiro separador</div>
-                            <div class="tab-pane card-body" id="ig_extab_02">Conteúdo do segundo separador</div>
-                            <div class="tab-pane card-body" id="ig_extab_03">Conteúdo do terceiro separador</div>
-    </div>
-</div>
-                    </textarea>
-                        </div>
-                        <h4>Output visual:</h4>
-                        <div class="mb-5 ig-tabs">
-                            <ul class="nav nav-tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#ig_extab_01">Primeiro</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#ig_extab_02">Segundo</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#ig_extab_03">Terceiro</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content card ig-card">
-                                <div class="tab-pane active card-body" id="ig_extab_01">
-                                    Conteúdo do primeiro separador
-                                </div>
-                                <div class="tab-pane card-body" id="ig_extab_02">Conteúdo do segundo separador</div>
-                                <div class="tab-pane card-body" id="ig_extab_03">Conteúdo do terceiro separador</div>
-                            </div>
-                        </div>
-                        <h3 id="igMCModulesAccordions">Acordeões</h3>
-                        <p>Destinam-se a dividir diversos tipos de conteúdo no contexto de uma página.</p>
-                        <h4>Código de exemplo:</h4>
-                        <textarea class="form-control ig-code mb-3" rows="10" disabled>
-<div class="ig-accordion accordion accordion-flush" id="igExampleAccordion">
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="igAccHeader1">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#igAccCont1" aria-expanded="false" aria-controls="igAccCont1">
-                Primeiro conteúdo
-            </button>
-        </h2>
-                        <div id="igAccCont1" class="accordion-collapse collapse" aria-labelledby="igAccHeader1"
-                             data-bs-parent="#igExampleAccordion">
-                        <div class="accordion-body">Primeiro texto deste acordeão.</div>
-        </div>
-    </div>
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="igAccHeader2">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#igAccCont2" aria-expanded="false" aria-controls="flush-collapseTwo">
-                Segundo conteúdo
-            </button>
-        </h2>
-                        <div id="igAccCont2" class="accordion-collapse collapse" aria-labelledby="igAccHeader2"
-                             data-bs-parent="#igExampleAccordion">
-                        <div class="accordion-body">Segundo texto deste acordeão.</div>
-        </div>
-    </div>
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="igAccHeader3">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#igAccCont3" aria-expanded="false" aria-controls="flush-collapseThree">
-                Terceiro conteúdo
-            </button>
-        </h2>
-                        <div id="igAccCont3" class="accordion-collapse collapse" aria-labelledby="igAccHeader3"
-                             data-bs-parent="#igExampleAccordion">
-                        <div class="accordion-body">Terceiro texto deste acordeão.</div>
-        </div>
-    </div>
-</div>
-                </textarea>
-                        <h4>Output visual:</h4>
-                        <div class="ig-accordion accordion accordion-flush mb-5" id="igExampleAccordion">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="igAccHeader1">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#igAccCont1" aria-expanded="false" aria-controls="igAccCont1">
-                                        Primeiro conteúdo
-                                    </button>
-                                </h2>
-                                <div id="igAccCont1" class="accordion-collapse collapse" aria-labelledby="igAccHeader1"
-                                     data-bs-parent="#igExampleAccordion">
-                                    <div class="accordion-body">Primeiro texto deste acordeão.</div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="igAccHeader2">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#igAccCont2" aria-expanded="false"
-                                            aria-controls="flush-collapseTwo">
-                                        Segundo conteúdo
-                                    </button>
-                                </h2>
-                                <div id="igAccCont2" class="accordion-collapse collapse" aria-labelledby="igAccHeader2"
-                                     data-bs-parent="#igExampleAccordion">
-                                    <div class="accordion-body">Segundo texto deste acordeão.</div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="igAccHeader3">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#igAccCont3" aria-expanded="false"
-                                            aria-controls="flush-collapseThree">
-                                        Terceiro conteúdo
-                                    </button>
-                                </h2>
-                                <div id="igAccCont3" class="accordion-collapse collapse" aria-labelledby="igAccHeader3"
-                                     data-bs-parent="#igExampleAccordion">
-                                    <div class="accordion-body">Terceiro texto deste acordeão.</div>
-                                </div>
-                            </div>
-                        </div>
-                        <h2 id="igMGrids">Grids</h2>
-                        <p>Têm como objetivo mostrar e gerir de uma forma rápida grandes volumes de dados.</p>
-                        <h3>Layout genérico</h3>
-                        <p class="mb-0">
-                            Com colunas com largura adaptada (classe .ig-col-shrink), com botões de ação e
-                            com
-                            paginação.
-                        </p>
-                        <p>
-                            A sintaxe ao nível de classes foi adaptada em relação à versão anterior do GesEdu, tendo em
-                            vista uma
-                            maior optimização e adaptação ao BS5.
-                        </p>
-                        <h4>Código de exemplo:</h4>
-                        <textarea class="form-control ig-code mb-3" rows="10" disabled>
-<table class="table ig-grid">
-                        <thead>
-                        <tr>
-                        <th class="ig-col-shrink" scope="col">NIF</th>
-                        <th scope="col">Nome</th>
-                        <th class="ig-col-shrink" scope="col">Fonte de Financiamento</th>
-                        <th class="ig-col-shrink" scope="col"></th>
-        </tr>
-    </thead>
-                        <tbody>
-                        <tr>
-                        <td><a class="ig-gridlink" href="#">123456789</a></td>
-                        <td>Joaquim António Almeida Freitas</td>
-                        <td>111</td>
-                        <td><a href="#" class="btn ig-btn-blue" title="Detalhe"><i class="fas fa-info-circle"></i></a></td>
-        </tr>
-                        <tr>
-                        <td><a class="ig-gridlink" href="#">123456789</a></td>
-                        <td>Arnaldo António Almeida Bento</td>
-                        <td>111</td>
-                        <td><a href="#" class="btn ig-btn-blue" title="Detalhe"><i class="fas fa-info-circle"></i></a></td>
-        </tr>
-                        <tr>
-                        <td><a class="ig-gridlink" href="#">123456789</a></td>
-                        <td>Ivone Costa</td>
-                        <td>111</td>
-                        <td><a href="#" class="btn ig-btn-blue" title="Detalhe"><i class="fas fa-info-circle"></i></a></td>
-        </tr>
-    </tbody>
-                        <tfoot>
-                        <tr>
-                        <th colspan="100%">
-                        <div class="row ig-pagination">
-                        <div class="col-md align-middle">
-                        <p class="ig-grid-record">
-                            1 - 3 de 3 registos
-                        </p>
-                    </div>
-                        <div class="col-md-auto">
-                        <nav aria-label="Page navigation example">
-                        <ul class="pagination mb-0 float-end">
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Anterior"><i class="fas fa-arrow-left"></i></a></li>
-                        <li class="page-item"><a class="page-link active" href="javascript:void(0);">1</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Seguinte"><i class="fas fa-arrow-right"></i></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </th>
-        </tr>
-    </tfoot>
-</table>
-                </textarea>
-                        <h4>Output visual:</h4>
-                        <table class="table ig-grid mb-5">
-                            <thead>
-                                <tr>
-                                    <th class="ig-col-shrink" scope="col">NIF</th>
-                                    <th scope="col">Nome</th>
-                                    <th class="ig-col-shrink" scope="col">Fonte de Financiamento</th>
-                                    <th class="ig-col-shrink" scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><a class="ig-gridlink" href="#">123456789</a></td>
-                                    <td>Joaquim António Almeida Freitas</td>
-                                    <td>111</td>
-                                    <td>
-                                        <a href="#" class="btn ig-btn-blue" title="Detalhe">
-                                            <i class="fas fa-info-circle"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a class="ig-gridlink" href="#">123456789</a></td>
-                                    <td>Arnaldo António Almeida Bento</td>
-                                    <td>111</td>
-                                    <td>
-                                        <a href="#" class="btn ig-btn-blue" title="Detalhe">
-                                            <i class="fas fa-info-circle"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a class="ig-gridlink" href="#">123456789</a></td>
-                                    <td>Ivone Costa</td>
-                                    <td>111</td>
-                                    <td>
-                                        <a href="#" class="btn ig-btn-blue" title="Detalhe">
-                                            <i class="fas fa-info-circle"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th colspan="100%">
-                                        <div class="row ig-pagination">
-                                            <div class="col-md align-middle">
-                                                <p class="ig-grid-record">
-                                                    1 - 3 de 3 registos
-                                                </p>
-                                            </div>
-                                            <div class="col-md-auto">
-                                                <nav aria-label="Page navigation example">
-                                                    <ul class="pagination mb-0 float-end">
-                                                        <li class="page-item">
-                                                            <a class="page-link"
-                                                               href="javascript:void(0);" title="Anterior">
-                                                                <i class="fas fa-arrow-left"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <a class="page-link active"
-                                                               href="javascript:void(0);">1</a>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <a class="page-link"
-                                                               href="javascript:void(0);">2</a>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <a class="page-link"
-                                                               href="javascript:void(0);">3</a>
-                                                        </li>
-                                                        <li class="page-item">
-                                                            <a class="page-link"
-                                                               href="javascript:void(0);" title="Seguinte">
-                                                                <i class="fas fa-arrow-right"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </nav>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        <h2 id="igMListagens">Listagens</h2>
-                        <p>Listas que permitem ver informação de uma forma mais imediata.</p>
-                        <h4>Código de exemplo:</h4>
-                        <textarea class="form-control ig-code mb-3" rows="9" disabled>
-<div class="card ig-card ig-itemlist">
-                        <div class="list-group list-group-flush">
-                        <div class="list-group-item">
-                        <div class="row">
-                        <div class="col-md">
-                        <h5><a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a></h5>
-                        <p class="mb-0">
-                        <span><strong>Ano económico:</strong> 2022</span>
-                        <span><strong>Mês:</strong> 3</span>
-                    </p>
-                </div>
-                        <div class="col-md-auto text-end">
-                        <h5>€ 19.085,90</h5>
-                        <p class="mb-0">
-                        <span><strong>FOFI:</strong> 319</span>
-                        <span><strong>Medida(s):</strong> 019</span>
-                        <span class="badge ig-badge-success"><i class="far fa-file-alt"></i> Válida</span>
-                    </p>
-                </div>
-                        <div class="col-md-auto text-end">
-                        <a href="javascript:void(0)" class="btn ig-btn-blue" title="Ver requisição"><i class="far fa-file-alt"></i></a>
-                </div>
-            </div>
-        </div>
-                        <div class="list-group-item">
-                        <div class="row">
-                        <div class="col-md">
-                        <h5><a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a></h5>
-                        <p class="mb-0">
-                        <span><strong>Ano económico:</strong> 2022</span>
-                        <span><strong>Mês:</strong> 3</span>
-                    </p>
-                </div>
-                        <div class="col-md-auto text-end">
-                        <h5>€ 19.085,90</h5>
-                        <p class="mb-0">
-                        <span><strong>FOFI:</strong> 319</span>
-                        <span><strong>Medida(s):</strong> 019</span>
-                        <span class="badge ig-badge-error"><i class="far fa-file-alt"></i> Inválida</span>
-                    </p>
-                </div>
-                        <div class="col-md-auto text-end">
-                        <a href="javascript:void(0)" class="btn ig-btn-blue" title="Ver requisição"><i class="far fa-file-alt"></i></a>
-                </div>
-            </div>
-        </div>
-                        <div class="list-group-item">
-                        <div class="row">
-                        <div class="col-md">
-                        <h5><a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a></h5>
-                        <p class="mb-0">
-                        <span><strong>Ano económico:</strong> 2022</span>
-                        <span><strong>Mês:</strong> 3</span>
-                    </p>
-                </div>
-                        <div class="col-md-auto text-end">
-                        <h5>€ 19.085,90</h5>
-                        <p class="mb-0">
-                        <span><strong>FOFI:</strong> 319</span>
-                        <span><strong>Medida(s):</strong> 019</span>
-                        <span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i> Sem pagamento emitido</span>
-                    </p>
-                </div>
-                        <div class="col-md-auto text-end">
-                        <a href="javascript:void(0)" class="btn ig-btn-blue" title="Ver requisição"><i class="far fa-file-alt"></i></a>
-                </div>
-            </div>
-        </div>
-                        <div class="list-group-item">
-                        <div class="row">
-                        <div class="col-md">
-                        <h5><a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a></h5>
-                        <p class="mb-0">
-                        <span><strong>Ano económico:</strong> 2022</span>
-                        <span><strong>Mês:</strong> 3</span>
-                    </p>
-                </div>
-                        <div class="col-md-auto text-end">
-                        <h5>€ 19.085,90</h5>
-                        <p class="mb-0">
-                        <span><strong>FOFI:</strong> 319</span>
-                        <span><strong>Medida(s):</strong> 019</span>
-                        <span class="badge ig-badge-success"><i class="far fa-file-alt"></i> Válida</span>
-                    </p>
-                </div>
-                        <div class="col-md-auto text-end">
-                        <a href="javascript:void(0)" class="btn ig-btn-blue" title="Ver requisição"><i class="far fa-file-alt"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row ig-pagination">
-                        <div class="col-md align-middle">
-                        <p class="ig-grid-record">
-            1 - 3 de 3 registos
-        </p>
-    </div>
-                        <div class="col-md-auto">
-                        <nav aria-label="Page navigation example">
-                        <ul class="pagination mb-0 float-end">
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Anterior"><i class="fas fa-arrow-left"></i></a></li>
-                        <li class="page-item"><a class="page-link active" href="javascript:void(0);">1</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Seguinte"><i class="fas fa-arrow-right"></i></a></li>
-            </ul>
-        </nav>
-    </div>
-</div>
-                </textarea>
-                        <h4>Output visual:</h4>
-                        <div class="mb-5">
-                            <div class="card ig-card ig-itemlist">
-                                <div class="list-group list-group-flush">
-                                    <div class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-md">
-                                                <h5>
-                                                    <a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a>
-                                                </h5>
-                                                <p class="mb-0">
-                                                    <span><strong>Ano económico:</strong> 2022</span>
-                                                    <span><strong>Mês:</strong> 3</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-auto text-end">
-                                                <h5>€ 19.085,90</h5>
-                                                <p class="mb-0">
-                                                    <span><strong>FOFI:</strong> 319</span>
-                                                    <span><strong>Medida(s):</strong> 019</span>
-                                                    <span class="badge ig-badge-success">
-                                                        <i class="far fa-file-alt"></i>
-                                                        Válida
-                                                    </span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-auto text-end">
-                                                <a href="javascript:void(0)" class="btn ig-btn-blue"
-                                                   title="Ver requisição"><i class="far fa-file-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-md">
-                                                <h5>
-                                                    <a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a>
-                                                </h5>
-                                                <p class="mb-0">
-                                                    <span><strong>Ano económico:</strong> 2022</span>
-                                                    <span><strong>Mês:</strong> 3</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-auto text-end">
-                                                <h5>€ 19.085,90</h5>
-                                                <p class="mb-0">
-                                                    <span><strong>FOFI:</strong> 319</span>
-                                                    <span><strong>Medida(s):</strong> 019</span>
-                                                    <span class="badge ig-badge-error">
-                                                        <i class="far fa-file-alt"></i>
-                                                        Inválida
-                                                    </span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-auto text-end">
-                                                <a href="javascript:void(0)" class="btn ig-btn-blue"
-                                                   title="Ver requisição"><i class="far fa-file-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-md">
-                                                <h5>
-                                                    <a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a>
-                                                </h5>
-                                                <p class="mb-0">
-                                                    <span><strong>Ano económico:</strong> 2022</span>
-                                                    <span><strong>Mês:</strong> 3</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-auto text-end">
-                                                <h5>€ 19.085,90</h5>
-                                                <p class="mb-0">
-                                                    <span><strong>FOFI:</strong> 319</span>
-                                                    <span><strong>Medida(s):</strong> 019</span>
-                                                    <span class="badge ig-badge-warning">
-                                                        <i class="fas fa-exclamation-triangle"></i> Sem pagamento
-                                                        emitido
-                                                    </span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-auto text-end">
-                                                <a href="javascript:void(0)" class="btn ig-btn-blue"
-                                                   title="Ver requisição"><i class="far fa-file-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-md">
-                                                <h5>
-                                                    <a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a>
-                                                </h5>
-                                                <p class="mb-0">
-                                                    <span><strong>Ano económico:</strong> 2022</span>
-                                                    <span><strong>Mês:</strong> 3</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-auto text-end">
-                                                <h5>€ 19.085,90</h5>
-                                                <p class="mb-0">
-                                                    <span><strong>FOFI:</strong> 319</span>
-                                                    <span><strong>Medida(s):</strong> 019</span>
-                                                    <span class="badge ig-badge-success">
-                                                        <i class="far fa-file-alt"></i>
-                                                        Válida
-                                                    </span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-auto text-end">
-                                                <a href="javascript:void(0)" class="btn ig-btn-blue"
-                                                   title="Ver requisição"><i class="far fa-file-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row ig-pagination">
-                                <div class="col-md align-middle">
-                                    <p class="ig-grid-record">
-                                        1 - 3 de 3 registos
-                                    </p>
-                                </div>
-                                <div class="col-md-auto">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination mb-0 float-end">
-                                            <li class="page-item">
-                                                <a class="page-link" href="javascript:void(0);"
-                                                   title="Anterior"><i class="fas fa-arrow-left"></i></a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link active"
-                                                   href="javascript:void(0);">1</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="javascript:void(0);">2</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="javascript:void(0);">3</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="javascript:void(0);"
-                                                   title="Seguinte"><i class="fas fa-arrow-right"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                        <h2 id="igMLoaders">Loaders</h2>
-                        <p>
-                            Têm como objetivo dar feedback ao utilizador relativamente a partes da aplicação que estejam
-                            em
-                            carregamento.
-                        </p>
-                        <h3 id="igMLButton">Loader em botões</h3>
-                        <p>Bloqueia a ação do botão e dá feedback ao utilizador.</p>
-                        <h4>Código de exemplo:</h4>
-                        <textarea class="form-control ig-code mb-3" rows="9" disabled>
-<button class="btn ig-btn-green" type="button" disabled>
-                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-    A carregar...
-</button>
-<button class="btn ig-btn-blue" type="button" disabled>
-                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-    A carregar...
-</button>
-                </textarea>
-                        <h4>Output visual:</h4>
-                        <div class="mb-5">
-                            <button class="btn ig-btn-green" type="button" disabled>
-                                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                                A carregar...
-                            </button>
-                            <button class="btn ig-btn-blue" type="button" disabled>
-                                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                                A carregar...
-                            </button>
-                        </div>
-                        <h3 id="igMLDiv">Loader em divs / grids</h3>
-                        <p>Bloqueia a ação da div e dá feedback ao utilizador.</p>
-                        <h4>Código de exemplo:</h4>
-                        <textarea class="form-control ig-code mb-3" rows="4" disabled>
-<div class="ig-load">
-                        <span class="spinner-grow" role="status"></span> A carregar...
-</div>
-                </textarea>
-                        <h4>Output visual:</h4>
-                        <div class="card ig-card mb-5">
-                            <div class="card-body">
-                                Algum texto aqui...
-                                <div class="ig-load">
-                                    <span class="spinner-grow" role="status"></span> A carregar...
+                            <div class="col-md-2 ig-sidebar">
+                                <div class="p-3 sticky-top">
+                                    <h3 class="mb-0">GesEdu</h3>
+                                    <h4>Sistema de Design</h4>
+                                    <hr />
+                                    <p><a href="index.html">Início</a></p>
+                                    <p><a href="interface.html">Elementos de interface</a></p>
+                                    <p><a href="common.html"><strong>Elementos comuns</strong></a></p>
+                                    <p><a href="forms.html">Formulários</a></p>
+                                    <p><a href="buttons.html">Botões</a></p>
+                                    <p><a href="mega.html">Programa MEGA</a></p>
+                                    <p><a href="frameworks.html">Frameworks do projeto</a></p>
+                                    <p><a href="uxwriting.html">Textos para o GesEdu (UX Writing)</a></p>
                                 </div>
 
-                            </div>
-                        </div>
-                        <h3 id="igMLPage">Loader a bloquear a página</h3>
-                        <p class="mb-0">Bloqueia todo o conteúdo da página e dá feedback ao utilizador.</p>
-                        <p class="mb-0">
-                            Deverá ser acrescentada a classe .overflow-hidden (do Bootstrap) ao body, de
-                            modo a que
-                            bloqueie o scroll enquanto o loader é mostrado.
-                        </p>
-                        <p><strong>Nota:</strong> O output visual não é mostrado de modo a não bloquear a página.</p>
-                        <h4>Código de exemplo:</h4>
-                        <textarea class="form-control ig-code mb-5" rows="6" disabled>
-<body class="overflow-hidden">
-                        <div class="ig-load ig-load-body">
-                        <span class="spinner-grow" role="status"></span> A carregar...
-    </div>
-</body>
-                </textarea>
-                        <h2>Elemento sem resultados</h2>
-                        <p>Têm como objetivo mostrar ao utlizador que não existem resultados para uma pesquisa.</p>
-                        <h4>Código de exemplo:</h4>
-                        <textarea class="form-control ig-code mb-3" rows="6" disabled>
-<div class="ig-noresults text-center">
-                        <h3><i class="fas fa-search"></i>  Sem resultados</h3>
-                        <p class="mb-0">Não foram encontrados resultados para a pesquisa efetuada.</p>
-                        <a class="btn ig-btn-green"><i class="fas fa-arrow-left"></i> Página anterior</a>
-</div>
-                </textarea>
-                        <h4>Output visual:</h4>
-                        <div class="card ig-card mb-5">
-                            <div class="card-body">
-                                <div class="ig-noresults text-center">
-                                    <h3><i class="fas fa-search"></i> Sem resultados</h3>
-                                    <p>Não foram encontrados resultados para a pesquisa efetuada.</p>
-                                    <a class="btn ig-btn-green"><i class="fas fa-arrow-left"></i> Página anterior</a>
-                                </div>
-                            </div>
-                        </div>
-                        <h2 id="igMIcons">Iconografia</h2>
-                        <p>Ícones a serem utilizados na aplicação.</p>
-                        <h3 id="igMIMenu">Ícones do menu lateral</h3>
-                        <p class="mb-5">
-                            Os ícones serão disponibilizados aqui oportunamente, após a conclusão do
-                            levantamento das páginas a migrar para o novo GesEdu.
-                        </p>
-                        <h3 id="igMIFAwesome">Ícones FontAwesome</h3>
-                        <p>
-                            A utilização destes ícones tem uma série de vantagens, uma vez que tem por base um desenho
-                            vetorial, a cor e tamanhos podem ser personalizáveis através dos parâmteros de CSS
-                            utilizados para fontes.
-                        </p>
-
-                        <h4>Código de exemplo e output visual:</h4>
-                        <div class="card ig-card mb-5 ig-iconlist">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="far fa-trash-alt"></i></h2>
-                                        <h4>Lixo/Limpar</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-trash-alt"></i>'>
-                                        <p>Botões e ações de limpeza de dados</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-search"></i></h2>
-                                        <h4>Pesquisar</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-search"></i>'>
-                                        <p>Botões de pesquisa, módulos sem resultados</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-calendar"></i></h2>
-                                        <h4>Calendário</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-calendar"></i>'>
-                                        <p>Indicação de datas (ex: notícias)</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-print"></i></h2>
-                                        <h4>Imprimir</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-print"></i>'>
-                                        <p>Impressão de ficheiros</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-file-import"></i></h2>
-                                        <h4>Importar ficheiros</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-print"></i>'>
-                                        <p>Importação de ficheiros</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="far fa-file-alt"></i></h2>
-                                        <h4>Ficheiro genérico</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="far fa-file-alt"></i>'>
-                                        <p>Detalhe de listagens, impressão de ficheiros</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="far fa-file-pdf"></i></h2>
-                                        <h4>Ficheiro PDF</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="far fa-file-pdf"></i>'>
-                                        <p>Downloads de ficheiros PDF</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="far fa-file-excel"></i></h2>
-                                        <h4>Ficheiro Excel</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="far fa-file-excel"></i>'>
-                                        <p>Downloads de ficheiros Excel</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-arrow-left"></i></h2>
-                                        <h4>Esquerda/Anterior</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-arrow-left"></i>'>
-                                        <p>Breadcrumbs e paginação</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-arrow-right"></i></h2>
-                                        <h4>Direita/Seguinte</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-arrow-right"></i>'>
-                                        <p>Paginação</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-info-circle"></i></h2>
-                                        <h4>Informação</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-info-circle"></i>'>
-                                        <p>Painéis de informação / Detalhes</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-exclamation-triangle"></i></h2>
-                                        <h4>Alerta</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-exclamation-triangle"></i>'>
-                                        <p>Painéis e etiquetas de alerta</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fa-solid fa-building-columns"></i></h2>
-                                        <h4>Instituição</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-trash-alt"></i>'>
-                                        <p>Assinala uma escola-sede na página de dados da UO</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-save"></i></h2>
-                                        <h4>Guardar</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-save"></i>'>
-                                        <p>Ações de gravação de dados (incompletas)</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-check"></i></h2>
-                                        <h4>Confirmar</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-check"></i>'>
-                                        <p>Ações de confirmação de dados</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-plus"></i></h2>
-                                        <h4>Adicionar</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-plus"></i>'>
-                                        <p>Ações de adição de dados</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-table-cells"></i></h2>
-                                        <h4>Tabelas</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-table-cells"></i>'>
-                                        <p>Ver páginas de detalhe com tabelas</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-clock-rotate-left"></i></h2>
-                                        <h4>Em atualização</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-clock-rotate-left"></i>'>
-                                        <p>Dados por atualizar</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-users"></i></h2>
-                                        <h4>Utilizadores</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-users"></i>'>
-                                        <p>Indicador de n.º de alunos/p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="far fa-handshake"></i></h2>
-                                        <h4>ASE</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="far fa-handshake"></i>'>
-                                        <p>Indicador de ASE</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-arrow-rotate-right"></i></h2>
-                                        <h4>Repetente</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-arrow-rotate-right"></i>'>
-                                        <p>Indicador de alunos repetentes</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-ban"></i></h2>
-                                        <h4>Manual com erros</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-ban"></i>'>
-                                        <p>Indicador de erros em manuais</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-book"></i></h2>
-                                        <h4>Livro</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-book"></i>'>
-                                        <p>Indicador de manual escolar</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-chalkboard-user"></i></h2>
-                                        <h4>Turma</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-chalkboard-user"></i>'>
-                                        <p>Indicador de turma</p>
-                                    </div>
-                                    <div class="col-md-2 text-center mb-5">
-                                        <h2 class="mb-1"><i class="fas fa-phone"></i></h2>
-                                        <h4>Telefone</h4>
-                                        <input type="text" class="form-control form-control-sm mb-3 ig-code" disabled
-                                               value='<i class="fas fa-fa-phone"></i>'>
-                                        <p>Indicador de telefone (contactos)</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h2 class="igMType">Tipografia</h2>
-                        <p>A coerência tipográfica é fundamental para garantir uma boa comunicação nos interfaces.</p>
-                        <h3 id="igMTTypeface">Tipo de letra utilizado no GesEdu</h3>
-                        <p>
-                            O tipo de letra a ser utilizado na aplicação é o Inter, disponível gratuitamente através do
-                            Google Fonts. Este tipo de letra foi desenhado para o software Figma e foi desenhado a
-                            pensar em User Interfaces.
-                        </p>
-                        <a class="btn ig-btn-green mb-3" target="_blank"
-                           href="https://fonts.google.com/specimen/Inter">Ver fonte no Google Fonts</a>
-                        <h4>Textos de exemplo:</h4>
-                        <div class="card ig-card card-body mb-5 ig-light-font-ex">
-                            <h2><strong>Instituto de Gestão Financeira, I.P.</strong></h2>
-                            <h2>Alteração Obrigatória de Posicionamento Remuneratório</h2>
-                            <h2>Medidas de Valorização Remuneratória de Trabalhadores em Funções Públicas</h2>
-                            <h2>ABCDEFGHIJKLMNOPQRSTUVWXYZ</h2>
-                            <h2>abcdefghijklmnopqrstuvwxyz</h2>
-                            <h2 class="mb-0">€ 0123456789</h2>
-                        </div>
-                        <h3 id="igMTOverline">Títulos de overline</h3>
-                        <p>Estes títulos deverão ser utilizados para sinalizar secções diferentes de uma página.</p>
-                        <h4>Código de exemplo:</h4>
-                        <div class="mb-3">
-                            <textarea class="form-control ig-code" rows="3" disabled>
-<h4>Secção da página</h4>
-<p>Algum texto aqui...</p>
-                    </textarea>
-                        </div>
-                        <h4>Output visual:</h4>
-                        <div class="card ig-card mb-5">
-                            <div class="card-body">
-                                <h4>Secção da página</h4>
-                                <p class="mb-0">Algum texto aqui...</p>
-                            </div>
-                        </div>
-                        <h3 id="igMTText">Texto corrente</h3>
-                        <p>Deverão ser usados parágrafos em HTML para este tipo de texto.</p>
-                        <h4>Código de exemplo:</h4>
-                        <div class="mb-3">
-                            <textarea class="form-control ig-code" rows="2" disabled>
-<p>Algum texto aqui...</p>
-                    </textarea>
-                        </div>
-                        <h4>Output visual:</h4>
-                        <div class="card ig-card mb-5">
-                            <div class="card-body">
-                                <p class="mb-0">Algum texto aqui...</p>
-                            </div>
-                        </div>
-                        <h2 id="igMColors">Palete de cores</h2>
-                        <p>Cores, variáveis e objetivos de utilização das cores.</p>
-                        <h3 id="igMCBlue">Tons de azul</h3>
-                        <p>
-                            Uma das cores principais da aplicação, utilizado no menu superior, em títulos, em grids e em
-                            conformidade com a paleta de tons verdes.
-                        </p>
-                        <div class="card ig-card mb-5">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-blue-1"></div>
-                                        <p><strong>Variável:</strong> var(--ig-blue-1)</p>
-                                        <p><strong>Cor:</strong> #284652</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-blue-1</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-blue-2"></div>
-                                        <p><strong>Variável:</strong> var(--ig-blue-2)</p>
-                                        <p><strong>Cor:</strong> #3c7685</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-blue-2</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-blue-3"></div>
-                                        <p><strong>Variável:</strong> var(--ig-blue-3)</p>
-                                        <p><strong>Cor:</strong> #c1e4e8</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-blue-3</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-blue-4"></div>
-                                        <p><strong>Variável:</strong> var(--ig-blue-4)</p>
-                                        <p><strong>Cor:</strong> #e5f5f9</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-blue-4</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 id="igMCGreen">Tons de verde</h3>
-                        <p>
-                            Uma das cores principais da aplicação baseada na identidade visual do IGeFE, utilizado nas
-                            barras de título, em botões e painéis de confirmação e em conformidade com a paleta de tons
-                            azuis.
-                        </p>
-                        <div class="card ig-card mb-5">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-green-1"></div>
-                                        <p><strong>Variável:</strong> var(--ig-green-1)</p>
-                                        <p><strong>Cor:</strong> #007236</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-green-1</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-green-2"></div>
-                                        <p><strong>Variável:</strong> var(--ig-green-2)</p>
-                                        <p><strong>Cor:</strong> #008d5b</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-green-2</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-green-3"></div>
-                                        <p><strong>Variável:</strong> var(--ig-green-3)</p>
-                                        <p><strong>Cor:</strong> #83ba9a</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-green-3</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-green-4"></div>
-                                        <p><strong>Variável:</strong> var(--ig-green-4)</p>
-                                        <p><strong>Cor:</strong> #c9f4db</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-green-4</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-green-5"></div>
-                                        <p><strong>Variável:</strong> var(--ig-green-5)</p>
-                                        <p><strong>Cor:</strong> #f1ffd9</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-green-5</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-green-6"></div>
-                                        <p><strong>Variável:</strong> var(--ig-green-6)</p>
-                                        <p><strong>Cor:</strong> #fafff2</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-green-6</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 id="igMCYellow">Tons de amarelo</h3>
-                        <p>
-                            Usados em painéis e labels de alerta e em confirmidade com as cores principais da aplicação.
-                        </p>
-                        <div class="card ig-card mb-5">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-yellow-1"></div>
-                                        <p><strong>Variável:</strong> var(--ig-yellow-1)</p>
-                                        <p><strong>Cor:</strong> #7A4A0F</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-yellow-1</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-yellow-2"></div>
-                                        <p><strong>Variável:</strong> var(--ig-yellow-2)</p>
-                                        <p><strong>Cor:</strong> #f8971d</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-yellow-2</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-yellow-3"></div>
-                                        <p><strong>Variável:</strong> var(--ig-yellow-3)</p>
-                                        <p><strong>Cor:</strong> #fee8c3</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-yellow-3</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 id="igMCRed">Tons de vermelho</h3>
-                        <p>
-                            Usados em painéis e labels de erros e em confirmidade com as cores principais da aplicação.
-                        </p>
-                        <div class="card ig-card mb-5">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-red-1"></div>
-                                        <p><strong>Variável:</strong> var(--ig-red-1)</p>
-                                        <p><strong>Cor:</strong> #7c3939</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-red-1</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-red-2"></div>
-                                        <p><strong>Variável:</strong> var(--ig-red-2)</p>
-                                        <p><strong>Cor:</strong> #ba5655</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-red-2</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-red-3"></div>
-                                        <p><strong>Variável:</strong> var(--ig-red-3)</p>
-                                        <p><strong>Cor:</strong> #f1cccc</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-red-3</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 id="igMCTransparent">Tons com transparência</h3>
-                        <p>Usados para efeitos de box-shadow e para backdrop de loaders.</p>
-                        <div class="card ig-card mb-5">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-greenalpha-1"></div>
-                                        <p><strong>Variável:</strong> var(--ig-green-1-alpha)</p>
-                                        <p><strong>Cor:</strong> #0072360f</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-greenalpha-1</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-greenalpha-2"></div>
-                                        <p><strong>Variável:</strong> var(--ig-green-2-alpha)</p>
-                                        <p><strong>Cor:</strong> #008d5c28</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-greenalpha-2</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card ig-card ig-color-ex ig-bk-bluealpha"></div>
-                                        <p><strong>Variável:</strong> var(--ig-blue-1-alpha)</p>
-                                        <p><strong>Cor:</strong> #3c768588</p>
-                                        <p class="mb-0"><strong>Classe:</strong> .ig-bk-bluealpha</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 ps-5">
                         <div class="ig-sidemenu-right">
                             <h4 class="mb-4">Nesta página:</h4>
-                            <p><a href="#igMPanels">Painel/Card</a></p>
-                            <p><a href="#igMCModules">Módulos customizados</a></p>
-                            <div class="ps-4">
-                                <p><a href="#igMCModulesTBar">Barra de título</a></p>
-                                <p><a href="#igMCModulesAlerts">Alertas</a></li>
-                                <p><a href="#igMCModulesPStatistics">Painel de estatísticas</a></p>
-                                <p><a href="#igMCModulesPAlerts">Painel de alertas</a></p>
-                                <p><a href="#igMCModulesPErrors">Painel de erros</a></p>
-                                <p><a href="#igMCModulesToasts">Toasts de sucesso/erro</a></p>
-                                <p><a href="#igMCModulesCWindow">Janela de confirmação</a></p>
-                                <p><a href="#igMCModulesEWindow">Janela de erros</a></p>
-                                <p><a href="#igMCModulesSearch">Painel de pesquisa</a></p>
-                                <p><a href="#igMCModulesNews">Módulo de notícias</a></p>
-                                <p><a href="#igMCModulesDocuments">Lista de documentos</a></p>
-                                <p><a href="#igMCModulesTabs">Separadores</a></p>
-                                <p><a href="#igMCModulesAccordions">Acordeões</a></p>
-                            </div>
-                            <p><a href="#igMGrids">Grids</a></p>
-                            <p><a href="#igMListagens">Listagens</a></p>
-                            <p><a href="#igMLoaders">Loaders</a></p>
-                            <div class="ps-4">
-                                <p><a href="#igMLButton">Loaders em botóes</a></p>
-                                <p><a href="#igMLDiv">Loader em divs / grids</a></li>
-                                <p><a href="#igMLPage">Loader a bloquear a página</a></li>
-                            </div>
-                            <p><a href="#igMIcons">Iconografia</a></p>
-                            <div class="ps-4">
-                                <p>
-                                    <a href="#igMIMenu">Ícones do menu lateral </a> <span class="badge ig-badge-warning">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                        Aguarda levantamento da aplicação
-                                    </span>
-                                </p>
-                                <p><a href="#igMIFAwesome">Ícones FontAwesome</a></li>
-                            </div>
-                            <p><a href="#igMType">Tipografia</a></p>
-                            <div class="ps-4">
-                                <p><a href="#igMTTypeface">Tipo de letra utilizado no GesEdu</a></p>
-                                <p><a href="#igMTOverline">Títulos de overline</a></li>
-                                <p><a href="#igMTText">Texto corrente</a></li>
-                            </div>
-                            <p><a href="#igMColors">Palete de cores</a></p>
-                            <div class="ps-4">
-                                <p><a href="#igMCBlue">Tons de azul</a> <span class="badge ig-badge-warning"></p>
-                                <p><a href="#igMCGreen">Tons de verde</a></li>
-                                <p><a href="#igMCYellow">Tons de amarelo</a></li>
-                                <p><a href="#igMCRed">Tons de vermelho</a></li>
-                                <p><a href="#igMCTransparent">Tons com transparência</a></li>
-                            </div>
+                            <p><a href="#igCHeader">Cabeçalho</a></p>
+                            <p><a href="#igCFooter">Rodapé</a></p>
+                            <p><span class="badge ig-badge-warning">
+                                <i class="fas fa-exclamation-triangle"></i> Em atualização
+                            </span> <a href="#igCLMenu">Menu lateral</a></p>
                         </div>
 
                     </div>
@@ -1965,16 +268,7 @@
                 </div>
     </section>
 
-    <script src="../../GesEdu/wwwroot/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.getElementById("igToastConfirmBtn").onclick = function () {
-            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-            var toastList = toastElList.map(function (toastEl) {
-                return new bootstrap.Toast(toastEl)
-            })
-            toastList.forEach(toast => toast.show())
-        }
-    </script>
+
 
 
 
