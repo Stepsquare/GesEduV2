@@ -12,25 +12,20 @@ using System.Threading.Tasks;
 
 namespace GesEdu.ServiceLayer.Services
 {
-    public class NoticiasServices : INoticiasServices
+    public class NoticiasServices : BaseServices, INoticiasServices
     {
-        private readonly HttpContext _httpContext;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IGenericRestRequests _genericRestRequests;
 
-        public NoticiasServices(IHttpContextAccessor httpContextAccessor, IUnitOfWork unitOfWork, IGenericRestRequests genericRestRequests)
+        public NoticiasServices(IUnitOfWork unitOfWork, IGenericRestRequests genericRestRequests) : base(unitOfWork, genericRestRequests)
         {
-            _httpContext = httpContextAccessor.HttpContext;
-            _unitOfWork = unitOfWork;
-            _genericRestRequests = genericRestRequests;
         }
 
-        public async Task<GetNoticiasResponse?> GetNoticias(string? idServico)
+        public async Task<GetNoticiasResponse?> GetNoticias(string? idServico = null)
         {
-            var headers = new Dictionary<string, string>();
-
-            headers.Add("show_image", "N");
-            headers.Add("estado", "A");
+            var headers = new Dictionary<string, string>
+            {
+                { "show_image", "N" },
+                { "estado", "A" }
+            };
 
             if (!string.IsNullOrEmpty(idServico))
                 headers.Add("Id_servico", idServico);

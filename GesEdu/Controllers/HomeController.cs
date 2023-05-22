@@ -1,25 +1,26 @@
-﻿using GesEdu.Models;
+﻿using GesEdu.Shared.Interfaces.ISevices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace GesEdu.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly INoticiasServices _noticiasServices;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(INoticiasServices noticiasServices)
         {
-            _logger = logger;
+            _noticiasServices = noticiasServices;
         }
 
         #region Views
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await _noticiasServices.GetNoticias();
+
+            return View(model);
         }
 
         #endregion

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model GesEdu.Shared.WebserviceModels.Noticias.GetNoticiasResponse
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -36,38 +38,26 @@
                         <h4>Notícias</h4>
                     </div>
                     <div class="list-group list-group-flush">
-                        <div class="list-group-item">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Aquisição de material didático – 1.º Ciclo</h5>
-                                <small class="text-muted"><i class="far fa-calendar"></i> 29-10-2021</small>
+                        @if (Model != null)
+                            foreach (var noticia in Model.noticias)
+                            {
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">@noticia.titulo</h5>
+                                        <small class="text-muted"><i class="far fa-calendar"></i> @noticia.dt_publicacao</small>
+                                    </div>
+                                    <p class="mb-1">
+                                        @noticia.corpo
+                                    </p>
+                                </div>
+                            }
+                        else
+                        {
+                            <div class="ig-noresults text-center mb-3">
+                                <h3><i class="fas fa-search"></i>  Sem notícias</h3>
+                                <p class="mb-0">Não existem notícias a apresentar.</p>
                             </div>
-                            <p class="mb-1">
-                                Encontra-se disponível na reservada - GesEdu (“Distribuições Orçamento – Outras Atividades”), as verbas atribuídas aos estabelecimentos de ensino público do 1.º ciclo do ensino básico para aquisição de material didático,
-                                de acordo com previsto no artigo 263º da Lei do OE 2021 relativo ao 1.º Ciclo.
-                            </p>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">MEGA - Emissão de vouchers 1º Ciclo, 7º Ano e 10º Ano</h5>
-                                <small class="text-muted"><i class="far fa-calendar"></i> 29-10-2021</small>
-                            </div>
-                            <p class="mb-1">
-                                Tendo em atenção que ao 1º Ciclo do Ensino Básico não é aplicada a reutilização de manuais escolares e que no próximo ano letivo 2021/2022, é ano de adoção de manuais escolares para o 7º ano do Ensino Básico e 10º ano do
-                                Ensino Secundário, com exceção da disciplina de Matemática, é possível iniciar a emissão de vales para este ciclo e anos escolares, a partir do dia 9 de agosto de 2021, pelo que agradecemos desde já a melhor atenção
-                                e disponibilidade desse AE/ENA no sentido de garantirem, ao longo da 1ª semana de agosto, a exportação dos respetivos alunos/turmas para o MEGA. Informa-se também que o prazo para o registo da devolução de manuais escolares,
-                                foi alargado até dia 4 de agosto.
-                            </p>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Nova opção "Orçamento Pessoal -> Trabalhadores"</h5>
-                                <small class="text-muted"><i class="far fa-calendar"></i> 29-10-2021</small>
-                            </div>
-                            <p class="mb-1">
-                                Encontra-se disponível uma nova opção na área reservada - GesEdu ("Orçamento Pessoal -> Trabalhadores"), para que possam consultar a informação de todos os funcionários (Docentes e Não Docentes) que estão, ou estiveram
-                                associados à unidade orgânica. Caso verifiquem que esta informação não se encontra correta, deverão proceder à exportação de dados do cadastro de pessoal para o IGeFE, de forma a que esta seja atualizada.
-                            </p>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>

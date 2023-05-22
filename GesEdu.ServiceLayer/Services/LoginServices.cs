@@ -4,33 +4,19 @@ using GesEdu.Shared.Interfaces.ISevices;
 using GesEdu.Shared.WebserviceModels.Login;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Net.Http;
-using System.ComponentModel.DataAnnotations;
-using static GesEdu.Shared.WebserviceModels.GenericPostResponse;
 using GesEdu.Shared.WebserviceModels.Manuais;
-using System.Collections;
-using System.Security.Principal;
 
 namespace GesEdu.ServiceLayer.Services
 {
-    public class LoginServices : ILoginServices
+    public class LoginServices : BaseServices, ILoginServices
     {
         private readonly HttpContext _httpContext;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IGenericRestRequests _genericRestRequests;
 
-        public LoginServices(IHttpContextAccessor httpContextAccessor, IUnitOfWork unitOfWork, IGenericRestRequests genericRestRequests)
+        public LoginServices(IHttpContextAccessor httpContextAccessor, IUnitOfWork unitOfWork, IGenericRestRequests genericRestRequests) : base(unitOfWork, genericRestRequests)
         {
             _httpContext = httpContextAccessor.HttpContext;
-            _unitOfWork = unitOfWork;
-            _genericRestRequests = genericRestRequests;
         }
 
         public async Task<(bool IsLoginSuccessful, bool IsAdmin, bool ChangePassword, string? ErrorMessage)> SignIn(string username, string password)
