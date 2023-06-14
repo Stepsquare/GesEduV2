@@ -17,7 +17,6 @@ namespace GesEdu.Controllers
 
         #region Views
 
-        [Route("/Inicio")]
         [DefaultBreadcrumb]
         public async Task<IActionResult> Index()
         {
