@@ -47,7 +47,6 @@
     --ig-transition: ease 0.3s;
     --ig-shadow: 0 0 1.5rem rgb(0 0 0 / 13%);
     --ig-focus-shadow: 0 0 0 0.25rem var(--ig-blue-3);
-    ;
 }
 
 body {
@@ -75,7 +74,7 @@ input.ig-code {
     color: var(--ig-red-2);
 }
 iframe.ig-ds-layoutlist {
-    height: calc(100vh - 230px);
+    height: calc(100vh - 220px);
 }
 
 /*type*/
@@ -472,6 +471,9 @@ a.ig-biglink-hp .card .card-body{
 .ig-hp-news .list-group.list-group-flush {
     max-height: calc(100vh - 425px);
     overflow-y: auto;
+}
+.ig-hp-news.ig-ds-changelog .list-group.list-group-flush {
+    max-height: calc(100vh - 220px);
 }
 .list-group h5 {
     color: var(--ig-blue-2);
