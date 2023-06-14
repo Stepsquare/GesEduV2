@@ -7,6 +7,8 @@ using GesEdu.Shared.Interfaces.IHelpers;
 using GesEdu.Shared.Interfaces.ISevices;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using SmartBreadcrumbs.Extensions;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +18,29 @@ builder.Services.AddDbContext<GesEduDbContext>(x => x.UseSqlServer(connectionStr
 #endregion
 
 builder.Services.AddHttpContextAccessor();
+
+#region Dependency Injection
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IGenericRestRequests, GenericRestRequests>();
-builder.Services.AddScoped<ILoginServices, LoginServices>(); 
-builder.Services.AddScoped<INoticiasServices, NoticiasServices>(); 
+builder.Services.AddScoped<ILoginServices, LoginServices>();
+builder.Services.AddScoped<INoticiasServices, NoticiasServices>();
+builder.Services.AddScoped<IUserServices, UserServices>();
+
+#endregion
+
+#region SmartBreadcrums
+
+builder.Services.AddBreadcrumbs(Assembly.GetExecutingAssembly(), options =>
+{
+    options.TagName = "nav";
+    options.TagClasses = "";
+    options.OlClasses = "breadcrumb";
+    options.LiClasses = "breadcrumb-item";
+    options.ActiveLiClasses = "breadcrumb-item active";
+});
+
+#endregion
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>

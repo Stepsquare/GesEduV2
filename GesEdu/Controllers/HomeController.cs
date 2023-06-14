@@ -1,6 +1,7 @@
 ﻿using GesEdu.Shared.Interfaces.ISevices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmartBreadcrumbs.Attributes;
 
 namespace GesEdu.Controllers
 {
@@ -16,6 +17,8 @@ namespace GesEdu.Controllers
 
         #region Views
 
+        [Route("/Inicio")]
+        [DefaultBreadcrumb]
         public async Task<IActionResult> Index()
         {
             var model = await _noticiasServices.GetNoticias();
