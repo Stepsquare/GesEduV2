@@ -113,9 +113,12 @@ a:hover {
 }
 
 /*navbar*/
-nav.ig-navbar{
+nav.ig-navbar {
     background: var(--ig-white);
     box-shadow: var(--ig-shadow);
+    z-index: 10;
+    position:sticky;
+    top:0;
 }
 .ig-userdet-cont {
     display: inline-block;
@@ -145,13 +148,81 @@ span.ig-app-name {
     border-left: solid 1px var(--ig-blue-2);
     vertical-align: middle;
 }
-/*interface*/
-
-.card.ig-card {
-    border: none;
-    border-radius: 1rem;
-    box-shadow: var(--ig-shadow);
+/*sidebar*/
+.ig-main-container .ig-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transition: width 0.3s ease;
 }
+
+.ig-main-container {
+    display: flex;
+    flex-direction: inherit;
+}
+section.ig-main-menu {
+    z-index: 5;
+    width: 5rem;
+    background: var(--ig-white);
+    box-shadow: var(--ig-shadow);
+    height: 100vh;
+}
+
+.ig-menulink img {
+    padding: 0.25rem 0.5rem;
+    width: 100%
+}
+nav.ig-sidebar-menu {
+    position: sticky;
+    top: 74px;
+    height: calc(100vh - 74px);
+}
+.ig-submenu {
+    background: var(--ig-white);
+    box-shadow: var(--ig-shadow);
+    height: 100vh;
+}
+.ig-submenu .tab-pane {
+    width: 15rem;
+}
+.ig-menulink {
+    text-align:center;
+    padding: 0.25rem;
+    font-size: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    margin: 0.25rem;
+    background: transparent;
+}
+.ig-menulink.active, .ig-menulink.active:hover, .ig-menulink.active:focus {
+    background: var(--ig-green-2-alpha);
+}
+
+.ig-menulink:hover, .ig-menulink:focus {
+    background: var(--ig-green-1-alpha);
+}
+.ig-submenu li {
+    list-style: none;
+    margin-bottom: 0.5rem;
+}
+
+.ig-submenu ul {
+    padding: 1rem;
+}
+
+li.ig-menutitle {
+    padding-top: 2rem;
+    
+}
+li.ig-menutitle h4 {
+    color: var(--ig-green-1);
+}
+    /*interface*/
+    .card.ig-card {
+        border: none;
+        border-radius: 1rem;
+        box-shadow: var(--ig-shadow);
+    }
 
 .ig-pagetitle {
     background: var(--ig-white);
@@ -819,6 +890,26 @@ span.badge.ig-badge-warning {
 span.badge {
     border-radius: 0.5rem;
 }
+    span.badge.ig-cycle-01 {
+        background: var(--ig-blue-4);
+        border: solid 1px var(--ig-blue-3);
+        color: var(--ig-blue-2);
+    }
+    span.badge.ig-cycle-02 {
+        background: var(--ig-green-4);
+        border: solid 1px var(--ig-green-3);
+        color: var(--ig-green-2);
+    }
+    span.badge.ig-cycle-03 {
+        background: var(--ig-yellow-3);
+        border: solid 1px var(--ig-yellow-2);
+        color: var(--ig-yellow-1);
+    }
+    span.badge.ig-cycle-se {
+        background: var(--ig-red-3);
+        border: solid 1px var(--ig-red-2);
+        color: var(--ig-red-1);
+    }
 
 .ig-uo-code {
     background: var(--ig-blue-2);
