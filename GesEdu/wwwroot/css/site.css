@@ -552,19 +552,21 @@ a.ig-biglink-hp .card .card-body{
 
 a.list-group-item:hover {
     background: var(--ig-blue-4);
-    transition: var(--ig-transition);
+    transition: background var(--ig-transition);
     box-shadow: var(--ig-shadow);
 }
 
 .list-group-item {
     padding: 1rem;
+    transition: background var(--ig-transition);
 }
 
 .ig-card .list-group-item {
-    border: solid 1px var(--ig-blue-3);
-    border-width: 0 0 1px;
+    border-color: var(--ig-blue-3);
 }
-
+a.list-group-item.active, a.list-group-item:active:hover {
+    background: var(--ig-green-2-alpha);
+}
 
 /*accordion*/
 
@@ -913,7 +915,6 @@ span.badge {
 
 .ig-uo-code {
     background: var(--ig-blue-2);
-    vertical-align: text-top;
 }
 .ig-user-permissions {
     background: var(--ig-blue-4);
@@ -1153,4 +1154,11 @@ footer.ig-footer {
 .k-list .k-item.k-state-selected, .k-list-optionlabel.k-state-selected, .k-list .k-item.k-state-hover.k-state-selected, .k-list .k-item:hover.k-state-selected, .k-list-optionlabel.k-state-hover.k-state-selected, .k-list-optionlabel:hover.k-state-selected {
     color: var(--ig-blue-1);
     background-color: var(--ig-blue-4);
+}
+/*MEGA*/
+/*PG Inicial - escolha escolas*/
+
+span.ig-classbutton-det {
+    font-size: 1rem;
+    font-weight: normal;
 }
