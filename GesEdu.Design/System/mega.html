@@ -1,0 +1,2698 @@
+<!doctype html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>IGeFE Design System</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../../GesEdu/wwwroot/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--Style-->
+    <link href="../../GesEdu/wwwroot/css/site.css" rel="stylesheet">
+    <!--JQuery-->
+    <script type="text/javascript" src="../../GesEdu/wwwroot/lib/jquery/dist/jquery.min.js"></script>
+    <!--FontAwesome-->
+    <link href="../../GesEdu/wwwroot/lib/font-awesome/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 ig-sidebar">
+                <div class="p-3 sticky-top">
+                    <h3 class="mb-0">GesEdu</h3>
+                    <h4>Sistema de Design</h4>
+                    <hr />
+                    <p><a href="index.html">Início</a></p>
+                    <p><a href="interface.html">Elementos de interface</a></p>
+                    <p><a href="common.html">Elementos comuns</a></p>
+                    <p><a href="forms.html"><strong>Formulários</strong></a></p>
+                    <p><a href="buttons.html">Botões</a></p>
+                    <p><a href="mega.html">Programa MEGA</a></p>
+                    <p><a href="frameworks.html">Frameworks do projeto</a></p>
+                    <p><a href="uxwriting.html">Textos para o GesEdu (UX Writing)</a></p>
+                </div>
+            </div>
+            <div class="col-md-10 ig-content">
+                <h1>Programa MEGA</h1>
+                <p>Elementos utilizados em páginas para o programa MEGA.</p>
+                <div class="row">
+                    <div class="col-md-9">
+                        <h2 id="igFLabel">Módulo de escolha de turmas</h2>
+                        <p>Permite escolher uma turma no contexto de uma escola pertencente a uma Unidade Orgânica.</p>
+                        <p>Este módulo será integrado na página inicial do MEGA.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-5">
+                            <textarea class="form-control ig-code" rows="10" disabled>
+<div class="row">
+    <div class="col-md-5" id="ig_schools_list" role="tablist" aria-orientation="vertical">
+        <div class="card ig-card list-group list-group-flush mb-3">
+            <a href="javascript:void(0);" id="ig_tab_sc00" data-bs-toggle="pill" data-bs-target="#ig_sc00" type="button" role="tab" aria-controls="ig_sc01" aria-selected="true" class="list-group-item active">
+                <h5 class="mb-0"><i class="fas fa-search"></i> Pesquisar aluna/o</h5>
+            </a>
+            <a href="javascript:void(0);" id="ig_tab_sc01" data-bs-toggle="pill" data-bs-target="#ig_sc01" type="button" role="tab" aria-controls="ig_sc01" aria-selected="false" class="list-group-item">
+                <h5 class="mb-1">
+                    <span class="badge rounded-pill ig-uo-code">207573</span>
+                    <span class="badge rounded-pill ig-cycle-01">1.º ciclo</span>
+                </h5>
+                <h5 class="mb-0">Escola Básica de Bencatel, Vila Viçosa</h5>
+            </a>
+            <a href="javascript:void(0);" id="ig_tab_sc02" data-bs-toggle="pill" data-bs-target="#ig_sc02" type="button" role="tab" aria-controls="ig_sc02" aria-selected="false" class="list-group-item">
+                <h5 class="mb-1">
+                    <span class="badge rounded-pill ig-uo-code">310074</span>
+                    <span class="badge rounded-pill ig-cycle-02">2.º ciclo</span> <span class="badge rounded-pill  ig-cycle-03">3.º ciclo</span>
+                </h5>
+                <h5 class="mb-0"> Escola Básica D. João IV, Vila Viçosa</h5>
+            </a>
+            <a href="javascript:void(0);" id="ig_tab_woexp_1" data-bs-toggle="pill" data-bs-target="#ig_woexp" type="button" role="tab" aria-controls="ig_woexp" aria-selected="false" class="list-group-item">
+                <h5 class="mb-1">
+                    <span class="badge rounded-pill ig-uo-code">637063</span>
+                    <span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i> Sem turmas exportadas</span>
+                </h5>
+                <h5 class="mb-0"> Jardim de Infância de Vila Viçosa</h5>
+            </a>
+            <a href="javascript:void(0);" id="ig_tab_sc03" data-bs-toggle="pill" data-bs-target="#ig_sc03" type="button" role="tab" aria-controls="ig_sc03" aria-selected="false" class="list-group-item">
+                <h5 class="mb-1">
+                    <span class="badge rounded-pill ig-uo-code">284531</span>
+                    <span class="badge rounded-pill ig-cycle-01">1.º ciclo</span>
+                </h5>
+                <h5 class="mb-0"><span class="badge rounded-pill ig-uo-code"></span> Escola Básica de Carrascal, Vila Viçosa</h5>
+            </a>
+            <a href="javascript:void(0);" id="ig_tab_woexp_2" data-bs-toggle="pill" data-bs-target="#ig_woexp" type="button" role="tab" aria-controls="ig_woexp" aria-selected="false" class="list-group-item">
+                <h5 class="mb-1">
+                    <span class="badge rounded-pill ig-uo-code">604926</span>
+                    <span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i> Sem turmas exportadas</span>
+                </h5>
+                <h5 class="mb-0">Jardim de Infância de Bencatel, Vila Viçosa</h5>
+            </a>
+            <a href="javascript:void(0);" id="ig_tab_sc04" data-bs-toggle="pill" data-bs-target="#ig_sc04" type="button" role="tab" aria-controls="ig_sc04" aria-selected="false" class="list-group-item">
+                <h5 class="mb-1">
+                    <span class="badge rounded-pill ig-uo-code">401900</span>
+                    <span class="badge rounded-pill ig-cycle-03">3.º ciclo</span> <span class="badge rounded-pill ig-cycle-se">Secundário</span>
+                </h5>
+                <h5 class="mb-0"> Escola Secundária Públia Hortênsia de Castro, Vila Viçosa</h5>
+            </a>
+            <a href="javascript:void(0);" id="ig_tab_sc05" data-bs-toggle="pill" data-bs-target="#ig_sc05" type="button" role="tab" aria-controls="ig_sc05" aria-selected="false" class="list-group-item">
+                <h5 class="mb-1">
+                    <span class="badge rounded-pill ig-uo-code">284543</span>
+                    <span class="badge rounded-pill ig-cycle-01">1.º ciclo</span>
+                </h5>
+                <h5 class="mb-0"> Escola Básica do Castelo, Vila Viçosa</h5>
+            </a>
+            <a href="javascript:void(0);" id="ig_tab_sc06" data-bs-toggle="pill" data-bs-target="#ig_sc06" type="button" role="tab" aria-controls="ig_sc06" aria-selected="false" class="list-group-item">
+                <h5 class="mb-1">
+                    <span class="badge rounded-pill ig-uo-code">271986</span>
+                    <span class="badge rounded-pill ig-cycle-01">1.º ciclo</span>
+                </h5>
+                <h5 class="mb-0">Escola Básica de São Romão, Vila Viçosa</h5>
+            </a>
+            <a href="javascript:void(0);" id="ig_tab_woexp_3" data-bs-toggle="pill" data-bs-target="#ig_woexp" type="button" role="tab" aria-controls="ig_woexp" aria-selected="false" class="list-group-item">
+                <h5 class="mb-1">
+                    <span class="badge rounded-pill ig-uo-code">262134</span>
+                    <span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i> Sem turmas exportadas</span>
+                </h5>
+                <h5 class="mb-0">Jardim de Infância de Pardais, Vila Viçosa</h5>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-7 tab-content" id="ig_schools_content">
+        <div class="tab-pane fade show active" id="ig_sc00" role="tabpanel" aria-labelledby="ig_tab_sc00">
+            <div class="card ig-card card-body mb-3">
+                <div class="row">
+                    <div class="col-md mb-3">
+                        <label class="form-label">Pesquisar aluna/o (por nome ou documento):</label>
+                        <div class="input-group">
+                            <input class="form-control" type="text">
+                            <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Limpar"><i class="far fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-md-auto ig-searchbtn-cont">
+                        <a href="javascript:void(0)" class="btn ig-btn-green btn-block">
+                            <i class="fas fa-search"></i>
+                            Pesquisar
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card ig-card ig-itemlist">
+                <div class="list-group list-group-flush">
+                    <div class="list-group-item">
+                        <div class="row">
+                            <div class="col-md">
+                                <h5><a href="#">Joaquim António Almeida Freitas</a></h5>
+                                <p class="mb-0">
+                                    <span><strong>CAC:</strong> 123456780ZZ0</span>
+                                    <span><i class="fas fa-graduation-cap" title="Turma"></i> 7.ºF</span>
+                                </p>
+                                <p class="mb-0">
+                                    <span><i class="fas fa-building-columns" title="Escola"></i> Escola Básica de São Romão, Vila Viçosa</span>
+                                </p>
+                            </div>
+                            <div class="col-md-auto d-flex flex-column align-items-end">
+                                <a href="javascript:void(0)" class="btn ig-btn-green mb-1"><i class="fas fa-book"></i> Gerir manuais</a>
+                                <a href="javascript:void(0)" class="btn ig-btn-blue"><i class="fas fa-users"></i> Abrir turma</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="row">
+                            <div class="col-md">
+                                <h5><a href="#">Joaquim António Almeida Freitas</a></h5>
+                                <p class="mb-0">
+                                    <span><strong>CAC:</strong> 123456780ZZ0</span>
+                                    <span><i class="fas fa-graduation-cap" title="Turma"></i> 7.ºF</span>
+                                </p>
+                                <p class="mb-0">
+                                    <span><i class="fas fa-building-columns" title="Escola"></i> Escola Básica de São Romão, Vila Viçosa</span>
+                                </p>
+                            </div>
+                            <div class="col-md-auto d-flex flex-column align-items-end">
+                                <a href="javascript:void(0)" class="btn ig-btn-green mb-1"><i class="fas fa-book"></i> Gerir manuais</a>
+                                <a href="javascript:void(0)" class="btn ig-btn-blue"><i class="fas fa-users"></i> Abrir turma</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="row">
+                            <div class="col-md">
+                                <h5><a href="#">Joaquim António Almeida Freitas</a></h5>
+                                <p class="mb-0">
+                                    <span><strong>CAC:</strong> 123456780ZZ0</span>
+                                    <span><i class="fas fa-graduation-cap" title="Turma"></i> 7.ºF</span>
+                                </p>
+                                <p class="mb-0">
+                                    <span><i class="fas fa-building-columns" title="Escola"></i> Escola Básica de São Romão, Vila Viçosa</span>
+                                </p>
+                            </div>
+                            <div class="col-md-auto d-flex flex-column align-items-end">
+                                <a href="javascript:void(0)" class="btn ig-btn-green mb-1"><i class="fas fa-book"></i> Gerir manuais</a>
+                                <a href="javascript:void(0)" class="btn ig-btn-blue"><i class="fas fa-users"></i> Abrir turma</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="row">
+                            <div class="col-md">
+                                <h5><a href="#">Joaquim António Almeida Freitas</a></h5>
+                                <p class="mb-0">
+                                    <span><strong>CAC:</strong> 123456780ZZ0</span>
+                                    <span><i class="fas fa-graduation-cap" title="Turma"></i> 7.ºF</span>
+                                </p>
+                                <p class="mb-0">
+                                    <span><i class="fas fa-building-columns" title="Escola"></i> Escola Básica de São Romão, Vila Viçosa</span>
+                                </p>
+                            </div>
+                            <div class="col-md-auto d-flex flex-column align-items-end">
+                                <a href="javascript:void(0)" class="btn ig-btn-green mb-1"><i class="fas fa-book"></i> Gerir manuais</a>
+                                <a href="javascript:void(0)" class="btn ig-btn-blue"><i class="fas fa-users"></i> Abrir turma</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ig-pagination">
+                <div class="col-md align-middle">
+                    <p class="ig-grid-record">
+                        1 - 3 de 3 registos
+                    </p>
+                </div>
+                <div class="col-md-auto">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination mb-0 float-end">
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Anterior"><i class="fas fa-arrow-left"></i></a></li>
+                            <li class="page-item"><a class="page-link active" href="javascript:void(0);">1</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Seguinte"><i class="fas fa-arrow-right"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-pane fade" id="ig_sc01" role="tabpanel" aria-labelledby="ig_tab_sc01">
+            <div class="card ig-card card-body mb-3">
+                <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-01">1.º ciclo</span></h3>
+                <h4>1.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>2.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>3.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>4.º ano</h4>
+                <section class="row g-2 mb-3">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="ig_sc02" role="tabpanel" aria-labelledby="ig_tab_sc02">
+            <div class="card ig-card card-body mb-3">
+                <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-02">2.º ciclo</span></h3>
+                <h4>5.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>5.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>5.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>5.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>5.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>6.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>6.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>6.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>6.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>6.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+            <div class="card ig-card card-body mb-3">
+                <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-03">3.º ciclo</span></h3>
+                <h4>7.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>7.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>7.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>7.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>7.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>8.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>8.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>8.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>8.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>8.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>9.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>9.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>9.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>9.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>9.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="ig_sc03" role="tabpanel" aria-labelledby="ig_tab_sc03">
+            <div class="card ig-card card-body mb-3">
+                <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-01">1.º ciclo</span></h3>
+                <h4>1.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>2.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>3.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>4.º ano</h4>
+                <section class="row g-2 mb-3">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="ig_sc04" role="tabpanel" aria-labelledby="ig_tab_sc04">
+            <div class="card ig-card card-body mb-3">
+                <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-03">3.º ciclo</span></h3>
+                <h4>7.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>7.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>7.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>7.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>7.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>8.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>8.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>8.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>8.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>8.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>9.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>9.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>9.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>9.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>9.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+            <div class="card ig-card card-body mb-3">
+                <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-se">Secundário</span></h3>
+                <h4>10.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>10.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>10.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>10.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>10.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>11.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>11.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>11.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>11.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>11.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>12.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>12.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>12.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>12.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>12.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="ig_sc05" role="tabpanel" aria-labelledby="ig_tab_sc05">
+            <div class="card ig-card card-body mb-3">
+                <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-01">1.º ciclo</span></h3>
+                <h4>1.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>2.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>3.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>4.º ano</h4>
+                <section class="row g-2 mb-3">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="ig_sc06" role="tabpanel" aria-labelledby="ig_tab_sc06">
+            <div class="card ig-card card-body mb-3">
+                <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-01">1.º ciclo</span></h3>
+                <h4>1.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>1.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>2.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>2.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>3.º ano</h4>
+                <section class="row g-2 mb-5">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>3.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+                <h4>4.º ano</h4>
+                <section class="row g-2 mb-3">
+                    <div class="col-lg-4 col-md-6 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º A</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º B</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º C</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                            <span>4.º D</span>
+                            <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="ig_woexp" role="tabpanel">
+            <div class="card ig-card card-body">
+                <div class="ig-noresults text-center">
+                    <h3><i class="fas fa-search"></i> Sem turmas exportadas</h3>
+                    <p class="mb-0">Verifique se está tudo correto na sua aplicação local.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="mb-5">
+                            <div class="row">
+                                <div class="col-md-5" id="ig_schools_list" role="tablist" aria-orientation="vertical">
+                                    <div class="card ig-card list-group list-group-flush mb-3">
+                                        <a href="javascript:void(0);" id="ig_tab_sc00" data-bs-toggle="pill" data-bs-target="#ig_sc00" type="button" role="tab" aria-controls="ig_sc01" aria-selected="true" class="list-group-item active">
+                                            <h5 class="mb-0"><i class="fas fa-search"></i> Pesquisar aluna/o</h5>
+                                        </a>
+                                        <a href="javascript:void(0);" id="ig_tab_sc01" data-bs-toggle="pill" data-bs-target="#ig_sc01" type="button" role="tab" aria-controls="ig_sc01" aria-selected="false" class="list-group-item">
+                                            <h5 class="mb-1">
+                                                <span class="badge rounded-pill ig-uo-code">207573</span>
+                                                <span class="badge rounded-pill ig-cycle-01">1.º ciclo</span>
+                                            </h5>
+                                            <h5 class="mb-0">Escola Básica de Bencatel, Vila Viçosa</h5>
+                                        </a>
+                                        <a href="javascript:void(0);" id="ig_tab_sc02" data-bs-toggle="pill" data-bs-target="#ig_sc02" type="button" role="tab" aria-controls="ig_sc02" aria-selected="false" class="list-group-item">
+                                            <h5 class="mb-1">
+                                                <span class="badge rounded-pill ig-uo-code">310074</span>
+                                                <span class="badge rounded-pill ig-cycle-02">2.º ciclo</span> <span class="badge rounded-pill  ig-cycle-03">3.º ciclo</span>
+                                            </h5>
+                                            <h5 class="mb-0"> Escola Básica D. João IV, Vila Viçosa</h5>
+                                        </a>
+                                        <a href="javascript:void(0);" id="ig_tab_woexp_1" data-bs-toggle="pill" data-bs-target="#ig_woexp" type="button" role="tab" aria-controls="ig_woexp" aria-selected="false" class="list-group-item">
+                                            <h5 class="mb-1">
+                                                <span class="badge rounded-pill ig-uo-code">637063</span>
+                                                <span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i> Sem turmas exportadas</span>
+                                            </h5>
+                                            <h5 class="mb-0"> Jardim de Infância de Vila Viçosa</h5>
+                                        </a>
+                                        <a href="javascript:void(0);" id="ig_tab_sc03" data-bs-toggle="pill" data-bs-target="#ig_sc03" type="button" role="tab" aria-controls="ig_sc03" aria-selected="false" class="list-group-item">
+                                            <h5 class="mb-1">
+                                                <span class="badge rounded-pill ig-uo-code">284531</span>
+                                                <span class="badge rounded-pill ig-cycle-01">1.º ciclo</span>
+                                            </h5>
+                                            <h5 class="mb-0"><span class="badge rounded-pill ig-uo-code"></span> Escola Básica de Carrascal, Vila Viçosa</h5>
+                                        </a>
+                                        <a href="javascript:void(0);" id="ig_tab_woexp_2" data-bs-toggle="pill" data-bs-target="#ig_woexp" type="button" role="tab" aria-controls="ig_woexp" aria-selected="false" class="list-group-item">
+                                            <h5 class="mb-1">
+                                                <span class="badge rounded-pill ig-uo-code">604926</span>
+                                                <span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i> Sem turmas exportadas</span>
+                                            </h5>
+                                            <h5 class="mb-0">Jardim de Infância de Bencatel, Vila Viçosa</h5>
+                                        </a>
+                                        <a href="javascript:void(0);" id="ig_tab_sc04" data-bs-toggle="pill" data-bs-target="#ig_sc04" type="button" role="tab" aria-controls="ig_sc04" aria-selected="false" class="list-group-item">
+                                            <h5 class="mb-1">
+                                                <span class="badge rounded-pill ig-uo-code">401900</span>
+                                                <span class="badge rounded-pill ig-cycle-03">3.º ciclo</span> <span class="badge rounded-pill ig-cycle-se">Secundário</span>
+                                            </h5>
+                                            <h5 class="mb-0"> Escola Secundária Públia Hortênsia de Castro, Vila Viçosa</h5>
+                                        </a>
+                                        <a href="javascript:void(0);" id="ig_tab_sc05" data-bs-toggle="pill" data-bs-target="#ig_sc05" type="button" role="tab" aria-controls="ig_sc05" aria-selected="false" class="list-group-item">
+                                            <h5 class="mb-1">
+                                                <span class="badge rounded-pill ig-uo-code">284543</span>
+                                                <span class="badge rounded-pill ig-cycle-01">1.º ciclo</span>
+                                            </h5>
+                                            <h5 class="mb-0"> Escola Básica do Castelo, Vila Viçosa</h5>
+                                        </a>
+                                        <a href="javascript:void(0);" id="ig_tab_sc06" data-bs-toggle="pill" data-bs-target="#ig_sc06" type="button" role="tab" aria-controls="ig_sc06" aria-selected="false" class="list-group-item">
+                                            <h5 class="mb-1">
+                                                <span class="badge rounded-pill ig-uo-code">271986</span>
+                                                <span class="badge rounded-pill ig-cycle-01">1.º ciclo</span>
+                                            </h5>
+                                            <h5 class="mb-0">Escola Básica de São Romão, Vila Viçosa</h5>
+                                        </a>
+                                        <a href="javascript:void(0);" id="ig_tab_woexp_3" data-bs-toggle="pill" data-bs-target="#ig_woexp" type="button" role="tab" aria-controls="ig_woexp" aria-selected="false" class="list-group-item">
+                                            <h5 class="mb-1">
+                                                <span class="badge rounded-pill ig-uo-code">262134</span>
+                                                <span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i> Sem turmas exportadas</span>
+                                            </h5>
+                                            <h5 class="mb-0">Jardim de Infância de Pardais, Vila Viçosa</h5>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 tab-content" id="ig_schools_content">
+                                    <div class="tab-pane fade show active" id="ig_sc00" role="tabpanel" aria-labelledby="ig_tab_sc00">
+                                        <div class="card ig-card card-body mb-3">
+                                            <div class="row">
+                                                <div class="col-md mb-3">
+                                                    <label class="form-label">Pesquisar aluna/o (por nome ou documento):</label>
+                                                    <div class="input-group">
+                                                        <input class="form-control" type="text">
+                                                        <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Limpar"><i class="far fa-trash-alt"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-auto ig-searchbtn-cont">
+                                                    <a href="javascript:void(0)" class="btn ig-btn-green btn-block">
+                                                        <i class="fas fa-search"></i>
+                                                        Pesquisar
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card ig-card ig-itemlist">
+                                            <div class="list-group list-group-flush">
+                                                <div class="list-group-item">
+                                                    <div class="row">
+                                                        <div class="col-md">
+                                                            <h5><a href="#">Joaquim António Almeida Freitas</a></h5>
+                                                            <p class="mb-0">
+                                                                <span><strong>CAC:</strong> 123456780ZZ0</span>
+                                                                <span><i class="fas fa-graduation-cap" title="Turma"></i> 7.ºF</span>
+                                                            </p>
+                                                            <p class="mb-0">
+                                                                <span><i class="fas fa-building-columns" title="Escola"></i> Escola Básica de São Romão, Vila Viçosa</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-auto d-flex flex-column align-items-end">
+                                                            <a href="javascript:void(0)" class="btn ig-btn-green mb-1"><i class="fas fa-book"></i> Gerir manuais</a>
+                                                            <a href="javascript:void(0)" class="btn ig-btn-blue"><i class="fas fa-users"></i> Abrir turma</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list-group-item">
+                                                    <div class="row">
+                                                        <div class="col-md">
+                                                            <h5><a href="#">Joaquim António Almeida Freitas</a></h5>
+                                                            <p class="mb-0">
+                                                                <span><strong>CAC:</strong> 123456780ZZ0</span>
+                                                                <span><i class="fas fa-graduation-cap" title="Turma"></i> 7.ºF</span>
+                                                            </p>
+                                                            <p class="mb-0">
+                                                                <span><i class="fas fa-building-columns" title="Escola"></i> Escola Básica de São Romão, Vila Viçosa</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-auto d-flex flex-column align-items-end">
+                                                            <a href="javascript:void(0)" class="btn ig-btn-green mb-1"><i class="fas fa-book"></i> Gerir manuais</a>
+                                                            <a href="javascript:void(0)" class="btn ig-btn-blue"><i class="fas fa-users"></i> Abrir turma</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list-group-item">
+                                                    <div class="row">
+                                                        <div class="col-md">
+                                                            <h5><a href="#">Joaquim António Almeida Freitas</a></h5>
+                                                            <p class="mb-0">
+                                                                <span><strong>CAC:</strong> 123456780ZZ0</span>
+                                                                <span><i class="fas fa-graduation-cap" title="Turma"></i> 7.ºF</span>
+                                                            </p>
+                                                            <p class="mb-0">
+                                                                <span><i class="fas fa-building-columns" title="Escola"></i> Escola Básica de São Romão, Vila Viçosa</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-auto d-flex flex-column align-items-end">
+                                                            <a href="javascript:void(0)" class="btn ig-btn-green mb-1"><i class="fas fa-book"></i> Gerir manuais</a>
+                                                            <a href="javascript:void(0)" class="btn ig-btn-blue"><i class="fas fa-users"></i> Abrir turma</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list-group-item">
+                                                    <div class="row">
+                                                        <div class="col-md">
+                                                            <h5><a href="#">Joaquim António Almeida Freitas</a></h5>
+                                                            <p class="mb-0">
+                                                                <span><strong>CAC:</strong> 123456780ZZ0</span>
+                                                                <span><i class="fas fa-graduation-cap" title="Turma"></i> 7.ºF</span>
+                                                            </p>
+                                                            <p class="mb-0">
+                                                                <span><i class="fas fa-building-columns" title="Escola"></i> Escola Básica de São Romão, Vila Viçosa</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-auto d-flex flex-column align-items-end">
+                                                            <a href="javascript:void(0)" class="btn ig-btn-green mb-1"><i class="fas fa-book"></i> Gerir manuais</a>
+                                                            <a href="javascript:void(0)" class="btn ig-btn-blue"><i class="fas fa-users"></i> Abrir turma</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row ig-pagination">
+                                            <div class="col-md align-middle">
+                                                <p class="ig-grid-record">
+                                                    1 - 3 de 3 registos
+                                                </p>
+                                            </div>
+                                            <div class="col-md-auto">
+                                                <nav aria-label="Page navigation example">
+                                                    <ul class="pagination mb-0 float-end">
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Anterior"><i class="fas fa-arrow-left"></i></a></li>
+                                                        <li class="page-item"><a class="page-link active" href="javascript:void(0);">1</a></li>
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Seguinte"><i class="fas fa-arrow-right"></i></a></li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane fade" id="ig_sc01" role="tabpanel" aria-labelledby="ig_tab_sc01">
+                                        <div class="card ig-card card-body mb-3">
+                                            <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-01">1.º ciclo</span></h3>
+                                            <h4>1.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>2.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>3.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>4.º ano</h4>
+                                            <section class="row g-2 mb-3">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="ig_sc02" role="tabpanel" aria-labelledby="ig_tab_sc02">
+                                        <div class="card ig-card card-body mb-3">
+                                            <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-02">2.º ciclo</span></h3>
+                                            <h4>5.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>5.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>5.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>5.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>5.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>6.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>6.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>6.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>6.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>6.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="card ig-card card-body mb-3">
+                                            <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-03">3.º ciclo</span></h3>
+                                            <h4>7.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>7.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>7.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>7.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>7.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>8.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>8.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>8.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>8.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>8.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>9.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>9.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>9.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>9.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>9.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="ig_sc03" role="tabpanel" aria-labelledby="ig_tab_sc03">
+                                        <div class="card ig-card card-body mb-3">
+                                            <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-01">1.º ciclo</span></h3>
+                                            <h4>1.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>2.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>3.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>4.º ano</h4>
+                                            <section class="row g-2 mb-3">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="ig_sc04" role="tabpanel" aria-labelledby="ig_tab_sc04">
+                                        <div class="card ig-card card-body mb-3">
+                                            <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-03">3.º ciclo</span></h3>
+                                            <h4>7.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>7.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>7.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>7.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>7.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>8.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>8.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>8.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>8.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>8.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>9.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>9.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>9.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>9.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>9.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="card ig-card card-body mb-3">
+                                            <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-se">Secundário</span></h3>
+                                            <h4>10.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>10.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>10.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>10.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>10.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>11.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>11.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>11.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>11.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>11.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>12.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>12.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>12.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>12.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>12.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="ig_sc05" role="tabpanel" aria-labelledby="ig_tab_sc05">
+                                        <div class="card ig-card card-body mb-3">
+                                            <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-01">1.º ciclo</span></h3>
+                                            <h4>1.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>2.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>3.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>4.º ano</h4>
+                                            <section class="row g-2 mb-3">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="ig_sc06" role="tabpanel" aria-labelledby="ig_tab_sc06">
+                                        <div class="card ig-card card-body mb-3">
+                                            <h3 class="mb-3"><span class="badge rounded-pill ig-cycle-01">1.º ciclo</span></h3>
+                                            <h4>1.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>1.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>2.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>2.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>3.º ano</h4>
+                                            <section class="row g-2 mb-5">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>3.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                            <h4>4.º ano</h4>
+                                            <section class="row g-2 mb-3">
+                                                <div class="col-lg-4 col-md-6 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º A</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º B</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º C</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 d-grid">
+                                                    <button class="btn ig-btn-blue btn-lg d-flex justify-content-between align-items-center">
+                                                        <span>4.º D</span>
+                                                        <span class="ig-classbutton-det"><i class="fas fa-users"></i> 27</span>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="ig_woexp" role="tabpanel">
+                                        <div class="card ig-card card-body">
+                                            <div class="ig-noresults text-center">
+                                                <h3><i class="fas fa-search"></i> Sem turmas exportadas</h3>
+                                                <p class="mb-0">Verifique se está tudo correto na sua aplicação local.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <h2 id="igFTInput">Input de texto</h2>
+                        <p>Permite introduzir texto num determinado campo.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="3" disabled>
+<input type="text" class="form-control" />
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <input type="text" class="form-control" />
+                        </div>
+                        <h2 id="igFNInput">Input de números</h2>
+                        <p>Permite introduzir números num determinado campo.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="3" disabled>
+<input type="number" class="form-control" />
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <input type="number" class="form-control" />
+                        </div>
+                        <h2 id="igFTextarea">Textarea</h2>
+                        <p>Permite introduzir um texto mais extenso num determinado campo.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="5" disabled>
+<textarea class="form-control">
+    Algum texto aqui...
+&#60;/textarea>
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <textarea class="form-control" rows="3">
+Algum texto aqui...
+                            </textarea>
+                        </div>
+                        <h2 id="igFPInput">Input de password</h2>
+                        <p>Permite inserir passwords na aplicação.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="3" disabled>
+<input type="password" class="form-control" />
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <input type="password" class="form-control" />
+                        </div>
+                        <h2 id="igFIGroup">Input de texto com label (input-group)</h2>
+                        <p> Dão contexto ao campo. Pode ser utilizado num contexto de introdução de um valor em euros,por exemplo.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="6" disabled>
+<div class="input-group mb-3">
+                            <span class="input-group-text">€</span>
+                            <input type="text" class="form-control" />
+</div>
+                                </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <div class="input-group">
+                                <span class="input-group-text">€</span>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <h2 id="igFTReadonly">Campos de texto (readonly)</h2>
+                        <p>
+                            Para mostrar campos só de leitura e à semelhança do GesEdu atual, deverão ser utilizados parágrafos.
+                        </p>
+                        <h4>Código de exemplo:</h4>
+                        <textarea class="form-control ig-code mb-5" rows="6" disabled>
+<div class="row">
+                        <div class="col-md">
+                        <label class="form-label">Nome do campo</label>
+                        <p>Descrição do campo</p>
+    </div>
+</div>
+                            </textarea>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <label class="form-label">Nome do campo</label>
+                            <p class="mb-0">Descrição do campo</p>
+                        </div>
+                        <h2 id="igFDropdowns">Dropdowns</h2>
+                        <p>
+                            Permite escolher uma de várias opções. Deverão (ao contrário dos outros campos) utilizar a classe .form-select, específica para dropdowns
+                        </p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="8" disabled>
+<select class="form-select">
+                            <option>Escolha uma opção</option>
+                            <option>Opção 1</option>
+                            <option>Opção 2</option>
+                            <option>Opção 3</option>
+</select>
+                                </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <select class="form-select">
+                                <option>Escolha uma opção</option>
+                                <option>Opção 1</option>
+                                <option>Opção 2</option>
+                                <option>Opção 3</option>
+                            </select>
+                        </div>
+                        <h2 id="igFSDropdowns">Dropdowns pesquisáveis</h2>
+                        <p>Permite encontrar com maior agilidade resultados da pesquisa de um campo.</p>
+                        <h3 id="igFSDBDatalists">Bootstrap: Datalists</h3>
+                        <p>Usa a framework para o resultado pretendido.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="9" disabled>
+<input class="form-control" list="igDatalistOptions" id="igDataList" placeholder="Pesquisa...">
+<datalist id="igDatalistOptions">
+                            <option value="Agrupamento de Escolas de Arruda dos Vinhos">
+                            <option value="Agrupame6nto de Escolas de Ermesinde">
+                            <option value="Agrupamento de Escolas de Idanha a Nova">
+                            <option value="Agrupamento de Escolas de Odeceixe">
+                            <option value="Agrupamento de Escolas de Urra">
+</datalist>
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <input class="form-control" list="igDatalistOptions" id="igDataList" placeholder="Pesquisa...">
+                            <datalist id="igDatalistOptions">
+                                <option value="Agrupamento de Escolas de Arruda dos Vinhos">
+                                <option value="Agrupamento de Escolas de Ermesinde">
+                                <option value="Agrupamento de Escolas de Idanha a Nova">
+                                <option value="Agrupamento de Escolas de Odeceixe">
+                                <option value="Agrupamento de Escolas de Urra">
+                            </datalist>
+                        </div>
+                        <h3 id="igFSDKDropdownlist">Kendo: Dropdownlist</h3>
+                        <p class="mb-0">Permite a pesquisa e seleção de um determinado campo.</p>
+                        <p class="mb-0">O input deverá utilizar a classe <strong>.igk-searchable-ddl</strong> de modo a renderizar corretamente.</p>
+                        <p>O output visual não está disponível por ser tratar de um componente Kendo, externo a este sistema.</p>
+                        <h4>Código de exemplo:</h4>
+                        <textarea class="form-control ig-code mb-5" rows="3" disabled>
+<input class="igk-searchable-ddl" id="uo_combobox" />
+                        </textarea>
+                        <h2 id="igFFUpload">Upload de ficheiros</h2>
+                        <p>
+                            Permitem carregar ficheiros na aplicação. O Bootstrap tem um standard para este tipo de campos que deverá ser utilizado de uma forma adaptada.
+                        </p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="9" disabled>
+<div class="mb-3">
+                            <label for="igFormFile" class="form-label">Input simples (um ficheiro)</label>
+                            <input class="form-control" type="file" id="igFormFile">
+</div>
+<div class="mb-3">
+                            <label for="igFormFileMultiple" class="form-label">Input para ficheiros múltiplos</label>
+                            <input class="form-control" type="file" id="igFormFileMultiple" multiple>
+</div>
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <div class="mb-3">
+                                <label for="igFormFile" class="form-label">Input simples (um ficheiro)</label>
+                                <input class="form-control" type="file" id="igFormFile">
+                            </div>
+                            <div class="mb-3">
+                                <label for="igFormFileMultiple" class="form-label">
+                                    Input para ficheiros múltiplos
+                                </label>
+                                <input class="form-control" type="file" id="igFormFileMultiple" multiple>
+                            </div>
+                        </div>
+                        <h2 id="igFDInput">Input de data</h2>
+                        <p>
+                            Permite escolher uma data para preencher um campo. Se possível (e de modo a evitar estilizações adicionais) deverá ser utilizado o campo HTML input type="date".
+                        </p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="3" disabled>
+<input type="date" class="form-control" />
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <input type="date" class="form-control" />
+                        </div>
+                        <h2 id="igFCheckboxes">Checkboxes</h2>
+                        <h3 id="igFCClassic">Formato clássico</h3>
+                        <p class="mb-0">Permite assinalar um campo de modo binário.</p>
+                        <p>
+                            A ideia é utilizarmos nesta versão do GesEdu as checkboxes provenientes do BS5, adaptadas a este sistema de design.
+                        </p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="10" disabled>
+<div class="form-check ig-check">
+                            <input class="form-check-input" type="checkbox" value="" id="igCheck01">
+                            <label class="form-check-label" for="igCheck01">
+        Não quero assinalar esta opção.
+    </label>
+</div>
+<div class="form-check ig-check">
+                            <input class="form-check-input" type="checkbox" value="" id="igCheck02" checked>
+                            <label class="form-check-label" for="igCheck02">
+        Quero assinalar esta opção.
+    </label>
+</div>
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <div class="form-check ig-check">
+                                <input class="form-check-input" type="checkbox" value="" id="igCheck01">
+                                <label class="form-check-label" for="igCheck01">
+                                    Não quero assinalar esta opção.
+                                </label>
+                            </div>
+                            <div class="form-check ig-check">
+                                <input class="form-check-input" type="checkbox" value="" id="igCheck02" checked>
+                                <label class="form-check-label" for="igCheck02">
+                                    Quero assinalar esta opção.
+                                </label>
+                            </div>
+                        </div>
+                        <h3 id="igFCSwitch">Formato switch</h3>
+                        <p>Devem ser utlizadas em campos de ativação/desativação.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="10" disabled>
+<div class="form-check form-switch ig-check">
+                            <input class="form-check-input" type="checkbox" id="igActiveInactive1">
+                            <label class="form-check-label" for="flexSwitchCheckDefault"> Acesso à Aplicação externa GESEDU Área Reservada</label>
+</div>
+<div class="form-check form-switch ig-check">
+                            <input class="form-check-input" type="checkbox" id="igActiveInactive1">
+                            <label class="form-check-label" for="flexSwitchCheckDefault"> Acesso à Aplicação externa GESEDU Área Reservada</label>
+</div>
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <div class="form-check form-switch ig-check">
+                                <input class="form-check-input" type="checkbox" id="igActiveInactive1">
+                                <label class="form-check-label" for="flexSwitchCheckDefault"> Acesso à Aplicação externa GESEDU Área Reservada</label>
+                            </div>
+                            <div class="form-check form-switch ig-check">
+                                <input class="form-check-input" type="checkbox" id="igActiveInactive1">
+                                <label class="form-check-label" for="flexSwitchCheckDefault"> Acesso à Aplicação externa GESEDU Área Reservada</label>
+                            </div>
+                        </div>
+                        <h2 id="igFRButtons">Radio buttons</h2>
+                        <p class="mb-0">Permite escolher uma de várias opções.</p>
+                        <p>
+                            A ideia é utilizarmos nesta versão do GesEdu as checkboxes provenientes do BS5, adaptadas a este sistema de design.
+                        </p>
+                        <h4>Código de exemplo:</h4>
+                        <textarea class="form-control ig-code mb-3" rows="10" disabled>
+<div class="form-check ig-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                               id="igRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+        Opção 1
+    </label>
+</div>
+<div class="form-check ig-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                               id="igRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+        Opção 2
+    </label>
+</div>
+                    </textarea>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <div class="form-check ig-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="igRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Opção 1
+                                </label>
+                            </div>
+                            <div class="form-check ig-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="igRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Opção 2
+                                </label>
+                            </div>
+                        </div>
+                        <h2 id="igFFValidation">Validação de campos</h2>
+                        <p>Forma de validar dados na submissão de formulários</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="10" disabled>
+<form class="row g-3 needs-validation" novalidate>
+                            <div class="col-md">
+                            <label for="validationCustom01" class="form-label">Campo de texto</label>
+                            <input type="text" class="form-control" id="validationCustom01" value="Valor do campo de texto" required>
+                            <div class="valid-feedback">
+            Campo de texto correto
+        </div>
+    </div>
+                            <div class="col-md">
+                            <label for="validationCustomUsername" class="form-label">Campo de input-group</label>
+                            <div class="input-group has-validation">
+                            <span class="input-group-text" id="inputGroupPrepend">€</span>
+                            <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                            <div class="invalid-feedback">
+                Introduza um valor correto.
+            </div>
+        </div>
+    </div>
+                            <div class="col-md">
+                            <label for="validationCustom04" class="form-label">Campo de dropdown</label>
+                            <select class="form-select" id="validationCustom04" required>
+                            <option selected disabled value="">Escolha uma opção...</option>
+                            <option>...</option>
+        </select>
+                            <div class="invalid-feedback">
+            Por favor, escolha uma opção válida.
+        </div>
+    </div>
+                            <div class="col-12">
+                            <div class="form-check ig-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                            <label class="form-check-label" for="invalidCheck">
+                 Campo de checkbox
+            </label>
+                            <div class="invalid-feedback">
+                Assinale a caixa de seleção para submeter o formulário.
+            </div>
+        </div>
+    </div>
+                            <div class="col-12">
+                            <button class="btn ig-btn-green" type="submit"><i class="fas fa-check"></i> Testar validações</button>
+    </div>
+</form>
+                    </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <form class="row g-3 needs-validation" novalidate>
+                                <div class="col-md">
+                                    <label for="validationCustom01" class="form-label">Campo de texto</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value="Valor do campo de texto" required>
+                                    <div class="valid-feedback">
+                                        Campo de texto correto
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <label for="validationCustomUsername" class="form-label">
+                                        Campo de
+                                        input-group
+                                    </label>
+                                    <div class="input-group has-validation">
+                                        <span class="input-group-text" id="inputGroupPrepend">€</span>
+                                        <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                                        <div class="invalid-feedback">
+                                            Introduza um valor correto.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <label for="validationCustom04" class="form-label">Campo de dropdown</label>
+                                    <select class="form-select" id="validationCustom04" required>
+                                        <option selected disabled value="">Escolha uma opção...</option>
+                                        <option>...</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, escolha uma opção válida.
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                        <label class="form-check-label" for="invalidCheck">
+                                            Campo de checkbox
+                                        </label>
+                                        <div class="invalid-feedback">
+                                            Assinale a caixa de seleção para submeter o formulário.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn ig-btn-green" type="submit">
+                                        <i class="fas fa-check"></i> Testar validações
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <h2 id="igFSName">Indicação de nome de uma Escola ou UO</h2>
+                        <p>Forma de se mostrar um nome de um estabelecimento de ensino.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="4" disabled>
+<h2><span class="badge rounded-pill ig-uo-code">172420</span> Agrupamento de Escolas de Vila Viçosa</h2>
+<p><span class="badge rounded-pill ig-uo-code">172420</span> Agrupamento de Escolas de Vila Viçosa</p>
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <h2>
+                                <span class="badge rounded-pill ig-uo-code">172420</span> Agrupamento de Escolas de Vila Viçosa
+                            </h2>
+                            <p>
+                                <span class="badge rounded-pill ig-uo-code">172420</span> Agrupamento de Escolas de Vila Viçosa
+                            </p>
+                        </div>
+                        <h2 id="igFSBadge">Indicação de descrições (Badges)</h2>
+                        <p>Mostra conteúdo de uma forma mais imediata e resumida.</p>
+                        <p>O seguinte exemplo mostra as permissões de um utilizador no GesEdu:</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="6" disabled>
+<p>
+                            <span class="badge rounded-pill ig-user-permissions"><i class="fa-solid fa-user-lock" title="Acesso à Aplicação externa GESEDU Área Reservada"></i> Acesso à Aplicação externa GESEDU Área Reservada</span>
+                            <span class="badge rounded-pill ig-user-permissions" title="Acesso à Aplicação externa MEGA"><i class="fa-solid fa-user-lock"></i> Acesso à Aplicação externa MEGA</span>
+</p>
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <p class="mb-0">
+                                <span class="badge rounded-pill ig-user-permissions"><i class="fa-solid fa-user-lock" title="Acesso à Aplicação externa GESEDU Área Reservada"></i> Acesso à Aplicação externa GESEDU Área Reservada</span>
+                                <span class="badge rounded-pill ig-user-permissions" title="Acesso à Aplicação externa MEGA"><i class="fa-solid fa-user-lock"></i> Acesso à Aplicação externa MEGA</span>
+                            </p>
+                        </div>
+                        <h2 id="igFState">Indicadores de estado</h2>
+                        <p>Indicam um estado de um campo.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code mb-3" rows="10" disabled>
+<div class="mb-3">
+                            <label class="form-label">Estado de erro:</label>
+                            <p><span class="badge ig-badge-error"><i class="fas fa-exclamation-triangle"></i>Tudo bugado!</span></p>
+</div>
+<div class="mb-3">
+                            <label class="form-label">Estado de alerta:</label>
+                            <p><span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i>É melhor veres disto...</span></p>
+</div>
+<div class="mb-3">
+                            <label class="form-label">Estado de sucesso:</label>
+                            <p><span class="badge ig-badge-success"><i class="fas fa-check"></i>Yuuuuuuuuge!</span></p>
+</div>
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <div class="mb-3">
+                                <label class="form-label">Estado de erro:</label>
+                                <p>
+                                    <span class="badge ig-badge-error">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        Tudo bugado!
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Estado de alerta:</label>
+                                <p>
+                                    <span class="badge ig-badge-warning">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        É melhor veres disto...
+                                    </span>
+                                </p>
+                            </div>
+                            <div>
+                                <label class="form-label">Estado de sucesso:</label>
+                                <p>
+                                    <span class="badge ig-badge-success">
+                                        <i class="fas fa-check"></i>
+                                        Yuuuuuuuuge!
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 ps-5">
+                        <div class="ig-sidemenu-right">
+                            <h4 class="mb-4">Nesta página:</h4>
+                            <p><a href="#igFLabel">Etiqueta (Label)</a></p>
+                            <p><a href="#igFTInput">Input de texto</a></p>
+                            <p><a href="#igFNInput">Input de números</a></p>
+                            <p><a href="#igFTextarea">Textarea</a></p>
+                            <p><a href="#igFPInput">Input de password</a></p>
+                            <p><a href="#igFIGroup">Input de texto com label (input-group)</a></p>
+                            <p><a href="#igFTReadonly">Campos de texto (readonly)</a></p>
+                            <p><a href="#igFDropdowns">Dropdowns</a></p>
+                            <p><a href="#igFSDropdowns">Dropdowns pesquisáveis</a></p>
+                            <div class="ps-4">
+                                <p><a href="#igFSDBDatalists">Bootstrap: Datalists</a> </p>
+                                <p>
+                                    <a href="#igFSDKDropdownlist">Kendo: Dropdownlist</a>
+                                </p>
+                            </div>
+                            <p><a href="#igFFUpload">Upload de ficheiros</a></p>
+                            <p><a href="#igFDInput">Input de data</a></p>
+                            <p><a href="#igFCheckboxes">Checkboxes</a></p>
+                            <div class="ps-4">
+                                <p><a href="#igFCClassic">Formato clássico</a> </p>
+                                <p>
+                                    <a href="#igFCSwitch">Formato switch</a>
+                                </p>
+                            </div>
+                            <p><a href="#igFRButtons">Radio buttons</a></p>
+                            <p><a href="#igFFValidation">Validação de campos</a></p>
+                            <p><a href="#igFSName">Indicação de nome de uma Escola ou UO</a></p>
+                            <p><a href="#igFSBadge">Indicação de descrições (Badges)</a></p>
+                            <p><a href="#igFState">Indicadores de estado</a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+    </section>
+    <!--OFFCANVAS-->
+    <!--Offcanvas01 Escolher turma-->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="igOffcanvas01" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel"><span class="badge rounded-pill ig-uo-code">401900</span> Escola Secundária Públia Hortênsia de Castro, Vila Viçosa</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <h4>Escolha uma turma:</h4>
+            <h4><span class="badge rounded-pill ig-cycle-03">3.º ciclo</span></h4>
+            <h4>7.º ano:</h4>
+            <div class="list-group list-group-flush">
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">7.º A</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">7.º B</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">7.º C</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">7.º D</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">7.º E</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">7.º F</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+            </div>
+            <h4>8.º ano:</h4>
+            <div class="list-group list-group-flush">
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">8.º A</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">8.º B</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">8.º C</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">8.º D</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">8.º E</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">8.º F</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+            </div>
+            <h4>9.º ano:</h4>
+            <div class="list-group list-group-flush">
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">9.º A</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">9.º B</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">9.º C</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">9.º D</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">9.º E</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">9.º F</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+            </div>
+            <h4><span class="badge rounded-pill ig-cycle-se">Secundário</span></h4>
+            <h4>10.º ano:</h4>
+            <div class="list-group list-group-flush">
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">10.º A</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">10.º B</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">10.º C</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">10.º D</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">10.º E</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">10.º F</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+            </div>
+            <h4>11.º ano:</h4>
+            <div class="list-group list-group-flush">
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">11.º A</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">11.º B</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">11.º C</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">11.º D</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">11.º E</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">11.º F</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+            </div>
+            <h4>12.º ano:</h4>
+            <div class="list-group list-group-flush">
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">12.º A</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">12.º B</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">12.º C</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">12.º D</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">12.º E</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+                <a href="javascript:void(0);" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" class="list-group-item">
+                    <h5 class="mb-0">12.º F</h5>
+                    <h5 class="mb-0"><i class="fas fa-users"></i> 22</h5>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="../../GesEdu/wwwroot/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+
+
+</body>
+
+</html>
