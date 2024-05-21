@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GesEdu.Shared.WebserviceModels.Login
+namespace GesEdu.Shared.WebserviceModels.Auth
 {
     public class LoginUtilizadorRequest
     {

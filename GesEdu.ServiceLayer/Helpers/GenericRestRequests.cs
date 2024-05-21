@@ -1,8 +1,11 @@
 ﻿using GesEdu.Shared.DatabaseEntities;
+using GesEdu.Shared.ExceptionHandler.Exceptions;
 using GesEdu.Shared.Interfaces.IConfiguration;
 using GesEdu.Shared.Interfaces.IHelpers;
+using GesEdu.Shared.WebserviceModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -10,6 +13,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace GesEdu.ServiceLayer.Helpers
@@ -41,7 +45,9 @@ namespace GesEdu.ServiceLayer.Helpers
 
             var response = await client.ExecuteGetAsync<T>(request);
 
-            return response?.Data;
+            ValidateRestResponse(response);
+
+            return response.Data;
         }
 
         public async Task<TOutput?> Post<TOutput, TInput>(string serviceModule, string service, TInput bodyObject, IDictionary<string, string>? headers = null) where TOutput : class where TInput : class
@@ -59,27 +65,10 @@ namespace GesEdu.ServiceLayer.Helpers
             request.AddJsonBody(bodyObject);
 
             var response = await client.ExecutePostAsync<TOutput>(request);
-            
-            //TODO - Configurar entityFramework para guardar logs das chamadas aos serviços
-            //var sigefeRequestLog = new SigefeRequestLog
-            //{
-            //    CodUo = _user?.Claims?.FirstOrDefault(x => x.Type == "COD_SERVICO")?.Value,
-            //    User = _user?.Identity?.Name,
-            //    WebServiceUrl = response?.ResponseUri?.ToString(),
-            //    WebServiceHttpMethod = request.Method.ToString(),
-            //    RequestHeaders = string.Join(", ", request.Parameters.GetParameters(ParameterType.HttpHeader).Select(x => x.ToString())),
-            //    JsonRequest = request.Parameters.GetParameters(ParameterType.RequestBody).ToString(),
-            //    JsonResponse = response?.Content,
-            //    HttpStatusCode = ((int)(response?.StatusCode)).ToString(),
-            //    HttpStatusMessage = response?.StatusDescription,
-            //    RequestDate = DateTime.UtcNow,
-            //};
 
-            ////_unitOfWork.SigefeRequestLogs.Add(sigefeRequestLog);
+            ValidateRestResponse(response);
 
-            ////await _unitOfWork.SaveChangesAsync();
-
-            return response?.Data;
+            return response.Data;
         }
 
         #region Private methods
@@ -92,6 +81,31 @@ namespace GesEdu.ServiceLayer.Helpers
         private string WebServiceUrl(string module, string service)
         {
             return string.Concat(_config["SigefeWebservicesCredentials:BaseUrl"], _config[$"SigefeWebservices:{module}:{service}"]);
+        }
+
+        private void ValidateRestResponse<T>(RestResponse<T> restResponse) where T : class
+        {
+            if (!restResponse.IsSuccessful || restResponse.Data == null)
+            {
+                List<string> messages = new List<string>();
+
+                if (restResponse.ContentType == "application/json" && !string.IsNullOrEmpty(restResponse.Content))
+                {
+                    dynamic jsonObj = JObject.Parse(restResponse.Content);
+
+                    foreach (dynamic message in jsonObj.messages)
+                    {
+                        string msg = message.msg;
+                        messages.Add(msg);
+                    }
+                }
+                else
+                {
+                    messages.Add("Erro na chamada ao webservice. Contactar suporte.");
+                }
+
+                throw new WebserviceException(restResponse.StatusCode, messages.ToArray());
+            }
         }
         #endregion
     }

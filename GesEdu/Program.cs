@@ -2,6 +2,7 @@ using GesEdu.Datalayer.Context;
 using GesEdu.Datalayer.UnitOfWork;
 using GesEdu.ServiceLayer.Helpers;
 using GesEdu.ServiceLayer.Services;
+using GesEdu.Shared.ExceptionHandler;
 using GesEdu.Shared.Interfaces.IConfiguration;
 using GesEdu.Shared.Interfaces.IHelpers;
 using GesEdu.Shared.Interfaces.ISevices;
@@ -24,7 +25,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IGenericRestRequests, GenericRestRequests>();
 builder.Services.AddScoped<ILoginServices, LoginServices>();
-builder.Services.AddScoped<INoticiasServices, NoticiasServices>();
+builder.Services.AddScoped<IHomepageServices, HomepageServices>();
 builder.Services.AddScoped<IUserServices, UserServices>();
 
 #endregion
@@ -33,8 +34,8 @@ builder.Services.AddScoped<IUserServices, UserServices>();
 
 builder.Services.AddBreadcrumbs(Assembly.GetExecutingAssembly(), options =>
 {
-    options.TagName = "nav";
-    options.TagClasses = "";
+    options.TagName = "div";
+    options.TagClasses = "d-flex";
     options.OlClasses = "breadcrumb";
     options.LiClasses = "breadcrumb-item";
     options.ActiveLiClasses = "breadcrumb-item active";
@@ -42,15 +43,17 @@ builder.Services.AddBreadcrumbs(Assembly.GetExecutingAssembly(), options =>
 
 #endregion
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
-                {
-                    options.Cookie.Name = "GesEduCookie";
-                    options.LoginPath = "/Login";
-                    options.ExpireTimeSpan = new TimeSpan(0, 45, 0);
-                    options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
-                    options.LogoutPath = "/Logout";
-                });
+builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.Cookie.Name = "gesedu_token";
+        options.LoginPath = "/Login";
+        options.LogoutPath = "/Logout";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        options.SlidingExpiration = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+    });
 
 builder.Services.AddSession();
 
@@ -59,15 +62,17 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionMiddleware>();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();

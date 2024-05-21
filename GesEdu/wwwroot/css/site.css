@@ -645,11 +645,14 @@ th.ig-col-shrink {
     background: var(--ig-blue-3);
 }
 
-.ig-pagination a.page-link.active {
+.ig-pagination li.page-item.active a {
     background: var(--ig-blue-2);
     color: var(--ig-white);
 }
-
+.ig-pagination li.page-item.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
 .ig-pagination .page-item:not(:first-child) a.page-link {
     margin-left: 0.25rem;
 }
@@ -718,7 +721,9 @@ th.ig-col-shrink {
     width: 3rem;
     height: 3rem;
 }
-
+.ig-loadable-div, .ig-loadable-div .ig-card{
+    position: relative;
+}
 
 /*Separadores*/
 

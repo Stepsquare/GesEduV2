@@ -1,0 +1,53 @@
+﻿@model PaginationViewModel
+
+<div class="row ig-pagination mb-5">
+    <div class="col-md align-middle">
+        @{
+            int firstResult = (Model.PageSize * (Model.PageIndex - 1)) + 1;
+            int lastResult = Math.Min(Model.PageSize * Model.PageIndex, Model.TotalCount);
+
+            <p class="ig-grid-record">
+                @firstResult a @lastResult de @Model.TotalCount registos
+            </p>
+        }
+    </div>
+    <div class="col-md-auto">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination mb-0 float-end">
+                <li class="page-item @(Model.PageIndex == 1 ? "disabled" : "")"
+                    onclick="@string.Format(Model.AjaxRequestMethod, 1, Model.PageSize )">
+                    <a class="page-link" href="javascript:void(0);" title="Início"><i class="fas fa-angles-left"></i></a>
+                </li>
+
+                <li class="page-item @(Model.PageIndex == 1 ? "disabled" : "")"
+                    onclick="@string.Format(Model.AjaxRequestMethod, Model.PageIndex - 1, Model.PageSize )">
+                    <a class="page-link" href="javascript:void(0);" title="Anterior"><i class="fas fa-angle-left"></i></a>
+                </li>
+
+                @{
+                    int firstPageOnDisplay = Model.TotalPages >= Model.MaxNumberOfWidgetPages && Model.PageIndex + (Model.MaxNumberOfWidgetPages / 2) > Model.TotalPages
+                                                ? Model.TotalPages - Model.MaxNumberOfWidgetPages + 1
+                                                : Math.Max(1, Model.PageIndex - (Model.MaxNumberOfWidgetPages / 2));
+                    int lastPageOnDisplay = Math.Min(Model.TotalPages, Model.PageIndex + (Model.MaxNumberOfWidgetPages / 2) + Math.Max(0, firstPageOnDisplay - Model.PageIndex + (Model.MaxNumberOfWidgetPages / 2)));
+
+                    for (int i = firstPageOnDisplay; i <= lastPageOnDisplay; i++)
+                    {
+                        <li class="page-item @(Model.PageIndex == i ? "active" : "")" onclick="@string.Format(Model.AjaxRequestMethod, i, Model.PageSize )">
+                            <a class="page-link" href="javascript:void(0);">@i</a>
+                        </li>
+                    }
+                }
+
+                <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")"
+                    onclick="@string.Format(Model.AjaxRequestMethod, Model.PageIndex + 1, Model.PageSize )">
+                    <a class="page-link" href="javascript:void(0);" title="Seguinte"><i class="fas fa-angle-right"></i></a>
+                </li>
+
+                <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")"
+                    onclick="@string.Format(Model.AjaxRequestMethod, Model.TotalPages, Model.PageSize )">
+                    <a class="page-link" href="javascript:void(0);" title="Fim"><i class="fas fa-angles-right"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -18,6 +18,7 @@
     <script src="~/lib/kendo-ui/js/cultures/kendo.culture.pt-PT.min.js"></script>
     <script src="~/lib/kendo-ui/js/messages/kendo.messages.pt-PT.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <partial name="_ValidationScriptsPartial" />
 </head>
 
 <body>
@@ -60,10 +61,7 @@
                         @if (User.IsAdmin() || User.IsUserManager())
                         {
                             <li>
-                                @Html.ActionLink("Gerir Utilizadores", "", "", null, new {@class ="dropdown-item" })
-                            </li>
-                            <li>
-                                @Html.ActionLink("Criar Utilizadores", "", "",  null, new {@class ="dropdown-item" })
+                                @Html.ActionLink("Gerir Utilizadores", "Index", "Users", null, new {@class ="dropdown-item" })
                             </li>
                         }
                         <li>
@@ -74,10 +72,9 @@
             </ul>
         </div>
     </nav>
-    <div class="ig-content">
-        @RenderBody()
-    </div>
-    <!--TODO DB: Adaptar a páginas com menu lateral.-->
+
+    @RenderBody()
+
     <div class="container">
         <footer class="ig-footer">
             <div class="row">
@@ -98,86 +95,7 @@
         </footer>
     </div>
 
-    <!--MODALS-->
-    <!--Modal Erros-->
-    <div class="modal fade ig-modal ig-modal-error" id="igmodalErro" tabindex="-1" role="dialog" aria-labelledby="igModalLabelErro">
-        <div class="modal-dialog " role="document">
-            <div class="modal-content">
-                <div class="modal-header ig-modal-header-error">
-                    <h4 class="modal-title">Erro</h4>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn ig-btn-greent" data-dismiss="modal"><i class="fas fa-check"></i> OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--Modal Success-->
-    <div class="modal fade ig-modal ig-modal-error" id="igmodalSucesso" tabindex="-1" role="dialog" aria-labelledby="igModalLabelErro">
-        <div class="modal-dialog " role="document">
-            <div class="modal-content">
-                <div class="modal-header ig-modal-header-success">
-                    <h4 class="modal-title">Sucesso</h4>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn ig-btn-greent" data-dismiss="modal"><i class="fas fa-check"></i> OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--LOADER-->
-    <!-- Modal -->
-    <div class="modal fade ig-modal-loader" id="myLoader" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="sk-fading-circle">
-                        <div class="sk-circle1 sk-circle"></div>
-                        <div class="sk-circle2 sk-circle"></div>
-                        <div class="sk-circle3 sk-circle"></div>
-                        <div class="sk-circle4 sk-circle"></div>
-                        <div class="sk-circle5 sk-circle"></div>
-                        <div class="sk-circle6 sk-circle"></div>
-                        <div class="sk-circle7 sk-circle"></div>
-                        <div class="sk-circle8 sk-circle"></div>
-                        <div class="sk-circle9 sk-circle"></div>
-                        <div class="sk-circle10 sk-circle"></div>
-                        <div class="sk-circle11 sk-circle"></div>
-                        <div class="sk-circle12 sk-circle"></div>
-                    </div>
-                    <h3>Aguarde por favor...</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--Modal Confirmaçao-->
-    <div class="modal fade ig-modal" id="shared-modal-confirm" tabindex="-1" role="dialog">
-        <div class="modal-dialog " role="document">
-            <div class="modal-content">
-                <div class="modal-header ig-modal-header-success">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 id="shared-title-confirm" class="modal-title">Remover</h4>
-                </div>
-                <div class="modal-body" id="shared-mensagem-positiva">
-                    <input type="hidden" id="shared-objid-confirm" />
-                    <p id="shared-mensagem-confirm">Tem a certeza?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times"></i> Não</button>
-                    <button id="shared-button-confirm" type="button" class="btn ig-btn-green" data-dismiss="modal"><i class="fas fa-check"></i> Sim</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @await Html.PartialAsync("_modalContainersPartial")
 
 </body>
 </html>

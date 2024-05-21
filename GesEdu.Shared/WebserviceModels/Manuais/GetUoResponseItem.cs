@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GesEdu.Shared.WebserviceModels.Manuais
 {
-    public class GetUoResponse
+    public class GetUoResponseItem
     {
         public string? Cod_agrupamento { get; set; }
         public string? Nome { get; set; }

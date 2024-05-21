@@ -1,0 +1,47 @@
+﻿
+<!--MODAL ERROS-->
+<div class="modal fade ig-modal ig-modal-errors" id="error_modal" tabindex="-1" aria-labelledby="error_modal_label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="error_modal_label"><i class="fas fa-exclamation-triangle"></i> Erros</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Ocorreram os seguintes erros na aplicação:
+                <ul>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--MODAL CONFIRMAÇÃO-->
+<div class="modal fade ig-modal ig-modal-confirm" id="confirm_modal" tabindex="-1" aria-labelledby="confirm_modal_label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="confirm-modal-title" id="confirm_modal_label"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
+                <button id="confirm_modal_btn" type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Guardar alterações</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--TOASTS-->
+<div id="toast_container" class="ig-toast-container toast-container">
+</div>
+
+<!--LOADER-->
+<div id="loader" class="ig-load ig-load-body" style="display: none">
+    <span class="spinner-grow" role="status"></span> Aguarde por favor...
+</div>

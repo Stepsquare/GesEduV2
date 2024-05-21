@@ -1,0 +1,47 @@
+﻿@model NewUserViewModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="newUserModalLabel">Adicionar novo utilizador</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6 mb-3 form-group">
+            <label asp-for="@Model.Nome" class="form-label"></label>
+            <input asp-for="@Model.Nome" class="form-control" />
+            <span asp-validation-for="@Model.Nome" class="ig-field-error"></span>
+        </div>
+        <div class="col-md-6 mb-3 form-group">
+            <label asp-for="@Model.Email" class="form-label"></label>
+            <input asp-for="@Model.Email" class="form-control" />
+            <span asp-validation-for="@Model.Email" class="ig-field-error"></span>
+        </div>
+        <div class="col-md-6 mb-3 form-group">
+            <label asp-for="@Model.Password" class="form-label"></label>
+            <input asp-for="@Model.Password" class="form-control" />
+            <span asp-validation-for="@Model.Password" class="ig-field-error"></span>
+        </div>
+        <div class="col-md-6 mb-3 form-group">
+            <label asp-for="@Model.ConfirmNewPassword" class="form-label"></label>
+            <input asp-for="@Model.ConfirmNewPassword" class="form-control" />
+            <span asp-validation-for="@Model.ConfirmNewPassword" class="ig-field-error"></span>
+        </div>
+    </div>
+    <hr />
+    <div>
+        <label class="form-label">Permissões:</label>
+        @for (int i = 0; i < Model.Perfis!.Count; i++)
+        {
+            <div class="form-check form-switch ig-check mb-3">
+                <input class="form-check-input" type="checkbox" asp-for="Perfis[i].IsChecked">
+                <label class="form-check-label" asp-for="Perfis[i].IsChecked"> @Model.Perfis[i].LabelName</label>
+                <input type="hidden" asp-for="Perfis[i].Id" />
+                <input type="hidden" asp-for="Perfis[i].LabelName" />
+            </div>
+        }
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
+    <button class="btn ig-btn-green" type="submit"><i class="fa-solid fa-user-plus"></i> Adicionar utilizador</button>
+</div>

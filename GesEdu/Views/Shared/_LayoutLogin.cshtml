@@ -19,15 +19,17 @@
     <script src="~/lib/kendo-ui/js/messages/kendo.messages.pt-PT.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <partial name="_ValidationScriptsPartial" />
-    </head>
+</head>
 
-    <body>
-        <div class="container">
-                @RenderBody()
-            </div>
+<body>
+    <div class="container">
+        @RenderBody()
+    </div>
     <div class="ig-copyright">
         @DateTime.Now.Year.ToString() — Instituto de Gestão Financeira da Educação, I.P.
     </div>
 
-    </body>
-    </html>
+    @await Html.PartialAsync("_modalContainersPartial")
+
+</body>
+</html>

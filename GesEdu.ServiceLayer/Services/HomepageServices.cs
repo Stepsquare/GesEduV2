@@ -1,4 +1,5 @@
-﻿using GesEdu.Shared.Interfaces.IConfiguration;
+﻿using GesEdu.Shared.ExceptionHandler.Exceptions;
+using GesEdu.Shared.Interfaces.IConfiguration;
 using GesEdu.Shared.Interfaces.IHelpers;
 using GesEdu.Shared.Interfaces.ISevices;
 using GesEdu.Shared.WebserviceModels.Manuais;
@@ -12,10 +13,10 @@ using System.Threading.Tasks;
 
 namespace GesEdu.ServiceLayer.Services
 {
-    public class NoticiasServices : BaseServices, INoticiasServices
+    public class HomepageServices : BaseServices, IHomepageServices
     {
 
-        public NoticiasServices(IUnitOfWork unitOfWork, IGenericRestRequests genericRestRequests) : base(unitOfWork, genericRestRequests)
+        public HomepageServices(IUnitOfWork unitOfWork, IGenericRestRequests genericRestRequests) : base(unitOfWork, genericRestRequests)
         {
         }
 

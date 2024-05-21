@@ -4,11 +4,12 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container">
-    <h2 class="mb-5">Bem-vindo(a) ao GesEdu</h2>
-    <div class="row">
-        <div class="col-lg-4 ig-homebtn-cont">
-            <a class="ig-biglink-hp" href="#" title="Estabelecimentos de Ensino">
+<div class="ig-content">
+    <div class="container">
+        <h2 class="mb-5">Bem-vindo(a) ao GesEdu</h2>
+        <div class="row">
+            <div class="col-lg-4 ig-homebtn-cont">
+                <a class="ig-biglink-hp" href="#" title="Estabelecimentos de Ensino">
                     <div class="card ig-card">
                         <div class="card-body text-center">
                             <img src="~/images/icon-estensino.svg">
@@ -30,38 +31,39 @@
                         </div>
                     </div>
                 </a>
-        </div>
-        <div class="col-lg-8">
-            <div class="ig-hp-news">
-                <div class="card ig-card">
-                    <div class="card-body">
-                        <h4>Notícias</h4>
-                    </div>
-                    <div class="list-group list-group-flush">
-                        @if (Model != null)
-                            foreach (var noticia in Model.noticias)
-                            {
-                                <div class="list-group-item">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">@noticia.titulo</h5>
-                                        <small class="text-muted"><i class="far fa-calendar"></i> @noticia.dt_publicacao</small>
+            </div>
+            <div class="col-lg-8">
+                <div class="ig-hp-news">
+                    <div class="card ig-card">
+                        <div class="card-body">
+                            <h4>Notícias</h4>
+                        </div>
+                        <div class="list-group list-group-flush">
+                            @if (Model != null)
+                                foreach (var noticia in Model.noticias)
+                                {
+                                    <div class="list-group-item">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">@noticia.titulo</h5>
+                                            <small class="text-muted"><i class="far fa-calendar"></i> @noticia.dt_publicacao</small>
+                                        </div>
+                                        <p class="mb-1">
+                                            @noticia.corpo
+                                        </p>
                                     </div>
-                                    <p class="mb-1">
-                                        @noticia.corpo
-                                    </p>
+                                }
+                            else
+                            {
+                                <div class="ig-noresults text-center mb-3">
+                                    <h3><i class="fas fa-search"></i>  Sem notícias</h3>
+                                    <p class="mb-0">Não existem notícias a apresentar.</p>
                                 </div>
                             }
-                        else
-                        {
-                            <div class="ig-noresults text-center mb-3">
-                                <h3><i class="fas fa-search"></i>  Sem notícias</h3>
-                                <p class="mb-0">Não existem notícias a apresentar.</p>
-                            </div>
-                        }
+                        </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 </div>

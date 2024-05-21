@@ -11,6 +11,32 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GesEdu.Datalayer", "GesEdu.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GesEdu.ServiceLayer", "GesEdu.ServiceLayer\GesEdu.ServiceLayer.csproj", "{A3909ADF-3B2E-4162-B5B4-C5ACB2735083}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{535E5A99-3E08-455A-8E8E-ED3C2F4FFBCE}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GesEdu.Design", "GesEdu.Design", "{84A2A517-0B3A-4B27-99B9-8D3EFE5992D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layouts", "Layouts", "{B9FCD6EB-A874-42AE-9D71-093E3AB6C39D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{083A5489-D690-4E46-80EB-510F9CF352A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilizadores", "Utilizadores", "{CF6CE8AF-2E2C-456D-B834-2778580BF27A}"
+	ProjectSection(SolutionItems) = preProject
+		GesEdu.Design\Layouts\Common\Utilizadores\EditarUsers.html = GesEdu.Design\Layouts\Common\Utilizadores\EditarUsers.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System", "System", "{E66B0C8F-A047-47F2-BC69-DE4827D61E0F}"
+	ProjectSection(SolutionItems) = preProject
+		GesEdu.Design\System\buttons.html = GesEdu.Design\System\buttons.html
+		GesEdu.Design\System\common.html = GesEdu.Design\System\common.html
+		GesEdu.Design\System\forms.html = GesEdu.Design\System\forms.html
+		GesEdu.Design\System\frameworks.html = GesEdu.Design\System\frameworks.html
+		GesEdu.Design\System\index.html = GesEdu.Design\System\index.html
+		GesEdu.Design\System\interface.html = GesEdu.Design\System\interface.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +62,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B9FCD6EB-A874-42AE-9D71-093E3AB6C39D} = {84A2A517-0B3A-4B27-99B9-8D3EFE5992D9}
+		{083A5489-D690-4E46-80EB-510F9CF352A0} = {B9FCD6EB-A874-42AE-9D71-093E3AB6C39D}
+		{CF6CE8AF-2E2C-456D-B834-2778580BF27A} = {083A5489-D690-4E46-80EB-510F9CF352A0}
+		{E66B0C8F-A047-47F2-BC69-DE4827D61E0F} = {84A2A517-0B3A-4B27-99B9-8D3EFE5992D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3037FE9-00CE-4CCC-A9ED-E29D29B05B53}

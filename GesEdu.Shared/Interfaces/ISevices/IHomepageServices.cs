@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GesEdu.Shared.Interfaces.ISevices
 {
-    public interface INoticiasServices
+    public interface IHomepageServices
     {
         Task<GetNoticiasResponse?> GetNoticias(string? id = null);
     }

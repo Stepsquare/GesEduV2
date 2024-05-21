@@ -8,10 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 using GesEdu.Shared.Extensions;
 using System.Security.Claims;
 using GesEdu.Shared.WebserviceModels.Manuais;
+using GesEdu.Models;
 
 namespace GesEdu.Controllers
 {
-    [AllowAnonymous]
+    [Authorize]
     [Route("/{action}")]
     public class AuthenticationController : Controller
     {
@@ -23,23 +24,24 @@ namespace GesEdu.Controllers
         }
 
         #region Views
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public IActionResult PasswordRecovery()
         {
             return View();
         }
 
-        [Authorize]
         public IActionResult PasswordChange()
         {
             return View();
         }
 
-        [Authorize(Roles = "ADMIM")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult ChooseUo()
         {
             return View();
@@ -48,29 +50,26 @@ namespace GesEdu.Controllers
         #endregion
 
         #region Requests
+
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
-            var signInResult = await _loginServices.SignIn(model.Username, model.Password);
+            var (IsAdmin, ChangePassword) = await _loginServices.SignIn(model.Username!, model.Password!);
 
-            if (!signInResult.IsLoginSuccessful)
-            {
-                ViewBag.ErrorMessage = signInResult.ErrorMessage;
-                return View(model);
-            }
+            if (ChangePassword)
+                return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("PasswordChange", "Authentication")));
 
-            if (signInResult.ChangePassword)
-                return RedirectToAction("PasswordChange", "Authentication");
+            if (IsAdmin)
+                return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("ChooseUo", "Authentication")));
 
-            if (signInResult.IsAdmin)
-                return RedirectToAction("ChooseUo", "Authentication");
-
-            return RedirectToAction("Index", "Home");
+            return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("Index", "Home")));
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             await _loginServices.SignOut();
@@ -78,20 +77,17 @@ namespace GesEdu.Controllers
             return RedirectToAction("Login", "Authentication");
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> PasswordRecovery(PasswordRecoveryViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var passwordRecoveryResult = await _loginServices.PasswordRecovery(model.Email);
-
-                ViewBag.IsSuccessful = passwordRecoveryResult.IsSuccessful;
-                ViewBag.ErrorMessage = passwordRecoveryResult.ErrorMessage;
+                return View(model);
             }
 
-            return View(model);
+            return Ok(new AjaxSuccessModel().AddMessage(await _loginServices.PasswordRecovery(model.Email!)));
         }
-
 
         [HttpPost]
         public async Task<IActionResult> PasswordChange(PasswordChangeViewModel model)
@@ -101,40 +97,35 @@ namespace GesEdu.Controllers
                 return View(model);
             }
 
-            var passwordChangeResult = await _loginServices.PasswordChange(User.GetUsername(), model.OldPassword, model.NewPassword);
-
-            ViewBag.IsSuccessful = passwordChangeResult.IsSuccessful;
-            ViewBag.ErrorMessage = passwordChangeResult.ErrorMessage;
+            await _loginServices.PasswordChange(User.GetUsername(), model.OldPassword!, model.NewPassword!);
 
             if (User.IsInRole("ADMIN"))
-                return RedirectToAction("ChooseUo", "Authentication");
+                return Ok(new { isRedirect = true, url = Url.Action("ChooseUo", "Authentication") });
 
-            return RedirectToAction("Index", "Home");
+            return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("Index", "Home")));
         }
 
-        [Authorize(Roles = "ADMIM")]
+        [Authorize(Roles = "ADMIN")]
         [HttpGet]
         public async Task<JsonResult> GetUo()
         {
             var result = await _loginServices.GetUo(User.GetIdServico());
 
-            return Json(result?.Select(x => new { nome_text_field = $"{x.Cod_agrupamento} - {x.Nome}", x.Nome, x.Cod_agrupamento }).ToArray());
+            return Json(result?.Select(x => new {
+                nome_text_field = $"{x.Cod_agrupamento} - {x.Nome}",
+                x.Nome,
+                x.Cod_agrupamento,
+                x.Nif_servico
+            }).ToArray());
         }
 
-        [Authorize(Roles = "ADMIM")]
+        [Authorize(Roles = "ADMIN")]
         [HttpPost]
-        public async Task<IActionResult> SetUo([FromBody] GetUoResponse model)
+        public async Task<IActionResult> SetUo([FromBody] GetUoResponseItem model)
         {
-            try
-            {
-                await _loginServices.SetUo(model, HttpContext.User);
+            await _loginServices.SetUo(model, HttpContext.User);
 
-                return Ok(Url.Action("Index", "Home"));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { messages = new string[] { ex.GetBaseException().Message } });
-            }
+            return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("Index", "Home")));
         }
 
         #endregion

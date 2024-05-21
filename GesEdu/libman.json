@@ -6,7 +6,7 @@
       "library": "jquery@3.6.1",
       "destination": "wwwroot/lib/jquery/",
       "files": [
-        "dist/jquery.min.js",
+        "dist/jquery.min.js"
       ]
     },
     {
@@ -50,6 +50,14 @@
       "files": [
         "js/bootstrap.bundle.min.js",
         "css/bootstrap.min.css"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery-ajax-unobtrusive@3.2.6",
+      "destination": "wwwroot/lib/jquery-ajax-unobtrusive/",
+      "files": [
+        "jquery.unobtrusive-ajax.min.js"
       ]
     }
   ]

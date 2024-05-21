@@ -1,11 +1,18 @@
-﻿using GesEdu.Shared.Interfaces.ISevices;
+﻿using GesEdu.Models;
+using GesEdu.Models.AuthenticationViewModels;
+using GesEdu.Models.UsersViewModels;
+using GesEdu.ServiceLayer.Services;
+using GesEdu.Shared.Extensions;
+using GesEdu.Shared.Interfaces.ISevices;
+using GesEdu.Shared.SearchParams;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmartBreadcrumbs.Attributes;
 using System.Data;
 
 namespace GesEdu.Controllers
 {
-    [Authorize(Roles = "ADMIM, USER_MANAGER")]
+    [Authorize(Roles = "USER_MANAGER, ADMIN")]
     public class UsersController : Controller
     {
         private readonly IUserServices _userServices;
@@ -16,14 +23,65 @@ namespace GesEdu.Controllers
         }
 
         #region Views
-        public IActionResult Index()
+        [Breadcrumb(FromController = typeof(HomeController), FromAction = "Index", Title = "ViewData.Title")]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var perfis = await _userServices.GetPerfis();
+
+            var model = new NewUserViewModel(perfis!);
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> UserPermissionModal(int userId)
+        {
+            var userDetail = await _userServices.GetUtilizador(userId);
+            var perfis = await _userServices.GetPerfis();
+
+            var model = new UserPermissionViewModel(perfis!, userDetail!);
+
+            return PartialView("_userPermissionModalPartial", model);
         }
 
         #endregion
 
+
         #region Requests
+        [HttpPost]
+        public async Task<IActionResult> Search(GetUtilizadoresParams searchParams)
+        {
+            var model = await _userServices.GetUtilizadores(searchParams);
+
+            return PartialView("_userSearchResultPartial", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SubmitNewUser(NewUserViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var responseMessage = await _userServices.CriarUtilizador(model.Nome!, model.Email!, model.Password!, model.Perfis.ToDictionary(x => x.Id, x => x.IsChecked));
+            
+            return Ok(new AjaxSuccessModel().AddMessage(responseMessage));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ToggleUser(int userId, bool isActive)
+        {
+            var responseMessage = await _userServices.AlterarEstadoUtilizador(userId, isActive);
+
+            return Ok(new AjaxSuccessModel().AddMessage(responseMessage));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ToggleUserProfile(int userId, int profileId, bool isActive)
+        {
+            var responseMessage = await _userServices.AlterarPerfilUtilizador(userId, profileId, isActive);
+
+            return Ok(new AjaxSuccessModel().AddMessage(responseMessage));
+        }
 
         #endregion
     }
