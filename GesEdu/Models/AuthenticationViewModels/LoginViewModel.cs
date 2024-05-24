@@ -13,7 +13,6 @@ namespace GesEdu.Models.AuthenticationViewModels
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "* Campo obrigatório.")]
         [DisplayName("Password")]
-        [MinLength(6, ErrorMessage = "A password tem de ter no mínimo 6 caracteres.")]
         public string? Password { get; set; }
     }
 }

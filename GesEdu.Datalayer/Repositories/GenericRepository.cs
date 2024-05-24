@@ -1,5 +1,4 @@
-﻿using GesEdu.Datalayer.Context;
-using GesEdu.Shared.Interfaces.IRepositories;
+﻿using GesEdu.Shared.Interfaces.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GesEdu.Datalayer.Repositories
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         protected readonly GesEduDbContext DbContext;
 
@@ -45,7 +44,7 @@ namespace GesEdu.Datalayer.Repositories
             DbContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public async Task<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity?> Find(Expression<Func<TEntity, bool>> predicate)
         {
             return await DbContext.Set<TEntity>().FirstOrDefaultAsync(predicate);
         }

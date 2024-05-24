@@ -1,5 +1,4 @@
-﻿using GesEdu.Datalayer.Context;
-using GesEdu.Shared.DatabaseEntities;
+﻿using GesEdu.Shared.DatabaseEntities;
 using GesEdu.Shared.Interfaces.IRepositories;
 using System;
 using System.Collections.Generic;

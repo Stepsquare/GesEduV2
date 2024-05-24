@@ -1,29 +1,21 @@
 ﻿using GesEdu.Shared.Interfaces.IConfiguration;
-using GesEdu.Shared.Interfaces.IHelpers;
 using GesEdu.Shared.Interfaces.ISevices;
 using GesEdu.Shared.WebserviceModels.Auth;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using GesEdu.Shared.WebserviceModels.Manuais;
 using GesEdu.Shared.ExceptionHandler.Exceptions;
 using System.Net;
+using System.Net.Http.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace GesEdu.ServiceLayer.Services
 {
-    public class LoginServices : BaseServices, ILoginServices
+    public class LoginServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork) : BaseServices(httpClientFactory, unitOfWork), ILoginServices
     {
-        private readonly HttpContext _httpContext;
+        private readonly HttpContext _httpContext = httpContextAccessor.HttpContext;
 
-        public LoginServices(IHttpContextAccessor httpContextAccessor, IUnitOfWork unitOfWork, IGenericRestRequests genericRestRequests) : base(unitOfWork, genericRestRequests)
+        public async Task<(List<Claim> claims, bool changePassword)> SignIn(string username, string password)
         {
-            _httpContext = httpContextAccessor.HttpContext;
-        }
-
-        public async Task<(bool IsAdmin, bool ChangePassword)> SignIn(string username, string password)
-        {
-            bool isAdmin = false;
             bool changePassword = false;
 
             var obj = new LoginUtilizadorRequest
@@ -32,14 +24,20 @@ namespace GesEdu.ServiceLayer.Services
                 password = password
             };
 
-            var loginUtilizadorResponse = await _genericRestRequests.Post<LoginUtilizadorResponse, LoginUtilizadorRequest>("auth", "loginUtilizador", obj);
+            var loginUtilizadorRequest = new HttpRequestMessage(HttpMethod.Post, "auth/loginUtilizador");
+
+            loginUtilizadorRequest.Content = JsonContent.Create(obj);
+
+            var loginUtilizadorResponse =  await SendAsync<LoginUtilizadorResponse>(loginUtilizadorRequest);
 
             //TODO - Rever validação de entrada no GesEDU... Perfil generico de entrada? Ou manter como está...
             if (loginUtilizadorResponse!.cod_origem == "PUB"
                     || !loginUtilizadorResponse.perfis.Any(x => x.cod_perfil!.Contains("APP_EXTERNA_GES_EDU")))
                 throw new WebserviceException(HttpStatusCode.Unauthorized, "Utilizador não sem perfil de acesso.");
 
-            var getFaseResponse = await _genericRestRequests.Get<GetFaseResponse>("manuais", "getFase");
+            var getFaseRequest = new HttpRequestMessage(HttpMethod.Get, "manuais/getFase");
+
+            var getFaseResponse = await SendAsync<GetFaseResponse>(getFaseRequest);
 
             var claims = new List<Claim>
                 {
@@ -61,10 +59,9 @@ namespace GesEdu.ServiceLayer.Services
             //TODO - Descomentar validação de Perfil ADMIN
             if (true || loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == "APP_EXTERNA_GES_EDU_ADMIN"))
             {
-                isAdmin = true;
                 claims.Add(new Claim(ClaimTypes.Role, "ADMIN"));
 
-                //TODO - Verificar o registo de id_serviço nas claims
+                //TODO - Remover quando o serviço getUo usado na escolha da UO contemplar o id do serviço da UO
                 claims.Add(new Claim("ID_SERVICO", loginUtilizadorResponse.id_servico!));
             }
             else
@@ -102,17 +99,7 @@ namespace GesEdu.ServiceLayer.Services
 
             changePassword = loginUtilizadorResponse.trocar_password == "S";
 
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var principal = new ClaimsPrincipal(identity);
-
-            await _httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
-            return (isAdmin, changePassword);
-        }
-
-        public async Task SignOut()
-        {
-            await _httpContext.SignOutAsync();
+            return (claims, changePassword);
         }
 
         public async Task<string?> PasswordRecovery(string? email)
@@ -123,7 +110,11 @@ namespace GesEdu.ServiceLayer.Services
                 email = email
             };
 
-            var resetPasswordResponse = await _genericRestRequests.Post<ResetPasswordResponse, ResetPasswordRequest>("auth", "resetPassword", obj);
+            var resetPasswordRequest = new HttpRequestMessage(HttpMethod.Post, "auth/resetPassword");
+
+            resetPasswordRequest.Content = JsonContent.Create(obj);
+
+            var resetPasswordResponse = await SendAsync<ResetPasswordResponse>(resetPasswordRequest);
 
             return resetPasswordResponse?.messages.FirstOrDefault()?.msg;
         }
@@ -137,28 +128,31 @@ namespace GesEdu.ServiceLayer.Services
                 new_password = newPassword
             };
 
-            var alterarPasswordResponse = await _genericRestRequests.Post<AlterarPasswordResponse, AlterarPasswordRequest>("auth", "alterarPassword", obj);
+            var alterarPasswordRequest = new HttpRequestMessage(HttpMethod.Post, "auth/alterarPassword");
+
+            alterarPasswordRequest.Content = JsonContent.Create(obj);
+
+            var alterarPasswordResponse = await SendAsync<AlterarPasswordResponse>(alterarPasswordRequest);
 
             return alterarPasswordResponse?.messages.FirstOrDefault()?.msg;
         }
 
         public async Task<List<GetUoResponseItem>?> GetUo(string? idServico)
         {
-            var headers = new Dictionary<string, string>();
+            var getUoRequest = new HttpRequestMessage(HttpMethod.Get, "manuais/getUO");
 
             if (!string.IsNullOrEmpty(idServico))
-                headers.Add("Id_servico", idServico);
+                getUoRequest.Headers.Add("id_servico", idServico);
 
-            var GetUoResponse = await _genericRestRequests.Get<List<GetUoResponseItem>>("manuais", "getUO", headers);
-
-            return GetUoResponse;
+            return await SendAsync<List<GetUoResponseItem>>(getUoRequest);
         }
 
-        public async Task SetUo(GetUoResponseItem model, ClaimsPrincipal principal)
+        public ClaimsPrincipal SetUo(GetUoResponseItem model, ClaimsPrincipal principal)
         {
             var clone = principal.Clone();
             var newIdentity = clone.Identity as ClaimsIdentity;
 
+            //Remover Claim "ID_SERVICO" quando getUo levar update
             var claimsToRemove = newIdentity?.FindAll(x => x.Type == "COD_SERVICO" || x.Type == "NOME_SERVICO" || x.Type == "NIF_SERVICO").ToList();
 
             foreach (var claim in claimsToRemove!)
@@ -174,9 +168,9 @@ namespace GesEdu.ServiceLayer.Services
                 new Claim("NIF_SERVICO", model.Nif_servico.ToString())
             });
 
-            await _httpContext.SignOutAsync();
+            var newClaimsPrincipal = new ClaimsPrincipal(newIdentity!);
 
-            await _httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(newIdentity!));
+            return newClaimsPrincipal;
         }
     }
 }

@@ -1,34 +1,27 @@
-using GesEdu.Datalayer.Context;
-using GesEdu.Datalayer.UnitOfWork;
-using GesEdu.ServiceLayer.Helpers;
+using GesEdu.Datalayer.Extensions;
 using GesEdu.ServiceLayer.Services;
+using GesEdu.ServiceLayer.Extensions;
 using GesEdu.Shared.ExceptionHandler;
-using GesEdu.Shared.Interfaces.IConfiguration;
-using GesEdu.Shared.Interfaces.IHelpers;
-using GesEdu.Shared.Interfaces.ISevices;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.EntityFrameworkCore;
 using SmartBreadcrumbs.Extensions;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-#region DB Connection
-var connectionString = builder.Configuration.GetConnectionString("SqlServerConnection");
-builder.Services.AddDbContext<GesEduDbContext>(x => x.UseSqlServer(connectionString));
-#endregion
-
 builder.Services.AddHttpContextAccessor();
 
-#region Dependency Injection
+builder.Services.AddHttpClient("sigefeClient", client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["SigefeWebservices:BaseUrl"] ?? throw new ArgumentNullException());
+    client.DefaultRequestHeaders.Add("username", builder.Configuration["SigefeWebservices:Username"]);
+    client.DefaultRequestHeaders.Add("password", builder.Configuration["SigefeWebservices:Password"]);
+});
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IGenericRestRequests, GenericRestRequests>();
-builder.Services.AddScoped<ILoginServices, LoginServices>();
-builder.Services.AddScoped<IHomepageServices, HomepageServices>();
-builder.Services.AddScoped<IUserServices, UserServices>();
+//Data Layer Dependency Injection
+builder.Services.AddDataLayerDependencies(builder.Configuration);
 
-#endregion
+//Service Layer Dependency Injection
+builder.Services.AddServiceLayerDependencies();
 
 #region SmartBreadcrums
 

@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Mime;
+﻿using System.Net.Mime;
 using System.Net;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using GesEdu.Shared.ExceptionHandler.Exceptions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace GesEdu.Shared.ExceptionHandler
 {
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IHostingEnvironment _environment;
+        private readonly IHostEnvironment _environment;
 
-        public ExceptionMiddleware(RequestDelegate next, IHostingEnvironment environment)
+        public ExceptionMiddleware(RequestDelegate next, IHostEnvironment environment)
         {
             _next = next;
             _environment = environment;

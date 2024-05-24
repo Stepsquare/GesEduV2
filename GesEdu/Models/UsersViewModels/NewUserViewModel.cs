@@ -25,7 +25,6 @@ namespace GesEdu.Models.UsersViewModels
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "* Campo obrigatório.")]
         [DisplayName("Confirmar Password")]
-        [MinLength(6, ErrorMessage = "A password tem de ter no mínimo 6 caracteres.")]
         [Compare("Password", ErrorMessage = "As passwords são diferentes.")]
         public string? ConfirmNewPassword { get; set; }
 

@@ -9,7 +9,6 @@ namespace GesEdu.Shared.Interfaces.IConfiguration
 {
     public interface IUnitOfWork : IDisposable
     {
-        ISigefeRequestLogRepository SigefeRequestLogs { get; }
         Task<int> SaveChangesAsync();
     }
 }

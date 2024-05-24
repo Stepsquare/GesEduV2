@@ -1,14 +1,13 @@
 ﻿using GesEdu.Models.AuthenticationViewModels;
 using GesEdu.Shared.Interfaces.ISevices;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using GesEdu.Shared.Extensions;
-using System.Security.Claims;
 using GesEdu.Shared.WebserviceModels.Manuais;
 using GesEdu.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 namespace GesEdu.Controllers
 {
@@ -58,12 +57,17 @@ namespace GesEdu.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var (IsAdmin, ChangePassword) = await _loginServices.SignIn(model.Username!, model.Password!);
+            var (claims, changePassword) = await _loginServices.SignIn(model.Username!, model.Password!);
 
-            if (ChangePassword)
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+            if (changePassword)
                 return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("PasswordChange", "Authentication")));
 
-            if (IsAdmin)
+            if (User.IsAdmin())
                 return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("ChooseUo", "Authentication")));
 
             return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("Index", "Home")));
@@ -72,7 +76,7 @@ namespace GesEdu.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
-            await _loginServices.SignOut();
+            await HttpContext.SignOutAsync();
 
             return RedirectToAction("Login", "Authentication");
         }
@@ -99,7 +103,7 @@ namespace GesEdu.Controllers
 
             await _loginServices.PasswordChange(User.GetUsername(), model.OldPassword!, model.NewPassword!);
 
-            if (User.IsInRole("ADMIN"))
+            if (User.IsAdmin())
                 return Ok(new { isRedirect = true, url = Url.Action("ChooseUo", "Authentication") });
 
             return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("Index", "Home")));
@@ -123,7 +127,11 @@ namespace GesEdu.Controllers
         [HttpPost]
         public async Task<IActionResult> SetUo([FromBody] GetUoResponseItem model)
         {
-            await _loginServices.SetUo(model, HttpContext.User);
+            var newClaimsPrincipal =  _loginServices.SetUo(model, HttpContext.User);
+
+            await HttpContext.SignOutAsync();
+
+            await HttpContext.SignInAsync(newClaimsPrincipal);
 
             return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("Index", "Home")));
         }

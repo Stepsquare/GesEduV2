@@ -1,43 +1,37 @@
 ﻿using GesEdu.Shared.Extensions;
 using GesEdu.Shared.Interfaces.IConfiguration;
-using GesEdu.Shared.Interfaces.IHelpers;
 using GesEdu.Shared.Interfaces.ISevices;
 using GesEdu.Shared.Pagination;
 using GesEdu.Shared.SearchParams;
 using GesEdu.Shared.WebserviceModels;
 using GesEdu.Shared.WebserviceModels.Auth;
 using Microsoft.AspNetCore.Http;
+using System.Net.Http.Json;
 
 namespace GesEdu.ServiceLayer.Services
 {
-    public class UserServices : BaseServices, IUserServices
+    public class UserServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork) : BaseServices(httpClientFactory, unitOfWork), IUserServices
     {
-        private readonly HttpContext _httpContext;
-
-        public UserServices(IHttpContextAccessor httpContextAccessor, IUnitOfWork unitOfWork, IGenericRestRequests genericRestRequests) : base(unitOfWork, genericRestRequests)
-        {
-            _httpContext = httpContextAccessor.HttpContext;
-        }
+        private readonly HttpContext _httpContext = httpContextAccessor.HttpContext;
 
         public async Task<GetUtilizadorResponse?> GetUtilizador(int userId)
         {
-            var headers = new Dictionary<string, string>
-            {
-                { "id_utilizador", userId.ToString() }
-            };
+            var getUtilizadorRequest = new HttpRequestMessage(HttpMethod.Get, "auth/getUtilizador");
 
-            return await _genericRestRequests.Get<GetUtilizadorResponse>("auth", "getUtilizador", headers);
+            getUtilizadorRequest.Headers.Add("id_utilizador", userId.ToString());
+
+            return await SendAsync<GetUtilizadorResponse>(getUtilizadorRequest);
         }
 
         public async Task<PaginatedResult<GetUtilizadoresResponseItem>> GetUtilizadores(GetUtilizadoresParams searchParams)
         {
-            var headers = new Dictionary<string, string>
-            {
-                //TODO - Rever se é possivel o getUtilizadores ter como parametro o cod_serviço em vez do id_serviço
-                { "id_servico", _httpContext.User.GetIdServico() }
-            };
 
-            var getUtilizadoresResponse = await _genericRestRequests.Get<List<GetUtilizadoresResponseItem>>("auth", "getUtilizadores", headers);
+            var getUtilizadoresRequest = new HttpRequestMessage(HttpMethod.Get, "auth/getUtilizadores");
+
+            //TODO - Rever se é possivel o getUtilizadores ter como parametro o cod_serviço em vez do id_serviço
+            getUtilizadoresRequest.Headers.Add("id_servico", _httpContext.User.GetIdServico());
+
+            var getUtilizadoresResponse = await SendAsync<List<GetUtilizadoresResponseItem>>(getUtilizadoresRequest);
 
             return new PaginatedResult<GetUtilizadoresResponseItem>
             {
@@ -66,12 +60,11 @@ namespace GesEdu.ServiceLayer.Services
 
         public async Task<List<GetPerfisAppResponseItem>?> GetPerfis()
         {
-            var headers = new Dictionary<string, string>
-            {
-                { "nome", "APP_EXT_GES_EDU" }
-            };
+            var getPerfisRequest = new HttpRequestMessage(HttpMethod.Get, "auth/getPerfisApp");
 
-            return await _genericRestRequests.Get<List<GetPerfisAppResponseItem>>("auth", "getPerfisApp", headers!);
+            getPerfisRequest.Headers.Add("nome", "APP_EXT_GES_EDU");
+
+            return await SendAsync<List<GetPerfisAppResponseItem>>(getPerfisRequest);
         }
 
         public async Task<string?> CriarUtilizador(string nome, string email, string password, IDictionary<int, bool> profiles)
@@ -92,7 +85,11 @@ namespace GesEdu.ServiceLayer.Services
                 }).ToList()
             };
 
-            var criarUtilizadorResponse = await _genericRestRequests.Post<GenericPostResponse, CriarUtilizadorRequest>("auth", "criarUtilizador", requestBody);
+            var criarUtilizadorRequest = new HttpRequestMessage(HttpMethod.Post, "auth/criarUtilizador");
+
+            criarUtilizadorRequest.Content = JsonContent.Create(requestBody);
+
+            var criarUtilizadorResponse = await SendAsync<GenericPostResponse>(criarUtilizadorRequest);
 
             return criarUtilizadorResponse?.messages.FirstOrDefault()?.msg;
         }
@@ -112,7 +109,12 @@ namespace GesEdu.ServiceLayer.Services
                 }
             };
 
-            var alterarPerfilUtzResponse = await _genericRestRequests.Post<GenericPostResponse, AlterarPerfilUtzRequest>("auth", "alterarPerfilUtz", requestBody);
+            var alterarPerfilUtzRequest = new HttpRequestMessage(HttpMethod.Post, "auth/alterarPerfilUtz");
+
+            alterarPerfilUtzRequest.Content = JsonContent.Create(requestBody);
+
+            var alterarPerfilUtzResponse = await SendAsync<GenericPostResponse>(alterarPerfilUtzRequest);
+
 
             return alterarPerfilUtzResponse?.messages.FirstOrDefault()?.msg;
         }
@@ -126,7 +128,11 @@ namespace GesEdu.ServiceLayer.Services
                 id_servico = _httpContext.User.GetIdServico()
             };
 
-            var alterarEstadoUtilizadorResponse = await _genericRestRequests.Post<GenericPostResponse, AlterarEstadoUtilizadorRequest>("auth", "alterarEstadoUtilizador", requestBody);
+            var alterarEstadoUtilizadorRequest = new HttpRequestMessage(HttpMethod.Post, "auth/alterarEstadoUtilizador");
+
+            alterarEstadoUtilizadorRequest.Content = JsonContent.Create(requestBody);
+
+            var alterarEstadoUtilizadorResponse = await SendAsync<GenericPostResponse>(alterarEstadoUtilizadorRequest);
 
             return alterarEstadoUtilizadorResponse?.messages.FirstOrDefault()?.msg;
         }

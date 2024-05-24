@@ -1,5 +1,4 @@
-﻿using GesEdu.Datalayer.Context;
-using GesEdu.Datalayer.Repositories;
+﻿using GesEdu.Datalayer.Repositories;
 using GesEdu.Shared.Interfaces.IConfiguration;
 using GesEdu.Shared.Interfaces.IRepositories;
 using System;
@@ -8,19 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GesEdu.Datalayer.UnitOfWork
+namespace GesEdu.Datalayer
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly GesEduDbContext _dbContext;
 
-        public ISigefeRequestLogRepository SigefeRequestLogs { get; private set; }
-
-        public UnitOfWork(GesEduDbContext dbContext)
+        public UnitOfWork(GesEduDbContext dbContext,
+            ISigefeRequestLogRepository sigefeRequestLogs)
         {
             _dbContext = dbContext;
-            SigefeRequestLogs = new SigefeRequestLogRepository(dbContext);
+            SigefeRequestLogs = sigefeRequestLogs;
         }
+
+        public ISigefeRequestLogRepository SigefeRequestLogs { get; }
 
         public async Task<int> SaveChangesAsync()
         {
