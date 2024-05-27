@@ -13,7 +13,7 @@ namespace GesEdu.Controllers
 {
     [Authorize]
     [Route("/{action}")]
-    public class AuthenticationController : Controller
+    public class AuthenticationController : BaseController
     {
         private readonly ILoginServices _loginServices;
 
@@ -65,12 +65,12 @@ namespace GesEdu.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
             if (changePassword)
-                return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("PasswordChange", "Authentication")));
+                return SuccessRedirect(Url.Action("PasswordChange", "Authentication"));
 
             if (User.IsAdmin())
-                return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("ChooseUo", "Authentication")));
+                return SuccessRedirect(Url.Action("ChooseUo", "Authentication"));
 
-            return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("Index", "Home")));
+            return SuccessRedirect(Url.Action("Index", "Home"));
         }
 
         [AllowAnonymous]
@@ -89,8 +89,9 @@ namespace GesEdu.Controllers
             {
                 return View(model);
             }
+            var responseMessage = await _loginServices.PasswordRecovery(model.Email!);
 
-            return Ok(new AjaxSuccessModel().AddMessage(await _loginServices.PasswordRecovery(model.Email!)));
+            return SuccessMessage(responseMessage);
         }
 
         [HttpPost]
@@ -104,9 +105,9 @@ namespace GesEdu.Controllers
             await _loginServices.PasswordChange(User.GetUsername(), model.OldPassword!, model.NewPassword!);
 
             if (User.IsAdmin())
-                return Ok(new { isRedirect = true, url = Url.Action("ChooseUo", "Authentication") });
+                return SuccessRedirect(Url.Action("ChooseUo", "Authentication"));
 
-            return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("Index", "Home")));
+            return SuccessRedirect(Url.Action("Index", "Home"));
         }
 
         [Authorize(Roles = "ADMIN")]
@@ -115,7 +116,8 @@ namespace GesEdu.Controllers
         {
             var result = await _loginServices.GetUo(User.GetIdServico());
 
-            return Json(result?.Select(x => new {
+            return Json(result?.Select(x => new
+            {
                 nome_text_field = $"{x.Cod_agrupamento} - {x.Nome}",
                 x.Nome,
                 x.Cod_agrupamento,
@@ -127,13 +129,13 @@ namespace GesEdu.Controllers
         [HttpPost]
         public async Task<IActionResult> SetUo([FromBody] GetUoResponseItem model)
         {
-            var newClaimsPrincipal =  _loginServices.SetUo(model, HttpContext.User);
+            var newClaimsPrincipal = _loginServices.SetUo(model, HttpContext.User);
 
             await HttpContext.SignOutAsync();
 
             await HttpContext.SignInAsync(newClaimsPrincipal);
 
-            return Ok(new AjaxSuccessModel().AddRedirectUrl(Url.Action("Index", "Home")));
+            return SuccessRedirect(Url.Action("Index", "Home"));
         }
 
         #endregion

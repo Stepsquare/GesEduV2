@@ -7,7 +7,7 @@ using SmartBreadcrumbs.Attributes;
 namespace GesEdu.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly IHomepageServices _noticiasServices;
 

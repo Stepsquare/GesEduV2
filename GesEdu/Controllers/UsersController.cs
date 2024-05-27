@@ -13,7 +13,7 @@ using System.Data;
 namespace GesEdu.Controllers
 {
     [Authorize(Roles = "USER_MANAGER, ADMIN")]
-    public class UsersController : Controller
+    public class UsersController : BaseController
     {
         private readonly IUserServices _userServices;
 
@@ -63,8 +63,8 @@ namespace GesEdu.Controllers
                 return View(model);
 
             var responseMessage = await _userServices.CriarUtilizador(model.Nome!, model.Email!, model.Password!, model.Perfis.ToDictionary(x => x.Id, x => x.IsChecked));
-            
-            return Ok(new AjaxSuccessModel().AddMessage(responseMessage));
+
+            return SuccessMessage(responseMessage);
         }
 
         [HttpPost]
@@ -72,7 +72,7 @@ namespace GesEdu.Controllers
         {
             var responseMessage = await _userServices.AlterarEstadoUtilizador(userId, isActive);
 
-            return Ok(new AjaxSuccessModel().AddMessage(responseMessage));
+            return SuccessMessage(responseMessage);
         }
 
         [HttpPost]
@@ -80,7 +80,7 @@ namespace GesEdu.Controllers
         {
             var responseMessage = await _userServices.AlterarPerfilUtilizador(userId, profileId, isActive);
 
-            return Ok(new AjaxSuccessModel().AddMessage(responseMessage));
+            return SuccessMessage(responseMessage);
         }
 
         #endregion
