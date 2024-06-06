@@ -217,12 +217,12 @@ li.ig-menutitle {
 li.ig-menutitle h4 {
     color: var(--ig-green-1);
 }
-    /*interface*/
-    .card.ig-card {
-        border: none;
-        border-radius: 1rem;
-        box-shadow: var(--ig-shadow);
-    }
+/*interface*/
+.card.ig-card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: var(--ig-shadow);
+}
 
 .ig-pagetitle {
     background: var(--ig-white);
@@ -510,13 +510,18 @@ a.ig-btn-back {
 .ig-biglink-hp:focus {
     text-decoration: none;
     color: var(--ig-blue-1);
-    height: calc(50% - .5rem);
-    display: block;
+    display: flex;
+    flex-direction: row;
     margin-bottom: 1rem;
+    flex-grow: 1;
+    min-height: 0;
 }
 
 .ig-biglink-hp img {
-    width: 100px;
+    height: 100%;
+    max-height: 100px;
+    display:flex;
+    margin-right: 1rem;
 }
 
 .ig-biglink-hp .ig-card {
@@ -530,13 +535,24 @@ a.ig-btn-back {
     transition: var(--ig-transition);
     box-shadow: var(--ig-shadow);
 }
-a.ig-biglink-hp .card .card-body{
+a.ig-biglink-hp .card .card-body {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
-
+.ig-homebtn-cont {
+    height: calc(100vh - 367px);
+    flex-direction: column;
+    display: flex;
+}
+.ig-homebtn-txt p{
+    margin-bottom:0;
+}
+.ig-biglink-hp:last-child {
+    margin-bottom: 0;
+}
 /*módulos de notícias e lista documentos*/
 
 .ig-hp-news .list-group.list-group-flush {
