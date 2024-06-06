@@ -7,6 +7,7 @@ using GesEdu.Shared.ExceptionHandler.Exceptions;
 using System.Net;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Http;
+using GesEdu.Shared.Resources;
 
 namespace GesEdu.ServiceLayer.Services
 {
@@ -54,19 +55,16 @@ namespace GesEdu.ServiceLayer.Services
                     new Claim("ESTADO_FASE", getFaseResponse.cod_estado_fase!),
                     new Claim("COD_ORIGEM", loginUtilizadorResponse.cod_origem!),
                     new Claim("NOME_ORIGEM", loginUtilizadorResponse.nome_origem!),
-            };
+                    new Claim("ID_SERVICO_ORIGEM", loginUtilizadorResponse.id_servico!)
+        };
 
             //TODO - Descomentar validação de Perfil ADMIN
             if (true || loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == "APP_EXTERNA_GES_EDU_ADMIN"))
             {
                 claims.Add(new Claim(ClaimTypes.Role, "ADMIN"));
-
-                //TODO - Remover quando o serviço getUo usado na escolha da UO contemplar o id do serviço da UO
-                claims.Add(new Claim("ID_SERVICO", loginUtilizadorResponse.id_servico!));
             }
             else
             {
-                claims.Add(new Claim("ID_SERVICO", loginUtilizadorResponse.id_servico!));
                 claims.Add(new Claim("COD_SERVICO", loginUtilizadorResponse.cod_servico!));
                 claims.Add(new Claim("NOME_SERVICO", loginUtilizadorResponse.nome_servico!));
                 claims.Add(new Claim("NIF_SERVICO", loginUtilizadorResponse.nif_servico!));
@@ -76,25 +74,25 @@ namespace GesEdu.ServiceLayer.Services
                     claims.Add(new Claim(ClaimTypes.Role, "USER_MANAGER"));
 
                 //Perfil MEGA
-                if (loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == "APP_EXTERNA_GES_EDU_MEGA"))
-                    claims.Add(new Claim(ClaimTypes.Role, "MEGA_USER"));
+                if (loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == GesEduProfiles.MEGA))
+                    claims.Add(new Claim(ClaimTypes.Role, GesEduProfiles.MEGA));
 
                 //Perfil Area Reservada
-                if (loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == "APP_EXTERNA_GES_EDU_AREA_RESERVADA"))
+                if (loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == GesEduProfiles.AREA_RESERVADA))
                 {
-                    claims.Add(new Claim(ClaimTypes.Role, "AREA_RESERVADA_USER"));
+                    claims.Add(new Claim(ClaimTypes.Role, GesEduProfiles.AREA_RESERVADA));
 
-                    if (loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == "APP_EXTERNA_GES_EDU_REACT"))
-                        claims.Add(new Claim(ClaimTypes.Role, "AREA_RESERVADA_REACT_USER"));
+                    if (loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == GesEduProfiles.REACT))
+                        claims.Add(new Claim(ClaimTypes.Role, GesEduProfiles.REACT));
                 }
 
                 //Perfil SIME para DGE
-                if (loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == "APP_EXTERNA_GES_EDU_SIME_DGE"))
-                    claims.Add(new Claim(ClaimTypes.Role, "SIME_DGE_USER"));
+                if (loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == GesEduProfiles.SIME_DGE))
+                    claims.Add(new Claim(ClaimTypes.Role, GesEduProfiles.SIME_DGE));
 
                 //Perfil SIME para Escolas
-                if (loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == "APP_EXTERNA_GES_EDU_SIME_ESC"))
-                    claims.Add(new Claim(ClaimTypes.Role, "SIME_ESC_USER"));
+                if (loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == GesEduProfiles.SIME_ESC))
+                    claims.Add(new Claim(ClaimTypes.Role, GesEduProfiles.SIME_ESC));
             }
 
             changePassword = loginUtilizadorResponse.trocar_password == "S";

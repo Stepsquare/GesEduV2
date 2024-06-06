@@ -114,7 +114,7 @@ namespace GesEdu.Controllers
         [HttpGet]
         public async Task<JsonResult> GetUo()
         {
-            var result = await _loginServices.GetUo(User.GetIdServico());
+            var result = await _loginServices.GetUo(User.GetIdServicoOrigem());
 
             return Json(result?.Select(x => new
             {

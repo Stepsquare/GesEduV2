@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GesEdu.Shared.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -12,11 +13,13 @@ namespace GesEdu.Shared.Extensions
         #region User info
 
         public static string GetUsername(this ClaimsPrincipal claimsPrincipal)
-        => claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
+            => claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
         public static string GetName(this ClaimsPrincipal claimsPrincipal)
             => claimsPrincipal.FindFirst(ClaimTypes.Name)?.Value ?? string.Empty;
         public static string GetUserId(this ClaimsPrincipal claimsPrincipal)
             => claimsPrincipal.FindFirst(ClaimTypes.Sid)?.Value ?? string.Empty;
+        public static string GetIdServicoOrigem(this ClaimsPrincipal claimsPrincipal)
+            => claimsPrincipal.FindFirst("ID_SERVICO_ORIGEM")?.Value ?? string.Empty;
         public static string GetCodigoOrigem(this ClaimsPrincipal claimsPrincipal)
             => claimsPrincipal.FindFirst("COD_ORIGEM")?.Value ?? string.Empty;
         public static string GetNomeOrigem(this ClaimsPrincipal claimsPrincipal)
@@ -35,7 +38,6 @@ namespace GesEdu.Shared.Extensions
         #endregion
 
 
-
         #region Ano letivo info
 
         public static string GetAnoLetivo(this ClaimsPrincipal claimsPrincipal)
@@ -52,7 +54,6 @@ namespace GesEdu.Shared.Extensions
         #endregion
 
 
-
         #region GesEdu Permissions
 
         public static bool IsAdmin(this ClaimsPrincipal claimsPrincipal)
@@ -60,15 +61,15 @@ namespace GesEdu.Shared.Extensions
         public static bool IsUserManager(this ClaimsPrincipal claimsPrincipal)
            => claimsPrincipal.IsInRole("USER_MANAGER");
         public static bool IsMegaUser(this ClaimsPrincipal claimsPrincipal)
-           => claimsPrincipal.IsInRole("MEGA_USER");
+           => claimsPrincipal.IsInRole(GesEduProfiles.MEGA);
         public static bool IsAreaReservadaUser(this ClaimsPrincipal claimsPrincipal)
-           => claimsPrincipal.IsInRole("AREA_RESERVADA_USER");
+           => claimsPrincipal.IsInRole(GesEduProfiles.AREA_RESERVADA);
         public static bool IsAreaReservadaReactUser(this ClaimsPrincipal claimsPrincipal)
-           => claimsPrincipal.IsInRole("AREA_RESERVADA_REACT_USER");
+           => claimsPrincipal.IsInRole(GesEduProfiles.REACT);
         public static bool IsSimeDgeUser(this ClaimsPrincipal claimsPrincipal)
-           => claimsPrincipal.IsInRole("SIME_DGE_USER");
+           => claimsPrincipal.IsInRole(GesEduProfiles.SIME_DGE);
         public static bool IsSimeEscUser(this ClaimsPrincipal claimsPrincipal)
-           => claimsPrincipal.IsInRole("SIME_ESC_USER");
+           => claimsPrincipal.IsInRole(GesEduProfiles.SIME_ESC);
 
         #endregion
     }

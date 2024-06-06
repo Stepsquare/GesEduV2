@@ -2,6 +2,7 @@
 using GesEdu.Shared.Interfaces.IConfiguration;
 using GesEdu.Shared.Interfaces.ISevices;
 using GesEdu.Shared.Pagination;
+using GesEdu.Shared.Resources;
 using GesEdu.Shared.SearchParams;
 using GesEdu.Shared.WebserviceModels;
 using GesEdu.Shared.WebserviceModels.Auth;
@@ -28,7 +29,6 @@ namespace GesEdu.ServiceLayer.Services
 
             var getUtilizadoresRequest = new HttpRequestMessage(HttpMethod.Get, "auth/getUtilizadores");
 
-            //TODO - Rever se é possivel o getUtilizadores ter como parametro o cod_serviço em vez do id_serviço
             getUtilizadoresRequest.Headers.Add("id_servico", _httpContext.User.GetIdServico());
 
             var getUtilizadoresResponse = await SendAsync<List<GetUtilizadoresResponseItem>>(getUtilizadoresRequest);
@@ -62,7 +62,7 @@ namespace GesEdu.ServiceLayer.Services
         {
             var getPerfisRequest = new HttpRequestMessage(HttpMethod.Get, "auth/getPerfisApp");
 
-            getPerfisRequest.Headers.Add("nome", "APP_EXT_GES_EDU");
+            getPerfisRequest.Headers.Add("nome", GesEduProfiles.CODE);
 
             return await SendAsync<List<GetPerfisAppResponseItem>>(getPerfisRequest);
         }
