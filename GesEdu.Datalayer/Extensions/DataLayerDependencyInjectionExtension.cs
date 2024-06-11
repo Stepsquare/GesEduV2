@@ -16,7 +16,7 @@ namespace GesEdu.Datalayer.Extensions
                 x.UseSqlServer(configuration.GetConnectionString("SqlServerConnection") ?? throw new ArgumentNullException()));
 
             //Repositories
-            services.AddScoped<ISigefeRequestLogRepository, SigefeRequestLogRepository>();
+            services.AddScoped<IWebServiceErrorRepository, WebServiceErrorRepository>();
 
             //Unit of Work
             services.AddScoped<IUnitOfWork, UnitOfWork>();

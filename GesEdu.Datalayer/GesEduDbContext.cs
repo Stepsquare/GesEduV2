@@ -9,6 +9,6 @@ namespace GesEdu.Datalayer
         {
         }
 
-        public DbSet<SigefeRequestLog> SIGeFERequestLogs { get; set; } = null!;
+        public DbSet<WebServiceError> WebServiceErrorLogs { get; set; }
     }
 }

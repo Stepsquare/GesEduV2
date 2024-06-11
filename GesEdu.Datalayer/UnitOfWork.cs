@@ -14,13 +14,13 @@ namespace GesEdu.Datalayer
         private readonly GesEduDbContext _dbContext;
 
         public UnitOfWork(GesEduDbContext dbContext,
-            ISigefeRequestLogRepository sigefeRequestLogs)
+            IWebServiceErrorRepository webServiceErrors)
         {
             _dbContext = dbContext;
-            SigefeRequestLogs = sigefeRequestLogs;
+            WebServiceErrors = webServiceErrors;
         }
 
-        public ISigefeRequestLogRepository SigefeRequestLogs { get; }
+        public IWebServiceErrorRepository WebServiceErrors { get; }
 
         public async Task<int> SaveChangesAsync()
         {

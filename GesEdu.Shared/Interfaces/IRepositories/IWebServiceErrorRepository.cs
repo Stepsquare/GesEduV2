@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GesEdu.Shared.Interfaces.IRepositories
 {
-    public interface ISigefeRequestLogRepository : IGenericRepository<SigefeRequestLog>
+    public interface IWebServiceErrorRepository : IGenericRepository<WebServiceError>
     {
 
     }

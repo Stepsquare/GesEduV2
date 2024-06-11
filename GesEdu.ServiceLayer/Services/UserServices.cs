@@ -11,10 +11,8 @@ using System.Net.Http.Json;
 
 namespace GesEdu.ServiceLayer.Services
 {
-    public class UserServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork) : BaseServices(httpClientFactory, unitOfWork), IUserServices
+    public class UserServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork), IUserServices
     {
-        private readonly HttpContext _httpContext = httpContextAccessor.HttpContext;
-
         public async Task<GetUtilizadorResponse?> GetUtilizador(int userId)
         {
             var getUtilizadorRequest = new HttpRequestMessage(HttpMethod.Get, "auth/getUtilizador");

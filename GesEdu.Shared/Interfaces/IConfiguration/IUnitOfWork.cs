@@ -9,6 +9,7 @@ namespace GesEdu.Shared.Interfaces.IConfiguration
 {
     public interface IUnitOfWork : IDisposable
     {
+        IWebServiceErrorRepository WebServiceErrors { get; }
         Task<int> SaveChangesAsync();
     }
 }

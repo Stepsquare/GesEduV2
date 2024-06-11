@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace GesEdu.Datalayer.Repositories
 {
-    public class SigefeRequestLogRepository : GenericRepository<SigefeRequestLog>, ISigefeRequestLogRepository
+    public class WebServiceErrorRepository : GenericRepository<WebServiceError>, IWebServiceErrorRepository
     {
-        public SigefeRequestLogRepository(GesEduDbContext context) : base(context)
+        public WebServiceErrorRepository(GesEduDbContext context) : base(context)
         {
         }
     }

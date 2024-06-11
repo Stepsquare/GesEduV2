@@ -11,10 +11,8 @@ using GesEdu.Shared.Resources;
 
 namespace GesEdu.ServiceLayer.Services
 {
-    public class LoginServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork) : BaseServices(httpClientFactory, unitOfWork), ILoginServices
+    public class LoginServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork), ILoginServices
     {
-        private readonly HttpContext _httpContext = httpContextAccessor.HttpContext;
-
         public async Task<(List<Claim> claims, bool changePassword)> SignIn(string username, string password)
         {
             bool changePassword = false;
