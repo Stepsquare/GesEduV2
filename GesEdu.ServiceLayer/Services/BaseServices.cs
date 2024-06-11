@@ -47,24 +47,17 @@ namespace GesEdu.ServiceLayer.Services
 
             _unitOfWork.SaveChangesAsync();
 
-            try
+            List<string> messages = new List<string>();
+
+            dynamic jsonObj = JObject.Parse(error.ResponseContent);
+
+            foreach (dynamic message in jsonObj.messages)
             {
-                List<string> messages = new List<string>();
-
-                dynamic jsonObj = JObject.Parse(error.ResponseContent);
-
-                foreach (dynamic message in jsonObj.messages)
-                {
-                    string msg = message.msg;
-                    messages.Add(msg);
-                }
-
-                throw new WebserviceException((HttpStatusCode)error.StatusCode, messages.ToArray());
+                string msg = message.msg;
+                messages.Add(msg);
             }
-            catch (Exception)
-            {
-                throw new WebserviceException((HttpStatusCode)error.StatusCode, "Erro na chamada ao webservice. Contactar suporte.");
-            }
+
+            throw new WebserviceException((HttpStatusCode)error.StatusCode, messages.ToArray());
         }
     }
 }

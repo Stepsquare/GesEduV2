@@ -105,7 +105,7 @@
             success: function (data) {
                 $('#search_result_container').html(data);
             },
-            error: function (qXHR, error) {
+            error: function (error) {
                 ErrorToast(error.responseJSON.messages);
             },
             beforeSend: function () {
