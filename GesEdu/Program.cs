@@ -5,6 +5,8 @@ using GesEdu.Shared.ExceptionHandler;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using SmartBreadcrumbs.Extensions;
 using System.Reflection;
+using Serilog;
+using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,9 @@ builder.Services.AddDataLayerDependencies(builder.Configuration);
 
 //Service Layer Dependency Injection
 builder.Services.AddServiceLayerDependencies();
+
+//Logging
+builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 
 #region SmartBreadcrums
 
@@ -55,7 +60,7 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
 
-app.UseMiddleware<ExceptionMiddleware>();
+app.UseMiddleware<GlobalExceptionHandler>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

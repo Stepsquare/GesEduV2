@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GesEdu.Datalayer.Migrations
 {
     [DbContext(typeof(GesEduDbContext))]
-    [Migration("20240611152915_Initial")]
+    [Migration("20240619170309_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -63,7 +63,7 @@ namespace GesEdu.Datalayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WebServiceErrorLogs");
+                    b.ToTable("WebServiceErrors");
                 });
 #pragma warning restore 612, 618
         }

@@ -9,6 +9,6 @@ namespace GesEdu.Datalayer
         {
         }
 
-        public DbSet<WebServiceError> WebServiceErrorLogs { get; set; }
+        public DbSet<WebServiceError> WebServiceErrors { get; set; }
     }
 }

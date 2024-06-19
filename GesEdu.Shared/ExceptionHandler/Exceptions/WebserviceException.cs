@@ -8,10 +8,10 @@ namespace GesEdu.Shared.ExceptionHandler.Exceptions
         public HttpStatusCode StatusCode { get; set; }
         public string?[] Messages { get; set; }
 
-        public WebserviceException(HttpStatusCode statusCode ,string message)
+        public WebserviceException(HttpStatusCode statusCode, string message)
         {
             StatusCode = statusCode;
-            Messages = new string[] { message };
+            Messages = [message];
         }
 
         public WebserviceException(HttpStatusCode statusCode, string[] messages)

@@ -355,3 +355,6 @@ MigrationBackup/
 
 #Client side libraries folder
 /GesEdu/wwwroot/lib
+
+#Logs Folder
+/GesEdu/Logs

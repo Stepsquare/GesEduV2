@@ -12,7 +12,7 @@ namespace GesEdu.Datalayer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "WebServiceErrorLogs",
+                name: "WebServiceErrors",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -29,7 +29,7 @@ namespace GesEdu.Datalayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WebServiceErrorLogs", x => x.Id);
+                    table.PrimaryKey("PK_WebServiceErrors", x => x.Id);
                 });
         }
 
@@ -37,7 +37,7 @@ namespace GesEdu.Datalayer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "WebServiceErrorLogs");
+                name: "WebServiceErrors");
         }
     }
 }

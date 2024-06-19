@@ -60,7 +60,7 @@ namespace GesEdu.Datalayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WebServiceErrorLogs");
+                    b.ToTable("WebServiceErrors");
                 });
 #pragma warning restore 612, 618
         }

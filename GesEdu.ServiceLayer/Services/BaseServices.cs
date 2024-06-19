@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net;
-using System.Net.Http;
-using static GesEdu.Shared.WebserviceModels.GenericPostResponse;
 
 namespace GesEdu.ServiceLayer.Services
 {
@@ -21,14 +19,15 @@ namespace GesEdu.ServiceLayer.Services
         {
             using (var response = await _client.SendAsync(request))
             {
+                throw new Exception("Log test exception.");
                 if (!response.IsSuccessStatusCode)
-                    ErrorResponseHandler(response, request);
+                    await ErrorResponseHandler(response, request);
 
                 return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
             }
         }
 
-        private void ErrorResponseHandler(HttpResponseMessage response, HttpRequestMessage request)
+        private async Task ErrorResponseHandler(HttpResponseMessage response, HttpRequestMessage request)
         {
             var error = new WebServiceError
             {
@@ -45,16 +44,23 @@ namespace GesEdu.ServiceLayer.Services
 
             _unitOfWork.WebServiceErrors.Add(error);
 
-            _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
 
             List<string> messages = new List<string>();
 
-            dynamic jsonObj = JObject.Parse(error.ResponseContent);
-
-            foreach (dynamic message in jsonObj.messages)
+            try
             {
-                string msg = message.msg;
-                messages.Add(msg);
+                dynamic jsonObj = JObject.Parse(error.ResponseContent);
+
+                foreach (dynamic message in jsonObj.messages)
+                {
+                    string msg = message.msg;
+                    messages.Add(msg);
+                }
+            }
+            catch (Exception)
+            {
+                messages.Add("Erro na chamada ao webservice.");
             }
 
             throw new WebserviceException((HttpStatusCode)error.StatusCode, messages.ToArray());
