@@ -167,7 +167,9 @@ section.ig-main-menu {
     box-shadow: var(--ig-shadow);
     height: 100vh;
 }
-
+.ig-main-menu hr {
+    margin: 0.5rem 0;
+}
 .ig-menulink img {
     padding: 0.25rem 0.5rem;
     width: 100%
