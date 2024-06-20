@@ -19,7 +19,6 @@ namespace GesEdu.ServiceLayer.Services
         {
             using (var response = await _client.SendAsync(request))
             {
-                throw new Exception("Log test exception.");
                 if (!response.IsSuccessStatusCode)
                     await ErrorResponseHandler(response, request);
 
