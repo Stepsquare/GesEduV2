@@ -40,7 +40,7 @@ namespace GesEdu.Controllers
             return View();
         }
 
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Policy = "ChooseUoPageAccess")]
         public IActionResult ChooseUo()
         {
             return View();
@@ -110,7 +110,7 @@ namespace GesEdu.Controllers
             return SuccessRedirect(Url.Action("Index", "Home"));
         }
 
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Policy = "ChooseUoPageAccess")]
         [HttpGet]
         public async Task<JsonResult> GetUo()
         {
@@ -125,7 +125,7 @@ namespace GesEdu.Controllers
             }).ToArray());
         }
 
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Policy = "ChooseUoPageAccess")]
         [HttpPost]
         public async Task<IActionResult> SetUo([FromBody] GetUoResponseItem model)
         {

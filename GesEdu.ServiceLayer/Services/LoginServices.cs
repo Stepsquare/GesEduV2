@@ -58,8 +58,12 @@ namespace GesEdu.ServiceLayer.Services
             //TODO - Descomentar validação de Perfil ADMIN
             if (true || loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == GesEduProfiles.ADMIN))
             {
-                new Claim("ID_SERVICO_ORIGEM", loginUtilizadorResponse.id_servico!);
                 claims.Add(new Claim(ClaimTypes.Role, GesEduProfiles.ADMIN));
+                claims.Add(new Claim("ID_SERVICO_ORIGEM", loginUtilizadorResponse.id_servico!));
+
+                //TODO - Remover depois do update do getUo para retornar o Id_servico
+                claims.Add(new Claim("ID_SERVICO", loginUtilizadorResponse.id_servico!));
+
             }
             else
             {

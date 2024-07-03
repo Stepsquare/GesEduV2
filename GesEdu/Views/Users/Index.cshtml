@@ -4,56 +4,56 @@
     ViewData["Title"] = "Gerir utilizadores";
 }
 
-<div class="container">
-    <div class="ig-pagetitle mb-3">
-        <div class="row">
-            <div class="col-md">
-                <h2>
-                    @ViewData["Title"]
-                </h2>
-            </div>
-            <div class="col-md-auto text-end">
-                <a href="javascript:void(0)" class="btn ig-btn-blue" data-bs-toggle="modal" data-bs-target="#new_user_modal">
-                    <i class="fa-solid fa-user-plus"></i>
-                    Novo utilizador
-                </a>
-            </div>
+<div class="ig-pagetitle mb-3">
+    <div class="row">
+        <div class="col-md">
+            <h2>
+                @ViewData["Title"]
+            </h2>
         </div>
-        <div class="d-flex">
-            <a href="javascript:void(0)" class="btn ig-btn-back" title="Voltar">
-                <i class="fas fa-arrow-left"></i>
+        <div class="col-md-auto text-end">
+            <a href="javascript:void(0)" class="btn ig-btn-blue" data-bs-toggle="modal" data-bs-target="#new_user_modal">
+                <i class="fa-solid fa-user-plus"></i>
+                Novo utilizador
             </a>
-            <breadcrumb></breadcrumb>
         </div>
     </div>
-    <div class="card ig-card card-body mb-3">
-        <div class="row">
-            <div class="col-md mb-3">
-                <label class="form-label" for="username_search">Nome do utilizador:</label>
-                <div class="input-group">
-                    <input id="username_search" class="form-control" type="text">
-                    <button class="btn" type="button" title="Limpar"><i class="far fa-trash-alt"></i></button>
-                </div>
-            </div>
-            <div class="col-md-2 mb-3">
-                <label class="form-label">Estado:</label>
-                <select id="is_active_search" class="form-select">
-                    <option value="">Todos</option>
-                    <option value="true">Ativo</option>
-                    <option value="false">Inativo</option>
-                </select>
-            </div>
-            <div class="col-md-auto ig-searchbtn-cont">
-                <a href="javascript:void(0)" class="btn ig-btn-green btn-block" onclick="searchUsers()">
-                    <i class="fas fa-search"></i>
-                    Pesquisar
-                </a>
+    <div class="d-flex">
+        <a href="javascript:void(0)" class="btn ig-btn-back" title="Voltar">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <breadcrumb></breadcrumb>
+    </div>
+</div>
+<div class="card ig-card card-body mb-3">
+    <div class="row">
+        <div class="col-md mb-3">
+            <label class="form-label" for="username_search">Nome do utilizador:</label>
+            <div class="input-group">
+                <input id="username_search" class="form-control" type="text">
+                <button class="btn" type="button" title="Limpar"><i class="far fa-trash-alt"></i></button>
             </div>
         </div>
+        <div class="col-md-2 mb-3">
+            <label class="form-label">Estado:</label>
+            <select id="is_active_search" class="form-select">
+                <option value="">Todos</option>
+                <option value="true">Ativo</option>
+                <option value="false">Inativo</option>
+            </select>
+        </div>
+        <div class="col-md-auto ig-searchbtn-cont">
+            <a href="javascript:void(0)" class="btn ig-btn-green btn-block" onclick="searchUsers()">
+                <i class="fas fa-search"></i>
+                Pesquisar
+            </a>
+        </div>
     </div>
+</div>
 
-    <!--SEARCH RESULT CONTAINER-->
-    <div id="search_result_container" class="ig-loadable-div">
+<!--SEARCH RESULT CONTAINER-->
+<div class="ig-loadable-div">
+    <div id="search_result_container">
 
     </div>
 </div>
@@ -91,7 +91,7 @@
         searchUsers();
     }
 
-    function searchUsers(pageIndex, pageSize){
+    function searchUsers(pageIndex, pageSize) {
         $.ajax({
             url: '@Url.Action("Search", "Users")',
             type: "POST",
@@ -108,12 +108,8 @@
             error: function (error) {
                 ErrorToast(error.responseJSON.messages);
             },
-            beforeSend: function () {
-                ShowDivLoader($('#search_result_container'));
-            },
-            complete: function () {
-                HideDivLoader($('#search_result_container'));
-            }
+            beforeSend: ShowDivLoader(),
+            complete: HideDivLoader()
         });
     }
 

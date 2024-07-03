@@ -60,7 +60,8 @@ namespace GesEdu.Shared.Extensions
         public static bool IsAreaReservadaUser(this ClaimsPrincipal claimsPrincipal)
            => claimsPrincipal.IsInRole(GesEduProfiles.AREA_RESERVADA);
         public static bool IsAreaReservadaReactUser(this ClaimsPrincipal claimsPrincipal)
-           => claimsPrincipal.IsInRole(GesEduProfiles.REACT);
+           => claimsPrincipal.IsInRole(GesEduProfiles.AREA_RESERVADA) 
+            && claimsPrincipal.IsInRole(GesEduProfiles.REACT);
         public static bool IsSimeDgeUser(this ClaimsPrincipal claimsPrincipal)
            => claimsPrincipal.IsInRole(GesEduProfiles.SIME_DGE);
         public static bool IsSimeEscUser(this ClaimsPrincipal claimsPrincipal)

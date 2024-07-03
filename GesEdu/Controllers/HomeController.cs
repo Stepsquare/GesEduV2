@@ -21,7 +21,7 @@ namespace GesEdu.Controllers
         [DefaultBreadcrumb("Início")]
         public async Task<IActionResult> Index()
         {
-            if (User.IsAdmin() && string.IsNullOrEmpty(User.GetCodigoServico()))
+            if ((User.IsAdmin() || User.IsSimeDgeUser()) && string.IsNullOrEmpty(User.GetCodigoServico()))
                 return RedirectToAction("ChooseUo", "Authentication");
 
             var model = await _noticiasServices.GetNoticias();

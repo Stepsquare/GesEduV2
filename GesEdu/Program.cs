@@ -7,6 +7,8 @@ using SmartBreadcrumbs.Extensions;
 using System.Reflection;
 using Serilog;
 using Serilog.Events;
+using GesEdu.Shared.Resources;
+using GesEdu.Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,6 +54,26 @@ builder.Services
         options.SlidingExpiration = true;
         options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
     });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnlyAccess", policy 
+        => policy.RequireRole(GesEduProfiles.ADMIN));
+    options.AddPolicy("ChooseUoPageAccess", policy
+        => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_DGE));
+    options.AddPolicy("MegaAccess", policy 
+        => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.MEGA));
+    options.AddPolicy("AreaReservadaAccess", policy 
+        => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.AREA_RESERVADA));
+    options.AddPolicy("AreaReservadaReactAccess", policy
+        => policy.RequireAssertion(context => context.User.IsAdmin() || context.User.IsAreaReservadaReactUser()));
+    options.AddPolicy("SimeDgeAccessDGE", policy
+        => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_DGE));
+    options.AddPolicy("SimeEscAccessEsc", policy
+        => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_ESC));
+    options.AddPolicy("UserManagementAccess", policy
+        => policy.RequireAssertion(context => context.User.IsAdmin() || context.User.IsUserManager()));
+});
 
 builder.Services.AddSession();
 
