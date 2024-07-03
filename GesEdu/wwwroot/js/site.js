@@ -32,7 +32,8 @@ function GoBack() {
 
 function ToggleFullPageLoader() {
     $('body').toggleClass('overflow-hidden');
-    $('#loader').toggle();
+
+    $('#loader').fadeToggle("fast");
 }
 
 function ShowDivLoader(div) {
