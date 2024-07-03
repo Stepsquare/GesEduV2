@@ -27,7 +27,7 @@ namespace GesEdu.ServiceLayer.Services
 
             loginUtilizadorRequest.Content = JsonContent.Create(obj);
 
-            var loginUtilizadorResponse =  await SendAsync<LoginUtilizadorResponse>(loginUtilizadorRequest);
+            var loginUtilizadorResponse = await SendAsync<LoginUtilizadorResponse>(loginUtilizadorRequest);
 
             //TODO - Rever validação de entrada no GesEDU... Perfil generico de entrada? Ou manter como está...
             if (loginUtilizadorResponse!.cod_origem == "PUB"
@@ -39,7 +39,7 @@ namespace GesEdu.ServiceLayer.Services
             var getFaseResponse = await SendAsync<GetFaseResponse>(getFaseRequest);
 
             var claims = new List<Claim>
-                {
+            {
                     //Dados User
                     new Claim(ClaimTypes.Name, loginUtilizadorResponse.nome!),
                     new Claim(ClaimTypes.NameIdentifier, username),
@@ -53,16 +53,17 @@ namespace GesEdu.ServiceLayer.Services
                     new Claim("ESTADO_FASE", getFaseResponse.cod_estado_fase!),
                     new Claim("COD_ORIGEM", loginUtilizadorResponse.cod_origem!),
                     new Claim("NOME_ORIGEM", loginUtilizadorResponse.nome_origem!),
-                    new Claim("ID_SERVICO_ORIGEM", loginUtilizadorResponse.id_servico!)
-        };
+            };
 
             //TODO - Descomentar validação de Perfil ADMIN
-            if (true || loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == "APP_EXTERNA_GES_EDU_ADMIN"))
+            if (true || loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == GesEduProfiles.ADMIN))
             {
-                claims.Add(new Claim(ClaimTypes.Role, "ADMIN"));
+                new Claim("ID_SERVICO_ORIGEM", loginUtilizadorResponse.id_servico!);
+                claims.Add(new Claim(ClaimTypes.Role, GesEduProfiles.ADMIN));
             }
             else
             {
+                claims.Add(new Claim("ID_SERVICO", loginUtilizadorResponse.id_servico!));
                 claims.Add(new Claim("COD_SERVICO", loginUtilizadorResponse.cod_servico!));
                 claims.Add(new Claim("NOME_SERVICO", loginUtilizadorResponse.nome_servico!));
                 claims.Add(new Claim("NIF_SERVICO", loginUtilizadorResponse.nif_servico!));
@@ -148,7 +149,7 @@ namespace GesEdu.ServiceLayer.Services
             var clone = principal.Clone();
             var newIdentity = clone.Identity as ClaimsIdentity;
 
-            //Remover Claim "ID_SERVICO" quando getUo levar update
+            //TODO - Remover Claim "ID_SERVICO" quando getUo levar update
             var claimsToRemove = newIdentity?.FindAll(x => x.Type == "COD_SERVICO" || x.Type == "NOME_SERVICO" || x.Type == "NIF_SERVICO").ToList();
 
             foreach (var claim in claimsToRemove!)

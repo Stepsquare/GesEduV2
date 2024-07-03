@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GesEdu.Datalayer.Repositories
+namespace GesEdu.DataLayer.Repositories
 {
     public class WebServiceErrorRepository : GenericRepository<WebServiceError>, IWebServiceErrorRepository
     {

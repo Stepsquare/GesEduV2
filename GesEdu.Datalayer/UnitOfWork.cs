@@ -1,4 +1,4 @@
-﻿using GesEdu.Datalayer.Repositories;
+﻿using GesEdu.DataLayer.Repositories;
 using GesEdu.Shared.Interfaces.IConfiguration;
 using GesEdu.Shared.Interfaces.IRepositories;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GesEdu.Datalayer
+namespace GesEdu.DataLayer
 {
     public class UnitOfWork : IUnitOfWork
     {

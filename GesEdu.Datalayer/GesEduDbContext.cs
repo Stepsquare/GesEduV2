@@ -1,7 +1,7 @@
 ﻿using GesEdu.Shared.DatabaseEntities;
 using Microsoft.EntityFrameworkCore;
 
-namespace GesEdu.Datalayer
+namespace GesEdu.DataLayer
 {
     public class GesEduDbContext : DbContext
     {

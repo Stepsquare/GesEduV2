@@ -1,10 +1,5 @@
 ﻿using GesEdu.Shared.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GesEdu.Shared.Extensions
 {
@@ -57,7 +52,7 @@ namespace GesEdu.Shared.Extensions
         #region GesEdu Permissions
 
         public static bool IsAdmin(this ClaimsPrincipal claimsPrincipal)
-           => claimsPrincipal.IsInRole("ADMIN");
+           => claimsPrincipal.IsInRole(GesEduProfiles.ADMIN);
         public static bool IsUserManager(this ClaimsPrincipal claimsPrincipal)
            => claimsPrincipal.IsInRole("USER_MANAGER");
         public static bool IsMegaUser(this ClaimsPrincipal claimsPrincipal)

@@ -1,4 +1,4 @@
-using GesEdu.Datalayer.Extensions;
+using GesEdu.DataLayer.Extensions;
 using GesEdu.ServiceLayer.Services;
 using GesEdu.ServiceLayer.Extensions;
 using GesEdu.Shared.ExceptionHandler;
@@ -25,7 +25,7 @@ builder.Services.AddDataLayerDependencies(builder.Configuration);
 //Service Layer Dependency Injection
 builder.Services.AddServiceLayerDependencies();
 
-//Logging
+//Serilog Logging
 builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 
 #region SmartBreadcrums

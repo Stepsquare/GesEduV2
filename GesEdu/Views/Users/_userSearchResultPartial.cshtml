@@ -26,10 +26,13 @@
                     </div>
                 </div>
             }
+            <div class="list-group-item ig-item-pagination">
+                @{
+                    await Html.RenderPartialAsync("_paginationPartial", new PaginationViewModel(Model.PageIndex, Model.PageSize, Model.TotalCount, "searchUsers({0}, {1})"));
+                }
+            </div>
         </div>
     </div>
-
-    await Html.RenderPartialAsync("_paginationPartial", new PaginationViewModel(Model.PageIndex, Model.PageSize, Model.TotalCount, "searchUsers({0}, {1})"));
 }
 else
 {
