@@ -1,11 +1,11 @@
-﻿using GesEdu.Datalayer.Repositories;
+﻿using GesEdu.DataLayer.Repositories;
 using GesEdu.Shared.Interfaces.IConfiguration;
 using GesEdu.Shared.Interfaces.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GesEdu.Datalayer.Extensions
+namespace GesEdu.DataLayer.Extensions
 {
     public static class DataLayerDependencyInjectionExtension
     {

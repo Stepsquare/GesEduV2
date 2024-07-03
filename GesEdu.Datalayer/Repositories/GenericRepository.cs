@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GesEdu.Datalayer.Repositories
+namespace GesEdu.DataLayer.Repositories
 {
     public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {

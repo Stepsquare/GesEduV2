@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GesEdu.Datalayer\GesEdu.Datalayer.csproj" />
+    <ProjectReference Include="..\GesEdu.DataLayer\GesEdu.DataLayer.csproj" />
     <ProjectReference Include="..\GesEdu.ServiceLayer\GesEdu.ServiceLayer.csproj" />
   </ItemGroup>
 

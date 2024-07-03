@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GesEdu", "GesEdu\GesEdu.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GesEdu.Shared", "GesEdu.Shared\GesEdu.Shared.csproj", "{C703759A-573B-4AF2-B1A4-95A66D4DC5DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GesEdu.Datalayer", "GesEdu.Datalayer\GesEdu.Datalayer.csproj", "{B47A4C5D-9F5D-4C5B-BE29-FE76102505BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GesEdu.DataLayer", "GesEdu.DataLayer\GesEdu.DataLayer.csproj", "{B47A4C5D-9F5D-4C5B-BE29-FE76102505BF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GesEdu.ServiceLayer", "GesEdu.ServiceLayer\GesEdu.ServiceLayer.csproj", "{A3909ADF-3B2E-4162-B5B4-C5ACB2735083}"
 EndProject
