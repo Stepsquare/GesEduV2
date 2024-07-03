@@ -717,7 +717,6 @@ th.ig-col-shrink {
 
 .ig-pagination {
     font-weight: 600;
-    margin-top: 1rem;
 }
 
 .ig-grid .ig-pagination {
@@ -757,6 +756,11 @@ th.ig-col-shrink {
     box-shadow: 0 0 0 0.25rem var(--ig-blue-3);
     border-color: var(--ig-white);
 }
+.ig-card .list-group-item.ig-item-pagination {
+    background: var(--ig-blue-4);
+    border-top: solid 1px var(--ig-blue-2);
+    margin-top: -1px;
+}
 
 .ig-grid a.ig-gridlink {
     color: var(--ig-blue-2);
@@ -781,6 +785,7 @@ th.ig-col-shrink {
 /*Loaders*/
 
 .ig-load {
+    z-index: 1;
     position: absolute;
     top: 0;
     left: 0;
@@ -1113,6 +1118,14 @@ span.badge {
 }
 .ig-check.form-switch .form-check-input:focus {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23c9f4db'/%3e%3c/svg%3e");
+}
+.form-switch.ig-switch-reverse {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-left: 0;
+}
+.form-switch.ig-switch-reverse .form-check-input {
+    margin-left: 0.5em;
 }
 /*Validações Net Core Forms*/
 
