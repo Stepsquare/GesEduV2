@@ -55,17 +55,17 @@
                         @if (User.IsAdmin())
                         {
                             <li>
-                                @Html.ActionLink("Escolher UO", "ChooseUo", "Authentication", null, new {@class ="dropdown-item" } )
+                                @Html.ActionLink("Escolher UO", "ChooseUo", "Authentication", null, new { @class = "dropdown-item" })
                             </li>
                         }
                         @if (User.IsAdmin() || User.IsUserManager())
                         {
                             <li>
-                                @Html.ActionLink("Gerir Utilizadores", "Index", "Users", null, new {@class ="dropdown-item" })
+                                @Html.ActionLink("Gerir Utilizadores", "Index", "Users", null, new { @class = "dropdown-item" })
                             </li>
                         }
                         <li>
-                            @Html.ActionLink("Sair", "Logout", "Authentication", null, new {@class ="dropdown-item" })
+                            @Html.ActionLink("Sair", "Logout", "Authentication", null, new { @class = "dropdown-item" })
                         </li>
                     </ul>
                 </li>
@@ -73,7 +73,9 @@
         </div>
     </nav>
 
-    @RenderBody()
+    <div class="container">
+        @RenderBody()
+    </div>
 
     <div class="container">
         <footer class="ig-footer">

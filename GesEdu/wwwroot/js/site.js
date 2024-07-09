@@ -32,16 +32,20 @@ function GoBack() {
 
 function ToggleFullPageLoader() {
     $('body').toggleClass('overflow-hidden');
-    $('#loader').toggle();
+
+    $('#loader').fadeToggle("fast");
 }
 
 function ShowDivLoader(div) {
-    var divLoader = $("<div id=\"divloader\" class=\"ig-load\"><span class=\"spinner-grow\" role=\"status\"></span> Aguarde por favor...</div>");
-    div.append(divLoader);
+    var divLoader = $("<div id=\"divloader\" style=\"display:none\" class=\"ig-load\"><span class=\"spinner-grow\" role=\"status\"></span> Aguarde por favor...</div>");
+    $(".ig-loadable-div").append(divLoader);
+    $("#divloader").fadeIn("fast");
 }
 
 function HideDivLoader() {
-    $('#divloader').remove();
+    $("#divloader").fadeOut("fast", function () {
+        this.remove()
+    });
 }
 
 function ShowErrorModal(messages, onclose) {

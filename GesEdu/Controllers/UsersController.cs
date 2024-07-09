@@ -12,7 +12,7 @@ using System.Data;
 
 namespace GesEdu.Controllers
 {
-    [Authorize(Roles = "USER_MANAGER, ADMIN")]
+    [Authorize(Policy = "UserManagementAccess")]
     public class UsersController : BaseController
     {
         private readonly IUserServices _userServices;
