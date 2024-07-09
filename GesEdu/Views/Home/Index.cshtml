@@ -4,83 +4,89 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="ig-content">
-    <div class="container">
-        <h2 class="mb-5">Bem-vindo(a) ao GesEdu</h2>
-        <div class="row">
-            <div class="col-lg-4 ig-homebtn-cont">
-                <a class="ig-biglink-hp" href="#" title="Estabelecimentos de Ensino">
-                    <div class="card ig-card">
-                        <div class="card-body">
-                            <img src="~/images/icon-estensino.svg">
-                            <div class="ig-homebtn-txt">
-                                <h4>
-                                    Estabelecimentos de Ensino Básico e Secundário
-                                </h4>
-                                <p>Área reservada</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a class="ig-biglink-hp" href="#" title="Estabelecimentos de Ensino">
-                    <div class="card ig-card">
-                        <div class="card-body">
-                            <img src="~/images/icon-estensino.svg">
-                            <div class="ig-homebtn-txt">
-                                <h4>
-                                    Estabelecimentos de Ensino Básico e Secundário
-                                </h4>
-                                <p>Área reservada</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a class="ig-biglink-hp" href="#" title="Estabelecimentos de Ensino">
-                    <div class="card ig-card">
-                        <div class="card-body">
-                            <img src="~/images/icon-mega.svg">
-                            <div class="ig-homebtn-txt">
-                                <h4>
-                                    Estabelecimentos de Ensino Básico e Secundário
-                                </h4>
-                                <p>Área reservada</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-8">
-                <div class="ig-hp-news">
-                    <div class="card ig-card">
-                        <div class="card-body">
-                            <h4>Notícias</h4>
-                        </div>
-                        <div class="list-group list-group-flush">
-                            @if (Model != null)
-                                foreach (var noticia in Model.noticias)
-                                {
-                                    <div class="list-group-item">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">@noticia.titulo</h5>
-                                            <small class="text-muted"><i class="far fa-calendar"></i> @noticia.dt_publicacao</small>
-                                        </div>
-                                        <p class="mb-1">
-                                            @noticia.corpo
-                                        </p>
-                                    </div>
-                                }
-                            else
-                            {
-                                <div class="ig-noresults text-center mb-3">
-                                    <h3><i class="fas fa-search"></i>  Sem notícias</h3>
-                                    <p class="mb-0">Não existem notícias a apresentar.</p>
-                                </div>
-                            }
+<h2 class="mb-5">Bem-vindo(a) ao GesEdu</h2>
+<div class="row">
+    <div class="col-lg-4 ig-homebtn-cont">
+        @if (User.IsAdmin() || User.IsAreaReservadaUser())
+        {
+            <a class="ig-biglink-hp" asp-area="AreaReservada" asp-controller="Home" asp-action="Index" title="Estabelecimentos de Ensino">
+                <div class="card ig-card">
+                    <div class="card-body">
+                        <img src="~/images/icon-estensino.svg">
+                        <div class="ig-homebtn-txt">
+                            <h4>
+                                Área reservada
+                            </h4>
+                            <p>Estabelecimentos de Ensino Básico e Secundário</p>
                         </div>
                     </div>
                 </div>
-
+            </a>
+        }
+        @if (User.IsAdmin() || User.IsMegaUser())
+        {
+            <a class="ig-biglink-hp" asp-area="MEGA" asp-controller="Home" asp-action="Index" title="Manuais Escolares Gratuitos">
+                <div class="card ig-card">
+                    <div class="card-body">
+                        <img src="~/images/icon-mega.svg">
+                        <div class="ig-homebtn-txt">
+                            <h4>
+                                PROGRAMA MEGA
+                            </h4>
+                            <p>Manuais Escolares Gratuitos</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+        @if (User.IsAdmin() || User.IsSimeDgeUser() || User.IsSimeEscUser())
+        {
+            <a class="ig-biglink-hp" asp-area="SIME" asp-controller="Home" asp-action="Index" title="Sistema de Informação de Manuais Escolares">
+                <div class="card ig-card">
+                    <div class="card-body">
+                        <img src="~/images/icon-sime.png">
+                        <div class="ig-homebtn-txt">
+                            <h4>
+                                SIME
+                            </h4>
+                            <p>Sistema de Informação de Manuais Escolares</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+    <div class="col-lg-8">
+        <div class="ig-hp-news">
+            <div class="card ig-card">
+                <div class="card-body">
+                    <h4>Notícias</h4>
+                </div>
+                <div class="list-group list-group-flush">
+                    @if (Model != null)
+                        foreach (var noticia in Model.noticias)
+                        {
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">@noticia.titulo</h5>
+                                    <small class="text-muted"><i class="far fa-calendar"></i> @noticia.dt_publicacao</small>
+                                </div>
+                                <p class="mb-1">
+                                    @noticia.corpo
+                                </p>
+                            </div>
+                        }
+                    else
+                    {
+                        <div class="ig-noresults text-center mb-3">
+                            <h3><i class="fas fa-search"></i>  Sem notícias</h3>
+                            <p class="mb-0">Não existem notícias a apresentar.</p>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
+
     </div>
 </div>
+

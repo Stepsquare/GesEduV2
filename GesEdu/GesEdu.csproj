@@ -19,6 +19,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
     <PackageReference Include="SmartBreadcrumbs" Version="3.6.1" />
   </ItemGroup>
@@ -29,6 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\AreaReservada\Models\" />
+    <Folder Include="Areas\MEGA\Models\" />
+    <Folder Include="Areas\SIME\Models\" />
     <Folder Include="wwwroot\lib\bootstrap\" />
   </ItemGroup>
 
