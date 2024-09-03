@@ -1156,7 +1156,10 @@ span.badge {
 }
 /*Footer*/
 
-
+footer.ig-footer {
+    padding: 4rem 0 2rem 0;
+    margin-top: auto;
+}
 .ig-footer-logos img {
     height: 2rem;
     -webkit-font-smoothing: antialiased;

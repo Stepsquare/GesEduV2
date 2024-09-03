@@ -1,143 +1,182 @@
 ﻿<nav class="d-flex align-items-start ig-sidebar-menu" id="ig-menu">
     <section class="ig-main-menu nav flex-column nav-pills" id="v-pills-tab" role="tablist"
              aria-orientation="vertical">
+        <button class="ig-menulink active" id="ig_home_tab" data-bs-toggle="pill" data-bs-target=""
+                type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
+            <img src="~/images/sidebar/si-home.svg" alt="Início" />
+            <span>Início</span>
+        </button>
         <button class="ig-menulink" id="ig_personal_tab" data-bs-toggle="pill"
                 data-bs-target="#ig_personal_tabmenu" type="button" role="tab" aria-controls="ig_personal_tabmenu"
                 aria-selected="false">
-            <img src="~/images/sidebar/si-pessoal.svg" alt="Pessoal" />
-            <span>Pessoal</span>
-        </button>
-        <button class="ig-menulink" id="ig_budget_tab" data-bs-toggle="pill" data-bs-target="#ig_budget_tabmenu"
-                type="button" role="tab" aria-controls="ig_budget_tabmenu" aria-selected="false">
-            <img src="~/images/sidebar/si-orcamento.svg" alt="Orçamento" />
-            <span>Orçamento</span>
-        </button>
-        <button class="ig-menulink" id="ig_profit_tab" data-bs-toggle="pill" data-bs-target="#ig_profit_tabmenu"
-                type="button" role="tab" aria-controls="ig_profit_tabmenu" aria-selected="false">
-            <img src="~/images/sidebar/si-receita.svg" alt="Receita" />
-            <span>Receita</span>
+            <img src="~/images/sidebar/si-areares.svg" alt="Área Reservada" />
+            <span>Área Reservada</span>
         </button>
         <button class="ig-menulink" id="ig_mega_tab" data-bs-toggle="pill" data-bs-target="#ig_mega_tabmenu"
                 type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">
-            <img src="~/images/sidebar/si-mega.svg" alt="Orçamento" />
+            <img src="~/images/sidebar/si-mega.svg" alt="MEGA" />
             <span>MEGA</span>
         </button>
         <button class="ig-menulink" id="ig_sime_tab" data-bs-toggle="pill" data-bs-target="#ig_sime_tabmenu"
                 type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">
-            <img src="~/images/sidebar/si-sime.svg" alt="Orçamento" />
-            <span>SIME</span>
+            <img src="~/images/sidebar/si-sime.svg" alt="SIME-MEGA" />
+            <span>SIME-MEGA</span>
         </button>
     </section>
     <section class="tab-content ig-submenu" id="v-pills-tabContent">
         <!--<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">...</div>-->
         <div class="tab-pane fade" id="ig_personal_tabmenu" role="tabpanel" aria-labelledby="ig_personal_tab"
              tabindex="0">
-            <ul>
-                <li>
-                    <a class="ig-menuactive" href="#">Trabalhadores da UO</a>
-                </li>
-                <li>
-                    <a href="#">Contratos</a>
-                </li>
-                <li>
-                    <a href="#">REACT</a>
-                </li>
-                <li class="ig-menutitle">
-                    <h4>Pessoal Docente: Progressão na carreira</h4>
-                </li>
-                <li>
-                    <a href="#">Sem recuperação de tempo</a>
-                </li>
-                <li>
-                    <a href="#">Com recuperação de tempo</a>
-                </li>
-                <li>
-                    <a href="#">Reposicionamentos</a>
-                </li>
-                <li class="ig-menutitle">
-                    <h4>Pessoal não Docente: Progressão na carreira</h4>
-                </li>
-                <li>
-                    <a href="#">Trabalhadores</a>
-                </li>
-            </ul>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                            Pessoal
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse"
+                         data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>
+                                    <a class="ig-menuactive" href="#">Trabalhadores da UO</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contratos</a>
+                                </li>
+                                <li>
+                                    <a href="#">REACT</a>
+                                </li>
+                                <li class="ig-menutitle">
+                                    <h4>Pessoal Docente: Progressão na carreira</h4>
+                                </li>
+                                <li>
+                                    <a href="#">Sem recuperação de tempo</a>
+                                </li>
+                                <li>
+                                    <a href="#">Com recuperação de tempo</a>
+                                </li>
+                                <li>
+                                    <a href="#">Reposicionamentos</a>
+                                </li>
+                                <li class="ig-menutitle">
+                                    <h4>Pessoal não Docente: Progressão na carreira</h4>
+                                </li>
+                                <li>
+                                    <a href="#">Trabalhadores</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                aria-controls="flush-collapseTwo">
+                            Orçamento
+                        </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                         data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>
+                                    <a href="#">Propor orçamento</a>
+                                </li>
+                                <li>
+                                    <a href="#">Orçamento proposto</a>
+                                </li>
+                                <li>
+                                    <a href="#">Orçamento atribuído</a>
+                                </li>
+                                <li class="ig-menutitle">
+                                    <h4>Outras atividades</h4>
+                                </li>
+                                <li>
+                                    <a href="#">Atividade 190</a>
+                                </li>
+                                <li>
+                                    <a href="#">Atividade 191</a>
+                                </li>
+                                <li class="ig-menutitle">
+                                    <h4>Disponibilidades POCH</h4>
+                                </li>
+                                <li>
+                                    <a href="#">Disponibilidades</a>
+                                </li>
+                                <li>
+                                    <a href="#">Notas de receita</a>
+                                </li>
+                                <li class="ig-menutitle">
+                                    <h4>Outras disponibilidades</h4>
+                                </li>
+                                <li>
+                                    <a href="#">Disponibilidades</a>
+                                </li>
+                                <li>
+                                    <a href="#">Notas de receita</a>
+                                </li>
+                                <li>
+                                    <a href="#">Justificação de saldos da gerência</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                aria-controls="flush-collapseThree">
+                            Receita
+                        </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse"
+                         data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>
+                                    <a href="#">Receita</a>
+                                </li>
+                                <li>
+                                    <a href="#">Requisições de fundos</a>
+                                </li>
+                                <li>
+                                    <a href="#">Certidões de receita</a>
+                                </li>
+                                <li>
+                                    <a href="#">Reposições abatidas</a>
+                                </li>
+                                <li>
+                                    <a href="#">Exportação de movimentos</a>
+                                </li>
+                                <li>
+                                    <a href="#">Pedidos de exceção</a>
+                                </li>
+                                <li class="ig-menutitle">
+                                    <h4>Autorização de pagamentos</h4>
+                                </li>
+                                <li>
+                                    <a href="#">Mensal</a>
+                                </li>
+                                <li>
+                                    <a href="#">Anual</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
         <div class="tab-pane fade" id="ig_budget_tabmenu" role="tabpanel" aria-labelledby="ig_budget_tab"
              tabindex="0">
-
-            <ul>
-                <li>
-                    <a href="#">Propor orçamento</a>
-                </li>
-                <li>
-                    <a href="#">Orçamento proposto</a>
-                </li>
-                <li>
-                    <a href="#">Orçamento atribuído</a>
-                </li>
-                <li class="ig-menutitle">
-                    <h4>Outras atividades</h4>
-                </li>
-                <li>
-                    <a href="#">Atividade 190</a>
-                </li>
-                <li>
-                    <a href="#">Atividade 191</a>
-                </li>
-                <li class="ig-menutitle">
-                    <h4>Disponibilidades POCH</h4>
-                </li>
-                <li>
-                    <a href="#">Disponibilidades</a>
-                </li>
-                <li>
-                    <a href="#">Notas de receita</a>
-                </li>
-                <li class="ig-menutitle">
-                    <h4>Outras disponibilidades</h4>
-                </li>
-                <li>
-                    <a href="#">Disponibilidades</a>
-                </li>
-                <li>
-                    <a href="#">Notas de receita</a>
-                </li>
-                <li>
-                    <a href="#">Justificação de saldos da gerência</a>
-                </li>
-            </ul>
         </div>
         <div class="tab-pane fade" id="ig_profit_tabmenu" role="tabpanel" aria-labelledby="ig_profit_tab"
              tabindex="0">
-            <ul>
-                <li>
-                    <a href="#">Receita</a>
-                </li>
-                <li>
-                    <a href="#">Requisições de fundos</a>
-                </li>
-                <li>
-                    <a href="#">Certidões de receita</a>
-                </li>
-                <li>
-                    <a href="#">Reposições abatidas</a>
-                </li>
-                <li>
-                    <a href="#">Exportação de movimentos</a>
-                </li>
-                <li>
-                    <a href="#">Pedidos de exceção</a>
-                </li>
-                <li class="ig-menutitle">
-                    <h4>Autorização de pagamentos</h4>
-                </li>
-                <li>
-                    <a href="#">Mensal</a>
-                </li>
-                <li>
-                    <a href="#">Anual</a>
-                </li>
-            </ul>
         </div>
         <div id="ig_mega_tabmenu" class="tab-pane fade" role="tabpanel" aria-labelledby="v-pills-settings-tab"
              tabindex="0">
