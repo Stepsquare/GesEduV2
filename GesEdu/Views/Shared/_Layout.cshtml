@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GesEdu</title>
 
-    <link rel="shortcut icon" href="~/images/favicon.ico" />
+    <link rel="shortcut icon" href="~/images/favicon.svg" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif|Roboto:400,700">
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
@@ -78,23 +78,25 @@
     </div>
 
     <div class="container">
-        <footer class="ig-footer">
-            <div class="row">
-                <div class="col-md ig-footer-logos">
-                    <div class="row g-5">
-                        <div class="col-auto">
-                            <img src="~/images/footer/logo_igefe_footer.svg" alt="IGeFE - Instituto de Gestão Financeira da Educação, I.P." title="IGeFE - Instituto de Gestão Financeira da Educação, I.P." />
-                        </div>
-                        <div class="col-auto">
-                            <img src="~/images/footer/logo_me_footer.svg" alt="República Portuguesa - Educação" title="República Portuguesa - Educação" />
+        <div class="ig-content">
+            <footer class="ig-footer">
+                <div class="row">
+                    <div class="col-md ig-footer-logos">
+                        <div class="row g-5">
+                            <div class="col-auto">
+                                <img src="~/images/footer/logo_igefe_footer.svg" alt="IGeFE - Instituto de Gestão Financeira da Educação, I.P." title="IGeFE - Instituto de Gestão Financeira da Educação, I.P." />
+                            </div>
+                            <div class="col-auto">
+                                <img src="~/images/footer/logo_me_footer.svg" alt="República Portuguesa - Educação" title="República Portuguesa - Educação" />
+                            </div>
                         </div>
                     </div>
+                    <div class="col-md ig-copyright-pages">
+                        @DateTime.Now.Year — Instituto de Gestão Financeira da Educação, I.P.
+                    </div>
                 </div>
-                <div class="col-md ig-copyright-pages">
-                    @DateTime.Now.Year — Instituto de Gestão Financeira da Educação, I.P.
-                </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
     </div>
 
     @await Html.PartialAsync("_modalContainersPartial")

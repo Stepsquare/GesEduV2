@@ -47,6 +47,7 @@
     --ig-transition: ease 0.3s;
     --ig-shadow: 0 0 1.5rem rgb(0 0 0 / 13%);
     --ig-focus-shadow: 0 0 0 0.25rem var(--ig-blue-3);
+    --ig-filter-blue-2: brightness(0) saturate(100%) invert(41%) sepia(23%) saturate(871%) hue-rotate(145deg) brightness(94%) contrast(86%);
 }
 
 body {
@@ -154,6 +155,7 @@ span.ig-app-name {
     flex-direction: column;
     width: 100%;
     transition: width 0.3s ease;
+    min-height: calc(100vh - 120px);
 }
 
 .ig-main-container {
@@ -165,7 +167,7 @@ section.ig-main-menu {
     width: 5rem;
     background: var(--ig-white);
     box-shadow: var(--ig-shadow);
-    height: 100vh;
+    height: 100%;
 }
 .ig-main-menu hr {
     margin: 0.5rem 0;
@@ -182,7 +184,7 @@ nav.ig-sidebar-menu {
 .ig-submenu {
     background: var(--ig-white);
     box-shadow: var(--ig-shadow);
-    height: 100vh;
+    height: 100%;
 }
 .ig-submenu .tab-pane {
     width: 15rem;
@@ -211,13 +213,30 @@ nav.ig-sidebar-menu {
 .ig-submenu ul {
     padding: 1rem;
 }
-
+.ig-submenu .accordion-body ul {
+    padding: 0;
+}
+.ig-submenu .accordion-button {
+    font-weight: bold;
+    color: var(--ig-blue-2);
+}
+.ig-submenu .accordion-button:not(.collapsed) {
+    color: var(--ig-blue-2);
+    background-color: var(--ig-green-1-alpha);
+}
+.ig-submenu .accordion-button:focus {
+    border-color: var(--ig-blue-2);
+    box-shadow: var(--ig-focus-shadow);
+}
 li.ig-menutitle {
     padding-top: 2rem;
     
 }
 li.ig-menutitle h4 {
     color: var(--ig-green-1);
+}
+.ig-submenu .accordion-button::after{
+    filter:var(--ig-filter-blue-2);
 }
 /*interface*/
 .card.ig-card {
@@ -529,6 +548,7 @@ a.ig-btn-back {
 .ig-biglink-hp .ig-card {
     transition: var(--ig-transition);
     height: 100%;
+    width: 100%;
 }
 
 .ig-biglink-hp:hover .ig-card,
@@ -540,7 +560,6 @@ a.ig-btn-back {
 a.ig-biglink-hp .card .card-body {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     height: 100%;
 }
@@ -1137,12 +1156,6 @@ span.badge {
 }
 /*Footer*/
 
-
-footer.ig-footer {
-    border-top: solid 1px var(--ig-blue-3);
-    padding: 2rem 0;
-    margin-top: 1rem;
-}
 
 .ig-footer-logos img {
     height: 2rem;
