@@ -13,6 +13,7 @@ using System.Data;
 namespace GesEdu.Controllers
 {
     [Authorize(Policy = "UserManagementAccess")]
+    [Route("/{controller}/{action}")]
     public class UsersController : BaseController
     {
         private readonly IUserServices _userServices;

@@ -37,14 +37,23 @@
 
             <footer class="ig-footer">
                 <div class="row">
-                    <div class="col-md ig-footer-logos">
-                        <div class="row g-5">
+                    <div class="col-md-auto ig-footer-logos">
+                        <div class="row g-4">
                             <div class="col-auto">
                                 <img src="~/images/footer/logo_igefe_footer.svg" alt="IGeFE - Instituto de Gestão Financeira da Educação, I.P." title="IGeFE - Instituto de Gestão Financeira da Educação, I.P." />
                             </div>
                             <div class="col-auto">
-                                <img src="~/images/footer/logo_me_footer.svg" alt="República Portuguesa - Educação" title="República Portuguesa - Educação" />
+                                <img src="~/images/footer/logo_meci_footer.svg" alt="República Portuguesa - Educação, Ciência e Inovação" title="República Portuguesa - Educação, Ciência e Inovação" />
                             </div>
+                            @if (Html.IsAreaView("SIME"))
+                            {
+                                <div class="col-auto">
+                                    <img src="~/images/footer/logo_dge_footer.png" alt="Direção-Geral da Educação" title="Direção-Geral da Educação">
+                                </div>
+                                <div class="col-auto">
+                                    <img src="~/images/footer/logo_anqep_footer.svg" alt="Agência Nacional para a Qualificação e o Ensino Profissional" title="Agência Nacional para a Qualificação e o Ensino Profissional">
+                                </div>
+                            }
                         </div>
                     </div>
                     <div class="col-md ig-copyright-pages">
