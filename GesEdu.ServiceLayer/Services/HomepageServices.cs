@@ -2,10 +2,12 @@
 using GesEdu.Shared.Interfaces.ISevices;
 using GesEdu.Shared.WebserviceModels.Noticias;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
+using System;
 
 namespace GesEdu.ServiceLayer.Services
 {
-    public class HomepageServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork), IHomepageServices
+    public class HomepageServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork, IHostEnvironment environment) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork, environment), IHomepageServices
     {
         public async Task<GetNoticiasResponse?> GetNoticias(string? idServico = null)
         {

@@ -7,11 +7,12 @@ using GesEdu.Shared.SearchParams;
 using GesEdu.Shared.WebserviceModels;
 using GesEdu.Shared.WebserviceModels.Auth;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 using System.Net.Http.Json;
 
 namespace GesEdu.ServiceLayer.Services
 {
-    public class UserServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork), IUserServices
+    public class UserServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork, IHostEnvironment environment) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork, environment), IUserServices
     {
         public async Task<GetUtilizadorResponse?> GetUtilizador(int userId)
         {

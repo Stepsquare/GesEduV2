@@ -3,17 +3,19 @@ using GesEdu.Shared.ExceptionHandler.Exceptions;
 using GesEdu.Shared.Extensions;
 using GesEdu.Shared.Interfaces.IConfiguration;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net;
 
 namespace GesEdu.ServiceLayer.Services
 {
-    public abstract class BaseServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork)
+    public abstract class BaseServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork, IHostEnvironment environment)
     {
         protected readonly HttpClient _client = httpClientFactory.CreateClient("sigefeClient");
         protected readonly IUnitOfWork _unitOfWork = unitOfWork;
         protected readonly HttpContext _httpContext = httpContextAccessor.HttpContext;
+        private readonly IHostEnvironment _environment = environment;
 
         protected async Task<T?> SendAsync<T>(HttpRequestMessage request) where T : class
         {
@@ -41,9 +43,14 @@ namespace GesEdu.ServiceLayer.Services
                 StatusMessage = response.StatusCode.ToString(),
             };
 
-            _unitOfWork.WebServiceErrors.Add(error);
+            //Em ambiente de desenvolvimento todos os status codes dos webservices são guardados
+            //Em ambiente de produção só serão guardados os erros com status code 500
+            if (response.StatusCode == HttpStatusCode.InternalServerError || _environment.IsDevelopment())
+            {
+                _unitOfWork.WebServiceErrors.Add(error);
 
-            await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.SaveChangesAsync();
+            }
 
             List<string> messages = new List<string>();
 
