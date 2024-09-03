@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using static System.Net.WebRequestMethods;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace GesEdu.Shared.Extensions
 {
     public static class HtmlHelperExtensions
     {
         //TODO - Implementar na View (https://www.c-sharpcorner.com/article/good-vs-bad-highlight-the-active-page-in-the-nab-bar-for-mvc-razor-view-engine/)
-        public static string IsSelected(this HtmlHelper html, string? controller = null, string? action = null, string? cssClass = null)
+        public static string IsSelected(this IHtmlHelper html, string? controller = null, string? action = null, string? cssClass = null)
         {
             if (string.IsNullOrEmpty(cssClass)) 
                 cssClass = "active";
@@ -23,11 +23,11 @@ namespace GesEdu.Shared.Extensions
             return controller == currentController && action == currentAction ? cssClass : string.Empty;
         }
 
-        public static string PageClass(this HtmlHelper html)
+        public static bool IsAreaView(this IHtmlHelper html)
         {
-            var currentAction = (string)html.ViewContext.RouteData.Values["action"];
+            var currentArea = (string)html.ViewContext.RouteData.Values["area"];
 
-            return currentAction;
+            return !string.IsNullOrEmpty(currentArea);
         }
     }
 }

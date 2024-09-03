@@ -8,10 +8,11 @@ using System.Net;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Http;
 using GesEdu.Shared.Resources;
+using Microsoft.Extensions.Hosting;
 
 namespace GesEdu.ServiceLayer.Services
 {
-    public class LoginServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork), ILoginServices
+    public class LoginServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork, IHostEnvironment environment) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork, environment), ILoginServices
     {
         public async Task<(List<Claim> claims, bool changePassword)> SignIn(string username, string password)
         {

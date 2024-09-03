@@ -43,6 +43,8 @@ builder.Services.AddBreadcrumbs(Assembly.GetExecutingAssembly(), options =>
 
 #endregion
 
+#region Authentication, Policies, Session
+
 builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -55,29 +57,33 @@ builder.Services
         options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
     });
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("AdminOnlyAccess", policy 
-        => policy.RequireRole(GesEduProfiles.ADMIN));
-    options.AddPolicy("ChooseUoPageAccess", policy
-        => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_DGE));
-    options.AddPolicy("MegaAccess", policy 
-        => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.MEGA));
-    options.AddPolicy("AreaReservadaAccess", policy 
-        => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.AREA_RESERVADA));
-    options.AddPolicy("AreaReservadaReactAccess", policy
-        => policy.RequireAssertion(context => context.User.IsAdmin() || context.User.IsAreaReservadaReactUser()));
-    options.AddPolicy("SimeDgeAccessDGE", policy
-        => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_DGE));
-    options.AddPolicy("SimeEscAccessEsc", policy
-        => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_ESC));
-    options.AddPolicy("UserManagementAccess", policy
-        => policy.RequireAssertion(context => context.User.IsAdmin() || context.User.IsUserManager()));
-});
+builder.Services
+    .AddAuthorization(options =>
+    {
+        options.AddPolicy("AdminOnlyAccess", policy
+            => policy.RequireRole(GesEduProfiles.ADMIN));
+        options.AddPolicy("ChooseUoPageAccess", policy
+            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_DGE));
+        options.AddPolicy("MegaAccess", policy
+            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.MEGA));
+        options.AddPolicy("AreaReservadaAccess", policy
+            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.AREA_RESERVADA));
+        options.AddPolicy("AreaReservadaReactAccess", policy
+            => policy.RequireAssertion(context => context.User.IsAdmin() || context.User.IsAreaReservadaReactUser()));
+        options.AddPolicy("SimeAccess", policy
+            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_DGE, GesEduProfiles.SIME_ESC));
+        options.AddPolicy("SimeDgeOnlyAccess", policy
+            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_DGE));
+        options.AddPolicy("SimeEscOnlyAccess", policy
+            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_ESC));
+        options.AddPolicy("UserManagementAccess", policy
+            => policy.RequireAssertion(context => context.User.IsAdmin() || context.User.IsUserManager()));
+    });
 
 builder.Services.AddSession();
 
-// Add services to the container.
+#endregion
+
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
@@ -102,6 +108,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseSession();
+
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
