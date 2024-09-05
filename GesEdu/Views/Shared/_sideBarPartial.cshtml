@@ -1,20 +1,29 @@
 ﻿<nav class="d-flex align-items-start ig-sidebar-menu" id="ig-menu">
     <section class="ig-main-menu nav flex-column nav-pills" id="v-pills-tab" role="tablist"
              aria-orientation="vertical">
-        <a class="ig-menulink @(Html.IsAreaView("AreaReservada") ? "active" : "")" asp-area="AreaReservada" asp-controller="Home" asp-action="Index" title="Estabelecimentos de Ensino">
-            <img src="~/images/sidebar/si-areares.svg" alt="Área Reservada" />
-            <span>Área Reservada</span>
-        </a>
-        <a class="ig-menulink @(Html.IsAreaView("MEGA") ? "active" : "")" asp-area="MEGA" asp-controller="Home" asp-action="Index" title="Programa MEGA">
-            <img src="~/images/sidebar/si-mega.svg" alt="MEGA" />
-            <span>MEGA</span>
-        </a>
-        <a class="ig-menulink @(Html.IsAreaView("SIME") ? "active" : "")" asp-area="SIME" asp-controller="Home" asp-action="Index" title="SIME-MEGA">
-            <img src="~/images/sidebar/si-sime.svg" alt="SIME-MEGA" />
-            <span>SIME-MEGA</span>
-        </a>
+        @if (User.IsAdmin() || User.IsAreaReservadaUser())
+        {
+            <a class="ig-menulink @(Html.IsAreaView("AreaReservada") ? "active" : "")" asp-area="AreaReservada" asp-controller="Home" asp-action="Index" title="Estabelecimentos de Ensino">
+                <img src="~/images/sidebar/si-areares.svg" alt="Área Reservada" />
+                <span>Área Reservada</span>
+            </a>
+        }
+        @if (User.IsAdmin() || User.IsMegaUser())
+        {
+            <a class="ig-menulink @(Html.IsAreaView("MEGA") ? "active" : "")" asp-area="MEGA" asp-controller="Home" asp-action="Index" title="Programa MEGA">
+                <img src="~/images/sidebar/si-mega.svg" alt="MEGA" />
+                <span>MEGA</span>
+            </a>
+        }
+        @if (User.IsAdmin() || User.IsSimeDgeUser() || User.IsSimeEscUser())
+        {
+            <a class="ig-menulink @(Html.IsAreaView("SIME") ? "active" : "")" asp-area="SIME" asp-controller="Home" asp-action="Index" title="SIME-MEGA">
+                <img src="~/images/sidebar/si-sime.svg" alt="SIME-MEGA" />
+                <span>SIME-MEGA</span>
+            </a>
+        }
     </section>
-    <section class="tab-content ig-submenu" id="v-pills-tabContent">
+    <section class="tab-content ig-submenu">
         @if (Html.IsAreaView("AreaReservada"))
         {
             <div class="">

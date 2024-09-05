@@ -63,7 +63,7 @@
                     <h4>Notícias</h4>
                 </div>
                 <div class="list-group list-group-flush">
-                    @if (Model != null)
+                    @if (Model != null && Model.noticias.Any())
                         foreach (var noticia in Model.noticias)
                         {
                             <div class="list-group-item">
