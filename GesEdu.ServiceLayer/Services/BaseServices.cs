@@ -10,7 +10,11 @@ using System.Net;
 
 namespace GesEdu.ServiceLayer.Services
 {
-    public abstract class BaseServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork, IHostEnvironment environment)
+    public abstract class BaseServices(
+        IHttpContextAccessor httpContextAccessor, 
+        IHttpClientFactory httpClientFactory, 
+        IUnitOfWork unitOfWork, 
+        IHostEnvironment environment)
     {
         protected readonly HttpClient _client = httpClientFactory.CreateClient("sigefeClient");
         protected readonly IUnitOfWork _unitOfWork = unitOfWork;

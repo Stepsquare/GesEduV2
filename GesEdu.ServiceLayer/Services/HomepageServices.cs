@@ -7,7 +7,11 @@ using System;
 
 namespace GesEdu.ServiceLayer.Services
 {
-    public class HomepageServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork, IHostEnvironment environment) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork, environment), IHomepageServices
+    public class HomepageServices(
+        IHttpContextAccessor httpContextAccessor, 
+        IHttpClientFactory httpClientFactory, 
+        IUnitOfWork unitOfWork, 
+        IHostEnvironment environment) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork, environment), IHomepageServices
     {
         public async Task<GetNoticiasResponse?> GetNoticias(string? idServico = null)
         {

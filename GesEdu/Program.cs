@@ -1,12 +1,10 @@
 using GesEdu.DataLayer.Extensions;
-using GesEdu.ServiceLayer.Services;
 using GesEdu.ServiceLayer.Extensions;
 using GesEdu.Shared.ExceptionHandler;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using SmartBreadcrumbs.Extensions;
 using System.Reflection;
 using Serilog;
-using Serilog.Events;
 using GesEdu.Shared.Resources;
 using GesEdu.Shared.Extensions;
 
