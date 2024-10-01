@@ -12,7 +12,11 @@ using System.Net.Http.Json;
 
 namespace GesEdu.ServiceLayer.Services
 {
-    public class UserServices(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IUnitOfWork unitOfWork, IHostEnvironment environment) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork, environment), IUserServices
+    public class UserServices(
+        IHttpContextAccessor httpContextAccessor, 
+        IHttpClientFactory httpClientFactory, 
+        IUnitOfWork unitOfWork, 
+        IHostEnvironment environment) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork, environment), IUserServices
     {
         public async Task<GetUtilizadorResponse?> GetUtilizador(int userId)
         {

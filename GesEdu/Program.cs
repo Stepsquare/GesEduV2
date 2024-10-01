@@ -1,12 +1,10 @@
 using GesEdu.DataLayer.Extensions;
-using GesEdu.ServiceLayer.Services;
 using GesEdu.ServiceLayer.Extensions;
 using GesEdu.Shared.ExceptionHandler;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using SmartBreadcrumbs.Extensions;
 using System.Reflection;
 using Serilog;
-using Serilog.Events;
 using GesEdu.Shared.Resources;
 using GesEdu.Shared.Extensions;
 
@@ -58,27 +56,25 @@ builder.Services
     });
 
 builder.Services
-    .AddAuthorization(options =>
-    {
-        options.AddPolicy("AdminOnlyAccess", policy
-            => policy.RequireRole(GesEduProfiles.ADMIN));
-        options.AddPolicy("ChooseUoPageAccess", policy
-            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_DGE));
-        options.AddPolicy("MegaAccess", policy
-            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.MEGA));
-        options.AddPolicy("AreaReservadaAccess", policy
-            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.AREA_RESERVADA));
-        options.AddPolicy("AreaReservadaReactAccess", policy
-            => policy.RequireAssertion(context => context.User.IsAdmin() || context.User.IsAreaReservadaReactUser()));
-        options.AddPolicy("SimeAccess", policy
-            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_DGE, GesEduProfiles.SIME_ESC));
-        options.AddPolicy("SimeDgeOnlyAccess", policy
-            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_DGE));
-        options.AddPolicy("SimeEscOnlyAccess", policy
-            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_ESC));
-        options.AddPolicy("UserManagementAccess", policy
+    .AddAuthorizationBuilder()
+    .AddPolicy("AdminOnlyAccess", policy
+            => policy.RequireRole(GesEduProfiles.ADMIN))
+    .AddPolicy("ChooseUoPageAccess", policy
+            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_DGE))
+    .AddPolicy("MegaAccess", policy
+            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.MEGA))
+    .AddPolicy("AreaReservadaAccess", policy
+            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.AREA_RESERVADA))
+    .AddPolicy("AreaReservadaReactAccess", policy
+            => policy.RequireAssertion(context => context.User.IsAdmin() || context.User.IsAreaReservadaReactUser()))
+    .AddPolicy("SimeAccess", policy
+            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_DGE, GesEduProfiles.SIME_ESC))
+    .AddPolicy("SimeDgeOnlyAccess", policy
+            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_DGE))
+    .AddPolicy("SimeEscOnlyAccess", policy
+            => policy.RequireRole(GesEduProfiles.ADMIN, GesEduProfiles.SIME_ESC))
+    .AddPolicy("UserManagementAccess", policy
             => policy.RequireAssertion(context => context.User.IsAdmin() || context.User.IsUserManager()));
-    });
 
 builder.Services.AddSession();
 

@@ -29,5 +29,12 @@ namespace GesEdu.Shared.Extensions
 
             return !string.IsNullOrEmpty(currentArea);
         }
+
+        public static bool IsAreaView(this IHtmlHelper html, string area)
+        {
+            var currentArea = (string)html.ViewContext.RouteData.Values["area"];
+
+            return currentArea == area;
+        }
     }
 }
