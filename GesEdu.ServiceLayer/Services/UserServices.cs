@@ -81,7 +81,7 @@ namespace GesEdu.ServiceLayer.Services
                 dt_inicial = DateTime.Now.ToString("dd-MM-yyyy"),
                 servico = _httpContext.User.GetCodigoServico(),
                 responsavel = "N",
-                perfis = profiles.Where(x => x.Value).Select(x => new CriarUtilizadorRequest.perfil
+                perfis = profiles.Where(x => x.Value).Select(x => new CriarUtilizadorRequest.Perfil
                 {
                     id_perfil = x.Key,
                     acao = x.Value ? "A" : "R"
@@ -102,9 +102,9 @@ namespace GesEdu.ServiceLayer.Services
             var requestBody = new AlterarPerfilUtzRequest
             {
                 id_utilizador = userId,
-                perfis = new List<AlterarPerfilUtzRequest.perfil>()
+                perfis = new List<AlterarPerfilUtzRequest.Perfil>()
                 {
-                    new AlterarPerfilUtzRequest.perfil
+                    new AlterarPerfilUtzRequest.Perfil
                     {
                         id_perfil = profileId,
                         acao = isChecked ? "A" : "R"

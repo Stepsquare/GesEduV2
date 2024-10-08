@@ -9,9 +9,9 @@ namespace GesEdu.Shared.WebserviceModels.Auth
     public class AlterarPerfilUtzRequest
     {
         public int id_utilizador { get; set; }
-        public List<perfil>? perfis { get; set; } = new List<perfil>();
+        public List<Perfil>? perfis { get; set; } = new List<Perfil>();
 
-        public class perfil
+        public class Perfil
         {
             public int id_perfil { get; set; }
 

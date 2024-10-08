@@ -17,9 +17,9 @@ namespace GesEdu.Shared.WebserviceModels.Auth
         public string? servico { get; set; }
         public string? responsavel { get; set; }
         public string? descricao { get; set; }
-        public List<perfil>? perfis { get; set; } = new List<perfil>();
+        public List<Perfil>? perfis { get; set; } = new List<Perfil>();
 
-        public class perfil
+        public class Perfil
         {
             public int id_perfil { get; set; }
 

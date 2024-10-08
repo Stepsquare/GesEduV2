@@ -19,14 +19,14 @@ namespace GesEdu.Shared.WebserviceModels.Auth
         public string? url_apex { get; set; }
         public string? responsavel { get; set; }
         public string? trocar_password { get; set; }
-        public List<perfil> perfis { get; set; } = new List<perfil>();
+        public List<Perfil> perfis { get; set; } = new List<Perfil>();
 
-        public class perfil
+        public class Perfil
         {
             public string? cod_perfil { get; set; }
-            public List<objecto> objetos { get; set; } = new List<objecto>();
+            public List<Objecto> objetos { get; set; } = new List<Objecto>();
 
-            public class objecto
+            public class Objecto
             {
                 public string? aplicacao { get; set; }
                 public string? codigo { get; set; }
