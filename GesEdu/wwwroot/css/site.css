@@ -82,12 +82,12 @@ iframe.ig-ds-layoutlist {
 
 h1,
 h2,
-h3 {
+h3{
     color: var(--ig-blue-1);
     font-weight: 700;
 }
 
-h4 {
+h4,h5 {
     color: var(--ig-blue-2);
     font-weight: 700;
     font-size: 1rem;
@@ -520,7 +520,22 @@ a.ig-btn-back {
     cursor: not-allowed;
     color: var(--ig-white);
 }
+a.ig-collapse-link {
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--ig-green-1);
+    font-size:0.75rem;
+}
+a.ig-collapse-link:hover {
+    color: var(--ig-green-2);
+}
+a.ig-collapse-link.collapsed i {
+    transform: rotate(0);
+}
 
+a.ig-collapse-link i {
+    transform: rotate(180deg);
+}
 /*módulos - interface*/
 
 
@@ -706,9 +721,13 @@ label.form-label {
 th.ig-col-shrink {
     width: 1%;
 }
+th.ig-th-4rem{
+    width:4rem;
+}
 
 .table.ig-grid td {
     border-bottom: solid 1px var(--ig-blue-3);
+    vertical-align: middle;
 }
 
 .ig-grid .btn.ig-btn-blue {
@@ -885,7 +904,10 @@ th.ig-col-shrink {
 .ig-tabs .tab-pane {
     transition: var(--ig-transition);
 }
-
+.ig-2line-tabheader {
+    max-width: 9rem;
+    min-height: 6.5rem;
+}
 
 /*Listagens*/
 
@@ -963,7 +985,7 @@ span.badge {
 .ig-uo-code {
     background: var(--ig-blue-2);
 }
-.ig-user-permissions {
+.ig-user-permissions, .ig-blue-badge {
     background: var(--ig-blue-4);
     border: solid 1px var(--ig-blue-3);
     color: var(--ig-blue-2);
@@ -973,6 +995,10 @@ span.badge {
     text-overflow: ellipsis;
     white-space: nowrap;
     vertical-align: text-top;
+}
+
+.ig-psmall{
+    font-size:0.75rem;
 }
 /*exemplos*/
 .ig-light-font-ex h2 {
@@ -1213,4 +1239,30 @@ footer.ig-footer {
 span.ig-classbutton-det {
     font-size: 1rem;
     font-weight: normal;
+}
+
+/*SIME*/
+/*Tabelas apreciação*/
+
+ol.ig-bookappreciation-description {
+    padding-left: 2rem;
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+}
+
+    ol.ig-bookappreciation-description li {
+        display: block;
+        white-space: normal;
+    }
+
+.ig-bookappreciation-description span {
+    margin-left: -2rem;
+    margin-right: 0.5rem;
+    width: 1.5rem;
+    text-align: right;
+    display: inline-block;
+}
+
+.ig-bookappreciation-description ul {
+    padding-left: 2.5rem;
 }
