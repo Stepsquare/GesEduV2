@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>GesEduV2</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../../../GesEdu/wwwroot/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="">
+    <!--Style-->
+    <link href="../../../GesEdu/wwwroot/css/site.css" rel="stylesheet">
+    <!--JQuery-->
+    <script type="text/javascript" src="../../../GesEdu/wwwroot/lib/jquery/dist/jquery.min.js"></script>
+    <!--FontAwesome-->
+    <link href="../../../GesEdu/wwwroot/lib/font-awesome/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="ig-body">
+    <nav class="ig-navbar navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="ig-brand nav-link" href="#">
+                        <img class="ig-logo" title="GesEdu" src="../../../GesEdu/wwwroot/images/logo.svg">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarBrandDropdown">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Estabelecimentos de Ensino Básico e Secundário - Área
+                                Reservada
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item" href="#">Programa MEGA</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Início</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="ig-user-ddl nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="ig-userdet-cont">
+                            <span class="ig-uo-name">
+                                <span class="badge rounded-pill ig-uo-code">172420</span>
+                                Agrupamento de Escolas de Vila Viçosa
+                            </span>
+                            <span class="ig-uo-user">
+                                <i class="fas fa-user"></i>
+                                david.barradas@squad.pt
+                            </span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Gerir utilizadores</a></li>
+                        <li><a class="dropdown-item" href="#">Repor palavra-passe</a></li>
+                        <li><a class="dropdown-item" href="#">Sair</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--Container geral-->
+    <section class="ig-main-container">
+        <!--Menu lateral-->
+        <nav class="d-flex align-items-start ig-sidebar-menu" id="ig-menu">
+            <section class="ig-main-menu nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                     aria-orientation="vertical">
+                <button class="ig-menulink" id="ig_home_tab" data-bs-toggle="pill" data-bs-target=""
+                        type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                    <img src="../../../GesEdu/wwwroot/images/sidebar/si-home.svg" alt="Início" />
+                    <span>Início</span>
+                </button>
+                <button class="ig-menulink" id="ig_personal_tab" data-bs-toggle="pill"
+                        data-bs-target="#ig_personal_tabmenu" type="button" role="tab" aria-controls="ig_personal_tabmenu"
+                        aria-selected="false">
+                    <img src="../../../GesEdu/wwwroot/images/sidebar/si-areares.svg" alt="Área Reservada" />
+                    <span>Área Reservada</span>
+                </button>
+                <button class="ig-menulink" id="ig_mega_tab" data-bs-toggle="pill" data-bs-target="#ig_mega_tabmenu"
+                        type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                    <img src="../../../GesEdu/wwwroot/images/sidebar/si-mega.svg" alt="MEGA" />
+                    <span>MEGA</span>
+                </button>
+                <button class="ig-menulink active" id="ig_sime_tab" data-bs-toggle="pill" data-bs-target="#ig_sime_tabmenu"
+                        type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                    <img src="../../../GesEdu/wwwroot/images/sidebar/si-sime.svg" alt="SIME-MEGA" />
+                    <span>SIME-MEGA</span>
+                </button>
+            </section>
+            <section class="tab-content ig-submenu" id="v-pills-tabContent">
+                <!--<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">...</div>-->
+                <div class="tab-pane fade" id="ig_personal_tabmenu" role="tabpanel" aria-labelledby="ig_personal_tab"
+                     tabindex="0">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                        aria-controls="flush-collapseOne">
+                                    Pessoal
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>
+                                            <a class="ig-menuactive" href="#">Trabalhadores da UO</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Contratos</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">REACT</a>
+                                        </li>
+                                        <li class="ig-menutitle">
+                                            <h4>Pessoal Docente: Progressão na carreira</h4>
+                                        </li>
+                                        <li>
+                                            <a href="#">Sem recuperação de tempo</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Com recuperação de tempo</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Reposicionamentos</a>
+                                        </li>
+                                        <li class="ig-menutitle">
+                                            <h4>Pessoal não Docente: Progressão na carreira</h4>
+                                        </li>
+                                        <li>
+                                            <a href="#">Trabalhadores</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                        aria-controls="flush-collapseTwo">
+                                    Orçamento
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                 data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Propor orçamento</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Orçamento proposto</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Orçamento atribuído</a>
+                                        </li>
+                                        <li class="ig-menutitle">
+                                            <h4>Outras atividades</h4>
+                                        </li>
+                                        <li>
+                                            <a href="#">Atividade 190</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Atividade 191</a>
+                                        </li>
+                                        <li class="ig-menutitle">
+                                            <h4>Disponibilidades POCH</h4>
+                                        </li>
+                                        <li>
+                                            <a href="#">Disponibilidades</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Notas de receita</a>
+                                        </li>
+                                        <li class="ig-menutitle">
+                                            <h4>Outras disponibilidades</h4>
+                                        </li>
+                                        <li>
+                                            <a href="#">Disponibilidades</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Notas de receita</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Justificação de saldos da gerência</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                        aria-controls="flush-collapseThree">
+                                    Receita
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                 data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Receita</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Requisições de fundos</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Certidões de receita</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Reposições abatidas</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Exportação de movimentos</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Pedidos de exceção</a>
+                                        </li>
+                                        <li class="ig-menutitle">
+                                            <h4>Autorização de pagamentos</h4>
+                                        </li>
+                                        <li>
+                                            <a href="#">Mensal</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Anual</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="ig_budget_tabmenu" role="tabpanel" aria-labelledby="ig_budget_tab"
+                     tabindex="0">
+
+
+                </div>
+                <div class="tab-pane fade" id="ig_profit_tabmenu" role="tabpanel" aria-labelledby="ig_profit_tab"
+                     tabindex="0">
+
+                </div>
+                <div id="ig_mega_tabmenu" class="tab-pane fade" role="tabpanel" aria-labelledby="v-pills-settings-tab"
+                     tabindex="0">
+                    <ul>
+                        <li>
+                            <a href="#">Gerir vouchers</a>
+                        </li>
+                        <li>
+                            <a href="#">Registar devolução de manuais</a>
+                        </li>
+                        <li>
+                            <a href="#">Projeto-piloto Manuais Digitais</a>
+                        </li>
+                        <li>
+                            <a href="#">Livrarias aderentes</a>
+                        </li>
+                        <li>
+                            <a href="#">Suporte</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="ig_sime_tabmenu" class="tab-pane fade active show" role="tabpanel" aria-labelledby="v-pills-settings-tab"
+                     tabindex="0">
+                    <ul>
+                        <li>
+                            <a href="#">Apreciação de manuais</a>
+                        </li>
+                        <li>
+                            <a href="#">Adoções de anos anteriores</a>
+                        </li>
+                        <li>
+                            <a href="#">Novas adoções</a>
+                        </li>
+                        <li>
+                            <a href="#">Manuais adaptados</a>
+                        </li>
+                        <li>
+                            <a href="#">Pedidos de exceção</a>
+                        </li>
+                        <li>
+                            <a href="#">Suporte</a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </nav>
+        <!--Conteúdo, inclui footer-->
+        <section class="ig-content container">
+            <div class="ig-pagetitle mb-3">
+                <div class="row">
+                    <div class="col-md">
+                        <h2>
+                            Novas adoções
+                        </h2>
+                    </div>
+                    <div class="col-md-auto text-end">
+                        <button class="btn ig-btn-blue dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-book"></i> Listas de manuais adotados
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Escola 1</a></li>
+                            <li><a class="dropdown-item" href="#">Escola 2</a></li>
+                            <li><a class="dropdown-item" href="#">Escola 3</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <a href="javascript:void(0)" class="btn ig-btn-back" title="Voltar">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="#">Início</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            SIME-MEGA
+                        </li>
+                        <li class="breadcrumb-item active">
+                            Novas adoções de manuais
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="ig-accordion accordion accordion-flush" id="igExampleAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="igAccHeader1">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#igAccCont1" aria-expanded="false" aria-controls="igAccCont1">
+                            <span class="badge rounded-pill ig-cycle-01">1.º ciclo</span>
+                        </button>
+                    </h2>
+                    <div id="igAccCont1" class="accordion-collapse collapse" aria-labelledby="igAccHeader1"
+                         data-bs-parent="#igExampleAccordion">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <a class="ig-biglink" href="#">
+                                        <div class="card ig-card card-body">
+                                            <h4>Português</h4>
+                                            <p class="mb-1"><strong>O Mundo das Palavras - Português - 1.º Ano</strong></p>
+                                            <p class="mb-1">
+                                                <span class="me-3"><i class="fas fa-school"></i> Toda a UO</span>
+                                                <span><i class="fas fa-user"></i> 96 alunos</span>
+                                            </p>
+                                            <p class="mb-0">
+                                                <strong>ISBN:</strong> 978-972-0-31725-4
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="igAccHeader2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#igAccCont2" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            <span class="badge rounded-pill ig-cycle-02">2.º ciclo</span>
+                        </button>
+                    </h2>
+                    <div id="igAccCont2" class="accordion-collapse collapse" aria-labelledby="igAccHeader2"
+                         data-bs-parent="#igExampleAccordion">
+                        <div class="accordion-body">Segundo texto deste acordeão.</div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="igAccHeader3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#igAccCont3" aria-expanded="false" aria-controls="flush-collapseThree">
+                            <span class="badge rounded-pill ig-cycle-03">3.º ciclo</span>
+                        </button>
+                    </h2>
+                    <div id="igAccCont3" class="accordion-collapse collapse" aria-labelledby="igAccHeader3"
+                         data-bs-parent="#igExampleAccordion">
+                        <div class="accordion-body">Terceiro texto deste acordeão.</div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="ig-footer">
+                <div class="row">
+                    <div class="col-md ig-footer-logos">
+                        <div class="row g-5">
+                            <div class="col-auto">
+                                <img src="../../../GesEdu/wwwroot/images/footer/logo_igefe_footer.svg"
+                                     alt="IGeFE - Instituto de Gestão Financeira da Educação, I.P."
+                                     title="IGeFE - Instituto de Gestão Financeira da Educação, I.P." />
+                            </div>
+                            <div class="col-auto">
+                                <img src="../../../GesEdu/wwwroot/images/footer/logo_me_footer.svg"
+                                     alt="República Portuguesa - Educação" title="República Portuguesa - Educação" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md ig-copyright-pages">
+                        2023 — Instituto de Gestão Financeira da Educação, I.P.
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </section>
+    <!--MODALS-->
+    <!--Modal 01 - Apreciar manual certificado-->
+    <div class="modal fade ig-modal" id="igModal01" tabindex="-1" aria-labelledby="igModal01Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="igModal01Label">Apreciar manual Entre Palavras 9 - Português 9.º ano</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>Manual a apreciar:</h4>
+                    <div class="ig-card card card-body mb-5">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-md">
+                                <h5>Entre Palavras 9 - Português 9.º ano</h5>
+                                <p class="mb-0">
+                                    <span class="badge rounded-pill ig-blue-badge">
+                                        Certificado
+                                    </span>
+                                    9.º Ano, Português
+                                </p>
+                            </div>
+                            <div class="col-md text-md-end">
+                                <p class="mb-0">Sebenta – Editora e Distribuidora, S.A.</p>
+                                <p class="mb-0"><strong>ISBN:</strong> 978-972-47-4804-7</p>
+                            </div>
+                            <div class="col-md-auto">
+                                <p class="mb-0">€ 12,34</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Apreciação do manual:</h4>
+                    <table class="table ig-grid">
+                        <thead>
+                            <tr>
+                                <th class="k-header">Critério de apreciação</th>
+                                <th class="ig-th-4rem">Muito Bom</th>
+                                <th class="ig-th-4rem">Bom</th>
+                                <th class="ig-th-4rem">Suficiente</th>
+                                <th class="ig-th-4rem">Insuficiente</th>
+                                <th class="ig-th-4rem">Não aplicável</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ol class="ig-bookappreciation-description">
+                                        <li>
+                                            <label class="form-label"><span>1.</span> Organização e Método</label>
+                                            <ol class="ig-bookappreciation-description">
+                                                <li><span>1.1.</span>Apresenta uma organização coerente e funcional.</li>
+                                                <li><span>1.2.</span>Apresenta uma organização adequada aos alunos.</li>
+                                                <li>
+                                                    <span>1.3.</span>Explicita etapas essenciais para a aquisição de conhecimentos e
+                                                    o desenvolvimento de capacidades.
+                                                </li>
+                                                <li><span>1.4.</span>Motiva para o conhecimento.</li>
+                                                <li>
+                                                    <span>1.5.</span>Contempla sugestões de atividades de caráter
+                                                    prático/experimental.
+                                                </li>
+                                                <li><span>1.6.</span>Estimula a autonomia e o sentido crítico.</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <ol class="ig-bookappreciation-description" start="2">
+                                        <li>
+                                            <label class="form-label"><span>2.</span>Informação e Comunicação</label>
+                                            <ol class="ig-bookappreciation-description">
+                                                <li>
+                                                    <span>2.1.</span>Respeita as orientações constantes dos documentos curriculares
+                                                    e outras orientações gerais do Ministério da Educação.
+                                                </li>
+                                                <li>
+                                                    <span>2.2.</span>Tendo em conta as orientações curriculares:
+                                                    <ul>
+                                                        <li><span>•</span>Veicula conhecimento correto;</li>
+                                                        <li><span>•</span>Veicula conhecimento relevante.</li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <span>2.3.</span>Promove a educação para a cidadania, nomeadamente não
+                                                    apresentando discriminações de caráter cultural, étnico, racial, religioso e
+                                                    sexual, e respeitando o princípio da igualdade de género.
+                                                </li>
+                                                <li>
+                                                    <span>2.4.</span>Apresenta uma organização gráfica (¹) que facilita o seu uso.
+                                                </li>
+                                                <li>
+                                                    <span>2.5.</span>Apresenta ilustrações (²) corretas, necessárias e adequadas aos
+                                                    conteúdos e às atividades propostas.
+                                                </li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                    <p class="ig-psmall mb-0">
+                                        (¹) Carateres tipográficos, cores, destaques, espaços,
+                                        títulos, subtítulos, etc;
+                                    </p>
+                                    <p class="ig-psmall mb-0">
+                                        (²) Fotografias, desenhos, gravuras, mapas, gráficos,
+                                        esquemas, etc.
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p2_e1" name="igpoint02" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p2_e1"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p2_e2" name="igpoint02" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p2_e2"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p2_e3" name="igpoint02" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p2_e3"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p2_e4" name="igpoint02" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p2_e4"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p2_e5" name="igpoint02" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p2_e5"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <ol class="ig-bookappreciation-description">
+                                        <li>
+                                            <label class="form-label"><span>3.</span>Características Materiais</label>
+                                            <ol class="ig-bookappreciation-description">
+                                                <li>
+                                                    <span>3.1.</span>Apresenta robustez suficiente para resistir à normal
+                                                    utilização.
+                                                </li>
+                                                <li>
+                                                    <span>3.2.</span>O formato, as dimensões e o peso do manual (ou de cada um dos
+                                                    seus volumes) são adequados ao nível etário do aluno.
+                                                </li>
+                                                <li><span>3.3.</span>Permite a reutilização.</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p3_e1" name="igpoint03" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p3_e1"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p3_e2" name="igpoint03" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p3_e2"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p3_e3" name="igpoint03" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p3_e3"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p3_e4" name="igpoint03" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p3_e4"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p3_e5" name="igpoint03" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p3_e5"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <ol class="ig-bookappreciation-description">
+                                        <li>
+                                            <label class="form-label">
+                                                <span>4.</span>Adequação ao Projeto Educativo de
+                                                Escola
+                                            </label>
+                                            <ol class="ig-bookappreciation-description">
+                                                <li><span>4.1.</span>Adequa-se às características da comunidade escolar.</li>
+                                                <li><span>4.2.</span>Revela-se adequado ao contexto educativo.</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p4_e1" name="igpoint04" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p4_e1"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p4_e2" name="igpoint04" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p4_e2"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p4_e3" name="igpoint04" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p4_e3"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p4_e4" name="igpoint04" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p4_e4"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" id="ig_ap_p4_e5" name="igpoint04" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p4_e5"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
+                    <button type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Apreciar manual</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal 02 - Apreciar manual certificado-->
+    <div class="modal fade ig-modal" id="igModal02" tabindex="-1" aria-labelledby="igModal02Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="igModal02Label">Apreciar manual Entre Palavras 9 - Português 9.º ano</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>Manual a apreciar:</h4>
+                    <div class="ig-card card card-body mb-5">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-md">
+                                <h5>Entre Palavras 9 - Português 9.º ano</h5>
+                                <p class="mb-0">
+                                    <span class="badge rounded-pill ig-blue-badge">
+                                        Não certificado
+                                    </span>
+                                    9.º Ano, Português
+                                </p>
+                            </div>
+                            <div class="col-md text-md-end">
+                                <p class="mb-0">Sebenta – Editora e Distribuidora, S.A.</p>
+                                <p class="mb-0"><strong>ISBN:</strong> 978-972-47-4804-7</p>
+                            </div>
+                            <div class="col-md-auto">
+                                <p class="mb-0">€ 12,34</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Apreciação do manual:</h4>
+                    <div class="ig-tabs">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#ig_crit_01">
+                                    <div class="ig-2line-tabheader">
+                                        <p class="mb-1"> 1. Organização e Método</p>
+                                        <span class="badge ig-badge-success">
+                                            <i class="fas fa-check"></i>
+                                            Apreciado
+                                        </span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#ig_crit_02">
+                                    <div class="ig-2line-tabheader">
+                                        <p class="mb-1">
+                                            2. Informação e Comunicação
+                                        </p>
+                                        <span class="badge ig-badge-warning">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            Por apreciar
+                                        </span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#ig_crit_03">
+                                    <div class="ig-2line-tabheader">
+                                        <p class="mb-1">
+                                            3. Características Materiais
+                                        </p>
+                                        <span class="badge ig-badge-warning">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            Por apreciar
+                                        </span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#ig_crit_04">
+                                    <div class="ig-2line-tabheader">
+                                        <p class="mb-1">
+                                            4. Adequação ao Projeto Educativo de Escola
+                                        </p>
+                                        <span class="badge ig-badge-warning">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            Por apreciar
+                                        </span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content card ig-card">
+                            <div class="tab-pane active card-body" id="ig_crit_01">
+                                <table class="table ig-grid">
+                                    <thead>
+                                        <tr>
+                                            <th class="k-header">Critério de apreciação</th>
+                                            <th class="ig-th-4rem">Muito Bom</th>
+                                            <th class="ig-th-4rem">Bom</th>
+                                            <th class="ig-th-4rem">Suficiente</th>
+                                            <th class="ig-th-4rem">Insuficiente</th>
+                                            <th class="ig-th-4rem">Não aplicável</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">1.1 Apresenta uma organização coerente e funcional.</p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">1.2 Apresenta uma organização adequada aos alunos.</p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">1.3. Explicita etapas essenciais para a aquisição de conhecimentos e o desenvolvimento de capacidades.</p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">1.4. Motiva para o conhecimento.</p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">1.5. Contempla sugestões de atividades de caráter prático/experimental.</p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">1.6. Estimula a autonomia e o sentido crítico.</p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane card-body" id="ig_crit_02">
+                                <table class="table ig-grid">
+                                    <thead>
+                                        <tr>
+                                            <th class="k-header">Critério de apreciação</th>
+                                            <th class="ig-th-4rem">Muito Bom</th>
+                                            <th class="ig-th-4rem">Bom</th>
+                                            <th class="ig-th-4rem">Suficiente</th>
+                                            <th class="ig-th-4rem">Insuficiente</th>
+                                            <th class="ig-th-4rem">Não aplicável</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">2.1. Respeita as orientações constantes dos documentos curriculares e outras orientações gerais do Ministério da Educação.</p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">
+                                                    2.2.Tendo em conta as orientações curriculares:
+
+                                                </p>
+                                                <ul class="ig-psmall mb-0">
+                                                    <li>Veicula conhecimento correto;</li>
+                                                    <li>Veicula conhecimento relevante.</li>
+                                                </ul>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">2.3. Promove a educação para a cidadania, nomeadamente não apresentando discriminações de caráter cultural, étnico, racial, religioso e sexual, e respeitando o princípio da igualdade de género.</p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">2.4. Apresenta uma organização gráfica (¹) que facilita o seu uso.</p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">2.5.Apresenta ilustrações (²) corretas, necessárias e adequadas aos conteúdos e às atividades propostas.</p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane card-body" id="ig_crit_03">
+                                <table class="table ig-grid">
+                                    <thead>
+                                        <tr>
+                                            <th class="k-header">Critério de apreciação</th>
+                                            <th class="ig-th-4rem">Muito Bom</th>
+                                            <th class="ig-th-4rem">Bom</th>
+                                            <th class="ig-th-4rem">Suficiente</th>
+                                            <th class="ig-th-4rem">Insuficiente</th>
+                                            <th class="ig-th-4rem">Não aplicável</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">3.1. Apresenta robustez suficiente para resistir à normal utilização.</p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">
+                                                    3.2. O formato, as dimensões e o peso do manual (ou de cada um dos seus volumes) são adequados ao nível etário do aluno.
+                                                </p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">3.3. Permite a reutilização.</p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane card-body" id="ig_crit_04">
+                                <table class="table ig-grid">
+                                    <thead>
+                                        <tr>
+                                            <th class="k-header">Critério de apreciação</th>
+                                            <th class="ig-th-4rem">Muito Bom</th>
+                                            <th class="ig-th-4rem">Bom</th>
+                                            <th class="ig-th-4rem">Suficiente</th>
+                                            <th class="ig-th-4rem">Insuficiente</th>
+                                            <th class="ig-th-4rem">Não aplicável</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">4.1. Adequa-se às características da comunidade escolar.</p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p class="ig-psmall mb-0">
+                                                    4.2. Revela-se adequado ao contexto educativo.
+                                                </p>
+                                            </td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e1" name="igpoint01" type="radio" value="1"><label class="form-check-label" title="Muito Bom" for="ig_ap_p1_e1"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e2" name="igpoint01" type="radio" value="2"><label class="form-check-label" title="Bom" for="ig_ap_p1_e2"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e3" name="igpoint01" type="radio" value="3"><label class="form-check-label" title="Suficiente" for="ig_ap_p1_e3"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e4" name="igpoint01" type="radio" value="4"><label class="form-check-label" title="Insuficiente" for="ig_ap_p1_e4"></label></div></td>
+                                            <td><div class="form-check ig-check d-flex justify-content-center"><input class="form-check-input" id="ig_ap_p1_e5" name="igpoint01" type="radio" value="5"><label class="form-check-label" title="Não aplicável" for="ig_ap_p1_e5"></label></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
+                    <button type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Apreciar manual</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../GesEdu/wwwroot/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

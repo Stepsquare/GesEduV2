@@ -68,7 +68,6 @@
                     <p><a href="common.html">Elementos comuns</a></p>
                     <p><a href="forms.html">Formulários</a></p>
                     <p><a href="buttons.html">Botões</a></p>
-                    <p><a href="mega.html">Programa MEGA</a></p>
                     <p><a href="frameworks.html">Frameworks do projeto</a></p>
                     <p><a href="uxwriting.html">Textos para o GesEdu (UX Writing)</a></p>
                 </div>
@@ -514,7 +513,8 @@
                                 </div>
                             </div>
                         </div>
-                        <h3 id="igMCModulesSearch">Painel de pesquisa</h3>
+
+                        <h3 id="igMCModulesSearch">Painel de pesquisa simples</h3>
                         <p>Permite pesquisar dados na aplicação.</p>
                         <h4>Código de exemplo:</h4>
                         <div class="mb-3">
@@ -562,6 +562,140 @@
                                         <a href="javascript:void(0)" class="btn ig-btn-green btn-block">
                                             <i class="fas fa-search"></i> Pesquisar
                                         </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 id="igMCModulesMSearch">Painel de pesquisa (mais de 1 linha de filtros)</h3>
+                        <p>Permite pesquisar dados na aplicação, focando o utilizador em filtros principais, não deixando de disponibilizar todos os restantes filtros.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="10" disabled>
+<div class="card ig-card  mb-3">
+                            <div class="card-body">
+                            <div class="row">
+                            <div class="col-xl-3 mb-3">
+                            <label class="form-label">Ano letivo:</label>
+                            <select class="form-select">
+                            <option>2024/2025</option>
+                </select>
+            </div>
+                            <div class="col-xl-6 mb-3">
+                            <label class="form-label">Título, ISBN ou editor do manual:</label>
+                            <input type="text" class="form-control" />
+            </div>
+                            <div class="col-xl-3 mb-3">
+                            <label class="form-label">Estado:</label>
+                            <select class="form-select">
+                            <option>Todos</option>
+                            <option>Por apreciar</option>
+                            <option>Apreciado</option>
+                </select>
+            </div>
+        </div>
+                            <div class="collapse" id="collapseMFs" style="">
+                            <div class="row">
+                            <div class="col-xl-3 mb-3">
+                            <label class="form-label">Certificado:</label>
+                            <select class="form-select">
+                            <option>Todos</option>
+                            <option>Certificado</option>
+                            <option>Não certificado</option>
+                    </select>
+                </div>
+                            <div class="col-xl-3 mb-3">
+                            <label class="form-label">Ano de escolaridade:</label>
+                            <select class="form-select">
+                            <option>5.º ano</option>
+                    </select>
+                </div>
+                            <div class="col-xl-6 mb-3">
+                            <label class="form-label">Disciplina:</label>
+                            <select class="form-select">
+                            <option>Português</option>
+                            <option>Matemática</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+                            <div class="row">
+                            <div class="col">
+                            <a class="ig-collapse-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMFs" aria-expanded="false" aria-controls="collapseMFs">
+                            <i class="fas fa-plus"></i> Mais filtros
+                            <i class="fas fa-caret-up"></i>
+                </a>
+            </div>
+                            <div class="col-auto">
+                            <button class="btn ig-btn-green">
+                            <i class="fas fa-search"></i> Pesquisar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+                    </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="mb-5">
+                            <div class="card ig-card  mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-xl-3 mb-3">
+                                            <label class="form-label">Ano letivo:</label>
+                                            <select class="form-select">
+                                                <option>2024/2025</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xl-6 mb-3">
+                                            <label class="form-label">Título, ISBN ou editor do manual:</label>
+                                            <input type="text" class="form-control" />
+                                        </div>
+                                        <div class="col-xl-3 mb-3">
+                                            <label class="form-label">Estado:</label>
+                                            <select class="form-select">
+                                                <option>Todos</option>
+                                                <option>Por apreciar</option>
+                                                <option>Apreciado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="collapse" id="collapseMFs" style="">
+                                        <div class="row">
+                                            <div class="col-xl-3 mb-3">
+                                                <label class="form-label">Certificado:</label>
+                                                <select class="form-select">
+                                                    <option>Todos</option>
+                                                    <option>Certificado</option>
+                                                    <option>Não certificado</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-xl-3 mb-3">
+                                                <label class="form-label">Ano de escolaridade:</label>
+                                                <select class="form-select">
+                                                    <option>5.º ano</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-xl-6 mb-3">
+                                                <label class="form-label">Disciplina:</label>
+                                                <select class="form-select">
+                                                    <option>Português</option>
+                                                    <option>Matemática</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <a class="ig-collapse-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMFs" aria-expanded="false" aria-controls="collapseMFs">
+                                                <i class="fas fa-plus"></i> Mais filtros
+                                                <i class="fas fa-caret-up"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button class="btn ig-btn-green">
+                                                <i class="fas fa-search"></i> Pesquisar
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -763,6 +897,121 @@
                                 </div>
                                 <div class="tab-pane card-body" id="ig_extab_02">Conteúdo do segundo separador</div>
                                 <div class="tab-pane card-body" id="ig_extab_03">Conteúdo do terceiro separador</div>
+                            </div>
+                        </div>
+                        <h3 id="igMCModulesTabs2L">Separadores (headers com +2 linhas)</h3>
+                        <p class="mb-0">Destinam-se a dividir diversos tipos de conteúdo no contexto de uma página.</p>
+                        <p>Os headers destes separadores poderão ter vários tipos de conteúdo, como estados.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="10" disabled>
+<div class="ig-tabs">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="#ig_sep_01" aria-selected="false" role="tab" tabindex="-1">
+                <div class="ig-2line-tabheader">
+                    <p class="mb-1"> Conteúdo do 1º Separador</p>
+                    <span class="badge ig-badge-success">
+                        <i class="fas fa-check"></i>
+                        Estado
+                    </span>
+                </div>
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-bs-toggle="tab" href="#ig_sep_02" aria-selected="true" role="tab">
+                <div class="ig-2line-tabheader">
+                    <p class="mb-1">
+                        Conteúdo do 2º Separador
+                    </p>
+                    <span class="badge ig-badge-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Estado
+                    </span>
+                </div>
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="#ig_sep_03" aria-selected="false" role="tab" tabindex="-1">
+                <div class="ig-2line-tabheader">
+                    <p class="mb-1">
+                        Conteúdo do 3º Separador
+                    </p>
+                    <span class="badge ig-badge-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Estado
+                    </span>
+                </div>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content card ig-card">
+        <div class="tab-pane card-body" id="ig_sep_01" role="tabpanel">
+            <p>Conteúdo do 1º Separador</p>
+        </div>
+        <div class="tab-pane card-body active show" id="ig_sep_02" role="tabpanel">
+            <p>2º Separador</p>
+        </div>
+        <div class="tab-pane card-body" id="ig_sep_03" role="tabpanel">
+            <p>Conteúdo do 3º Separador</p>
+        </div>
+    </div>
+</div>
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="mb-5">
+                            <div class="ig-tabs">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#ig_sep_01" aria-selected="false" role="tab" tabindex="-1">
+                                            <div class="ig-2line-tabheader">
+                                                <p class="mb-1"> Conteúdo do 1º Separador</p>
+                                                <span class="badge ig-badge-success">
+                                                    <i class="fas fa-check"></i>
+                                                    Estado
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" data-bs-toggle="tab" href="#ig_sep_02" aria-selected="true" role="tab">
+                                            <div class="ig-2line-tabheader">
+                                                <p class="mb-1">
+                                                    Conteúdo do 2º Separador
+                                                </p>
+                                                <span class="badge ig-badge-warning">
+                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                    Estado
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#ig_sep_03" aria-selected="false" role="tab" tabindex="-1">
+                                            <div class="ig-2line-tabheader">
+                                                <p class="mb-1">
+                                                    Conteúdo do 3º Separador
+                                                </p>
+                                                <span class="badge ig-badge-warning">
+                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                    Estado
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content card ig-card">
+                                    <div class="tab-pane card-body" id="ig_sep_01" role="tabpanel">
+                                        <p>Conteúdo do 1º Separador</p>
+                                    </div>
+                                    <div class="tab-pane card-body active show" id="ig_sep_02" role="tabpanel">
+                                        <p>Conteúdo do 2º Separador</p>
+                                    </div>
+                                    <div class="tab-pane card-body" id="ig_sep_03" role="tabpanel">
+                                        <p>Conteúdo do 3º Separador</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <h3 id="igMCModulesAccordions">Acordeões</h3>
@@ -1076,110 +1325,110 @@
                         <h4>Código de exemplo:</h4>
                         <textarea class="form-control ig-code mb-3" rows="9" disabled>
 <div class="card ig-card ig-itemlist">
-    <div class="list-group list-group-flush">
-        <div class="list-group-item">
-            <div class="row">
-                <div class="col-md">
-                    <h5><a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a></h5>
-                    <p class="mb-0">
+                        <div class="list-group list-group-flush">
+                        <div class="list-group-item">
+                        <div class="row">
+                        <div class="col-md">
+                        <h5><a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a></h5>
+                        <p class="mb-0">
                         <span><strong>Ano económico:</strong> 2022</span>
                         <span><strong>Mês:</strong> 3</span>
                     </p>
                 </div>
-                <div class="col-md-auto text-end">
-                    <h5>€ 19.085,90</h5>
-                    <p class="mb-0">
+                        <div class="col-md-auto text-end">
+                        <h5>€ 19.085,90</h5>
+                        <p class="mb-0">
                         <span><strong>FOFI:</strong> 319</span>
                         <span><strong>Medida(s):</strong> 019</span>
                         <span class="badge ig-badge-success"><i class="far fa-file-alt"></i> Válida</span>
                     </p>
                 </div>
-                <div class="col-md-auto d-flex align-items-center">
-                    <a href="javascript:void(0)" class="btn ig-btn-blue" title="Ver requisição"><i class="far fa-file-alt"></i></a>
+                        <div class="col-md-auto d-flex align-items-center">
+                        <a href="javascript:void(0)" class="btn ig-btn-blue" title="Ver requisição"><i class="far fa-file-alt"></i></a>
                 </div>
             </div>
         </div>
-        <div class="list-group-item">
-            <div class="row">
-                <div class="col-md">
-                    <h5><a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a></h5>
-                    <p class="mb-0">
+                        <div class="list-group-item">
+                        <div class="row">
+                        <div class="col-md">
+                        <h5><a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a></h5>
+                        <p class="mb-0">
                         <span><strong>Ano económico:</strong> 2022</span>
                         <span><strong>Mês:</strong> 3</span>
                     </p>
                 </div>
-                <div class="col-md-auto text-end">
-                    <h5>€ 19.085,90</h5>
-                    <p class="mb-0">
+                        <div class="col-md-auto text-end">
+                        <h5>€ 19.085,90</h5>
+                        <p class="mb-0">
                         <span><strong>FOFI:</strong> 319</span>
                         <span><strong>Medida(s):</strong> 019</span>
                         <span class="badge ig-badge-error"><i class="far fa-file-alt"></i> Inválida</span>
                     </p>
                 </div>
-                <div class="col-md-auto d-flex align-items-center">
-                    <a href="javascript:void(0)" class="btn ig-btn-blue" title="Ver requisição"><i class="far fa-file-alt"></i></a>
+                        <div class="col-md-auto d-flex align-items-center">
+                        <a href="javascript:void(0)" class="btn ig-btn-blue" title="Ver requisição"><i class="far fa-file-alt"></i></a>
                 </div>
             </div>
         </div>
-        <div class="list-group-item">
-            <div class="row">
-                <div class="col-md">
-                    <h5><a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a></h5>
-                    <p class="mb-0">
+                        <div class="list-group-item">
+                        <div class="row">
+                        <div class="col-md">
+                        <h5><a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a></h5>
+                        <p class="mb-0">
                         <span><strong>Ano económico:</strong> 2022</span>
                         <span><strong>Mês:</strong> 3</span>
                     </p>
                 </div>
-                <div class="col-md-auto text-end">
-                    <h5>€ 19.085,90</h5>
-                    <p class="mb-0">
+                        <div class="col-md-auto text-end">
+                        <h5>€ 19.085,90</h5>
+                        <p class="mb-0">
                         <span><strong>FOFI:</strong> 319</span>
                         <span><strong>Medida(s):</strong> 019</span>
                         <span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i> Sem pagamento emitido</span>
                     </p>
                 </div>
-                <div class="col-md-auto d-flex align-items-center">
-                    <a href="javascript:void(0)" class="btn ig-btn-blue" title="Ver requisição"><i class="far fa-file-alt"></i></a>
+                        <div class="col-md-auto d-flex align-items-center">
+                        <a href="javascript:void(0)" class="btn ig-btn-blue" title="Ver requisição"><i class="far fa-file-alt"></i></a>
                 </div>
             </div>
         </div>
-        <div class="list-group-item">
-            <div class="row">
-                <div class="col-md">
-                    <h5><a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a></h5>
-                    <p class="mb-0">
+                        <div class="list-group-item">
+                        <div class="row">
+                        <div class="col-md">
+                        <h5><a href="#">Requisição de fundos n.º 12/2022 - Funcionamento</a></h5>
+                        <p class="mb-0">
                         <span><strong>Ano económico:</strong> 2022</span>
                         <span><strong>Mês:</strong> 3</span>
                     </p>
                 </div>
-                <div class="col-md-auto text-end">
-                    <h5>€ 19.085,90</h5>
-                    <p class="mb-0">
+                        <div class="col-md-auto text-end">
+                        <h5>€ 19.085,90</h5>
+                        <p class="mb-0">
                         <span><strong>FOFI:</strong> 319</span>
                         <span><strong>Medida(s):</strong> 019</span>
                         <span class="badge ig-badge-success"><i class="far fa-file-alt"></i> Válida</span>
                     </p>
                 </div>
-                <div class="col-md-auto d-flex align-items-center">
-                    <a href="javascript:void(0)" class="btn ig-btn-blue" title="Ver requisição"><i class="far fa-file-alt"></i></a>
+                        <div class="col-md-auto d-flex align-items-center">
+                        <a href="javascript:void(0)" class="btn ig-btn-blue" title="Ver requisição"><i class="far fa-file-alt"></i></a>
                 </div>
             </div>
         </div>
-        <div class="list-group-item ig-item-pagination">
-            <div class="row ig-pagination">
-                <div class="col-md align-middle">
-                    <p class="ig-grid-record">
+                        <div class="list-group-item ig-item-pagination">
+                        <div class="row ig-pagination">
+                        <div class="col-md align-middle">
+                        <p class="ig-grid-record">
                         1 - 3 de 3 registos
                     </p>
                 </div>
-                <div class="col-md-auto">
-                    <nav aria-label="Page navigation example">
+                        <div class="col-md-auto">
+                        <nav aria-label="Page navigation example">
                         <ul class="pagination mb-0 float-end">
-                            <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Anterior"><i class="fas fa-arrow-left"></i></a></li>
-                            <li class="page-item"><a class="page-link active" href="javascript:void(0);">1</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Seguinte"><i class="fas fa-arrow-right"></i></a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Anterior"><i class="fas fa-arrow-left"></i></a></li>
+                        <li class="page-item"><a class="page-link active" href="javascript:void(0);">1</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Seguinte"><i class="fas fa-arrow-right"></i></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -1358,10 +1607,10 @@
                         <h4>Código de exemplo:</h4>
                         <textarea class="form-control ig-code mb-3" rows="4" disabled>
 <div class="card ig-card ig-loadable-div">
-    <div class="ig-load">
-        <span class="spinner-grow" role="status"></span> A carregar...
+                        <div class="ig-load">
+                        <span class="spinner-grow" role="status"></span> A carregar...
     </div>
-    <div class="card-body">
+                        <div class="card-body">
         Algum texto aqui...
     </div>
 </div>
@@ -1608,6 +1857,18 @@
                         <div class="card ig-card mb-5 card-body">
                             <p class="mb-0">Algum texto aqui...</p>
                         </div>
+                        <h3 id="igMTSText">Texto secundário</h3>
+                        <p>Deverão ser usados parágrafos em HTML com a classe .ig-psmall para este tipo de texto.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="2" disabled>
+<p class="ig-psmall">Algum texto aqui...</p>
+                    </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card mb-5 card-body">
+                            <p class="ig-psmall mb-0">Algum texto aqui...</p>
+                        </div>
                         <h2 id="igMColors">Palete de cores</h2>
                         <p>Cores, variáveis e objetivos de utilização das cores.</p>
                         <h3 id="igMCBlue">Tons de azul</h3>
@@ -1767,18 +2028,20 @@
                             <div class="ps-4">
                                 <p><a href="#igMCModulesTBar">Barra de título</a></p>
                                 <p><a href="#igMCModulesAlerts">Alertas</a>
-                                    <p><a href="#igMCModulesPStatistics">Painel de estatísticas</a></p>
-                                    <p><a href="#igMCModulesPAlerts">Painel de alertas</a></p>
-                                    <p><a href="#igMCModulesPErrors">Painel de erros</a></p>
-                                    <p><a href="#igMCModulesToasts">Toasts de sucesso/erro</a></p>
-                                    <p><a href="#igMCModulesCWindow">Janela de confirmação</a></p>
-                                    <p><a href="#igMCModulesEWindow">Janela de erros</a></p>
-                                    <p><a href="#igMCModulesSearch">Painel de pesquisa</a></p>
-                                    <p><a href="#igMCModulesNews">Módulo de notícias</a></p>
-                                    <p><a href="#igMCModulesDocuments">Lista de documentos</a></p>
-                                    <p><a href="#igMCModulesTabs">Separadores</a></p>
-                                    <p><a href="#igMCModulesAccordions">Acordeões</a></p>
-                                    <p><a href="#igMCModulesModals">Janela de detalhe (Modal)</a></p>
+                                <p><a href="#igMCModulesPStatistics">Painel de estatísticas</a></p>
+                                <p><a href="#igMCModulesPAlerts">Painel de alertas</a></p>
+                                <p><a href="#igMCModulesPErrors">Painel de erros</a></p>
+                                <p><a href="#igMCModulesToasts">Toasts de sucesso/erro</a></p>
+                                <p><a href="#igMCModulesCWindow">Janela de confirmação</a></p>
+                                <p><a href="#igMCModulesEWindow">Janela de erros</a></p>
+                                <p><a href="#igMCModulesSearch">Painel de pesquisa</a></p>
+                                <p><a href="#igMCModulesMSearch">Painel de pesquisa (mais de uma linha de filtros)</a></p>
+                                <p><a href="#igMCModulesNews">Módulo de notícias</a></p>
+                                <p><a href="#igMCModulesDocuments">Lista de documentos</a></p>
+                                <p><a href="#igMCModulesTabs">Separadores</a></p>
+                                <p><a href="#igMCModulesTabs2L">Separadores (headers com +2 linhas)</a></p>
+                                <p><a href="#igMCModulesAccordions">Acordeões</a></p>
+                                <p><a href="#igMCModulesModals">Janela de detalhe (Modal)</a></p>
                             </div>
                             <p><a href="#igMGrids">Grids</a></p>
                             <p><a href="#igMListagens">Listagens</a></p>
@@ -1798,6 +2061,7 @@
                                 <p><a href="#igMTTypeface">Tipo de letra utilizado no GesEdu</a></p>
                                 <p><a href="#igMTOverline">Títulos de overline</a></p>
                                 <p><a href="#igMTText">Texto corrente</a></p>
+                                <p><a href="#igMTSText">Texto secundário</a></p>
                             </div>
                             <p><a href="#igMColors">Palete de cores</a></p>
                             <div class="ps-4">
