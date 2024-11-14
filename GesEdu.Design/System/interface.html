@@ -906,54 +906,54 @@
                         <div class="mb-3">
                             <textarea class="form-control ig-code" rows="10" disabled>
 <div class="ig-tabs">
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" data-bs-toggle="tab" href="#ig_sep_01" aria-selected="false" role="tab" tabindex="-1">
-                <div class="ig-2line-tabheader">
-                    <p class="mb-1"> Conteúdo do 1º Separador</p>
-                    <span class="badge ig-badge-success">
-                        <i class="fas fa-check"></i>
+                            <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#ig_sep_01" aria-selected="false" role="tab" tabindex="-1">
+                            <div class="ig-2line-tabheader">
+                            <p class="mb-1"> Conteúdo do 1º Separador</p>
+                            <span class="badge ig-badge-success">
+                            <i class="fas fa-check"></i>
                         Estado
                     </span>
                 </div>
             </a>
         </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link active" data-bs-toggle="tab" href="#ig_sep_02" aria-selected="true" role="tab">
-                <div class="ig-2line-tabheader">
-                    <p class="mb-1">
+                            <li class="nav-item" role="presentation">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#ig_sep_02" aria-selected="true" role="tab">
+                            <div class="ig-2line-tabheader">
+                            <p class="mb-1">
                         Conteúdo do 2º Separador
                     </p>
-                    <span class="badge ig-badge-warning">
-                        <i class="fas fa-exclamation-triangle"></i>
+                            <span class="badge ig-badge-warning">
+                            <i class="fas fa-exclamation-triangle"></i>
                         Estado
                     </span>
                 </div>
             </a>
         </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" data-bs-toggle="tab" href="#ig_sep_03" aria-selected="false" role="tab" tabindex="-1">
-                <div class="ig-2line-tabheader">
-                    <p class="mb-1">
+                            <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#ig_sep_03" aria-selected="false" role="tab" tabindex="-1">
+                            <div class="ig-2line-tabheader">
+                            <p class="mb-1">
                         Conteúdo do 3º Separador
                     </p>
-                    <span class="badge ig-badge-warning">
-                        <i class="fas fa-exclamation-triangle"></i>
+                            <span class="badge ig-badge-warning">
+                            <i class="fas fa-exclamation-triangle"></i>
                         Estado
                     </span>
                 </div>
             </a>
         </li>
     </ul>
-    <div class="tab-content card ig-card">
-        <div class="tab-pane card-body" id="ig_sep_01" role="tabpanel">
-            <p>Conteúdo do 1º Separador</p>
+                            <div class="tab-content card ig-card">
+                            <div class="tab-pane card-body" id="ig_sep_01" role="tabpanel">
+                            <p>Conteúdo do 1º Separador</p>
         </div>
-        <div class="tab-pane card-body active show" id="ig_sep_02" role="tabpanel">
-            <p>2º Separador</p>
+                            <div class="tab-pane card-body active show" id="ig_sep_02" role="tabpanel">
+                            <p>2º Separador</p>
         </div>
-        <div class="tab-pane card-body" id="ig_sep_03" role="tabpanel">
-            <p>Conteúdo do 3º Separador</p>
+                            <div class="tab-pane card-body" id="ig_sep_03" role="tabpanel">
+                            <p>Conteúdo do 3º Separador</p>
         </div>
     </div>
 </div>
@@ -1636,7 +1636,36 @@
     </div>
 </body>
                 </textarea>
-                        <h2>Elemento sem resultados</h2>
+
+                        <h2 id="igWizard">Wizard (divisão por passos)</h2>
+                        <p>Permite dividir um formulário por passos de forma clara.</p>
+                        <h4>Código de exemplo:</h4>
+                        <textarea class="form-control ig-code mb-3" rows="6" disabled>
+<div class="row mb-3">
+    <div class="col-auto ig-step ig-stepactive">
+        <span class="ig-stepnum">1</span>
+        <span class="ig-stepname">Escolha de escolas</span>
+    </div>
+    <div class="col-auto ig-step">
+        <span class="ig-stepnum">2</span>
+        <span class="ig-stepname">Escolha do manual</span>
+    </div>
+</div>
+                </textarea>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+                            <div class="row">
+                                <div class="col-auto ig-step ig-stepactive">
+                                    <span class="ig-stepnum">1</span>
+                                    <span class="ig-stepname">Escolha de escolas</span>
+                                </div>
+                                <div class="col-auto ig-step">
+                                    <span class="ig-stepnum">2</span>
+                                    <span class="ig-stepname">Escolha do manual</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 id="igNResults">Elemento sem resultados</h2>
                         <p>Têm como objetivo mostrar ao utlizador que não existem resultados para uma pesquisa.</p>
                         <h4>Código de exemplo:</h4>
                         <textarea class="form-control ig-code mb-3" rows="6" disabled>
@@ -2051,6 +2080,8 @@
                                 <p><a href="#igMLDiv">Loader em divs / grids</a></p>
                                 <p><a href="#igMLPage">Loader a bloquear a página</a></p>
                             </div>
+                            <p><a href="#igWizard">Wizard (divisão por passos)</a></p>
+                            <p><a href="#igNResults">Elemento sem resultados</a></p>
                             <p><a href="#igMIcons">Iconografia</a></p>
                             <div class="ps-4">
                                 <p><a href="#igMIMenu">Ícones do menu lateral </a> <span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i> Aguarda levantamento da aplicação</span></p>

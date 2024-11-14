@@ -242,12 +242,9 @@
                 </div>
                 <div class="tab-pane fade" id="ig_budget_tabmenu" role="tabpanel" aria-labelledby="ig_budget_tab"
                      tabindex="0">
-
-
                 </div>
                 <div class="tab-pane fade" id="ig_profit_tabmenu" role="tabpanel" aria-labelledby="ig_profit_tab"
                      tabindex="0">
-
                 </div>
                 <div id="ig_mega_tabmenu" class="tab-pane fade" role="tabpanel" aria-labelledby="v-pills-settings-tab"
                      tabindex="0">
@@ -331,61 +328,64 @@
                     </ol>
                 </div>
             </div>
-            <div class="ig-accordion accordion accordion-flush" id="igExampleAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="igAccHeader1">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#igAccCont1" aria-expanded="false" aria-controls="igAccCont1">
-                            <span class="badge rounded-pill ig-cycle-01">1.º ciclo</span>
-                        </button>
-                    </h2>
-                    <div id="igAccCont1" class="accordion-collapse collapse" aria-labelledby="igAccHeader1"
-                         data-bs-parent="#igExampleAccordion">
-                        <div class="accordion-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <a class="ig-biglink" href="#">
-                                        <div class="card ig-card card-body">
-                                            <h4>Português</h4>
-                                            <p class="mb-1"><strong>O Mundo das Palavras - Português - 1.º Ano</strong></p>
-                                            <p class="mb-1">
-                                                <span class="me-3"><i class="fas fa-school"></i> Toda a UO</span>
-                                                <span><i class="fas fa-user"></i> 96 alunos</span>
-                                            </p>
-                                            <p class="mb-0">
-                                                <strong>ISBN:</strong> 978-972-0-31725-4
-                                            </p>
-                                        </div>
-                                    </a>
-                                </div>
+            <div class="ig-tabs">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#ig_ctab_01"> <span class="badge rounded-pill ig-cycle-01">1.º ciclo</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#ig_ctab_02"> <span class="badge rounded-pill ig-cycle-02">2.º ciclo</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#ig_ctab_03"> <span class="badge rounded-pill ig-cycle-03">3.º ciclo</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#ig_ctab_04"> <span class="badge rounded-pill ig-cycle-se">Secundário</span></a>
+                    </li>
+                </ul>
+                <div class="tab-content card ig-card">
+                    <div class="tab-pane active card-body" id="ig_ctab_01">
+                        <h4 class="mt-3">1.º ano</h4>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a class="ig-biglink" href="javascript:void(0)" title="Ver manuais adotados" data-bs-toggle="modal" data-bs-target="#igModal05">
+                                    <div class="card ig-card card-body">
+                                        <h4>Português</h4>
+                                        <p class="mb-1"><strong>O Mundo das Palavras - Português - 1.º Ano</strong></p>
+                                        <p class="mb-1">
+                                            <span class="me-3"><i class="fas fa-school"></i> Toda a UO</span>
+                                            <span><i class="fas fa-user"></i> 96 alunos</span>
+                                        </p>
+                                        <p class="mb-0">
+                                            <strong>ISBN:</strong> 978-972-0-31725-4
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
-                           
+                            <div class="col-md-4">
+                                <a class="ig-biglink" href="javascript:void(0)" title="Adotar manual" data-bs-toggle="modal" data-bs-target="#igModal01">
+                                    <div class="card ig-card card-body">
+                                        <h4><span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i> Matemática</span></h4>
+                                        <p class="mb-0"><strong>Sem manual adotado</strong></p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a class="ig-biglink" href="javascript:void(0)" title="Ver manuais adotados" data-bs-toggle="modal" data-bs-target="#igModal05">
+                                    <div class="card ig-card card-body">
+                                        <h4>Português</h4>
+                                        <p class="mb-1"><strong>2 manuais adotados</strong></p>
+                                        <p class="mb-1">
+                                            <i class="fas fa-user"></i> 96 alunos
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="igAccHeader2">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#igAccCont2" aria-expanded="false" aria-controls="flush-collapseTwo">
-                            <span class="badge rounded-pill ig-cycle-02">2.º ciclo</span>
-                        </button>
-                    </h2>
-                    <div id="igAccCont2" class="accordion-collapse collapse" aria-labelledby="igAccHeader2"
-                         data-bs-parent="#igExampleAccordion">
-                        <div class="accordion-body">Segundo texto deste acordeão.</div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="igAccHeader3">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#igAccCont3" aria-expanded="false" aria-controls="flush-collapseThree">
-                            <span class="badge rounded-pill ig-cycle-03">3.º ciclo</span>
-                        </button>
-                    </h2>
-                    <div id="igAccCont3" class="accordion-collapse collapse" aria-labelledby="igAccHeader3"
-                         data-bs-parent="#igExampleAccordion">
-                        <div class="accordion-body">Terceiro texto deste acordeão.</div>
-                    </div>
+                    <div class="tab-pane card-body" id="ig_ctab_02">Conteúdo do segundo separador</div>
+                    <div class="tab-pane card-body" id="ig_ctab_03">Conteúdo do terceiro separador</div>
+                    <div class="tab-pane card-body" id="ig_ctab_04">Conteúdo do terceiro separador</div>
                 </div>
             </div>
 
@@ -412,16 +412,215 @@
         </section>
     </section>
     <!--MODALS-->
-    <!--Modal 01 - Apreciar manual certificado-->
+    <!--MODALS-->
+    <!--Modal 01 - Nova adoção - passo 1-->
     <div class="modal fade ig-modal" id="igModal01" tabindex="-1" aria-labelledby="igModal01Label" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="igModal01Label">Apreciar manual Entre Palavras 9 - Português 9.º ano</h5>
+                    <h5 class="modal-title" id="igModal01Label">Adotar manual - Português (1.º ano)</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h4>Manual a apreciar:</h4>
+                    <div class="row mb-3">
+                        <div class="col-auto ig-step ig-stepactive">
+                            <span class="ig-stepnum">1</span>
+                            <span class="ig-stepname">Escolha de escolas</span>
+                        </div>
+                        <div class="col-auto ig-step">
+                            <span class="ig-stepnum">2</span>
+                            <span class="ig-stepname">Escolha do manual</span>
+                        </div>
+                        <div class="col-auto ig-step">
+                            <span class="ig-stepnum">3</span>
+                            <span class="ig-stepname">Apreciação do manual</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Escola(s) onde o manual será adotado:</label>
+                        <div class="form-check ig-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                   id="igRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Toda a unidade orgânica
+                            </label>
+                        </div>
+                        <div class="form-check ig-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                   id="igRadioDefault2" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Escola(s) específica(s) da unidade orgânica
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Estimativa do n.º de alunos:</label>
+                        <table class="table ig-grid">
+                            <thead>
+                                <tr>
+                                    <th class="ig-col-shrink">Adotar</th>
+                                    <th>Escola</th>
+                                    <th class="ig-col-shrink">Estimativa de alunos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-check ig-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="igCheck02" checked>
+                                            <label class="form-check-label" for="igCheck02"> </label>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge rounded-pill ig-uo-code">123456</span> Escola Secundária Públia Hortênsia de Castro</td>
+                                    <td><input type="number" class="form-control" onwheel="return false"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check ig-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="igCheck02" checked>
+                                            <label class="form-check-label" for="igCheck02"> </label>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge rounded-pill ig-uo-code">123456</span> Escola Secundária Públia Hortênsia de Castro</td>
+                                    <td><input type="number" class="ig-studentestimate-field form-control" onwheel="return false"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check ig-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="igCheck02" checked>
+                                            <label class="form-check-label" for="igCheck02"> </label>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge rounded-pill ig-uo-code">123456</span> Escola Secundária Públia Hortênsia de Castro</td>
+                                    <td><input type="number" class="ig-studentestimate-field form-control" onwheel="return false"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check ig-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="igCheck02" checked>
+                                            <label class="form-check-label" for="igCheck02"> </label>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge rounded-pill ig-uo-code">123456</span> Escola Secundária Públia Hortênsia de Castro</td>
+                                    <td><input type="number" class="ig-studentestimate-field form-control" onwheel="return false"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check ig-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="igCheck02" checked>
+                                            <label class="form-check-label" for="igCheck02"> </label>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge rounded-pill ig-uo-code">123456</span> Escola Secundária Públia Hortênsia de Castro</td>
+                                    <td><input type="number" class="ig-studentestimate-field form-control" onwheel="return false"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Sair</button>
+                    <button type="button" class="btn ig-btn-green" data-bs-target="#igModal02" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fas fa-arrow-right"></i> Seguinte</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal 02 - Escolha do manual-->
+    <div class="modal fade ig-modal" id="igModal02" tabindex="-1" aria-labelledby="igModal01Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="igModal01Label">Adotar manual - Português (1.º ano)</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col-auto ig-step">
+                            <span class="ig-stepnum">1</span>
+                            <span class="ig-stepname">Escolha de escolas</span>
+                        </div>
+                        <div class="col-auto ig-step ig-stepactive">
+                            <span class="ig-stepnum">2</span>
+                            <span class="ig-stepname">Escolha do manual</span>
+                        </div>
+                        <div class="col-auto ig-step">
+                            <span class="ig-stepnum">3</span>
+                            <span class="ig-stepname">Apreciação do manual</span>
+                        </div>
+                    </div>
+                    <label class="form-label">Selecione um dos seguintes manuais:</label>
+                    <div class="card ig-card">
+                        <div class="list-group list-group-flush">
+                            <a class="list-group-item" href="#">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-md">
+                                        <h5>Entre Palavras 9 - Português 9.º ano</h5>
+                                        <p class="mb-0"><strong>ISBN:</strong> 978-972-47-4804-7</p>
+                                    </div>
+                                    <div class="col-md text-md-end">
+                                        <p class="mb-0">Sebenta – Editora e Distribuidora, S.A.</p>
+                                        <p class="mb-0">€ 12,34</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="list-group-item" href="#">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-md">
+                                        <h5>Entre Palavras 9 - Português 9.º ano</h5>
+                                        <p class="mb-0"><strong>ISBN:</strong> 978-972-47-4804-7</p>
+                                    </div>
+                                    <div class="col-md text-md-end">
+                                        <p class="mb-0">Sebenta – Editora e Distribuidora, S.A.</p>
+                                        <p class="mb-0">€ 12,34</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="list-group-item active" href="#">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-md">
+                                        <h5>Entre Palavras 9 - Português 9.º ano</h5>
+                                        <p class="mb-0"><strong>ISBN:</strong> 978-972-47-4804-7</p>
+                                    </div>
+                                    <div class="col-md text-md-end">
+                                        <p class="mb-0">Sebenta – Editora e Distribuidora, S.A.</p>
+                                        <p class="mb-0">€ 12,34</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn ig-btn-blue" data-bs-target="#igModal01" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fas fa-arrow-left"></i> Anterior</button>
+                    <button type="button" class="btn ig-btn-green" data-bs-target="#igModal03" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fas fa-arrow-right"></i> Seguinte</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal 03 - Apreciar manual certificado-->
+    <div class="modal fade ig-modal" id="igModal03" tabindex="-1" aria-labelledby="igModal01Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="igModal03Label">Adotar manual - Português (1.º ano)</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col-auto ig-step">
+                            <span class="ig-stepnum">1</span>
+                            <span class="ig-stepname">Escolha de escolas</span>
+                        </div>
+                        <div class="col-auto ig-step ">
+                            <span class="ig-stepnum">2</span>
+                            <span class="ig-stepname">Escolha do manual</span>
+                        </div>
+                        <div class="col-auto ig-step ig-stepactive">
+                            <span class="ig-stepnum">3</span>
+                            <span class="ig-stepname">Apreciação do manual</span>
+                        </div>
+                    </div>
+                    <h5>Manual a apreciar:</h5>
                     <div class="ig-card card card-body mb-5">
                         <div class="row d-flex align-items-center">
                             <div class="col-md">
@@ -442,7 +641,7 @@
                             </div>
                         </div>
                     </div>
-                    <h4>Apreciação do manual:</h4>
+                    <h5>Apreciação do manual:</h5>
                     <table class="table ig-grid">
                         <thead>
                             <tr>
@@ -660,23 +859,37 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
-                    <button type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Apreciar manual</button>
+                    <button type="button" class="btn ig-btn-blue" data-bs-target="#igModal02" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fas fa-arrow-left"></i> Anterior</button>
+                    <button type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Concluir adoção</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!--Modal 02 - Apreciar manual certificado-->
-    <div class="modal fade ig-modal" id="igModal02" tabindex="-1" aria-labelledby="igModal02Label" aria-hidden="true">
+    <!--Modal 04 - Apreciar manual certificado-->
+    <div class="modal fade ig-modal" id="igModal04" tabindex="-1" aria-labelledby="igModal04Label" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="igModal02Label">Apreciar manual Entre Palavras 9 - Português 9.º ano</h5>
+                    <h5 class="modal-title" id="igModal04Label">Adotar manual - Português (1.º ano)</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h4>Manual a apreciar:</h4>
+                    <div class="row mb-3">
+                        <div class="col-auto ig-step">
+                            <span class="ig-stepnum">1</span>
+                            <span class="ig-stepname">Escolha de escolas</span>
+                        </div>
+                        <div class="col-auto ig-step ">
+                            <span class="ig-stepnum">2</span>
+                            <span class="ig-stepname">Escolha do manual</span>
+                        </div>
+                        <div class="col-auto ig-step ig-stepactive">
+                            <span class="ig-stepnum">3</span>
+                            <span class="ig-stepname">Apreciação do manual</span>
+                        </div>
+                    </div>
+                    <h5>Manual a apreciar:</h5>
                     <div class="ig-card card card-body mb-5">
                         <div class="row d-flex align-items-center">
                             <div class="col-md">
@@ -697,7 +910,7 @@
                             </div>
                         </div>
                     </div>
-                    <h4>Apreciação do manual:</h4>
+                    <h5>Apreciação do manual:</h5>
                     <div class="ig-tabs">
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
@@ -991,8 +1204,78 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
-                    <button type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Apreciar manual</button>
+                    <button type="button" class="btn ig-btn-blue" data-bs-target="#igModal02" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fas fa-arrow-left"></i> Anterior</button>
+                    <button type="button" class="btn ig-btn-green"><i class="fas fa-arrow-right"></i> Concluir adoção</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal 05 - Detalhe manuais adotados-->
+    <div class="modal fade ig-modal" id="igModal05" tabindex="-1" aria-labelledby="igModal01Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="igModal01Label">Português (1.º ano)</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>Manual(is) adotado(s):</h4>
+                    <div class="ig-card card card-body mb-3">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-md">
+                                <h5>Entre Palavras 9 - Português 9.º ano</h5>
+                                <p class="mb-0">
+                                    <span class="badge rounded-pill ig-blue-badge">
+                                        Não certificado
+                                    </span>
+                                    9.º Ano, Português
+                                </p>
+                            </div>
+                            <div class="col-md text-md-end">
+                                <p class="mb-0">Sebenta – Editora e Distribuidora, S.A.</p>
+                                <p class="mb-0"><strong>ISBN:</strong> 978-972-47-4804-7</p>
+                            </div>
+                            <div class="col-md-auto">
+                                <p class="mb-0">€ 12,34</p>
+                            </div>
+
+                        </div>
+                        <hr />
+                        <p class="mb-0 d-flex justify-content-between">
+                            <span class="me-2">
+                                <span class="badge rounded-pill ig-uo-code">123456</span> Escola Secundária Públia Hortênsia de Castro
+                            </span>
+                            <span>
+                                <i class="fas fa-users"></i> 230 alunos
+                            </span>
+                        </p>
+                        <hr />
+                        <p class="mb-0 d-flex justify-content-between">
+                            <span class="me-2">
+                                <span class="badge rounded-pill ig-uo-code">123456</span> Escola Secundária Públia Hortênsia de Castro
+                            </span>
+                            <span>
+                                <i class="fas fa-users"></i> 230 alunos
+                            </span>
+                        </p>
+                        <hr />
+                        <p class="mb-0 d-flex justify-content-between">
+                            <span class="me-2">
+                                <span class="badge rounded-pill ig-uo-code">123456</span> Escola Secundária Públia Hortênsia de Castro
+                            </span>
+                            <span>
+                                <i class="fas fa-users"></i> 230 alunos
+                            </span>
+                        </p>
+                        <hr />
+                        <p class="mb-0 d-flex justify-content-between">
+                            <a href="#"><i class="fas fa-trash-alt"></i> Remover manual</a>
+                        </p>
+                    </div>
+                    <button type="button" class="btn ig-btn-blue" data-bs-target="#igModal01" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fas fa-plus"></i> Adotar manual adicional</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Sair</button>
                 </div>
             </div>
         </div>

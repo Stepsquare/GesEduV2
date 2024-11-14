@@ -87,12 +87,15 @@ h3{
     font-weight: 700;
 }
 h4{
-    font-size:1.25rem;
+    font-size:1rem;
 }
 
 h4, h5 {
     color: var(--ig-blue-2);
     font-weight: 700;
+}
+a h4 {
+    font-size: 1.25rem;
 }
     h5{
         font-size:1rem;
@@ -190,7 +193,7 @@ nav.ig-sidebar-menu {
     box-shadow: var(--ig-shadow);
     height: 100%;
 }
-.ig-submenu .tab-pane {
+.ig-submenu .tab-pane, .ig-submenu > div  {
     width: 15rem;
 }
 .ig-menulink {
@@ -341,7 +344,47 @@ a.ig-btn-back {
     border-color: var(--ig-red-2);
     color: var(--ig-red-1);
 }
+/*Wizard*/
 
+span.ig-stepnum {
+    width: 2.5rem;
+    height: 2.5rem;
+    text-align: center;
+    background: var(--ig-blue-3);
+    color: var(--ig-white);
+    font-weight: bold;
+    line-height: 2.5rem;
+    border-radius: 1.25rem;
+    font-size: 1.25rem;
+    vertical-align: middle;
+    flex-shrink: inherit;
+}
+
+.ig-step {
+    display: flex;
+    margin-right: 2rem;
+    padding-bottom: 0.5rem;
+    align-items:center;
+}
+
+.ig-insc-steps {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+span.ig-stepname {
+    font-weight: bold;
+    padding-left: 0.5rem;
+    color: var(--ig-blue-3);
+}
+
+.ig-step.ig-stepactive .ig-stepnum {
+    background: var(--ig-blue-2);
+}
+
+.ig-stepactive span.ig-stepname {
+    color: var(--ig-blue-2);
+}
 
 /*Modals*/
 .ig-modal .modal-header {
@@ -634,6 +677,10 @@ a.list-group-item:hover {
 a.list-group-item.active, a.list-group-item:active:hover {
     background: var(--ig-green-2-alpha);
 }
+.ig-card .list-group-item.active p {
+    color: var(--bs-list-group-color)
+}
+
 
 /*accordion*/
 
@@ -881,12 +928,12 @@ th.ig-th-4rem{
     background: transparent;
     box-shadow: none;
 }
-.ig-tabs .tab-content.card.ig-card .card-body {
+.ig-tabs .card-body {
     border-radius: 1rem;
     background: var(--ig-white);
     box-shadow: var(--ig-shadow);
 }
-.ig-tabs .tab-content.card.ig-card .card-body:first-child {
+.ig-tabs > .tab-content.card.ig-card > .card-body:first-child {
     border-radius: 0 1rem 1rem 1rem;
 }
 
