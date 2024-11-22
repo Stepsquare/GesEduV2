@@ -1,5 +1,7 @@
 ﻿using GesEdu.ServiceLayer.Services;
-using GesEdu.Shared.Interfaces.ISevices;
+using GesEdu.ServiceLayer.Services.SIME;
+using GesEdu.Shared.Interfaces.IServices;
+using GesEdu.Shared.Interfaces.IServices.SIME;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GesEdu.ServiceLayer.Extensions
@@ -12,6 +14,12 @@ namespace GesEdu.ServiceLayer.Extensions
             services.AddScoped<IHomepageServices, HomepageServices>();
             services.AddScoped<IUserServices, UserServices>();
 
+            #region SIME
+
+            services.AddScoped<IApreciacaoManuaisServices, ApreciacaoManuaisServices>();
+
+            #endregion
+            
             return services;
         }
     }

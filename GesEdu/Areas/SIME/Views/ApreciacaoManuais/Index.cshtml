@@ -1,0 +1,245 @@
+﻿@model ApreciacaoManuaisViewModel
+
+@{
+    ViewData["Title"] = "Apreciação de manuais escolares";
+}
+
+@* HEADER *@
+<div class="ig-pagetitle mb-3">
+    <div class="row">
+        <div class="col-md">
+            <h2>
+                @ViewData["Title"]
+            </h2>
+        </div>
+        <div class="col-md-auto text-end">
+            <button class="btn ig-btn-blue dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-book"></i> Descarregar lista de manuais
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                @foreach (var item in Model.Ciclos)
+                {
+                    <li><a class="dropdown-item" name="manuais_pdf_export" id="@item.ciclo" href="javascript:void(0)">@item.descricao</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+    <breadcrumb></breadcrumb>
+</div>
+
+@* FILTERS *@
+<div class="card ig-card  mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-3 mb-3">
+                <label class="form-label">Ano letivo:</label>
+                <input id="ano_letivo_dropdown" type="text" class="igk-searchable-ddl" />
+            </div>
+            <div class="col-xl-6 mb-3">
+                <label class="form-label">Título, ISBN ou editor do manual:</label>
+                <input id="custom_txt" type="text" class="form-control" />
+            </div>
+            <div class="col-xl-3 mb-3">
+                <label class="form-label">Estado:</label>
+                <input id="estado_dropdown" type="text" class="igk-searchable-ddl" />
+            </div>
+        </div>
+        <div class="collapse" id="collapseMFs">
+            <div class="row">
+                <div class="col-xl-3 mb-3">
+                    <label class="form-label">Certificado:</label>
+                    <input id="certificacao_dropdown" type="text" class="igk-searchable-ddl" />
+                </div>
+                <div class="col-xl-3 mb-3">
+                    <label class="form-label">Ano de escolaridade:</label>
+                    <input id="ano_escolar_combobox" type="text" class="igk-searchable-ddl" />
+                </div>
+                <div class="col-xl-6 mb-3">
+                    <label class="form-label">Disciplina:</label>
+                    <input id="disciplina_combobox" type="text" class="igk-searchable-ddl" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a class="ig-collapse-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseMFs" aria-expanded="false" aria-controls="collapseMFs">
+                    <i class="fas fa-plus"></i> Mais filtros
+                    <i class="fas fa-caret-up"></i>
+                </a>
+            </div>
+            <div class="col-auto">
+                <button class="btn ig-btn-green" onclick="searchApreciacao()">
+                    <i class="fas fa-search"></i> Pesquisar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* SEARCH RESULT CONTAINER *@
+<div class="ig-loadable-div">
+    <div id="search_result_container">
+    </div>
+</div>
+
+@* DETALHE APRECIAÇÃO MODAL *@
+<div class="modal fade ig-modal" id="apreciacao_detail_modal" tabindex="-1" aria-labelledby="apreciacao_detail_modal_label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#collapseMFs').on('hide.bs.collapse', function () {
+            $('#certificacao_dropdown').data("kendoDropDownList").value("");
+            $('#ano_escolar_combobox').data("kendoComboBox").value("");
+        });
+
+        $('[name="manuais_pdf_export"]').on('click', function () {
+            if ($('#ano_letivo_dropdown').data("kendoDropDownList").value() === null || $('#ano_letivo_dropdown').data("kendoDropDownList").selectedIndex === -1) {
+                ErrorToast(["O ano letivo é obrigatório."]);
+                return;
+            }
+            var anoLetivo = $('#ano_letivo_dropdown').data("kendoDropDownList").value();
+            var ciclo = $(this).prop('id');
+
+            var url = '@Url.Action("ManuaisPdfExport", "ApreciacaoManuais", new { Area = "SIME", })/?ano_letivo=' + anoLetivo + '&ciclo=' + ciclo;
+            
+            window.open(url, '_blank');
+        });
+
+        $("#estado_dropdown").kendoDropDownList({
+            dataTextField: "descricao",
+            dataValueField: "codigo",
+            dataSource: [
+                { codigo: "", descricao: "Todos" },
+                { codigo: "0", descricao: "Por apreciar" },
+                { codigo: "1", descricao: "Apreciado" }
+            ]
+        });
+
+        $("#certificacao_dropdown").kendoDropDownList({
+            dataTextField: "descricao",
+            dataValueField: "codigo",
+            dataSource: [
+                { codigo: "", descricao: "Todos" },
+                { codigo: "0", descricao: "Não certificado" },
+                { codigo: "1", descricao: "Certificado" }
+            ]
+        });
+
+        $("#ano_letivo_dropdown").kendoDropDownList({
+            dataTextField: "descricao",
+            dataValueField: "codigo",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        global: false,
+                        url: "@Url.Action("GetAnosLetivosSIME", "Home", new { Area = "SIME" })"
+                    }
+                },
+                serverFiltering: true
+            },
+            index: 0,
+            dataBound: function () {
+                searchApreciacao();
+            }
+        });
+
+        $("#ano_escolar_combobox").kendoComboBox({
+            cascadeFrom: "ano_letivo_dropdown",
+            cascadeFromField: "codigo",
+            operator: "eq",
+            dataTextField: "des_ano_escolar",
+            dataValueField: "ano_escolar",
+            dataSource: {
+                serverFiltering: true,
+                transport: {
+                    read: {
+                        dataType: "json",
+                        global: false,
+                        url: "@Url.Action("GetAnosEscolares", "ApreciacaoManuais", new { Area = "SIME" })",
+                        data: function () {
+                            return {
+                                ano_letivo: $("#ano_letivo_dropdown").val()
+                            };
+                        }
+                    }
+                }
+            }
+        });
+
+        $("#disciplina_combobox").kendoComboBox({
+            cascadeFrom: "ano_escolar_combobox",
+            cascadeFromField: "ano_escolar",
+            operator: "eq",
+            dataTextField: "des_disciplina",
+            dataValueField: "id_disciplina",
+            dataSource: {
+                serverFiltering: true,
+                transport: {
+                    read: {
+                        dataType: "json",
+                        global: false,
+                        url: "@Url.Action("GetDisciplinasAnoEscolar", "ApreciacaoManuais", new { Area = "SIME" })",
+                        data: function () {
+                            var selectedObj = $("#ano_escolar_combobox").data('kendoComboBox').dataItem();
+
+                            return {
+                                ano_letivo: $("#ano_letivo_dropdown").val(),
+                                ano_escolar: selectedObj.ano_escolar,
+                                tipologia: selectedObj.tipologia
+                            };
+                        }
+                    }
+                }
+            }
+        });
+    });
+
+    function searchApreciacao(pageIndex, pageSize) {
+        $.ajax({
+            url: '@Url.Action("SearchManuaisApreciados", "ApreciacaoManuais", new { Area = "SIME" })',
+            type: "GET",
+            global: false,
+            data: {
+                custom: $('#custom_txt').val(),
+                certificado: $('#certificacao_dropdown').data("kendoDropDownList").value(),
+                ano_letivo: $('#ano_letivo_dropdown').data("kendoDropDownList").value(),
+                ano_escolar: $('#ano_escolar_combobox').data("kendoComboBox").value(),
+                id_disciplina: $('#disciplina_combobox').data("kendoComboBox").value(),
+                estado: $('#estado_dropdown').data("kendoDropDownList").value(),
+                tipologia: $("#ano_escolar_combobox").data('kendoComboBox').dataItem()?.tipologia,
+                pageIndex: pageIndex,
+                pageSize: pageSize
+            },
+            success: function (data) {
+                $('#search_result_container').html(data);
+                HideDivLoader();
+            },
+            error: function (error) {
+                ErrorToast(error.responseJSON.messages);
+                HideDivLoader();
+            },
+            beforeSend: ShowDivLoader(),
+        });
+    }
+
+    function openManualDetModal(ano_letivo, id_manual) {
+        $.ajax({
+            url: '@Url.Action("ModalManualApreciadoDetailModal", "ApreciacaoManuais", new { Area = "SIME" })',
+            type: "GET",
+            data: {
+                ano_letivo: ano_letivo,
+                id_manual: id_manual
+            },
+            success: function (data) {
+                $('#apreciacao_detail_modal .modal-content').html(data);
+                $('#apreciacao_detail_modal').modal('show');
+            }
+        });
+    }
+</script>

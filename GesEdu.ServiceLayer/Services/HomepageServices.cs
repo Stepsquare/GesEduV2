@@ -1,9 +1,8 @@
 ﻿using GesEdu.Shared.Interfaces.IConfiguration;
-using GesEdu.Shared.Interfaces.ISevices;
+using GesEdu.Shared.Interfaces.IServices;
 using GesEdu.Shared.WebserviceModels.Noticias;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
-using System;
 
 namespace GesEdu.ServiceLayer.Services
 {

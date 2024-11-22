@@ -1,0 +1,70 @@
+﻿@model PaginatedResult<GetManuaisApreciadosResponseItem>
+
+@if (Model.TotalCount == 0)
+{
+    <div class="card ig-card card-body ig-noresults text-center">
+        <h3><i class="fas fa-search"></i>  Sem resultados</h3>
+        <p class="mb-0">Não foram encontrados resultados para a pesquisa efetuada.</p>
+    </div>
+}
+else
+{
+    <div class="card ig-card ig-itemlist">
+        <div class="list-group list-group-flush">
+            @foreach (var item in Model.Data)
+            {
+                <div class="list-group-item">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-md">
+                            <h5><a href="javascript:void(0);" onclick="openManualDetModal(@item.id_ano_letivo, @item.id_manual)">@item.titulo</a></h5>
+                            <p class="mb-0">
+                                <span class="badge rounded-pill ig-blue-badge">
+                                    @(item.certificado ? "Certificado" : "Não certificado")
+                                </span>
+                                @item.des_ano_escolar, @item.des_disciplina
+                            </p>
+                        </div>
+                        <div class="col-md text-md-end">
+                            <p class="mb-0">@item.editora</p>
+                            <p class="mb-0"><strong>ISBN:</strong> @item.isbn</p>
+                        </div>
+                        <div class="col-md-auto">
+                            <p class="mb-0">@item.preco.ToString("C", CultureInfo.CreateSpecificCulture("pt-PT"))</p>
+                        </div>
+                        <div class="col-lg-3 col-xxl-2">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    @if (item.apreciado)
+                                    {
+                                        <span class="badge ig-badge-success">
+                                            <i class="fas fa-check"></i>
+                                            Apreciado
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge ig-badge-warning">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            Por apreciar
+                                        </span>
+                                    }
+                                </div>
+                                <div class="col-auto">
+                                    <a href="javascript:void(0)" class="btn ig-btn-blue" title="Apreciar manual" 
+                                        onclick="openManualDetModal(@item.id_ano_letivo, @item.id_manual)">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="list-group-item ig-item-pagination">
+                @{
+                    await Html.RenderPartialAsync("_paginationPartial", new PaginationViewModel(Model.PageIndex, Model.PageSize, Model.TotalCount, "searchApreciacao({0}, {1})"));
+                }
+            </div>
+        </div>
+    </div>
+}

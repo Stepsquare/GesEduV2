@@ -1,13 +1,13 @@
-﻿using GesEdu.Models;
+﻿using GesEdu.Helpers.Breadcrumbs;
+using GesEdu.Models;
 using GesEdu.Models.AuthenticationViewModels;
 using GesEdu.Models.UsersViewModels;
 using GesEdu.ServiceLayer.Services;
 using GesEdu.Shared.Extensions;
-using GesEdu.Shared.Interfaces.ISevices;
+using GesEdu.Shared.Interfaces.IServices;
 using GesEdu.Shared.SearchParams;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SmartBreadcrumbs.Attributes;
 using System.Data;
 
 namespace GesEdu.Controllers
@@ -24,7 +24,8 @@ namespace GesEdu.Controllers
         }
 
         #region Views
-        [Breadcrumb(FromController = typeof(HomeController), FromAction = "Index", Title = "ViewData.Title")]
+
+        [Breadcrumb(Title = "Gerir utilizadores")]
         public async Task<IActionResult> Index()
         {
             var perfis = await _userServices.GetPerfis();

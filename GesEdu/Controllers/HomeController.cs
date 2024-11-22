@@ -1,8 +1,8 @@
-﻿using GesEdu.Shared.Extensions;
-using GesEdu.Shared.Interfaces.ISevices;
+﻿using GesEdu.Helpers.Breadcrumbs;
+using GesEdu.Shared.Extensions;
+using GesEdu.Shared.Interfaces.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SmartBreadcrumbs.Attributes;
 
 namespace GesEdu.Controllers
 {
@@ -18,7 +18,7 @@ namespace GesEdu.Controllers
 
         #region Views
 
-        [DefaultBreadcrumb("Início")]
+        [Breadcrumb(Title ="Inicio")]
         public async Task<IActionResult> Index()
         {
             if ((User.IsAdmin() || User.IsSimeDgeUser()) && string.IsNullOrEmpty(User.GetCodigoServico()))

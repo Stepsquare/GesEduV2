@@ -1,6 +1,6 @@
 ﻿using GesEdu.Shared.Extensions;
 using GesEdu.Shared.Interfaces.IConfiguration;
-using GesEdu.Shared.Interfaces.ISevices;
+using GesEdu.Shared.Interfaces.IServices;
 using GesEdu.Shared.Pagination;
 using GesEdu.Shared.Resources;
 using GesEdu.Shared.SearchParams;

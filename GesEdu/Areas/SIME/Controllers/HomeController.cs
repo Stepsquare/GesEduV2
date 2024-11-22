@@ -1,7 +1,9 @@
 ﻿using GesEdu.Controllers;
+using GesEdu.Helpers.Breadcrumbs;
+using GesEdu.Shared.Extensions;
+using GesEdu.Shared.WebserviceModels.Adm;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SmartBreadcrumbs.Attributes;
 
 namespace GesEdu.Areas.SIME.Controllers
 {
@@ -9,10 +11,31 @@ namespace GesEdu.Areas.SIME.Controllers
     [Authorize(Policy = "SimeAccess")]
     public class HomeController : BaseController
     {
-        [Breadcrumb(FromController = typeof(GesEdu.Controllers.HomeController), FromAction = "Index", Title = "SIME")]
+        [Breadcrumb(Title = "SIME")]
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetAnosLetivosSIME()
+        {
+            List<GetDominiosResponseItem> anosLetivosList = new();
+
+            anosLetivosList.Add(new GetDominiosResponseItem 
+            { 
+                codigo = User.GetAnoLetivoSIME(), 
+                descricao = User.GetAnoLetivoDescriptionSIME() 
+            });
+
+            if (!string.IsNullOrEmpty(User.GetAnoLetivoAnteriorSIME()))
+                anosLetivosList.Add(new GetDominiosResponseItem
+                {
+                    codigo = User.GetAnoLetivoAnteriorSIME(),
+                    descricao = User.GetAnoLetivoAnteriorDescriptionSIME()
+                });
+
+            return Json(anosLetivosList);
         }
     }
 }

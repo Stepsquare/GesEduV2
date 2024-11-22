@@ -2,11 +2,11 @@ using GesEdu.DataLayer.Extensions;
 using GesEdu.ServiceLayer.Extensions;
 using GesEdu.Shared.ExceptionHandler;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using SmartBreadcrumbs.Extensions;
-using System.Reflection;
 using Serilog;
 using GesEdu.Shared.Resources;
 using GesEdu.Shared.Extensions;
+using GesEdu.Helpers.ExportPdf.Extensions;
+using GesEdu.Helpers.Breadcrumbs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,21 +25,14 @@ builder.Services.AddDataLayerDependencies(builder.Configuration);
 //Service Layer Dependency Injection
 builder.Services.AddServiceLayerDependencies();
 
+//Pdf Export Dependency Injection
+builder.Services.AddPdfExportDependencies();
+
+//Breadcrumb service
+builder.Services.AddBreadcrumbService();
+
 //Serilog Logging
 builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
-
-#region SmartBreadcrums
-
-builder.Services.AddBreadcrumbs(Assembly.GetExecutingAssembly(), options =>
-{
-    options.TagName = "div";
-    options.TagClasses = "d-flex";
-    options.OlClasses = "breadcrumb";
-    options.LiClasses = "breadcrumb-item";
-    options.ActiveLiClasses = "breadcrumb-item active";
-});
-
-#endregion
 
 #region Authentication, Policies, Session
 

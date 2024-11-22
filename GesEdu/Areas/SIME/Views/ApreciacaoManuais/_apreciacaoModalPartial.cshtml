@@ -1,0 +1,307 @@
+﻿@model GetManuaisAprDetResponse
+
+<div class="modal-header">
+    <h5 class="modal-title" id="apreciacao_detail_modal_label">Apreciar manual: @Model.titulo</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <h4>Manual a apreciar:</h4>
+    <div class="ig-card card card-body mb-5">
+        <div class="row d-flex align-items-center">
+            <div class="col-md">
+                <h5>@Model.titulo</h5>
+                <p class="mb-0">
+                    <span class="badge rounded-pill ig-blue-badge">
+                        @(Model.certificado ? "Certificado" : "Não certificado")
+                    </span>
+                    @Model.des_ano_escolar, @Model.des_disciplina
+                </p>
+            </div>
+            <div class="col-md text-md-end">
+                <p class="mb-0">@Model.editora</p>
+                <p class="mb-0"><strong>ISBN:</strong> @Model.isbn</p>
+            </div>
+            <div class="col-md-auto">
+                <p class="mb-0">@Model.preco.ToString("C", CultureInfo.CreateSpecificCulture("pt-PT"))</p>
+            </div>
+        </div>
+    </div>
+    <h4>Apreciação do manual:</h4>
+    @if (Model.certificado)
+    {
+        <table class="table ig-grid">
+            <thead>
+                <tr>
+                    <th class="k-header">Critério de apreciação</th>
+                    <th class="ig-th-4rem">Muito Bom</th>
+                    <th class="ig-th-4rem">Bom</th>
+                    <th class="ig-th-4rem">Suficiente</th>
+                    <th class="ig-th-4rem">Insuficiente</th>
+                    <th class="ig-th-4rem">Não aplicável</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var criterio in Model.apreciacoes)
+                {
+                    <tr>
+                        <td>
+                            <ol class="ig-bookappreciation-description">
+                                <li>
+                                    <label class="form-label"><span>1.</span> Organização e Método</label>
+                                    <ol class="ig-bookappreciation-description">
+                                        @foreach (var subCriterio in criterio.subalineas)
+                                        {
+                                            <li><span>@subCriterio.alinea</span>@subCriterio.descricao</li>
+                                        }
+                                    </ol>
+                                </li>
+                            </ol>
+                        </td>
+                        <td>
+                            <div class="form-check ig-check d-flex justify-content-center">
+                                <input class="form-check-input" type="radio" value="MB" @(!Model.editavel ? "disabled" : "") @(criterio.avaliacao == "MB" ? "checked" : "")
+                                       id="MB_@criterio.id_valor_dominio"
+                                       name="@criterio.id_valor_dominio">
+                                <label class="form-check-label" title="Muito bom" for="MB_@criterio.id_valor_dominio"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check ig-check d-flex justify-content-center">
+                                <input class="form-check-input" type="radio" value="B" @(!Model.editavel ? "disabled" : "") @(criterio.avaliacao == "B" ? "checked" : "")
+                                       id="B_@criterio.id_valor_dominio"
+                                       name="@criterio.id_valor_dominio">
+                                <label class="form-check-label" title="Bom" for="B_@criterio.id_valor_dominio"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check ig-check d-flex justify-content-center">
+                                <input class="form-check-input" type="radio" value="S" @(!Model.editavel ? "disabled" : "") @(criterio.avaliacao == "S" ? "checked" : "")
+                                       id="S_@criterio.id_valor_dominio"
+                                       name="@criterio.id_valor_dominio">
+                                <label class="form-check-label" title="Suficiente" for="S_@criterio.id_valor_dominio"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check ig-check d-flex justify-content-center">
+                                <input class="form-check-input" type="radio" value="I" @(!Model.editavel ? "disabled" : "") @(criterio.avaliacao == "I" ? "checked" : "")
+                                       id="I_@criterio.id_valor_dominio"
+                                       name="@criterio.id_valor_dominio">
+                                <label class="form-check-label" title="Insuficiente" for="I_@criterio.id_valor_dominio"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check ig-check d-flex justify-content-center">
+                                <input class="form-check-input" type="radio" value="NA" @(!Model.editavel ? "disabled" : "") @(criterio.avaliacao == "NA" ? "checked" : "")
+                                       id="NA_@criterio.id_valor_dominio"
+                                       name="@criterio.id_valor_dominio">
+                                <label class="form-check-label" title="Não aplicável" for="NA_@criterio.id_valor_dominio"></label>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        var apreciacaoArray = Model.apreciacoes.ToArray();
+
+        <div class="ig-tabs">
+            <ul class="nav nav-tabs">
+                @for (int i = 0; i < apreciacaoArray.Length; i++)
+                {
+                    var isApreciado = apreciacaoArray[i].subalineas.All(x => !string.IsNullOrEmpty(x.avaliacao));
+
+                    <li class="nav-item">
+                        <a class="nav-link @(i == 0 ? "active" : "")" data-bs-toggle="tab" href="#tab_crit_@apreciacaoArray[i].id_valor_dominio">
+                            <div class="ig-2line-tabheader">
+                                <p class="mb-1">@apreciacaoArray[i].alinea @apreciacaoArray[i].descricao</p>
+                                @if (isApreciado)
+                                {
+                                    <span class="badge ig-badge-success"><i class="fas fa-check"></i> Apreciado</span>
+                                }
+                                else
+                                {
+                                    <span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i> Por apreciar</span>
+                                }
+                            </div>
+                        </a>
+                    </li>
+                }
+            </ul>
+            <div class="tab-content card ig-card">
+                @for (int i = 0; i < apreciacaoArray.Length; i++)
+                {
+                    <div class="tab-pane card-body @(i == 0 ? "active" : "")" id="tab_crit_@apreciacaoArray[i].id_valor_dominio">
+                        <table class="table ig-grid">
+                            <thead>
+                                <tr>
+                                    <th class="k-header">Critério de apreciação</th>
+                                    <th class="ig-th-4rem">Muito Bom</th>
+                                    <th class="ig-th-4rem">Bom</th>
+                                    <th class="ig-th-4rem">Suficiente</th>
+                                    <th class="ig-th-4rem">Insuficiente</th>
+                                    <th class="ig-th-4rem">Não aplicável</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var subalinea in apreciacaoArray[i].subalineas)
+                                {
+                                    <tr>
+                                        <td>
+                                            <p class="ig-psmall mb-0">@subalinea.alinea @subalinea.descricao</p>
+                                        </td>
+                                        <td>
+                                            <div class="form-check ig-check d-flex justify-content-center">
+                                                <input class="form-check-input" type="radio" value="MB" @(!Model.editavel ? "disabled" : "") @(subalinea.avaliacao == "MB" ? "checked" : "")
+                                                       id="MB_@subalinea.id_valor_dominio"
+                                                       name="@subalinea.id_valor_dominio">
+                                                <label class="form-check-label" title="Muito bom" for="MB_@subalinea.id_valor_dominio"></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check ig-check d-flex justify-content-center">
+                                                <input class="form-check-input" type="radio" value="B" @(!Model.editavel ? "disabled" : "") @(subalinea.avaliacao == "B" ? "checked" : "")
+                                                       id="B_@subalinea.id_valor_dominio"
+                                                       name="@subalinea.id_valor_dominio">
+                                                <label class="form-check-label" title="Bom" for="B_@subalinea.id_valor_dominio"></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check ig-check d-flex justify-content-center">
+                                                <input class="form-check-input" type="radio" value="S" @(!Model.editavel ? "disabled" : "") @(subalinea.avaliacao == "S" ? "checked" : "")
+                                                       id="S_@subalinea.id_valor_dominio"
+                                                       name="@subalinea.id_valor_dominio">
+                                                <label class="form-check-label" title="Suficiente" for="S_@subalinea.id_valor_dominio"></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check ig-check d-flex justify-content-center">
+                                                <input class="form-check-input" type="radio" value="I" @(!Model.editavel ? "disabled" : "") @(subalinea.avaliacao == "I" ? "checked" : "")
+                                                       id="I_@subalinea.id_valor_dominio"
+                                                       name="@subalinea.id_valor_dominio">
+                                                <label class="form-check-label" title="Insuficiente" for="I_@subalinea.id_valor_dominio"></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check ig-check d-flex justify-content-center">
+                                                <input class="form-check-input" type="radio" value="NA" @(!Model.editavel ? "disabled" : "") @(subalinea.avaliacao == "NA" ? "checked" : "")
+                                                       id="NA_@subalinea.id_valor_dominio"
+                                                       name="@subalinea.id_valor_dominio">
+                                                <label class="form-check-label" title="Não aplicável" for="NA_@subalinea.id_valor_dominio"></label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
+
+    @if (Model.editavel)
+    {
+        <button type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Apreciar manual</button>
+    }
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".tab-pane :input[type=radio]").on('change', function () {
+            var total = $(this).closest('tbody').find('tr').length;
+            var checked = $(this).closest(".tab-pane").find('input[type=radio]:checked').length;
+            console.log(total);
+            console.log(checked);
+            if (total === checked) {
+                var tabId = $(this).closest(".tab-pane").prop('id');
+                var tabBtn = $('a[href="#' + tabId + '"] > .ig-2line-tabheader');
+                tabBtn.find('span').remove();
+                tabBtn.append($('<span class="badge ig-badge-success"><i class="fas fa-check"></i> Apreciado</span>'));
+            }
+        });
+    });
+
+    function submitApreciacao() {
+        if (validateApreciacoes()) {
+            $.ajax({
+                url: '@Url.Action("SetManualApreciado", "ApreciacaoManuais", new { Area = "SIME", })',
+                type: "POST",
+                global: false,
+                data: JSON.stringify(getApreciacaoObj()),
+                success: function (response) {
+                    $('#apreciacao_detail_modal').modal('hide');
+                    searchApreciacao(getPageIndex(), getPageSize());
+
+                    if (response.isMessage) {
+                        SuccessToast(response.message);
+                    }
+                },
+                error: function (error) {
+                    ErrorToast(error.responseJSON.messages);
+                },
+                beforeSend: ToggleFullPageLoader(),
+                complete: ToggleFullPageLoader()
+            });
+        } else {
+            ErrorToast(["Obrigatório avaliar todos os critérios."]);
+        }
+    }
+
+    function validateApreciacoes() {
+        var isCertified = @(Model.certificado ? "true" : "false");
+
+        var total = 0;
+        var checked = $('input[type=radio]:checked').length;
+
+        if (isCertified) {
+            total = $('.modal-body').find('tbody > tr').length;
+        } else {
+            $('.tab-pane').each(function () {
+                total += $(this).find('tbody > tr').length;
+            });
+        }
+        return total === checked;
+    }
+
+    function getApreciacaoObj() {
+        var obj = {
+            id_ano_letivo: "@Model.id_ano_letivo",
+            id_manual: "@Model.id_manual",
+            apreciacoes: []
+        };
+
+        var isCertified = @(Model.certificado ? "true" : "false");
+
+        if (isCertified) {
+            $("input[type=radio]:checked").each(function () {
+                obj.apreciacoes.push({
+                    id_valor_dominio: $(this).prop('name'),
+                    avaliacao: $(this).val()
+                });
+            });
+        } else {
+            $(".tab-pane").each(function () {
+                var subalineas = [];
+
+                $(this).find("input[type=radio]:checked").each(function () {
+                    subalineas.push({
+                        id_valor_dominio: $(this).prop('name'),
+                        avaliacao: $(this).val()
+                    });
+                });
+
+                obj.apreciacoes.push({
+                    id_valor_dominio: $(this).prop('id'),
+                    subalineas: subalineas
+                });
+            });
+        }
+        return obj;
+    }
+</script>

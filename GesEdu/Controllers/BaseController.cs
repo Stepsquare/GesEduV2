@@ -6,7 +6,8 @@ namespace GesEdu.Controllers
     {
         public IActionResult SuccessMessage(string? message)
         {
-            return Ok(new {
+            return Ok(new 
+            {
                 isMessage = true,
                 message
             });

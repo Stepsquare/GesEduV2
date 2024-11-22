@@ -1,0 +1,80 @@
+﻿@using System.Globalization
+@using GesEdu.Helpers.ExportPdf.Models
+@using GesEdu.Shared.WebserviceModels.SIME
+
+@inject IWebHostEnvironment HostingEnvironment
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Manuais - @Data.ciclo - Ano Letivo @Data.ano_letivo</title>
+
+    <link href="@($"{Model.BaseUrl}/css/print.css")" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="igp-doc-header">
+        <img src="@($"{Model.BaseUrl}/images/logo.svg")">
+        <div class="igp-details">
+            <p>
+                <strong>Data impressão:</strong>@DateTime.Now.ToString("g", CultureInfo.CreateSpecificCulture("pt-PT"))
+            </p>
+        </div>
+        <hr />
+        <h3>Manuais - @Data.ciclo - Ano Letivo @Data.ano_letivo</h3>
+    </div>
+
+    @foreach (var editora in Data.editores!)
+    {
+        <div class="igp-details">
+            <h5>@editora.nome_editora</h5>
+            <div class="igp-grid">
+                <table>
+                    <thead>
+                        <tr class="igp-headrow">
+                            <th>Ano</th>
+                            <th>Disciplina</th>
+                            <th>ISBN</th>
+                            <th>Título</th>
+                            <th>Autores</th>
+                            <th>Preço</th>
+                            <th>Certificação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var manual in editora.manuais!)
+                        {
+                            <tr>
+                                <td class="igp-nobreak">@manual.des_ano_escolar</td>
+                                <td>@manual.des_disciplina</td>
+                                <td class="igp-nobreak">@manual.isbn</td>
+                                <td>@manual.titulo</td>
+                                <td>@manual.autores</td>
+                                <td class="igp-right igp-nobreak">@manual.preco.ToString("C", CultureInfo.CreateSpecificCulture("pt-PT"))</td>
+                                <td>@manual.des_certificacao</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</body>
+
+</html>
+
+@code {
+    [Parameter]
+    public required PdfExportModel<GetManuaisSIMEResponse> Model { get; set; }
+
+    public GetManuaisSIMEResponse Data { get => this.Model.Data; }
+}

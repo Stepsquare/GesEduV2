@@ -1,0 +1,361 @@
+﻿.pagebreak {
+    page-break-before: always;
+}
+/* page-break-after works, as well */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.igp-docversion {
+    font-size: 16px;
+    position: absolute;
+    left: 0;
+}
+
+.igp-header {
+    text-align: center;
+    position: relative;
+}
+
+.igp-doc-header {
+    padding-top: 24px;
+}
+
+    .igp-header img, .igp-doc-header img {
+        width: 120px;
+        margin-bottom: 10px;
+    }
+
+        .igp-doc-header img.igp-logo-duc {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+hr {
+    border: solid 1px #bfbfbf;
+}
+
+.igp-doc-header .igp-details {
+    float: right;
+    border: none;
+    margin-bottom: 0;
+}
+
+    .igp-doc-header .igp-details p {
+        margin: 0 0 10px 0;
+        font-size: 14px;
+    }
+
+.igp-doc-header h3, .igp-doc-header p {
+    text-align: center;
+}
+
+.igp-details {
+    border: solid 1px #bfbfbf;
+    padding: 0 15px 10px 15px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+    .igp-details.igp-det-ponly {
+        padding: 0 15px;
+    }
+
+    .igp-details h4, .igp-text h4 {
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+
+        .igp-details h4.igp-wdet, .igp-text h4.igp-wdet {
+            margin-bottom: 15px;
+        }
+
+    .igp-details p.igp-subtitle {
+        margin-top: 0;
+        font-weight: bold;
+    }
+
+    .igp-details p {
+        font-size: 14px;
+        text-align: left
+    }
+
+        .igp-details p span, .igp-text p span {
+            margin-right: 15px;
+        }
+
+        .igp-details p strong, .igp-text p strong {
+            margin-right: 3px;
+        }
+
+.igp-right, .igp-grid table th.igp-right {
+    text-align: right
+}
+
+.igp-subdetail {
+    padding-bottom: 15px;
+    border-bottom: solid 1px #bfbfbf;
+    margin-bottom: 25px;
+    page-break-inside: avoid;
+}
+
+    .igp-subdetail:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .igp-subdetail h5 {
+        margin-bottom: 0;
+    }
+
+.igp-details.igp-note {
+    padding: 0;
+    margin-top: 100px;
+    border-radius: 0;
+    border: none;
+    border-top: solid 1px #bfbfbf;
+}
+
+.igp-note .igp-subdetail {
+    margin-bottom: 10px;
+}
+
+.igp-text {
+    font-size: 16px;
+    line-height: 18px;
+}
+
+h4.igp-bigtxt {
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+p.igp-bigtxt {
+    font-size: 18px;
+}
+
+.igp-grid table {
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 30px;
+    border-collapse: collapse;
+}
+
+    .igp-grid table th {
+        text-align: left;
+    }
+
+    .igp-grid table th {
+        border-bottom: solid 1px #000;
+        vertical-align: bottom;
+    }
+
+        .igp-grid table th.igp-headrow-2 {
+            border-bottom: none;
+        }
+
+    .igp-grid table td,
+    .igp-grid table th {
+        padding: 12px 8px !important;
+    }
+
+        .igp-grid table th.igp-head60 {
+            width: 60px;
+        }
+
+    .igp-grid table td {
+        border-bottom: solid 1px #ededed;
+    }
+
+.igp-grid.ig-footer-grid tr:last-child th {
+    border: none;
+}
+
+.igp-grid.ig-footer-grid tr:nth-last-child(2) td {
+    border-bottom: solid 1px #000;
+}
+
+.igp-grid tr {
+    page-break-inside: avoid;
+}
+
+.igp-values-grid thead tr th:last-child, .igp-values-grid tbody tr td:last-child {
+    text-align: right;
+}
+
+.ig-signature {
+    width: 250px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 40px;
+    display: inline-block;
+}
+
+    .ig-signature p {
+        margin-top: 65px;
+        border-top: solid 1px #000;
+        padding-top: 5px;
+    }
+
+.igp-spacer {
+    height: 30px;
+    width: 100%
+}
+
+.igp-nobreak {
+    white-space: nowrap;
+}
+
+table.igp-strgrid {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    table.igp-strgrid td {
+        width: 50%;
+        vertical-align: top;
+        padding: 0
+    }
+
+        table.igp-strgrid td:not(:last-child) .igp-details {
+            margin-right: 5px;
+        }
+
+section.igp-duc {
+    border: solid 1px #bfbfbf;
+    padding: 0 20px;
+    border-radius: 3px;
+}
+
+td.igp-paymentdata .igp-details h4 {
+    margin-bottom: 10px
+}
+
+td.igp-paymentdata .igp-details:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+td.igp-paymentdata:first-child {
+    width: 35%;
+}
+
+td.igp-paymentdata:last-child {
+    padding-left: 50px
+}
+
+p.igp-description {
+    line-height: 22px;
+}
+
+.igp-duc-header {
+    text-align: center;
+}
+
+.igp-center, p.igp-center {
+    text-align: center;
+}
+
+.igp-details.igp-fiscalid {
+    padding: 0;
+}
+
+.igp-fiscalid.igp-grid table td {
+    padding: 25px 8px !important;
+    border-right: solid 1px #ededed;
+}
+
+.igp-details.igp-fiscalid table {
+    margin-bottom: 0;
+}
+
+.igp-fiscalid.igp-grid table td:last-child {
+    border-right: none;
+}
+
+.igp-heightrow {
+    height: 65px;
+}
+
+.igp-details.igp-stripegrid {
+    padding: 0;
+}
+
+    .igp-details.igp-stripegrid table {
+        margin: 0;
+    }
+
+    .igp-details.igp-stripegrid td, .igp-details.igp-stripegrid th {
+        border-right: solid 1px #ededed;
+    }
+
+        .igp-details.igp-stripegrid td:last-child, .igp-details.igp-stripegrid th:last-child {
+            border-right: none;
+        }
+
+    .igp-details.igp-stripegrid th {
+        border-top: solid 1px #ededed;
+    }
+
+.igp-w35 {
+    width: 35%;
+}
+
+hr.igp-sep {
+    margin: 30px 0;
+}
+
+td.igp-paymentdata .igp-details td h4 {
+    margin: 0;
+}
+
+.igp-paymentdescription {
+    border: 0;
+    padding: 0;
+}
+
+    .igp-paymentdescription p {
+        margin-top: 0;
+    }
+
+h4.igp-smmar {
+    margin: 10px 0;
+}
+
+td.igp-paymentdata.igp-guideid {
+    padding-left: 250px;
+    font-size: 14px;
+}
+
+.igp-guideid-desc {
+    border-bottom: solid 1px;
+    margin-top: 0;
+}
+
+p.igp-totalguide, p.igp-headgrid2l {
+    margin-bottom: 0;
+}
+
+.igp-strgrid .igp-w33 {
+    width: 33%;
+}
+
+p.igp-10p {
+    font-size: 14px;
+}
+
+.igp-grid.igp-stripegrid th.igp-headrow-2, .igp-grid.igp-stripegrid th.igp-headrow-2:last-child {
+    border: solid 1px #ededed;
+}
+
+.igp-details.igp-stripegrid .igp-lastheadrow th:last-child {
+    border-right: solid 1px #ededed;
+}
+
+.igp-rnap-grid th {
+    font-size: 12px;
+}
+
+.igp-col-shrink {
+    width: 1%;
+}

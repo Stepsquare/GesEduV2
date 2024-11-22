@@ -1,5 +1,5 @@
 ﻿using GesEdu.Models.AuthenticationViewModels;
-using GesEdu.Shared.Interfaces.ISevices;
+using GesEdu.Shared.Interfaces.IServices;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

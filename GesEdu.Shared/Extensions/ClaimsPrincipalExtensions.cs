@@ -43,6 +43,14 @@ namespace GesEdu.Shared.Extensions
            => claimsPrincipal.FindFirst("ANO_LETIVO_ANTERIOR")?.Value ?? string.Empty;
         public static string GetAnoLetivoAnteriorDescription(this ClaimsPrincipal claimsPrincipal)
            => claimsPrincipal.FindFirst("DES_ANO_LETIVO_ANTERIOR")?.Value ?? string.Empty;
+        public static string GetAnoLetivoSIME(this ClaimsPrincipal claimsPrincipal)
+            => claimsPrincipal.FindFirst("SIME_ANO_LETIVO")?.Value ?? string.Empty;
+        public static string GetAnoLetivoDescriptionSIME(this ClaimsPrincipal claimsPrincipal)
+           => claimsPrincipal.FindFirst("SIME_DES_ANO_LETIVO")?.Value ?? string.Empty;
+        public static string GetAnoLetivoAnteriorSIME(this ClaimsPrincipal claimsPrincipal)
+           => claimsPrincipal.FindFirst("SIME_ANO_LETIVO_ANTERIOR")?.Value ?? string.Empty;
+        public static string GetAnoLetivoAnteriorDescriptionSIME(this ClaimsPrincipal claimsPrincipal)
+           => claimsPrincipal.FindFirst("SIME_DES_ANO_LETIVO_ANTERIOR")?.Value ?? string.Empty;
         public static string GetFase(this ClaimsPrincipal claimsPrincipal)
            => claimsPrincipal.FindFirst("ESTADO_FASE")?.Value ?? string.Empty;
 

@@ -186,6 +186,9 @@ nav.ig-sidebar-menu {
     box-shadow: var(--ig-shadow);
     height: 100%;
 }
+.ig-submenu li.active a{
+    font-weight:bold;
+}
 .ig-submenu .tab-pane {
     width: 15rem;
 }

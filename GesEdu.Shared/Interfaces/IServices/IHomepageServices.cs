@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GesEdu.Shared.Interfaces.ISevices
+namespace GesEdu.Shared.Interfaces.IServices
 {
     public interface IHomepageServices
     {

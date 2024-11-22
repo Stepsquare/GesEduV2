@@ -1,5 +1,5 @@
 ﻿using GesEdu.Shared.Interfaces.IConfiguration;
-using GesEdu.Shared.Interfaces.ISevices;
+using GesEdu.Shared.Interfaces.IServices;
 using GesEdu.Shared.WebserviceModels.Auth;
 using System.Security.Claims;
 using GesEdu.Shared.WebserviceModels.Manuais;
@@ -55,10 +55,18 @@ namespace GesEdu.ServiceLayer.Services
                     new Claim("DES_ANO_LETIVO", getFaseResponse.des_id_ano_letivo_atual!),
                     new Claim("ANO_LETIVO_ANTERIOR", getFaseResponse.id_ano_letivo_anterior!),
                     new Claim("DES_ANO_LETIVO_ANTERIOR", getFaseResponse.des_id_ano_letivo_anterior!),
+                    new Claim("SIME_ANO_LETIVO", getFaseResponse.sime_id_ano_letivo_atual!),
+                    new Claim("SIME_DES_ANO_LETIVO", getFaseResponse.sime_des_id_ano_letivo_atual!),
                     new Claim("ESTADO_FASE", getFaseResponse.cod_estado_fase!),
                     new Claim("COD_ORIGEM", loginUtilizadorResponse.cod_origem!),
                     new Claim("NOME_ORIGEM", loginUtilizadorResponse.nome_origem!),
             };
+
+            if (!string.IsNullOrEmpty(getFaseResponse.sime_id_ano_letivo_anterior))
+            {
+                claims.Add(new Claim("SIME_ANO_LETIVO_ANTERIOR", getFaseResponse.sime_id_ano_letivo_anterior!));
+                claims.Add(new Claim("SIME_DES_ANO_LETIVO_ANTERIOR", getFaseResponse.sime_des_id_ano_letivo_anterior!));
+            }
 
             //TODO - Descomentar validação de Perfil ADMIN
             if (true || loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == GesEduProfiles.ADMIN))

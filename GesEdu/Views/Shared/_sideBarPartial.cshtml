@@ -26,7 +26,7 @@
     <section class="tab-content ig-submenu">
         @if (Html.IsAreaView("AreaReservada"))
         {
-            <div class="">
+            <div>
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
@@ -175,7 +175,7 @@
 
         @if (Html.IsAreaView("MEGA"))
         {
-            <div class="">
+            <div>
                 <ul>
                     <li>
                         <a href="#">Gerir vouchers</a>
@@ -198,10 +198,10 @@
 
         @if (Html.IsAreaView("SIME"))
         {
-            <div class="">
+            <div>
                 <ul>
-                    <li>
-                        <a href="#">Apreciação de manuais</a>
+                    <li class="@(Html.IsSelected("SIME", "ApreciacaoManuais", "Index"))">
+                        <a href="@Url.Action("Index", "ApreciacaoManuais", new { Area = "SIME" })">Apreciação de manuais</a>
                     </li>
                     <li>
                         <a href="#">Adoções de anos anteriores</a>
