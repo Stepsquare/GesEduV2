@@ -30,7 +30,6 @@
                     <p><a href="common.html">Elementos comuns</a></p>
                     <p><a href="forms.html"><strong>Formulários</strong></a></p>
                     <p><a href="buttons.html">Botões</a></p>
-                    <p><a href="mega.html">Programa MEGA</a></p>
                     <p><a href="frameworks.html">Frameworks do projeto</a></p>
                     <p><a href="uxwriting.html">Textos para o GesEdu (UX Writing)</a></p>
                 </div>
@@ -46,8 +45,8 @@
                         <div class="mb-3">
                             <textarea class="form-control ig-code" rows="6" disabled>
 <div class="mb-3">
-    <label class="form-label">Nome do campo:</label>
-    <input type="text" class="form-control" />
+                            <label class="form-label">Nome do campo:</label>
+                            <input type="text" class="form-control" />
 </div>
                             </textarea>
                         </div>
@@ -114,8 +113,8 @@ Algum texto aqui...
                         <div class="mb-3">
                             <textarea class="form-control ig-code" rows="6" disabled>
 <div class="input-group mb-3">
-    <span class="input-group-text">€</span>
-    <input type="text" class="form-control" />
+                            <span class="input-group-text">€</span>
+                            <input type="text" class="form-control" />
 </div>
                                 </textarea>
                         </div>
@@ -133,9 +132,9 @@ Algum texto aqui...
                         <h4>Código de exemplo:</h4>
                         <textarea class="form-control ig-code mb-5" rows="6" disabled>
 <div class="row">
-    <div class="col-md">
-        <label class="form-label">Nome do campo</label>
-        <p>Descrição do campo</p>
+                        <div class="col-md">
+                        <label class="form-label">Nome do campo</label>
+                        <p>Descrição do campo</p>
     </div>
 </div>
                             </textarea>
@@ -152,10 +151,10 @@ Algum texto aqui...
                         <div class="mb-3">
                             <textarea class="form-control ig-code" rows="8" disabled>
 <select class="form-select">
-    <option>Escolha uma opção</option>
-    <option>Opção 1</option>
-    <option>Opção 2</option>
-    <option>Opção 3</option>
+                            <option>Escolha uma opção</option>
+                            <option>Opção 1</option>
+                            <option>Opção 2</option>
+                            <option>Opção 3</option>
 </select>
                                 </textarea>
                         </div>
@@ -177,11 +176,11 @@ Algum texto aqui...
                             <textarea class="form-control ig-code" rows="9" disabled>
 <input class="form-control" list="igDatalistOptions" id="igDataList" placeholder="Pesquisa...">
 <datalist id="igDatalistOptions">
-    <option value="Agrupamento de Escolas de Arruda dos Vinhos">
-    <option value="Agrupame6nto de Escolas de Ermesinde">
-    <option value="Agrupamento de Escolas de Idanha a Nova">
-    <option value="Agrupamento de Escolas de Odeceixe">
-    <option value="Agrupamento de Escolas de Urra">
+                            <option value="Agrupamento de Escolas de Arruda dos Vinhos">
+                            <option value="Agrupame6nto de Escolas de Ermesinde">
+                            <option value="Agrupamento de Escolas de Idanha a Nova">
+                            <option value="Agrupamento de Escolas de Odeceixe">
+                            <option value="Agrupamento de Escolas de Urra">
 </datalist>
                             </textarea>
                         </div>
@@ -212,12 +211,12 @@ Algum texto aqui...
                         <div class="mb-3">
                             <textarea class="form-control ig-code" rows="9" disabled>
 <div class="mb-3">
-    <label for="igFormFile" class="form-label">Input simples (um ficheiro)</label>
-    <input class="form-control" type="file" id="igFormFile">
+                            <label for="igFormFile" class="form-label">Input simples (um ficheiro)</label>
+                            <input class="form-control" type="file" id="igFormFile">
 </div>
 <div class="mb-3">
-    <label for="igFormFileMultiple" class="form-label">Input para ficheiros múltiplos</label>
-    <input class="form-control" type="file" id="igFormFileMultiple" multiple>
+                            <label for="igFormFileMultiple" class="form-label">Input para ficheiros múltiplos</label>
+                            <input class="form-control" type="file" id="igFormFileMultiple" multiple>
 </div>
                             </textarea>
                         </div>
@@ -251,6 +250,7 @@ Algum texto aqui...
                         <h2 id="igFCheckboxes">Checkboxes</h2>
                         <h3 id="igFCClassic">Formato clássico</h3>
                         <p class="mb-0">Permite assinalar um campo de modo binário.</p>
+                        <p class="mb-0">As checkboxes neste formato deversão ser utilizadas quando é necessário clicar num botão de confirmação de um determinado formulário.</p>
                         <p>
                             A ideia é utilizarmos nesta versão do GesEdu as checkboxes provenientes do BS5, adaptadas a este sistema de design.
                         </p>
@@ -258,14 +258,14 @@ Algum texto aqui...
                         <div class="mb-3">
                             <textarea class="form-control ig-code" rows="10" disabled>
 <div class="form-check ig-check">
-    <input class="form-check-input" type="checkbox" value="" id="igCheck01">
-    <label class="form-check-label" for="igCheck01">
+                            <input class="form-check-input" type="checkbox" value="" id="igCheck01">
+                            <label class="form-check-label" for="igCheck01">
         Não quero assinalar esta opção.
     </label>
 </div>
 <div class="form-check ig-check">
-    <input class="form-check-input" type="checkbox" value="" id="igCheck02" checked>
-    <label class="form-check-label" for="igCheck02">
+                            <input class="form-check-input" type="checkbox" value="" id="igCheck02" checked>
+                            <label class="form-check-label" for="igCheck02">
         Quero assinalar esta opção.
     </label>
 </div>
@@ -287,22 +287,22 @@ Algum texto aqui...
                             </div>
                         </div>
                         <h3 id="igFCSwitch">Formato switch</h3>
-                        <p>Devem ser utlizadas em campos de ativação/desativação.</p>
+                        <p>Devem ser utlizadas quando a ação a efetivar não pressupõe uma confirmação posterior.</p>
                         <h4>Código de exemplo:</h4>
                         <div class="mb-3">
                             <textarea class="form-control ig-code" rows="10" disabled>
 <div class="form-check form-switch ig-check">
-    <input class="form-check-input" type="checkbox" id="igActiveInactive1">
-    <label class="form-check-label" for="flexSwitchCheckDefault"> Acesso à Aplicação externa GESEDU Área Reservada</label>
+                            <input class="form-check-input" type="checkbox" id="igActiveInactive1">
+                            <label class="form-check-label" for="flexSwitchCheckDefault"> Acesso à Aplicação externa GESEDU Área Reservada</label>
 </div>
 <div class="form-check form-switch ig-check">
-    <input class="form-check-input" type="checkbox" id="igActiveInactive1">
-    <label class="form-check-label" for="flexSwitchCheckDefault"> Acesso à Aplicação externa GESEDU Área Reservada</label>
+                            <input class="form-check-input" type="checkbox" id="igActiveInactive1">
+                            <label class="form-check-label" for="flexSwitchCheckDefault"> Acesso à Aplicação externa GESEDU Área Reservada</label>
 </div>
 <!--Label à esquerda-->
 <div class="form-check form-switch ig-check ig-switch-reverse">
-    <input class="form-check-input" type="checkbox" id="igActiveInactive1" >
-    <label class="form-check-label" for="flexSwitchCheckDefault">Ativo</label>
+                            <input class="form-check-input" type="checkbox" id="igActiveInactive1">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Ativo</label>
 </div>
 
                             </textarea>
@@ -335,16 +335,16 @@ Algum texto aqui...
                         <h4>Código de exemplo:</h4>
                         <textarea class="form-control ig-code mb-3" rows="10" disabled>
 <div class="form-check ig-check">
-    <input class="form-check-input" type="radio" name="flexRadioDefault"
-            id="igRadioDefault1">
-    <label class="form-check-label" for="flexRadioDefault1">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                               id="igRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
         Opção 1
     </label>
 </div>
 <div class="form-check ig-check">
-    <input class="form-check-input" type="radio" name="flexRadioDefault"
-            id="igRadioDefault2" checked>
-    <label class="form-check-label" for="flexRadioDefault2">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                               id="igRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
         Opção 2
     </label>
 </div>
@@ -370,46 +370,46 @@ Algum texto aqui...
                         <div class="mb-3">
                             <textarea class="form-control ig-code" rows="10" disabled>
 <form class="row g-3 needs-validation" novalidate>
-    <div class="col-md">
-        <label for="validationCustom01" class="form-label">Campo de texto</label>
-        <input type="text" class="form-control" id="validationCustom01" value="Valor do campo de texto" required>
-        <div class="valid-feedback">
+                            <div class="col-md">
+                            <label for="validationCustom01" class="form-label">Campo de texto</label>
+                            <input type="text" class="form-control" id="validationCustom01" value="Valor do campo de texto" required>
+                            <div class="valid-feedback">
             Campo de texto correto
         </div>
     </div>
-    <div class="col-md">
-        <label for="validationCustomUsername" class="form-label">Campo de input-group</label>
-        <div class="input-group has-validation">
-            <span class="input-group-text" id="inputGroupPrepend">€</span>
-            <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-            <div class="invalid-feedback">
+                            <div class="col-md">
+                            <label for="validationCustomUsername" class="form-label">Campo de input-group</label>
+                            <div class="input-group has-validation">
+                            <span class="input-group-text" id="inputGroupPrepend">€</span>
+                            <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                            <div class="invalid-feedback">
                 Introduza um valor correto.
             </div>
         </div>
     </div>
-    <div class="col-md">
-        <label for="validationCustom04" class="form-label">Campo de dropdown</label>
-        <select class="form-select" id="validationCustom04" required>
-            <option selected disabled value="">Escolha uma opção...</option>
-            <option>...</option>
+                            <div class="col-md">
+                            <label for="validationCustom04" class="form-label">Campo de dropdown</label>
+                            <select class="form-select" id="validationCustom04" required>
+                            <option selected disabled value="">Escolha uma opção...</option>
+                            <option>...</option>
         </select>
-        <div class="invalid-feedback">
+                            <div class="invalid-feedback">
             Por favor, escolha uma opção válida.
         </div>
     </div>
-    <div class="col-12">
-        <div class="form-check ig-check">
-            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-            <label class="form-check-label" for="invalidCheck">
+                            <div class="col-12">
+                            <div class="form-check ig-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                            <label class="form-check-label" for="invalidCheck">
                  Campo de checkbox
             </label>
-            <div class="invalid-feedback">
+                            <div class="invalid-feedback">
                 Assinale a caixa de seleção para submeter o formulário.
             </div>
         </div>
     </div>
-    <div class="col-12">
-        <button class="btn ig-btn-green" type="submit"><i class="fas fa-check"></i> Testar validações</button>
+                            <div class="col-12">
+                            <button class="btn ig-btn-green" type="submit"><i class="fas fa-check"></i> Testar validações</button>
     </div>
 </form>
                     </textarea>
@@ -490,8 +490,8 @@ Algum texto aqui...
                         <div class="mb-3">
                             <textarea class="form-control ig-code" rows="6" disabled>
 <p>
-    <span class="badge rounded-pill ig-user-permissions"><i class="fa-solid fa-user-lock" title="Acesso à Aplicação externa GESEDU Área Reservada"></i> Acesso à Aplicação externa GESEDU Área Reservada</span>
-    <span class="badge rounded-pill ig-user-permissions" title="Acesso à Aplicação externa MEGA"><i class="fa-solid fa-user-lock"></i> Acesso à Aplicação externa MEGA</span>
+                            <span class="badge rounded-pill ig-user-permissions"><i class="fa-solid fa-user-lock" title="Acesso à Aplicação externa GESEDU Área Reservada"></i> Acesso à Aplicação externa GESEDU Área Reservada</span>
+                            <span class="badge rounded-pill ig-user-permissions" title="Acesso à Aplicação externa MEGA"><i class="fa-solid fa-user-lock"></i> Acesso à Aplicação externa MEGA</span>
 </p>
                             </textarea>
                         </div>
@@ -502,22 +502,56 @@ Algum texto aqui...
                                 <span class="badge rounded-pill ig-user-permissions" title="Acesso à Aplicação externa MEGA"><i class="fa-solid fa-user-lock"></i> Acesso à Aplicação externa MEGA</span>
                             </p>
                         </div>
+                        <h2 id="igFSCBadge">Indicação de ciclos</h2>
+                        <p>Permite identificar um ciclo através da atribuição de uma cor.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="6" disabled>
+<!--1.º ciclo-->
+<span class="badge rounded-pill ig-cycle-01">1.º ciclo</span>
+
+<!--2.º ciclo-->
+<span class="badge rounded-pill ig-cycle-02">2.º ciclo</span>
+
+<!--3.º ciclo-->
+<span class="badge rounded-pill ig-cycle-03">3.º ciclo</span>
+
+<!--Secundário-->
+<span class="badge rounded-pill ig-cycle-se">Secundário</span>
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="card ig-card card-body mb-5">
+
+                            <p>
+                                <span class="badge rounded-pill ig-cycle-01">1.º ciclo</span>
+                            </p>
+                            <p>
+                                <span class="badge rounded-pill ig-cycle-02">2.º ciclo</span>
+                            </p>
+                            <p>
+                                <span class="badge rounded-pill ig-cycle-03">3.º ciclo</span>
+                            </p>
+                            <p class="mb-1">
+                                <span class="badge rounded-pill ig-cycle-se">Secundário</span>
+                            </p>
+                        </div>
                         <h2 id="igFState">Indicadores de estado</h2>
                         <p>Indicam um estado de um campo.</p>
                         <h4>Código de exemplo:</h4>
                         <div class="mb-3">
                             <textarea class="form-control ig-code mb-3" rows="10" disabled>
 <div class="mb-3">
-    <label class="form-label">Estado de erro:</label>
-    <p><span class="badge ig-badge-error"><i class="fas fa-exclamation-triangle"></i>Tudo bugado!</span></p>
+                            <label class="form-label">Estado de erro:</label>
+                            <p><span class="badge ig-badge-error"><i class="fas fa-exclamation-triangle"></i>Tudo bugado!</span></p>
 </div>
 <div class="mb-3">
-    <label class="form-label">Estado de alerta:</label>
-    <p><span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i>É melhor veres disto...</span></p>
+                            <label class="form-label">Estado de alerta:</label>
+                            <p><span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i>É melhor veres disto...</span></p>
 </div>
 <div class="mb-3">
-    <label class="form-label">Estado de sucesso:</label>
-    <p><span class="badge ig-badge-success"><i class="fas fa-check"></i>Yuuuuuuuuge!</span></p>
+                            <label class="form-label">Estado de sucesso:</label>
+                            <p><span class="badge ig-badge-success"><i class="fas fa-check"></i>Yuuuuuuuuge!</span></p>
 </div>
                             </textarea>
                         </div>
@@ -583,6 +617,7 @@ Algum texto aqui...
                             <p><a href="#igFFValidation">Validação de campos</a></p>
                             <p><a href="#igFSName">Indicação de nome de uma Escola ou UO</a></p>
                             <p><a href="#igFSBadge">Indicação de descrições (Badges)</a></p>
+                            <p><a href="#igFSCBadge">Indicação de ciclos (Badges)</a></p>
                             <p><a href="#igFState">Indicadores de estado</a></p>
                         </div>
 

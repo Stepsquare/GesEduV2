@@ -86,18 +86,25 @@ h3{
     color: var(--ig-blue-1);
     font-weight: 700;
 }
+h4{
+    font-size:1rem;
+}
 
-h4,h5 {
+h4, h5 {
     color: var(--ig-blue-2);
     font-weight: 700;
-    font-size: 1rem;
 }
-
-a {
-    color: var(--ig-blue-2);
-    text-decoration: none;
-    transition: var(--ig-transition);
+a h4 {
+    font-size: 1.25rem;
 }
+    h5{
+        font-size:1rem;
+    }
+    a {
+        color: var(--ig-blue-2);
+        text-decoration: none;
+        transition: var(--ig-transition);
+    }
 
 a:hover {
     color: var(--ig-blue-1);
@@ -340,7 +347,47 @@ a.ig-btn-back {
     border-color: var(--ig-red-2);
     color: var(--ig-red-1);
 }
+/*Wizard*/
 
+span.ig-stepnum {
+    width: 2.5rem;
+    height: 2.5rem;
+    text-align: center;
+    background: var(--ig-blue-3);
+    color: var(--ig-white);
+    font-weight: bold;
+    line-height: 2.5rem;
+    border-radius: 1.25rem;
+    font-size: 1.25rem;
+    vertical-align: middle;
+    flex-shrink: inherit;
+}
+
+.ig-step {
+    display: flex;
+    margin-right: 2rem;
+    padding-bottom: 0.5rem;
+    align-items:center;
+}
+
+.ig-insc-steps {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+span.ig-stepname {
+    font-weight: bold;
+    padding-left: 0.5rem;
+    color: var(--ig-blue-3);
+}
+
+.ig-step.ig-stepactive .ig-stepnum {
+    background: var(--ig-blue-2);
+}
+
+.ig-stepactive span.ig-stepname {
+    color: var(--ig-blue-2);
+}
 
 /*Modals*/
 .ig-modal .modal-header {
@@ -555,32 +602,43 @@ a.ig-collapse-link i {
     flex-grow: 1;
     min-height: 0;
 }
+.ig-biglink,
+.ig-biglink:hover,
+.ig-biglink:focus {
+    margin-bottom: 0;
+}
 
-.ig-biglink-hp img {
+.ig-biglink-hp img, .ig-biglink img {
     height: 100%;
     max-height: 100px;
-    display:flex;
+    display: flex;
     margin-right: 1rem;
 }
 
-.ig-biglink-hp .ig-card {
+.ig-biglink-hp .ig-card, .ig-biglink .ig-card {
     transition: var(--ig-transition);
     height: 100%;
     width: 100%;
 }
-
 .ig-biglink-hp:hover .ig-card,
-.ig-biglink-hp:focus .ig-card {
+.ig-biglink-hp:focus .ig-card,
+.ig-biglink:hover .ig-card,
+.ig-biglink:focus .ig-card {
     background: var(--ig-blue-4);
     transition: var(--ig-transition);
     box-shadow: var(--ig-shadow);
 }
-a.ig-biglink-hp .card .card-body {
+a.ig-biglink-hp .card .card-body,
+a.ig-biglink .card .card-body {
     display: flex;
     flex-direction: row;
     align-items: center;
     height: 100%;
 }
+a.ig-biglink p {
+    color: var(--bs-body-color);
+}
+
 .ig-homebtn-cont {
     height: calc(100vh - 367px);
     flex-direction: column;
@@ -622,6 +680,10 @@ a.list-group-item:hover {
 a.list-group-item.active, a.list-group-item:active:hover {
     background: var(--ig-green-2-alpha);
 }
+.ig-card .list-group-item.active p {
+    color: var(--bs-list-group-color)
+}
+
 
 /*accordion*/
 
@@ -865,7 +927,17 @@ th.ig-th-4rem{
 /*Separadores*/
 
 .ig-tabs .tab-content.card.ig-card {
-    border-top-left-radius: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+.ig-tabs .card-body {
+    border-radius: 1rem;
+    background: var(--ig-white);
+    box-shadow: var(--ig-shadow);
+}
+.ig-tabs > .tab-content.card.ig-card > .card-body:first-child {
+    border-radius: 0 1rem 1rem 1rem;
 }
 
 .ig-tabs .nav-tabs {

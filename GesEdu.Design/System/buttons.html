@@ -32,7 +32,6 @@
                     <p><a href="common.html">Elementos comuns</a></p>
                     <p><a href="forms.html">Formulários</a></p>
                     <p><a href="buttons.html"><strong>Botões</strong></a></p>
-                    <p><a href="mega.html">Programa MEGA</a></p>
                     <p><a href="frameworks.html">Frameworks do projeto</a></p>
                     <p><a href="uxwriting.html">Textos para o GesEdu (UX Writing)</a></p>
                 </div>
@@ -77,6 +76,33 @@
                                 Gravar pedido
                             </button>
                         </div>
+                        <h2 id="igDButtons">Botões de dropdown</h2>
+                        <p>Estes botões são utilizados quando existem várias opções no contexto de uma ação principal.</p>
+                        <p><strong>Nota:</strong> Deverá ser deixado um espaço no código entre o encerramento da tag do ícone e o texto do botão.</p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="3" disabled>
+<button class="btn ig-btn-blue dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-book"></i> Descarregar lista de manuais
+</button>
+<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="">
+                            <li><a class="dropdown-item" href="#">1.º Ciclo</a></li>
+                            <li><a class="dropdown-item" href="#">2.º Ciclo</a></li>
+                            <li><a class="dropdown-item" href="#">3.º Ciclo</a></li>
+</ul>
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="mb-5">
+                            <button class="btn ig-btn-blue dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-book"></i> Descarregar lista de manuais
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="">
+                                <li><a class="dropdown-item" href="#">1.º Ciclo</a></li>
+                                <li><a class="dropdown-item" href="#">2.º Ciclo</a></li>
+                                <li><a class="dropdown-item" href="#">3.º Ciclo</a></li>
+                            </ul>
+                        </div>
                         <h2 id="igBLinks">Links básicos</h2>
                         <p>Para ligar a documentos, a páginas externas à aplicação ou a elementos que têm de ser disponibilidados mas que têm de ter menos visibilidade.</p>
                         <h4>Código de exemplo:</h4>
@@ -88,6 +114,50 @@
                         <h4>Output visual:</h4>
                         <div class="mb-5">
                             <a class="fs-6" href="#"><i class="fas fa-file-alt"></i> Download template</a>
+                        </div>
+                        <h2 id="igBgLinks">Botões Biglink</h2>
+                        <p class="mb-0">
+                            Os seguintes botões destinam-se a encaminhar para um detalhe, caso exista uma grande quantidade de dados a apresentar no link.
+                        </p>
+                        <h4>Código de exemplo:</h4>
+                        <div class="mb-3">
+                            <textarea class="form-control ig-code" rows="10" disabled>
+<div class="row">
+    <div class="col-md-6">
+        <a class="ig-biglink" href="javascript:void(0)" title="Editar permissões" data-bs-toggle="modal" data-bs-target="#igModal01">
+            <div class="card ig-card card-body">
+                <h4>Português</h4>
+                <p class="mb-1"><strong>O Mundo das Palavras - Português - 1.º Ano</strong></p>
+                <p class="mb-1">
+                    <span class="me-3"><i class="fas fa-school"></i> Toda a UO</span>
+                    <span><i class="fas fa-user"></i> 96 alunos</span>
+                </p>
+                <p class="mb-0">
+                    <strong>ISBN:</strong> 978-972-0-31725-4
+                </p>
+            </div>
+        </a>
+    </div>
+</div>
+                            </textarea>
+                        </div>
+                        <h4>Output visual:</h4>
+                        <div class="row mb-5">
+                            <div class="col-md-6">
+                                <a class="ig-biglink" href="javascript:void(0)" title="Editar permissões" data-bs-toggle="modal" data-bs-target="#igModal01">
+                                    <div class="card ig-card card-body">
+                                        <h4>Português</h4>
+                                        <p class="mb-1"><strong>O Mundo das Palavras - Português - 1.º Ano</strong></p>
+                                        <p class="mb-1">
+                                            <span class="me-3"><i class="fas fa-school"></i> Toda a UO</span>
+                                            <span><i class="fas fa-user"></i> 96 alunos</span>
+                                        </p>
+                                        <p class="mb-0">
+                                            <strong>ISBN:</strong> 978-972-0-31725-4
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                         <h2 id="igHPButtons">Botões da página inicial</h2>
                         <p class="mb-0">
@@ -103,12 +173,16 @@
                         <div class="mb-3">
                             <textarea class="form-control ig-code" rows="10" disabled>
 <div class="ig-homebtn-cont">
-    <a class="ig-biglink-hp" href="#" title="Estabelecimentos de Ensino">
+    <a class="ig-biglink-hp" title="Estabelecimentos de Ensino" href="#">
         <div class="card ig-card">
-            <div class="card-body text-center">
-                <img src="../assets/img/icon-estensino.svg">
-                <h4>Estabelecimentos de Ensino Básico e Secundário</h4>
-                <p>Área reservada</p>
+            <div class="card-body">
+                <img src="/images/icon-estensino.svg">
+                <div class="ig-homebtn-txt">
+                    <h4>
+                        Área reservada
+                    </h4>
+                    <p>Estabelecimentos de Ensino Básico e Secundário</p>
+                </div>
             </div>
         </div>
     </a>
@@ -117,15 +191,21 @@
                         </div>
                         <h4>Output visual:</h4>
                         <div class="mb-5">
-                            <a class="ig-biglink-hp" href="#" title="Estabelecimentos de Ensino">
-                                <div class="card ig-card">
-                                    <div class="card-body text-center">
-                                        <img src="../../GesEdu/wwwroot/images/icon-estensino.svg">
-                                        <h4>Estabelecimentos de Ensino Básico e Secundário</h4>
-                                        <p>Área reservada</p>
+                            <div class="">
+                                <a class="ig-biglink-hp" title="Estabelecimentos de Ensino" href="#">
+                                    <div class="card ig-card">
+                                        <div class="card-body">
+                                            <img src="../../GesEdu/wwwroot/images/icon-estensino.svg">
+                                            <div class="ig-homebtn-txt">
+                                                <h4>
+                                                    Área reservada
+                                                </h4>
+                                                <p>Estabelecimentos de Ensino Básico e Secundário</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 ps-5">
@@ -133,7 +213,9 @@
                             <h4 class="mb-4">Nesta página:</h4>
                             <p><a href="#igCButtons">Botões de confirmação</a></p>
                             <p><a href="#igSButtons">Botões secundários</a></p>
+                            <p><a href="#igDButtons">Botões de dropdown</a></p>
                             <p><a href="#igBLinks">Links básicos</a></p>
+                            <p><a href="#igBgLinks">Botões Biglink</a></p>
                             <p><a href="#igHPButtons">Botões da página inicial</a></p>
                         </div>
 
