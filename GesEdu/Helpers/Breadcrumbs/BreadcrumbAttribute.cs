@@ -50,7 +50,7 @@ namespace GesEdu.Helpers.Breadcrumbs
             var urlHelper = context.HttpContext.RequestServices.GetService<IUrlHelperFactory>()?.GetUrlHelper(context);
             var url = urlHelper?.Action(actionValue, controllerValue, routeValues);
 
-            breadcrumbService!.AddBreadcrumb(Title!, url!);
+            breadcrumbService!.AddBreadcrumb(Title!, url!, areaValue);
 
             base.OnActionExecuted(context);
         }
