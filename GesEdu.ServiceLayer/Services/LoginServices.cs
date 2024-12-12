@@ -6,9 +6,9 @@ using GesEdu.Shared.WebserviceModels.Manuais;
 using GesEdu.Shared.ExceptionHandler.Exceptions;
 using System.Net;
 using System.Net.Http.Json;
-using Microsoft.AspNetCore.Http;
 using GesEdu.Shared.Resources;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace GesEdu.ServiceLayer.Services
 {

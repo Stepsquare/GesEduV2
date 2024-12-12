@@ -3,9 +3,9 @@ using System.Net;
 using System.Text.Json;
 using GesEdu.Shared.ExceptionHandler.Exceptions;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 
 namespace GesEdu.Shared.ExceptionHandler
 {
