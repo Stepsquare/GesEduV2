@@ -920,6 +920,9 @@ th.ig-th-4rem{
 .ig-loadable-div, .ig-loadable-div .ig-card{
     position: relative;
 }
+.ig-load-placeholder{
+    height:400px;
+}
 
 /*Separadores*/
 

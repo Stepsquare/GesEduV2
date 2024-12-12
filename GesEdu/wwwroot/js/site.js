@@ -26,17 +26,13 @@ $(document).on("ajaxComplete", function () {
     ToggleFullPageLoader();
 });
 
-function GoBack() {
-    window.history.back();
-}
-
 function ToggleFullPageLoader() {
     $('body').toggleClass('overflow-hidden');
 
     $('#loader').fadeToggle("fast");
 }
 
-function ShowDivLoader(div) {
+function ShowDivLoader() {
     var divLoader = $("<div id=\"divloader\" style=\"display:none\" class=\"ig-load\"><span class=\"spinner-grow\" role=\"status\"></span> Aguarde por favor...</div>");
     $(".ig-loadable-div").append(divLoader);
     $("#divloader").fadeIn("fast");
