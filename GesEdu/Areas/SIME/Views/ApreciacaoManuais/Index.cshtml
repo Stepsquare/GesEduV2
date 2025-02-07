@@ -93,7 +93,7 @@
 </div>
 
 <script>
-    $(document).ready(function () {
+    $(function () {
         $('#collapseMFs').on('hide.bs.collapse', function () {
             $('#certificacao_dropdown').data("kendoDropDownList").value("");
             $('#ano_escolar_combobox').data("kendoComboBox").value("");
@@ -108,7 +108,7 @@
             var ciclo = $(this).prop('id');
 
             var url = '@Url.Action("ManuaisPdfExport", "ApreciacaoManuais", new { Area = "SIME", })/?ano_letivo=' + anoLetivo + '&ciclo=' + ciclo;
-            
+
             window.open(url, '_blank');
         });
 
@@ -223,7 +223,7 @@
                 HideDivLoader();
             },
             error: function (error) {
-                ErrorToast(error.responseJSON.messages);
+                ErrorHandling(error);
                 HideDivLoader();
             },
             beforeSend: ShowDivLoader(),

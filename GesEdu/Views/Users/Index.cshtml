@@ -77,7 +77,7 @@
 
 
 <script>
-    $(document).ready(function () {
+    $(function () {
         $("#del_search_btn").on("click", function () {
             $("#username_search").val("");
         });
@@ -106,7 +106,7 @@
                 $('#search_result_container').html(data);
             },
             error: function (error) {
-                ErrorToast(error.responseJSON.messages);
+                ErrorHandling(error);
             },
             beforeSend: ShowDivLoader(),
             complete: HideDivLoader()

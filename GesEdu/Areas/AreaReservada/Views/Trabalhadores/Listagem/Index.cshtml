@@ -1,0 +1,93 @@
+﻿@using System.Text.Json
+@{
+    ViewData["Title"] = "Trabalhadores da UO";
+}
+
+@* HEADER *@
+<div class="ig-pagetitle mb-3">
+    <div class="row">
+        <div class="col-md">
+            <h2>
+                @ViewData["Title"]
+            </h2>
+        </div>
+    </div>
+    <breadcrumb></breadcrumb>
+</div>
+
+<div class="card ig-card  mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-3 mb-3">
+                <label class="form-label">Regime:</label>
+                <input id="regime_dropdown" type="text" class="igk-searchable-ddl" />
+            </div>
+            <div class="col-xl mb-3">
+                <label class="form-label">NIF do trabalhador:</label>
+                <input id="nif_txt" type="text" class="form-control">
+            </div>
+            <div class="col-auto ig-searchbtn-cont">
+                <button class="btn ig-btn-green" onclick="searchTrabalhadores()">
+                    <i class="fas fa-search"></i> Pesquisar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* SEARCH RESULT CONTAINER *@
+<div class="ig-loadable-div">
+    <table id="search_result_table" class="table ig-grid" >
+    </table>
+</div>
+
+<script>
+    $(function () {
+        $("#regime_dropdown").kendoDropDownList({
+            dataTextField: "descricao",
+            dataValueField: "codigo",
+            optionLabel: {
+                descricao: "Todos",
+                codigo: ""
+            },
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        url: "@Url.Action("GetDominios", "Home", new { Area = "" })",
+                        data: function () {
+                            return { code: "REGIMES_FUNCIONARIOS" };
+                        },
+                        global: false
+                    }
+                }
+            },
+            dataBound: function () {
+                searchTrabalhadores();
+            }
+        });
+    });
+
+    function searchTrabalhadores(pageIndex, pageSize) {
+        $.ajax({
+            url: '@Url.Action("SearchTrabalhadores", "Trabalhadores")',
+            type: "GET",
+            global: false,
+            data: {
+                nif_pes: $('#nif_txt').val(),
+                regime: $('#regime_dropdown').data("kendoDropDownList").value(),
+                PageIndex: pageIndex,
+                PageSize: pageSize
+            },
+            success: function (data) {
+                $('#search_result_table').html(data);
+                HideDivLoader();
+            },
+            error: function (error) {
+                ErrorHandling(error);
+                HideDivLoader();
+            },
+            beforeSend: ShowDivLoader(),
+        });
+    }
+</script>

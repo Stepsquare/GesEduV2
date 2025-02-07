@@ -9,11 +9,11 @@ namespace GesEdu.Controllers
     [Authorize]
     public class HomeController : BaseController
     {
-        private readonly IHomepageServices _noticiasServices;
+        private readonly IHomepageServices _homepageServices;
 
-        public HomeController(IHomepageServices noticiasServices)
+        public HomeController(IHomepageServices homepageServices)
         {
-            _noticiasServices = noticiasServices;
+            _homepageServices = homepageServices;
         }
 
         #region Views
@@ -24,11 +24,16 @@ namespace GesEdu.Controllers
             if ((User.IsAdmin() || User.IsSimeDgeUser()) && string.IsNullOrEmpty(User.GetCodigoServico()))
                 return RedirectToAction("ChooseUo", "Authentication");
 
-            var model = await _noticiasServices.GetNoticias();
+            var model = await _homepageServices.GetNoticias();
 
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetDominios(string code)
+        {
+            return Json(await _homepageServices.GetDominios(code));
+        }
         #endregion
     }
 }

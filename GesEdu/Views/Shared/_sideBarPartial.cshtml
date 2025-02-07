@@ -30,20 +30,20 @@
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button @(Html.IsCollapsed(["Listagem", "Detalhe"], ["Trabalhadores"], "AreaReservada", "collapsed"))" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseOne" aria-expanded="false"
                                     aria-controls="flush-collapseOne">
                                 Pessoal
                             </button>
                         </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                        <div id="flush-collapseOne" class="accordion-collapse @(Html.IsCollapsed(["Listagem", "Detalhe"], ["Trabalhadores"], "AreaReservada", "collapse"))"
                              data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
                                 <ul>
-                                    <li>
-                                        <a class="ig-menuactive" href="#">Trabalhadores da UO</a>
+                                    <li class="@(Html.IsActive(["Listagem", "Detalhe"], ["Trabalhadores"], "AreaReservada"))">
+                                        <a class="ig-menuactive" href="@Url.Action("Listagem", "Trabalhadores", new { Area = "AreaReservada" })">Trabalhadores da UO</a>
                                     </li>
-                                    <li>
+                                    @* <li>
                                         <a href="#">Contratos</a>
                                     </li>
                                     <li>
@@ -66,12 +66,12 @@
                                     </li>
                                     <li>
                                         <a href="#">Trabalhadores</a>
-                                    </li>
+                                    </li> *@
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
+                    @* <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseTwo" aria-expanded="false"
@@ -125,8 +125,8 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                    <div class="accordion-item">
+                    </div> *@
+                    @* <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseThree" aria-expanded="false"
@@ -168,7 +168,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> *@
                 </div>
             </div>
         }
@@ -177,7 +177,7 @@
         {
             <div>
                 <ul>
-                    <li>
+                    @* <li>
                         <a href="#">Gerir vouchers</a>
                     </li>
                     <li>
@@ -191,7 +191,7 @@
                     </li>
                     <li>
                         <a href="#">Suporte</a>
-                    </li>
+                    </li> *@
                 </ul>
             </div>
         }
@@ -200,10 +200,10 @@
         {
             <div>
                 <ul>
-                    <li class="@(Html.IsSelected("SIME", "ApreciacaoManuais", "Index"))">
+                    <li class="@(Html.IsActive(["Index"], ["ApreciacaoManuais"], "SIME"))">
                         <a href="@Url.Action("Index", "ApreciacaoManuais", new { Area = "SIME" })">Apreciação de manuais</a>
                     </li>
-                    <li>
+                    @* <li>
                         <a href="#">Adoções de anos anteriores</a>
                     </li>
                     <li>
@@ -217,7 +217,7 @@
                     </li>
                     <li>
                         <a href="#">Suporte</a>
-                    </li>
+                    </li> *@
                 </ul>
             </div>
         }

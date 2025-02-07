@@ -1,0 +1,101 @@
+﻿@model GetDocenteHabilitacaoResponseItem
+
+<div class="modal-header">
+    <h5 class="modal-title" id="validation_modal_label">Aprovar habilitações</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <h4>Habilitações:</h4>
+    <div class="mb-3">
+        <label class="form-label">Curso:</label>
+        <p class="mb-0"><span class="badge rounded-pill ig-blue-badge"><i class="fas fa-graduation-cap"></i> @Model.habilitacoes</span> @Model.curso</p>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Instituição:</label>
+        <p class="mb-0">@Model.inst_ensino</p>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label class="form-label">Efeitos para progressão?</label>
+            <div>
+                <div class="form-check form-check-inline ig-check">
+                    <!input id="sim_fg_req" name="fg_req" value="S" class="form-check-input" type="radio" @(Model.fg_req == "S" ? "checked" : "")>
+                    <label class="form-check-label" for="sim_fg_req">
+                        Sim
+                    </label>
+                </div>
+                <div class="form-check form-check-inline ig-check">
+                    <!input id="nao_fg_req" name="fg_req" value="N" class="form-check-input" type="radio" @(Model.fg_req == "N" ? "checked" : "")>
+                    <label class="form-check-label" for="nao_fg_req">
+                        Não
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class ="col mb-3">
+            <label class="form-label">Instituição:</label>
+            <input id="dt_efetivacao_input" type="text" class="form-control" />
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal">Sair</button>
+    <button type="button" class="btn ig-btn-blue" onclick="rejeitarHabilitacao()"><i class="fas fa-times"></i> Reprovar habilitações</button>
+    <button type="button" class="btn ig-btn-green" onclick="aprovarHabilitacao()"><i class="fas fa-check"></i> Aprovar habilitações</button>
+</div>
+
+<script>
+    $("#dt_efetivacao_input").kendoDatePicker({
+        format: "dd-MM-yyyy",
+        culture: "pt-PT",
+    });
+
+    function aprovarHabilitacao() {
+        ShowConfirmModal(
+            "Aprovar habilitação",
+            "Tem a certeza que deseja aprovar a habilitação?",
+            "validation_modal",
+            function () {
+                var requestObj = {
+                    id_habilitacao: "@Model.id_habilitacao",
+                    estado_habilitacao: "2",
+                    fg_req: $("input[name=fg_req]:checked").val(),
+                    dt_efetivacao: kendo.toString($("#dt_efetivacao_input").data("kendoDatePicker").value(), "dd/MM/yyyy")
+                };
+
+                setDocentesHabilitacao(requestObj);
+            }
+        );
+    }
+
+    function rejeitarHabilitacao() {
+        ShowConfirmModal(
+            "Rejeitar habilitação",
+            "Tem a certeza que deseja rejeitar a habilitação?",
+            "validation_modal",
+            function () {
+                var requestObj = {
+                    id_habilitacao: "@Model.id_habilitacao",
+                    estado_habilitacao: "3",
+                    fg_req: $("input[name=fg_req]:checked").val()
+                };
+
+                setDocentesHabilitacao(requestObj);
+            }
+        );
+    }
+
+    function setDocentesHabilitacao(requestObj) {
+        $.ajax({
+            url: '@Url.Action("SetDocenteEstadoHabilitacao", "Trabalhadores")',
+            type: "POST",
+            global: false,
+            contentType: 'application/json; charset=UTF-8',
+            data: JSON.stringify(requestObj),
+            success: function (response) {
+                refreshTab();
+                SuccessToast(response.message);
+            }
+        });
+    }
+</script>

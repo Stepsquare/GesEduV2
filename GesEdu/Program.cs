@@ -43,7 +43,7 @@ builder.Services
         options.Cookie.Name = "gesedu_token";
         options.LoginPath = "/Login";
         options.LogoutPath = "/Logout";
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        options.ExpireTimeSpan = TimeSpan.FromSeconds(10);
         options.SlidingExpiration = true;
         options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
     });
@@ -77,8 +77,6 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
 
-app.UseMiddleware<GlobalExceptionHandler>();
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -90,13 +88,15 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
+app.UseSession();
+
+app.UseMiddleware<GlobalExceptionHandler>();
+
 app.UseRouting();
 
 app.UseAuthentication();
 
 app.UseAuthorization();
-
-app.UseSession();
 
 app.MapControllerRoute(
     name: "areas",

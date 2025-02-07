@@ -192,6 +192,7 @@ nav.ig-sidebar-menu {
     background: var(--ig-white);
     box-shadow: var(--ig-shadow);
     height: 100%;
+    width: 200px;
 }
 .ig-submenu li.active a{
     font-weight:bold;
@@ -317,6 +318,10 @@ a.ig-btn-back {
 .dropdown-item.active,
 .dropdown-item:active {
     background-color: var(--ig-blue-2);
+}
+/*colunas*/
+.col-auto.ig-cauto-205{
+    width:205px;
 }
 /*alertas*/
 
@@ -769,6 +774,9 @@ label.form-label {
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0 .5rem 1rem var(--ig-green-1-alpha);
+}
+.ig-loadable-div .table.ig-grid{
+    min-height:50vh;
 }
 
 .table.ig-grid thead th {
@@ -1301,7 +1309,7 @@ footer.ig-footer {
     font-family: Inter, sans-serif;
     font-weight: normal;
 }
-.k-list-container, .k-list-container li{
+.k-list-container, .k-list-container li, .k-list-optionlabel {
     font-family: Inter, sans-serif;
 }
 .k-list .k-item.k-state-selected, .k-list-optionlabel.k-state-selected, .k-list .k-item.k-state-hover.k-state-selected, .k-list .k-item:hover.k-state-selected, .k-list-optionlabel.k-state-hover.k-state-selected, .k-list-optionlabel:hover.k-state-selected {

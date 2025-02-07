@@ -1,0 +1,109 @@
+﻿@model GetDocenteFormacaoResponseItem
+
+<div class="modal-header">
+    <h5 class="modal-title" id="validation_modal_label">Aprovar formação</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <h4>Formação:</h4>
+    <div class="mb-3">
+        <label class="form-label">Curso:</label>
+        <p class="mb-0">@Model.formacao</p>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Instituição:</label>
+        <p class="mb-0">@Model.instituicao</p>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label class="form-label">Artigo 8.º?</label>
+            <div>
+                <div class="form-check form-check-inline ig-check">
+                    <!input id="sim_fg_art_8" name="fg_art_8" value="S" class="form-check-input" type="radio" @(Model.fg_art_8 == "S" ? "checked" : "")>
+                    <label class="form-check-label" for="sim_fg_art_8">
+                        Sim
+                    </label>
+                </div>
+                <div class="form-check form-check-inline ig-check">
+                    <!input id="nao_fg_art_8" name="fg_art_8" value="N" class="form-check-input" type="radio" @(Model.fg_art_8 == "N" ? "checked" : "")>
+                    <label class="form-check-label" for="nao_fg_art_8">
+                        Não
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-3">
+            <label class="form-label">Artigo 9.º?</label>
+            <div>
+                <div class="form-check form-check-inline ig-check">
+                    <!input id="sim_fg_art_9" name="fg_art_9" value="S" class="form-check-input" type="radio" @(Model.fg_art_9 == "S" ? "checked" : "")>
+                    <label class="form-check-label" for="sim_fg_art_9">
+                        Sim
+                    </label>
+                </div>
+                <div class="form-check form-check-inline ig-check">
+                    <!input id="nao_fg_art_9" name="fg_art_9" value="N" class="form-check-input" type="radio"  @(Model.fg_art_9 == "N" ? "checked" : "")>
+                    <label class="form-check-label" for="nao_fg_art_9">
+                        Não
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal">Sair</button>
+    <button type="button" class="btn ig-btn-blue" onclick="rejeitarFormacao()"><i class="fas fa-times"></i> Reprovar formação</button>
+    <button type="button" class="btn ig-btn-green" onclick="aprovarFormacao()"><i class="fas fa-check"></i> Aprovar formação</button>
+</div>
+
+<script>
+    function aprovarFormacao() {
+        ShowConfirmModal(
+            "Aprovar formação",
+            "Tem a certeza que deseja aprovar a formação?",
+            "validation_modal",
+            function () {
+                var requestObj = {
+                    id_formacao: "@Model.id_formacao",
+                    estado_formacao: "2",
+                    fg_art_8: $("input[name=fg_art_8]:checked").val(),
+                    fg_art_9: $("input[name=fg_art_9]:checked").val()
+                };
+
+                setDocentesFormacao(requestObj);
+            }
+        );
+    }
+
+    function rejeitarFormacao() {
+        ShowConfirmModal(
+            "Rejeitar formação",
+            "Tem a certeza que deseja rejeitar a formação?",
+            "validation_modal",
+            function () {
+                var requestObj = {
+                    id_formacao: "@Model.id_formacao",
+                    estado_formacao: "3",
+                    fg_art_8: $("input[name=fg_art_8]:checked").val(),
+                    fg_art_9: $("input[name=fg_art_9]:checked").val()
+                };
+
+                setDocentesFormacao(requestObj);
+            }
+        );
+    }
+
+    function setDocentesFormacao(requestObj) {
+        $.ajax({
+            url: '@Url.Action("SetDocenteEstadoFormacao", "Trabalhadores")',
+            type: "POST",
+            contentType: 'application/json; charset=UTF-8',
+            data: JSON.stringify(requestObj),
+            success: function (response) {
+                refreshTab();
+                SuccessToast(response.message);
+            }
+        });
+    }
+</script>

@@ -1,13 +1,17 @@
 ﻿
 $(document).on("ajaxError", function (event, jqxhr, settings, thrownError) {
-    if (jqxhr.responseJSON != null) {
-        ErrorToast(jqxhr.responseJSON.messages);
-    } else if (jqxhr.status === 401) {
+    ErrorHandling(jqxhr);
+});
+
+function ErrorHandling(error) {
+    if (error.responseJSON != null) {
+        ErrorToast(error.responseJSON.messages);
+    } else if (error.status === 401) {
         location.reload();
-    } else if (jqxhr.status === 403) {
+    } else if (error.status === 403) {
         ErrorToast(['Utilizador não tem permissões.']);
     }
-});
+}
 
 $(document).on("ajaxSuccess", function (event, jqxhr, settings, response) {
     if (response.isRedirect) {
@@ -18,7 +22,7 @@ $(document).on("ajaxSuccess", function (event, jqxhr, settings, response) {
     }
 });
 
-$(document).on("ajaxStart" ,function () {
+$(document).on("ajaxStart", function () {
     ToggleFullPageLoader();
 });
 
@@ -32,9 +36,15 @@ function ToggleFullPageLoader() {
     $('#loader').fadeToggle("fast");
 }
 
-function ShowDivLoader() {
+function ShowDivLoader(containerDivId) {
     var divLoader = $("<div id=\"divloader\" style=\"display:none\" class=\"ig-load\"><span class=\"spinner-grow\" role=\"status\"></span> Aguarde por favor...</div>");
-    $(".ig-loadable-div").append(divLoader);
+
+    if (typeof containerDivId !== 'undefined') {
+        $(`#${containerDivId} .ig-loadable-div`).append(divLoader);
+    } else {
+        $(".ig-loadable-div").append(divLoader);
+    }
+
     $("#divloader").fadeIn("fast");
 }
 
@@ -69,14 +79,17 @@ function ShowErrorModal(messages, onclose) {
     $("#error_modal").modal("show");
 }
 
-function ShowConfirmModal(title, message, callbackfunction) {
+function ShowConfirmModal(title, message, previousModal, callbackfunction) {
 
-    $("#confirm_modal_btn").prop("onclick", null).off("click");
+    $(`#${previousModal}`).modal("hide");
+    $("#confirm_modal_approve_btn").prop("onclick", null).off("click");
 
-    $("#confirm_modal_title").html(title);
-    $("#confirm_modal .modal-body").html(message);
+    $("#confirm_modal_deny_btn").attr("data-bs-target", `#${previousModal}`);
 
-    $("#confirm_modal_btn").on('click', function () {
+    $("#confirm_modal_title").text(title);
+    $("#confirm_modal .modal-body p").text(message);
+
+    $("#confirm_modal_approve_btn").on('click', function () {
         callbackfunction();
     });
 

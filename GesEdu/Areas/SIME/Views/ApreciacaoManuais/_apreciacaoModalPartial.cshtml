@@ -212,7 +212,7 @@
 </div>
 
 <script>
-    $(document).ready(function () {
+    $(function () {
         $(".tab-pane :input[type=radio]").on('change', function () {
             var total = $(this).closest('tbody').find('tr').length;
             var checked = $(this).closest(".tab-pane").find('input[type=radio]:checked').length;
@@ -232,21 +232,15 @@
             $.ajax({
                 url: '@Url.Action("SetManualApreciado", "ApreciacaoManuais", new { Area = "SIME", })',
                 type: "POST",
-                global: false,
+                contentType: 'application/json; charset=UTF-8',
                 data: JSON.stringify(getApreciacaoObj()),
                 success: function (response) {
                     $('#apreciacao_detail_modal').modal('hide');
+
                     searchApreciacao(getPageIndex(), getPageSize());
 
-                    if (response.isMessage) {
-                        SuccessToast(response.message);
-                    }
+                    SuccessToast(response.message);
                 },
-                error: function (error) {
-                    ErrorToast(error.responseJSON.messages);
-                },
-                beforeSend: ToggleFullPageLoader(),
-                complete: ToggleFullPageLoader()
             });
         } else {
             ErrorToast(["Obrigatório avaliar todos os critérios."]);
@@ -254,7 +248,7 @@
     }
 
     function validateApreciacoes() {
-        var isCertified = @(Model.certificado ? "true" : "false");
+        var isCertified = "@(Model.certificado)" === "true";
 
         var total = 0;
         var checked = $('input[type=radio]:checked').length;
