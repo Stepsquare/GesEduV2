@@ -58,12 +58,10 @@ else
             success: function (response) {
                 $("label[for='user_" + userId + "']").text(isChecked ? 'Ativo' : 'Inativo');
 
-                if (response.isMessage) {
-                    SuccessToast(response.message);
-                }
+                SuccessToast(response.message);
             },
-            error: function(error) {
-                ErrorToast(error.responseJSON.messages);
+            error: function (error) {
+                ErrorHandling(error)
                 $("#user_" + userId).prop('checked', !isChecked)
             }
         });

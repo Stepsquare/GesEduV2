@@ -53,11 +53,8 @@ namespace GesEdu.Areas.SIME.Controllers
 
         public async Task<IActionResult> ManuaisPdfExport(string ano_letivo, string ciclo)
         {
-            var manuais = await _apreciacaoManuaisServices.GetManuaisSIMEPdfExport(ano_letivo, ciclo);
-
-            if(manuais == null)
-                return NotFound();
-
+            var manuais = await _apreciacaoManuaisServices.GetManuaisSIMEPdfExport(ano_letivo, ciclo) ?? throw new FileNotFoundException("Ficheiro não disponivel. Tente mais tarde.");
+            
             var model = new PdfExportModel<GetManuaisSIMEResponse>(manuais, HttpContext);
 
             return File(await _pdfRenderer.RenderComponent<GetManuaisSIMEPdf>(model.GetAsDictionary()), "application/pdf");

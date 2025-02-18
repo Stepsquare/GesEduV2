@@ -1,6 +1,8 @@
 ﻿using GesEdu.ServiceLayer.Services;
+using GesEdu.ServiceLayer.Services.AreaReservada;
 using GesEdu.ServiceLayer.Services.SIME;
 using GesEdu.Shared.Interfaces.IServices;
+using GesEdu.Shared.Interfaces.IServices.AreaReservada;
 using GesEdu.Shared.Interfaces.IServices.SIME;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,7 +21,15 @@ namespace GesEdu.ServiceLayer.Extensions
             services.AddScoped<IApreciacaoManuaisServices, ApreciacaoManuaisServices>();
 
             #endregion
-            
+
+
+            #region Area Reservada
+
+            services.AddScoped<ITrabalhadoresServices, TrabalhadoresServices>();
+
+            #endregion
+
+
             return services;
         }
     }

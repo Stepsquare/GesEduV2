@@ -1,0 +1,196 @@
+﻿@model GetFuncionariosUoRespResponse.Funcionario
+
+@{
+    ViewData["Title"] = Model.nome;
+}
+
+@* HEADER *@
+<div class="ig-pagetitle mb-3">
+    <div class="row">
+        <div class="col-md">
+            <h2>
+                <span class="badge rounded-pill ig-id-code">@Model.nif</span> @Model.nome
+            </h2>
+        </div>
+    </div>
+    <breadcrumb></breadcrumb>
+</div>
+
+<h5 class="mt-3">Dados pessoais:</h5>
+<div class="card ig-card  mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-6">
+                <label class="form-label">Nome:</label>
+                <p>@Model.nome</p>
+            </div>
+            <div class="col-xl-2">
+                <label class="form-label">Regime:</label>
+                <p>@Model.desc_regime</p>
+            </div>
+            <div class="col-xl-2">
+                <label class="form-label">NIF:</label>
+                <p>@Model.nif</p>
+            </div>
+            <div class="col-xl-2">
+                @{
+                    var doc = @Model.docs.FirstOrDefault();
+                    if (doc != null)
+                    {
+                        <label class="form-label">@($"Documento ({doc.desc_tipo_documento}):")</label>
+                        <p>@doc.tx_num_documento</p>
+                    }
+                }
+            </div>
+            @{
+                var morada = Model.moradas.FirstOrDefault();
+                var telef = Model.contatos.FirstOrDefault(x => x.cod_tipo_contacto == "TMPS");
+                var email = Model.contatos.FirstOrDefault(x => x.cod_tipo_contacto == "EMPS");
+
+                if (morada != null)
+                {
+                    <div class="col-xl-6">
+                        <label class="form-label">Morada:</label>
+                        <p>@morada.tx_nome_arteria</p>
+                    </div>
+                    <div class="col-xl-2">
+                        <label class="form-label">
+                            Código postal:
+                        </label>
+                        <p>@morada.lov_cod_postal</p>
+                    </div>
+                    <div class="col-xl-4">
+                        <label class="form-label">Localidade:</label>
+                        <p>@morada.localidade</p>
+                    </div>
+                }
+
+                if (telef != null)
+                {
+                    <div class="col-xl-6">
+                        <label class="form-label">Contacto telefónico:</label>
+                        <p>@telef.tx_contacto</p>
+                    </div>
+                }
+
+                if(email != null)
+                {
+                    <div class="col-xl-6">
+                        <label class="form-label">Endereço de email:</label>
+                        <p><a href="mailto:@email?.tx_contacto">@email?.tx_contacto</a></p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<h5 class="mt-3">Formação:</h5>
+<div class="ig-tabs">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-bs-toggle="tab" href="#hab_trab_tab" aria-selected="true" role="tab">Habilitações</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="#form_trab_tab" aria-selected="false" tabindex="-1" role="tab">Formações</a>
+        </li>
+    </ul>
+    <div class="tab-content card ig-card">
+        <div class="tab-pane card-body active" id="hab_trab_tab" role="tabpanel">
+            <div class="ig-loadable-div">
+                <table class="table ig-grid">
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane card-body" id="form_trab_tab" role="tabpanel">
+            <div class="ig-loadable-div">
+                <table class="table ig-grid">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade ig-modal" id="validation_modal" data-bs-backdrop="static" aria-labelledby="validation_modal_label" aria-modal="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.ig-tabs .nav-tabs a').on('shown.bs.tab', function () {
+            refreshTab();
+        });
+
+        refreshTab();
+    });
+
+    function refreshTab() {
+        var activeTab = $('.tab-content .tab-pane.active').prop('id');
+
+        var url;
+
+        switch (activeTab) {
+            case "hab_trab_tab":
+                url = '@Url.Action("HabilitacaoTrabalhadorPartial", "Trabalhadores")';
+                break;
+            case "form_trab_tab":
+                url = '@Url.Action("FormacaoTrabalhadorPartial", "Trabalhadores")';
+                break;
+            default:
+                return;
+        }
+
+        
+        $.ajax({
+            url: url,
+            type: "GET",
+            global: false,
+            data: {
+                id_pessoa_unica: "@Model.id_pessoa_unica"
+            },
+            success: function (data) {
+                $('#' + activeTab + ' .ig-loadable-div .table.ig-grid').html(data);
+                HideDivLoader();
+            },
+            error: function (error) {
+                ErrorHandling(error);
+                HideDivLoader();
+            },
+            beforeSend: ShowDivLoader(activeTab),
+        });
+    }
+
+    function openHabilitacaoValidationModal(id_habilitacao) {
+        $.ajax({
+            url: '@Url.Action("HabilitacaoTrabalhadorModalPartial", "Trabalhadores")',
+            type: "GET",
+            data: {
+                id_pessoa_unica: "@Model.id_pessoa_unica",
+                id_habilitacao: id_habilitacao
+            },
+            success: function (data) {
+                $('#validation_modal .modal-content').html(data);
+                $('#validation_modal').modal('show');
+            }
+        });
+    }
+
+    function openFormacaoValidationModal(id_formacao) {
+        $.ajax({
+            url: '@Url.Action("FormacaoTrabalhadorModalPartial", "Trabalhadores")',
+            type: "GET",
+            data: {
+                id_pessoa_unica: "@Model.id_pessoa_unica",
+                id_formacao: id_formacao
+            },
+            success: function (data) {
+                $('#validation_modal .modal-content').html(data);
+                $('#validation_modal').modal('show');
+            }
+        });
+    }
+
+</script>
+

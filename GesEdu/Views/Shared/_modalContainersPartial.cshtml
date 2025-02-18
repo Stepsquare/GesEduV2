@@ -1,6 +1,7 @@
-﻿
-<!--MODAL ERROS-->
-<div class="modal fade ig-modal ig-modal-errors" id="error_modal" tabindex="-1" aria-labelledby="error_modal_label" aria-hidden="true">
+﻿@using System.Text.Json
+
+@* Modal de erros *@
+<div class="modal fade ig-modal ig-modal-errors" id="error_modal" aria-labelledby="error_modal_label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,29 +17,58 @@
     </div>
 </div>
 
-<!--MODAL CONFIRMAÇÃO-->
-<div class="modal fade ig-modal ig-modal-confirm" id="confirm_modal" tabindex="-1" aria-labelledby="confirm_modal_label" aria-hidden="true">
+@* Modal de confirmação em outras modals *@
+<div class="modal fade ig-modal" id="confirm_modal" data-bs-backdrop="static" aria-labelledby="confirm_modal_title" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="confirm-modal-title" id="confirm_modal_label"></h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="confirm-modal-title" id="confirm_modal_title"></h5>
             </div>
             <div class="modal-body">
+                <p></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
-                <button id="confirm_modal_btn" type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Guardar alterações</button>
+                <button id="confirm_modal_deny_btn" type="button" class="btn ig-btn-blue" data-bs-toggle="modal"><i class="fas fa-times"></i> Cancelar</button>
+                <button id="confirm_modal_approve_btn" type="button" class="btn ig-btn-green" data-bs-dismiss="modal"><i class="fas fa-check"></i> Guardar alterações</button>
             </div>
         </div>
     </div>
 </div>
 
-<!--TOASTS-->
+@* Toasters *@
 <div id="toast_container" class="ig-toast-container toast-container">
 </div>
 
-<!--LOADER-->
+@* Loader *@
 <div id="loader" class="ig-load ig-load-body" style="display: none">
     <span class="spinner-grow" role="status"></span> Aguarde por favor...
 </div>
+
+
+@* Event listener de erros na session lançados pelo global exception handler *@
+<script>
+    @{
+        string? errorJsonString = string.Empty;
+
+        if (HttpContextAccessor.HttpContext?.Session != null)
+        {
+            errorJsonString = Context.Session.GetString("ErrorMessages");
+
+            HttpContextAccessor.HttpContext?.Session.Remove("ErrorMessages");
+        }
+    }
+
+    $(function () {
+        var errorObj;
+        try {
+            errorObj = JSON.parse(`@Html.Raw(errorJsonString)`);
+
+            if (errorObj.messages.length > 0)
+                ErrorToast(errorObj.messages);
+        } catch {
+            return;
+        }
+    });
+</script>
+
+

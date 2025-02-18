@@ -1,5 +1,6 @@
 ﻿using GesEdu.Shared.Interfaces.IConfiguration;
 using GesEdu.Shared.Interfaces.IServices;
+using GesEdu.Shared.WebserviceModels.Adm;
 using GesEdu.Shared.WebserviceModels.Noticias;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +24,15 @@ namespace GesEdu.ServiceLayer.Services
                 request.Headers.Add("Id_servico", idServico);
 
             return await SendAsync<GetNoticiasResponse>(request);
+        }
+
+        public async Task<List<GetDominiosResponseItem>?> GetDominios(string code)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, "adm/getDominios");
+
+            request.Headers.Add("codigo", code);
+
+            return await SendAsync<List<GetDominiosResponseItem>>(request);
         }
     }
 }

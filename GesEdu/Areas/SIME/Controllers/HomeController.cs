@@ -20,13 +20,14 @@ namespace GesEdu.Areas.SIME.Controllers
         [HttpGet]
         public IActionResult GetAnosLetivosSIME()
         {
-            List<GetDominiosResponseItem> anosLetivosList = new();
-
-            anosLetivosList.Add(new GetDominiosResponseItem 
-            { 
-                codigo = User.GetAnoLetivoSIME(), 
-                descricao = User.GetAnoLetivoDescriptionSIME() 
-            });
+            List<GetDominiosResponseItem> anosLetivosList =
+            [
+                new GetDominiosResponseItem 
+                { 
+                    codigo = User.GetAnoLetivoSIME(), 
+                    descricao = User.GetAnoLetivoDescriptionSIME() 
+                },
+            ];
 
             if (!string.IsNullOrEmpty(User.GetAnoLetivoAnteriorSIME()))
                 anosLetivosList.Add(new GetDominiosResponseItem

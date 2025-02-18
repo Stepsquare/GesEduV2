@@ -1,0 +1,83 @@
+﻿@model List<GetDocenteFormacaoResponseItem>
+
+<thead>
+    <tr>
+        <th>Formação</th>
+        <th>Instituição</th>
+        <th class="ig-col-shrink">Classificação académica</th>
+        <th class="ig-col-shrink">Datas</th>
+        <th class="ig-col-shrink">N.º horas</th>
+        <th class="ig-col-shrink">Artigo 8.º?</th>
+        <th class="ig-col-shrink">Artigo 9.º?</th>
+        <th class="ig-col-shrink">Comprovativo</th>
+        <th class="ig-col-shrink">Estado</th>
+    </tr>
+</thead>
+<tbody>
+    @if (Model.Count == 0)
+    {
+        <tr>
+            <td colspan="100">
+                <div class="ig-noresults text-center">
+                    <h3><i class="fas fa-search"></i>  Sem resultados</h3>
+                    <p class="mb-0">Não foram encontradas formações.</p>
+                </div>
+            </td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.formacao</td>
+                <td>@item.instituicao</td>
+                <td>@item.classificacao</td>
+                <td class="text-nowrap">
+                    <label class="form-label">Início:</label>
+                    <p class="mb-0">@item.dt_inicio</p>
+                    <label class="form-label">Fim:</label>
+                    <p class="mb-0">@item.dt_fim</p>
+                </td>
+                <td>@item.num_horas</td>
+                <td>
+                    @(item.fg_art_8 == "S" ? "Sim" : "Não")
+                </td>
+                <td>
+                    @(item.fg_art_9 == "S" ? "Sim" : "Não")
+                </td>
+                <td class="text-center">
+                    @if (item.id_anexo_pessoa.HasValue)
+                    {
+                        <a class="btn ig-btn-blue" title="Ver comprovativo" href="@Url.Action("GetAnexoPessoa","Trabalhadores", new { id_anexo_pessoa = item.id_anexo_pessoa })" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-alt"></i></a>
+                    }
+                    else
+                    {
+                        <a class="btn ig-btn-blue" title="Comprovativo não disponível" href="javascript:void(0);" disabled><i class="fas fa-file-alt"></i></a>
+                    }
+                </td>
+                <td class="text-nowrap">
+                    @switch (item.estado)
+                    {
+                        @* Pendente *@
+                        case "1":
+                            <button class="btn btn-sm ig-btn-blue" title="Validar formação" onclick="openFormacaoValidationModal(@item.id_formacao)">
+                                <i class="fas fa-user-check"></i> Validar
+                            </button>
+                            break;
+                        @* Aprovado *@
+                        case "2":
+                            <span class="badge ig-badge-success"><i class="fas fa-check"></i> Aprovada</span>
+                            break;
+                        @* Rejeitado *@
+                        case "3":
+                            <span class="badge ig-badge-error"><i class="fas fa-exclamation-triangle"></i> Rejeitada</span>
+                            break;
+                        default:
+                            break;
+                    }
+                </td>
+            </tr>
+        }
+    }
+</tbody>

@@ -47,12 +47,10 @@
                 isActive: isChecked
             },
             success: function (response) {
-                if (response.isMessage) {
-                    SuccessToast(response.message);
-                }
+                SuccessToast(response.message);
             },
             error: function (error) {
-                ErrorToast(error.responseJSON.messages);
+                ErrorHandling(error);
                 $("#profile_" + profileId).prop('checked', !isChecked)
             }
         });
