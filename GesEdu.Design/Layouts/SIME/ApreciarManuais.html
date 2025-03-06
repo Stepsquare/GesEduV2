@@ -41,7 +41,13 @@
                     </ul>
                 </li>
             </ul>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <!--NOTA DB: acrescentar classes d-flex align-items-center-->
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+                <li class="nav-item">
+                    <a class="btn ig-btn-blue  me-3" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#igModal03">
+                        <i class="fas fa-phone"></i> Contactos da Unidade Orgânica
+                    </a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="ig-user-ddl nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
@@ -776,7 +782,7 @@
         </div>
     </div>
 
-    <!--Modal 02 - Apreciar manual certificado-->
+    <!--Modal 02 - Apreciar manual não certificado-->
     <div class="modal fade ig-modal" id="igModal02" tabindex="-1" aria-labelledby="igModal02Label" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -1102,6 +1108,45 @@
                 <div class="modal-footer">
                     <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
                     <button type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Apreciar manual</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal 01 - Apreciar manual certificado-->
+    <div class="modal fade ig-modal" id="igModal03" tabindex="-1" aria-labelledby="igModal03Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="igModal03Label">Contactos da Unidade Orgânica</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="form-label">Unidade Orgânica:</label>
+                        <p class="ig-uo-name">
+                            <span class="badge rounded-pill ig-uo-code">172420</span>
+                            Agrupamento de Escolas de Vila Viçosa
+                        </p>
+                    </div>
+                    <div>
+                        <label class="form-label">Diretor(a):</label>
+                        <p>
+                            Joaquim António Almeida Freitas
+                        </p>
+                    </div>
+                    <hr />
+                    <div>
+                        <label class="form-label">Telefone:</label>
+                        <p>
+                            912 345 678
+                        </p>
+                    </div>
+                    <div>
+                        <label class="form-label">Endereço de email:</label>
+                        <p>
+                            <a href="mailto:escola@escola.pt">escola@escola.pt</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
