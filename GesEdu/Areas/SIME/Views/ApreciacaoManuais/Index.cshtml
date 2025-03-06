@@ -108,8 +108,8 @@
             var ciclo = $(this).prop('id');
 
             var url = '@Url.Action("ManuaisPdfExport", "ApreciacaoManuais", new { Area = "SIME", })/?ano_letivo=' + anoLetivo + '&ciclo=' + ciclo;
-
-            window.open(url, '_blank');
+            
+            requestDownload(url);
         });
 
         $("#estado_dropdown").kendoDropDownList({

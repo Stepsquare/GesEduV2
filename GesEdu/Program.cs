@@ -43,7 +43,7 @@ builder.Services
         options.Cookie.Name = "gesedu_token";
         options.LoginPath = "/Login";
         options.LogoutPath = "/Logout";
-        options.ExpireTimeSpan = TimeSpan.FromSeconds(10);
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
         options.SlidingExpiration = true;
         options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
     });

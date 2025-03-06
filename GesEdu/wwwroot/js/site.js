@@ -79,18 +79,23 @@ function ShowErrorModal(messages, onclose) {
     $("#error_modal").modal("show");
 }
 
-function ShowConfirmModal(title, message, previousModal, callbackfunction) {
+function ShowConfirmModal(obj) {
+    $("#confirm_modal_title").text(obj.title);
+    $("#confirm_modal .modal-body p").text(obj.message);
 
-    $(`#${previousModal}`).modal("hide");
+    if (obj.previousModalId != null) {
+        $("#confirm_modal_deny_btn").removeAttr("data-bs-dismiss");
+        $("#confirm_modal_deny_btn").attr("data-bs-toggle", "modal");
+        $("#confirm_modal_deny_btn").attr("data-bs-target", `#${obj.previousModalId}`);
+    } else {
+        $("#confirm_modal_deny_btn").attr("data-bs-dismiss", "modal");
+        $("#confirm_modal_deny_btn").removeAttr("data-bs-toggle");
+        $("#confirm_modal_deny_btn").removeAttr("data-bs-target");
+    }
+
     $("#confirm_modal_approve_btn").prop("onclick", null).off("click");
-
-    $("#confirm_modal_deny_btn").attr("data-bs-target", `#${previousModal}`);
-
-    $("#confirm_modal_title").text(title);
-    $("#confirm_modal .modal-body p").text(message);
-
     $("#confirm_modal_approve_btn").on('click', function () {
-        callbackfunction();
+        obj.callbackfunction();
     });
 
     $("#confirm_modal").modal("show");
@@ -131,5 +136,41 @@ function ErrorToast(errors) {
 
     $("#toast_container .toast").each(function () {
         $(this).toast('show');
+    });
+}
+
+function requestDownload(url) {
+    $.ajax({
+        url: url,
+        method: "GET",
+        xhrFields: {
+            responseType: "blob"
+        },
+        success: function (data, status, xhr) {
+            const contentDisposition = xhr.getResponseHeader("Content-Disposition");
+
+            let fileName = "";
+
+            const utf8FileNameMatch = contentDisposition.match(/filename\*=UTF-8''(.+)/);
+            if (utf8FileNameMatch) {
+                fileName = decodeURIComponent(utf8FileNameMatch[1]);
+            }
+
+            if (!fileName) {
+                const filenameMatch = contentDisposition.match(/filename=\"(.+?)\"/);
+                if (filenameMatch) {
+                    fileName = filenameMatch[1];
+                }
+            }
+
+            const url = window.URL.createObjectURL(data)
+            var link = document.createElement("a");
+            link.href = url;
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        }
     });
 }

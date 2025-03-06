@@ -51,11 +51,11 @@
     });
 
     function aprovarHabilitacao() {
-        ShowConfirmModal(
-            "Aprovar habilitação",
-            "Tem a certeza que deseja aprovar a habilitação?",
-            "validation_modal",
-            function () {
+        ShowConfirmModal({
+            title: "Aprovar habilitação",
+            message: "Tem a certeza que deseja aprovar a habilitação?",
+            previousModalId: "validation_modal",
+            callbackfunction: function () {
                 var requestObj = {
                     id_habilitacao: "@Model.id_habilitacao",
                     estado_habilitacao: "2",
@@ -65,24 +65,24 @@
 
                 setDocentesHabilitacao(requestObj);
             }
-        );
+        });
     }
 
     function rejeitarHabilitacao() {
-        ShowConfirmModal(
-            "Rejeitar habilitação",
-            "Tem a certeza que deseja rejeitar a habilitação?",
-            "validation_modal",
-            function () {
+        ShowConfirmModal({
+            title: "Rejeitar habilitação",
+            message: "Tem a certeza que deseja rejeitar a habilitação?",
+            previousModalId: "validation_modal",
+            callbackfunction: function () {
                 var requestObj = {
                     id_habilitacao: "@Model.id_habilitacao",
                     estado_habilitacao: "3",
-                    fg_req: $("input[name=fg_req]:checked").val()
+                    fg_req: $("input[name=fg_req]:checked").val(),
                 };
 
                 setDocentesHabilitacao(requestObj);
             }
-        );
+        });
     }
 
     function setDocentesHabilitacao(requestObj) {

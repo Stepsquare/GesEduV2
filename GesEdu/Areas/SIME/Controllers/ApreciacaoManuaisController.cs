@@ -57,7 +57,11 @@ namespace GesEdu.Areas.SIME.Controllers
             
             var model = new PdfExportModel<GetManuaisSIMEResponse>(manuais, HttpContext);
 
-            return File(await _pdfRenderer.RenderComponent<GetManuaisSIMEPdf>(model.GetAsDictionary()), "application/pdf");
+            var fileName = $"Manuais - {manuais.ciclo} - Ano Letivo {manuais.ano_letivo}";
+            var fileContentType = "application/pdf";
+            var fileContent = await _pdfRenderer.RenderComponent<GetManuaisSIMEPdf>(model.GetAsDictionary());
+
+            return File(fileContent, fileContentType, fileName);
         }
 
         [HttpPost]

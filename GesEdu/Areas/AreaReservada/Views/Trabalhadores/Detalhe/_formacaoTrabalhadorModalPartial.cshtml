@@ -53,17 +53,17 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal">Sair</button>
-    <button type="button" class="btn ig-btn-blue" onclick="rejeitarFormacao()"><i class="fas fa-times"></i> Reprovar formação</button>
-    <button type="button" class="btn ig-btn-green" onclick="aprovarFormacao()"><i class="fas fa-check"></i> Aprovar formação</button>
+    <button type="button" class="btn ig-btn-blue" onclick="rejeitarFormacao()" data-bs-dismiss="modal"><i class="fas fa-times"></i> Reprovar formação</button>
+    <button type="button" class="btn ig-btn-green" onclick="aprovarFormacao()" data-bs-dismiss="modal"><i class="fas fa-check"></i> Aprovar formação</button>
 </div>
 
 <script>
     function aprovarFormacao() {
-        ShowConfirmModal(
-            "Aprovar formação",
-            "Tem a certeza que deseja aprovar a formação?",
-            "validation_modal",
-            function () {
+        ShowConfirmModal({
+            title: "Aprovar formação",
+            message: "Tem a certeza que deseja aprovar a formação?",
+            previousModalId: "validation_modal",
+            callbackfunction: function () {
                 var requestObj = {
                     id_formacao: "@Model.id_formacao",
                     estado_formacao: "2",
@@ -73,15 +73,15 @@
 
                 setDocentesFormacao(requestObj);
             }
-        );
+        });
     }
 
     function rejeitarFormacao() {
-        ShowConfirmModal(
-            "Rejeitar formação",
-            "Tem a certeza que deseja rejeitar a formação?",
-            "validation_modal",
-            function () {
+        ShowConfirmModal({
+            title: "Rejeitar formação",
+            message: "Tem a certeza que deseja rejeitar a formação?",
+            previousModalId: "validation_modal",
+            callbackfunction: function () {
                 var requestObj = {
                     id_formacao: "@Model.id_formacao",
                     estado_formacao: "3",
@@ -91,7 +91,7 @@
 
                 setDocentesFormacao(requestObj);
             }
-        );
+        });
     }
 
     function setDocentesFormacao(requestObj) {
