@@ -249,6 +249,10 @@ li.ig-menutitle h4 {
 .ig-submenu .accordion-button::after{
     filter:var(--ig-filter-blue-2);
 }
+.ig-video-accordion iframe {
+    width: 100%;
+    height: 400px;
+}
 /*interface*/
 .card.ig-card {
     border: none;
@@ -688,7 +692,12 @@ a.list-group-item.active, a.list-group-item:active:hover {
 .ig-card .list-group-item.active p {
     color: var(--bs-list-group-color)
 }
-
+.ig-sticky-list {
+    position: sticky;
+    top: 90px;
+    max-height: calc(100vh - 7rem);
+    overflow-y: auto;
+}
 
 /*accordion*/
 
