@@ -553,7 +553,14 @@ span.ig-stepname {
     background: var(--ig-blue-2);
     border-color: var(--ig-blue-2);
 }
-
+button.btn.ig-btn-blue:disabled, button.btn.ig-btn-blue:disabled:hover {
+    border-color: var(--ig-blue-3);
+    cursor: not-allowed !important;
+    color: var(--ig-blue-3);
+    background: var(--ig-white);
+    opacity: 1;
+    pointer-events: inherit;
+}
 .btn.ig-btn-blue:focus {
     box-shadow: var(--ig-focus-shadow);
 }
@@ -582,11 +589,11 @@ span.ig-stepname {
 a.ig-collapse-link {
     font-weight: bold;
     text-decoration: none;
-    color: var(--ig-green-1);
+    color: var(--ig-blue-2);
     font-size:0.75rem;
 }
 a.ig-collapse-link:hover {
-    color: var(--ig-green-2);
+    text-decoration:underline
 }
 a.ig-collapse-link.collapsed i {
     transform: rotate(0);
@@ -783,9 +790,11 @@ label.form-label {
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0 .5rem 1rem var(--ig-green-1-alpha);
+    
 }
-.ig-loadable-div .table.ig-grid{
-    min-height:50vh;
+.ig-loadable-div .table.ig-grid {
+    /*min-height: 50vh;*/
+    margin-bottom: 0;
 }
 
 .table.ig-grid thead th {
@@ -831,7 +840,9 @@ th.ig-th-4rem{
     border-top: solid 1px var(--ig-blue-2);
     border-bottom: none;
 }
-
+table.ig-grid .ig-noresults{
+    padding:1rem;
+}
 .ig-pagination {
     font-weight: 600;
 }
@@ -902,7 +913,7 @@ th.ig-th-4rem{
 /*Loaders*/
 
 .ig-load {
-    z-index: 1;
+    z-index: 10;
     position: absolute;
     top: 0;
     left: 0;
@@ -917,6 +928,7 @@ th.ig-th-4rem{
     color: var(--ig-white);
     justify-content: center;
     cursor: not-allowed;
+    
 }
 
 .ig-load span {
@@ -940,9 +952,10 @@ th.ig-th-4rem{
 .ig-load-placeholder{
     height:400px;
 }
-
+.ig-loadable-div{
+    min-height:6rem;
+}
 /*Separadores*/
-
 .ig-tabs .tab-content.card.ig-card {
     border-radius: 0;
     background: transparent;
@@ -1357,4 +1370,14 @@ ol.ig-bookappreciation-description {
 
 .ig-bookappreciation-description ul {
     padding-left: 2.5rem;
+}
+/*Estimativas*/
+input[type="number"].ig-studentestimate-field {
+    -moz-appearance: textfield;
+    min-width:5rem;
+}
+
+.ig-studentestimate-field::-webkit-outer-spin-button, .ig-studentestimate-field::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
