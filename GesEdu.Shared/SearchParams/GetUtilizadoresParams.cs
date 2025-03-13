@@ -11,5 +11,6 @@ namespace GesEdu.Shared.SearchParams
     {
         public string? Username { get; set; }
         public bool? IsActive { get; set; }
+        public bool IsIgefeUsers { get; set; } = false;
     }
 }

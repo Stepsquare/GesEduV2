@@ -29,6 +29,16 @@
                 <button id="del_search_btn" class="btn" type="button" title="Limpar"><i class="far fa-trash-alt"></i></button>
             </div>
         </div>
+        @if (User.IsAdmin())
+        {
+            <div class="col-md-3 mb-3">
+                <label class="form-label">Origem:</label>
+                <select id="is_igefe_users_search" class="form-select">
+                    <option value="false">Unidade Orgânica</option>
+                    <option value="true">IGeFE</option>
+                </select>
+            </div>
+        }
         <div class="col-md-2 mb-3">
             <label class="form-label">Estado:</label>
             <select id="is_active_search" class="form-select">
@@ -99,6 +109,7 @@
             data: {
                 username: $("#username_search").val(),
                 isActive: $("#is_active_search").val(),
+                isIgefeUsers: $("#is_igefe_users_search").val(),
                 pageIndex: pageIndex,
                 pageSize: pageSize
             },

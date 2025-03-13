@@ -32,7 +32,7 @@ namespace GesEdu.ServiceLayer.Services
 
             var getUtilizadoresRequest = new HttpRequestMessage(HttpMethod.Get, "auth/getUtilizadores");
 
-            getUtilizadoresRequest.Headers.Add("id_servico", _httpContext.User.GetIdServico());
+            getUtilizadoresRequest.Headers.Add("id_servico", searchParams.IsIgefeUsers ? _httpContext.User.GetIdServicoOrigem() : _httpContext.User.GetIdServico());
 
             var getUtilizadoresResponse = await SendAsync<List<GetUtilizadoresResponseItem>>(getUtilizadoresRequest);
 
@@ -122,13 +122,13 @@ namespace GesEdu.ServiceLayer.Services
             return alterarPerfilUtzResponse?.messages.FirstOrDefault()?.msg;
         }
 
-        public async Task<string?> AlterarEstadoUtilizador(int userId, bool isActive)
+        public async Task<string?> AlterarEstadoUtilizador(int userId, bool isActive, bool isIgefeUser)
         {
             var requestBody = new AlterarEstadoUtilizadorRequest
             {
                 id_utilizador = userId,
                 estado = isActive ? "A" : "C",
-                id_servico = _httpContext.User.GetIdServico()
+                id_servico = isIgefeUser ? _httpContext.User.GetIdServicoOrigem() : _httpContext.User.GetIdServico()
             };
 
             var alterarEstadoUtilizadorRequest = new HttpRequestMessage(HttpMethod.Post, "auth/alterarEstadoUtilizador");

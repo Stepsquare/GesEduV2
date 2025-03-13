@@ -70,15 +70,15 @@ namespace GesEdu.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ToggleUser(int userId, bool isActive)
+        public async Task<IActionResult> ToggleUser(int userId, bool isActive, bool isIgefeUser)
         {
-            var responseMessage = await _userServices.AlterarEstadoUtilizador(userId, isActive);
+            var responseMessage = await _userServices.AlterarEstadoUtilizador(userId, isActive, isIgefeUser);
 
             return SuccessMessage(responseMessage);
         }
 
         [HttpPost]
-        public async Task<IActionResult> ToggleUserProfile(int userId, int profileId, bool isActive)
+        public async Task<IActionResult> ToggleUserProfile(int userId, int profileId, bool isActive, bool isIgefeUser)
         {
             var responseMessage = await _userServices.AlterarPerfilUtilizador(userId, profileId, isActive);
 
