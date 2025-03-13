@@ -49,11 +49,13 @@
                 <td class="text-center">
                     @if (item.id_anexo_pessoa.HasValue)
                     {
-                        <a class="btn ig-btn-blue" title="Ver comprovativo" href="@Url.Action("GetAnexoPessoa","Trabalhadores", new { id_anexo_pessoa = item.id_anexo_pessoa })" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-alt"></i></a>
+                       @*  <a class="btn ig-btn-blue" title="Ver comprovativo" href="@Url.Action("GetAnexoPessoa","Trabalhadores", new { id_anexo_pessoa = item.id_anexo_pessoa })" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-alt"></i></a>
+                         *@
+                        <button class="btn ig-btn-blue" title="Ver comprovativo" onclick="requestDownload('@Url.Action("GetAnexoPessoa","Trabalhadores", new { id_anexo_pessoa = item.id_anexo_pessoa })')"><i class="fas fa-file-alt"></i></button>
                     }
                     else
                     {
-                        <a class="btn ig-btn-blue" title="Comprovativo não disponível" href="javascript:void(0);" disabled><i class="fas fa-file-alt"></i></a>
+                        <button class="btn ig-btn-blue" title="Comprovativo não disponível" disabled><i class="fas fa-file-alt"></i></button>
                     }
                 </td>
                 <td class="text-nowrap text-center">
