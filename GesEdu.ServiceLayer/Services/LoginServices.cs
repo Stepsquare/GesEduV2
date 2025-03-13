@@ -9,6 +9,10 @@ using System.Net.Http.Json;
 using GesEdu.Shared.Resources;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
+using GesEdu.Shared.Extensions;
+using Newtonsoft.Json;
+using System.Collections;
+using System.Security.Principal;
 
 namespace GesEdu.ServiceLayer.Services
 {
@@ -18,9 +22,10 @@ namespace GesEdu.ServiceLayer.Services
         IUnitOfWork unitOfWork, 
         IHostEnvironment environment) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork, environment), ILoginServices
     {
-        public async Task<(List<Claim> claims, bool changePassword)> SignIn(string username, string password)
+        public async Task<(List<Claim> claims, bool chooseUo, bool changePassword)> SignIn(string username, string password)
         {
             bool changePassword = false;
+            bool chooseUo = false;
 
             var obj = new LoginUtilizadorRequest
             {
@@ -34,7 +39,7 @@ namespace GesEdu.ServiceLayer.Services
 
             var loginUtilizadorResponse = await SendAsync<LoginUtilizadorResponse>(loginUtilizadorRequest);
 
-            //TODO - Rever validação de entrada no GesEDU... Perfil generico de entrada? Ou manter como está...
+            //TODO - Rever validação de entrada no GesEDU... Perfil generico de entrada será o CODE, perfil ...
             if (loginUtilizadorResponse!.cod_origem == "PUB"
                     || !loginUtilizadorResponse.perfis.Any(x => x.cod_perfil!.Contains("APP_EXTERNA_GES_EDU")))
                 throw new WebserviceException(HttpStatusCode.Unauthorized, "Utilizador não sem perfil de acesso.");
@@ -73,17 +78,21 @@ namespace GesEdu.ServiceLayer.Services
             {
                 claims.Add(new Claim(ClaimTypes.Role, GesEduProfiles.ADMIN));
                 claims.Add(new Claim("ID_SERVICO_ORIGEM", loginUtilizadorResponse.id_servico!));
-
-                //TODO - Remover depois do update do getUo para retornar o Id_servico
-                claims.Add(new Claim("ID_SERVICO", loginUtilizadorResponse.id_servico!));
-
             }
             else
             {
-                claims.Add(new Claim("ID_SERVICO", loginUtilizadorResponse.id_servico!));
-                claims.Add(new Claim("COD_SERVICO", loginUtilizadorResponse.cod_servico!));
-                claims.Add(new Claim("NOME_SERVICO", loginUtilizadorResponse.nome_servico!));
-                claims.Add(new Claim("NIF_SERVICO", loginUtilizadorResponse.nif_servico!));
+                if (loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == GesEduProfiles.SIME_DGE))
+                {
+                    //O perfil SIME da DGE usa o mesmo sistema de selecção de UO que os Admins...
+                    claims.Add(new Claim("ID_SERVICO_ORIGEM", loginUtilizadorResponse.id_servico!));
+                }
+                else
+                {
+                    claims.Add(new Claim("ID_SERVICO", loginUtilizadorResponse.id_servico!));
+                    claims.Add(new Claim("COD_SERVICO", loginUtilizadorResponse.cod_servico!));
+                    claims.Add(new Claim("NOME_SERVICO", loginUtilizadorResponse.nome_servico!));
+                    claims.Add(new Claim("NIF_SERVICO", loginUtilizadorResponse.nif_servico!));
+                }
 
                 //Perfil de gestão de Utilizadores
                 if (loginUtilizadorResponse.responsavel == "S")
@@ -112,8 +121,9 @@ namespace GesEdu.ServiceLayer.Services
             }
 
             changePassword = loginUtilizadorResponse.trocar_password == "S";
+            chooseUo = loginUtilizadorResponse.perfis.Any(x => x.cod_perfil == GesEduProfiles.ADMIN || x.cod_perfil == GesEduProfiles.SIME_DGE);
 
-            return (claims, changePassword);
+            return (claims, chooseUo, changePassword);
         }
 
         public async Task<string?> PasswordRecovery(string? email)
@@ -151,12 +161,11 @@ namespace GesEdu.ServiceLayer.Services
             return alterarPasswordResponse?.messages.FirstOrDefault()?.msg;
         }
 
-        public async Task<List<GetUoResponseItem>?> GetUo(string? idServico)
+        public async Task<List<GetUoResponseItem>?> GetUo()
         {
             var getUoRequest = new HttpRequestMessage(HttpMethod.Get, "manuais/getUO");
 
-            if (!string.IsNullOrEmpty(idServico))
-                getUoRequest.Headers.Add("id_servico", idServico);
+            getUoRequest.Headers.Add("id_servico", _httpContext.User.GetIdServicoOrigem());
 
             return await SendAsync<List<GetUoResponseItem>>(getUoRequest);
         }
@@ -166,8 +175,12 @@ namespace GesEdu.ServiceLayer.Services
             var clone = principal.Clone();
             var newIdentity = clone.Identity as ClaimsIdentity;
 
-            //TODO - Remover Claim "ID_SERVICO" quando getUo levar update
-            var claimsToRemove = newIdentity?.FindAll(x => x.Type == "COD_SERVICO" || x.Type == "NOME_SERVICO" || x.Type == "NIF_SERVICO").ToList();
+            var claimsToRemove = newIdentity?.FindAll(x => x.Type == "ID_SERVICO" 
+                                                        || x.Type == "COD_SERVICO" 
+                                                        || x.Type == "NOME_SERVICO" 
+                                                        || x.Type == "NIF_SERVICO" 
+                                                        || x.Type == "DIRETOR_SERVICO"
+                                                        || x.Type == "CONTACTOS_UO").ToList();
 
             foreach (var claim in claimsToRemove!)
             {
@@ -175,11 +188,12 @@ namespace GesEdu.ServiceLayer.Services
             }
 
             newIdentity?.AddClaims(new List<Claim> {
-                //TODO - Acrescentar id_serviço ao serviço getUo para alterar o campo ao alterar o contexto da UO
-                //new Claim("ID_SERVICO", "model.id_servico!"),
+                new Claim("ID_SERVICO", model.Id_servico.ToString()),
                 new Claim("COD_SERVICO", model.Cod_agrupamento!),
                 new Claim("NOME_SERVICO", model.Nome!),
-                new Claim("NIF_SERVICO", model.Nif_servico.ToString())
+                new Claim("NIF_SERVICO", model.Nif_servico.ToString()),
+                new Claim("DIRETOR_SERVICO", model.Diretor!),
+                new Claim("CONTACTOS_UO", JsonConvert.SerializeObject(model.Contactos))
             });
 
             var newClaimsPrincipal = new ClaimsPrincipal(newIdentity!);

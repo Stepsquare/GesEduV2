@@ -8,7 +8,15 @@
                 </a>
             </li>
         </ul>
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+            @if (User.IsAdmin() || User.IsSimeDgeUser())
+            {
+                <li class="nav-item">
+                    <a class="btn ig-btn-blue  me-3" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#uo_contact_modal">
+                        <i class="fas fa-phone"></i> Contactos da Unidade Orgânica
+                    </a>
+                </li>
+            }
             <li class="nav-item dropdown">
                 <a class="ig-user-ddl nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="ig-userdet-cont">

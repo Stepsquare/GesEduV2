@@ -59,16 +59,79 @@
     }
 
     $(function () {
-        var errorObj;
-        try {
-            errorObj = JSON.parse(`@Html.Raw(errorJsonString)`);
+    var errorObj;
+    try {
+    errorObj = JSON.parse(`@Html.Raw(errorJsonString)`);
 
-            if (errorObj.messages.length > 0)
-                ErrorToast(errorObj.messages);
-        } catch {
-            return;
-        }
+    if (errorObj.messages.length > 0)
+    ErrorToast(errorObj.messages);
+    } catch {
+    return;
+    }
     });
 </script>
+
+@if (User.IsAdmin() || User.IsSimeDgeUser())
+{
+    <div class="modal fade ig-modal" id="uo_contact_modal" tabindex="-1" aria-labelledby="uo_contact_modal_label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uo_contact_modal_label">Contactos da Unidade Orgânica</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label class="form-label">Unidade Orgânica:</label>
+                        <p class="ig-uo-name">
+                            <span class="badge rounded-pill ig-uo-code">@User.GetCodigoServico()</span>
+                            @User.GetNomeServico()
+                        </p>
+                    </div>
+                    <div>
+                        <label class="form-label">Diretor(a):</label>
+                        <p>
+                            @User.GetDiretorServico()
+                        </p>
+                    </div>
+                    <hr />
+                    @{
+                        var contactos = User.GetContactosUo();
+
+                        if (contactos is not null)
+                        {
+                            foreach (var contacto in contactos)
+                            {
+                                switch (contacto.Tipo_contacto)
+                                {
+                                    case "EMAIL":
+                                        var tipoEmail = contacto.Valor_contacto!.Contains("direcao") ? "da Direção" : "dos Serviços";
+
+                                        <div>
+                                            <label class="form-label">Endereço de email @tipoEmail:</label>
+                                            <p>
+                                                <a href="mailto:@contacto.Valor_contacto">@contacto.Valor_contacto</a>
+                                            </p>
+                                        </div>
+                                        break;
+                                    case "TELEFONE1":
+                                        <div>
+                                            <label class="form-label">Telefone:</label>
+                                            <p>
+                                                @contacto.Valor_contacto
+                                            </p>
+                                        </div>
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 

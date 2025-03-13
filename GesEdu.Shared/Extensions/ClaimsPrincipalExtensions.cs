@@ -1,4 +1,6 @@
 ﻿using GesEdu.Shared.Resources;
+using GesEdu.Shared.WebserviceModels.Manuais;
+using Newtonsoft.Json;
 using System.Security.Claims;
 
 namespace GesEdu.Shared.Extensions
@@ -30,6 +32,15 @@ namespace GesEdu.Shared.Extensions
         public static string GetNifServico(this ClaimsPrincipal claimsPrincipal)
             => claimsPrincipal.FindFirst("NIF_SERVICO")?.Value ?? string.Empty;
 
+        #endregion
+
+        #region Contactos UO
+
+        public static string GetDiretorServico(this ClaimsPrincipal claimsPrincipal)
+            => claimsPrincipal.FindFirst("DIRETOR_SERVICO")?.Value ?? string.Empty;
+        public static GetUoResponseItem.Contacto[]? GetContactosUo(this ClaimsPrincipal claimsPrincipal)
+            => JsonConvert.DeserializeObject<GetUoResponseItem.Contacto[]>(claimsPrincipal.FindFirst("CONTACTOS_UO")?.Value ?? string.Empty);
+        
         #endregion
 
 

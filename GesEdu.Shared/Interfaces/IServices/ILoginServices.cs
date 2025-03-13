@@ -11,10 +11,10 @@ namespace GesEdu.Shared.Interfaces.IServices
 {
     public interface ILoginServices
     {
-        Task<(List<Claim> claims, bool changePassword)> SignIn(string username, string password);
+        Task<(List<Claim> claims, bool chooseUo, bool changePassword)> SignIn(string username, string password);
         Task<string?> PasswordRecovery(string email);
         Task<string?> PasswordChange(string username, string oldPassword, string newPassword);
-        Task<List<GetUoResponseItem>?> GetUo(string? idServico);
+        Task<List<GetUoResponseItem>?> GetUo();
         ClaimsPrincipal SetUo(GetUoResponseItem model, ClaimsPrincipal principal);
     }
 }

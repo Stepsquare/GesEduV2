@@ -57,7 +57,7 @@ namespace GesEdu.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var (claims, changePassword) = await _loginServices.SignIn(model.Username!, model.Password!);
+            var (claims, chooseUo, changePassword) = await _loginServices.SignIn(model.Username!, model.Password!);
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var principal = new ClaimsPrincipal(identity);
@@ -67,7 +67,7 @@ namespace GesEdu.Controllers
             if (changePassword)
                 return SuccessRedirect(Url.Action("PasswordChange", "Authentication"));
 
-            if (User.IsAdmin())
+            if (chooseUo)
                 return SuccessRedirect(Url.Action("ChooseUo", "Authentication"));
 
             return SuccessRedirect(Url.Action("Index", "Home"));
@@ -104,7 +104,7 @@ namespace GesEdu.Controllers
 
             await _loginServices.PasswordChange(User.GetUsername(), model.OldPassword!, model.NewPassword!);
 
-            if (User.IsAdmin())
+            if (User.IsAdmin() || User.IsSimeDgeUser())
                 return SuccessRedirect(Url.Action("ChooseUo", "Authentication"));
 
             return SuccessRedirect(Url.Action("Index", "Home"));
@@ -114,15 +114,9 @@ namespace GesEdu.Controllers
         [HttpGet]
         public async Task<JsonResult> GetUo()
         {
-            var result = await _loginServices.GetUo(User.GetIdServicoOrigem());
+            var result = await _loginServices.GetUo();
 
-            return Json(result?.Select(x => new
-            {
-                nome_text_field = $"{x.Cod_agrupamento} - {x.Nome}",
-                x.Nome,
-                x.Cod_agrupamento,
-                x.Nif_servico
-            }).ToArray());
+            return Json(result);
         }
 
         [Authorize(Policy = "ChooseUoPageAccess")]
