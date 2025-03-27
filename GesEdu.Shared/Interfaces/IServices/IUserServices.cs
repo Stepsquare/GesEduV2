@@ -17,6 +17,6 @@ namespace GesEdu.Shared.Interfaces.IServices
         Task<List<GetPerfisAppResponseItem>?> GetPerfis();
         Task<string?> CriarUtilizador(string nome, string email, string password, IDictionary<int, bool> profiles);
         Task<string?> AlterarPerfilUtilizador(int userId, int profileId, bool isChecked);
-        Task<string?> AlterarEstadoUtilizador(int userId, bool isActive);
+        Task<string?> AlterarEstadoUtilizador(int userId, bool isActive, bool isIgefeUser);
     }
 }

@@ -53,7 +53,8 @@ else
             global: false,
             data: {
                 userId: userId,
-                isActive: isChecked
+                isActive: isChecked,
+                isIgefeUser: $("#is_igefe_users_search").val()
             },
             success: function (response) {
                 $("label[for='user_" + userId + "']").text(isChecked ? 'Ativo' : 'Inativo');

@@ -70,6 +70,8 @@ namespace GesEdu.Shared.Extensions
 
         #region GesEdu Permissions
 
+        public static bool IsInRole(this ClaimsPrincipal claimsPrincipal, string role)
+           => claimsPrincipal.IsInRole(role);
         public static bool IsAdmin(this ClaimsPrincipal claimsPrincipal)
            => claimsPrincipal.IsInRole(GesEduProfiles.ADMIN);
         public static bool IsUserManager(this ClaimsPrincipal claimsPrincipal)
