@@ -8,12 +8,12 @@ namespace GesEdu.Shared.WebserviceModels.SIME
 {
     public class GetManuaisApreciadosResponseItem
     {
-        public int id_manual { get; set; }
         public string? id_ano_letivo { get; set; }
         public string? des_ano_letivo { get; set; }
         public string? des_disciplina { get; set; }
-        public string? id_ano_escolar { get; set; }
+        public int ano_escolar { get; set; }
         public string? des_ano_escolar { get; set; }
+        public int id_manual { get; set; }
         public string? titulo { get; set; }
         public string? isbn { get; set; }
         public string? editora { get; set; }

@@ -109,7 +109,7 @@
 
             var url = '@Url.Action("ManuaisPdfExport", "ApreciacaoManuais", new { Area = "SIME", })/?ano_letivo=' + anoLetivo + '&ciclo=' + ciclo;
             
-            requestDownload(url);
+            window.location.href = url;
         });
 
         $("#estado_dropdown").kendoDropDownList({
@@ -210,7 +210,7 @@
             data: {
                 custom: $('#custom_txt').val(),
                 certificado: $('#certificacao_dropdown').data("kendoDropDownList").value(),
-                ano_letivo: $('#ano_letivo_dropdown').data("kendoDropDownList").value(),
+                id_ano_letivo: $('#ano_letivo_dropdown').data("kendoDropDownList").value(),
                 ano_escolar: $('#ano_escolar_combobox').data("kendoComboBox").value(),
                 id_disciplina: $('#disciplina_combobox').data("kendoComboBox").value(),
                 estado: $('#estado_dropdown').data("kendoDropDownList").value(),

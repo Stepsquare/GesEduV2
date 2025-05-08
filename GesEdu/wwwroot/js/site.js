@@ -138,39 +138,3 @@ function ErrorToast(errors) {
         $(this).toast('show');
     });
 }
-
-function requestDownload(url) {
-    $.ajax({
-        url: url,
-        method: "GET",
-        xhrFields: {
-            responseType: "blob"
-        },
-        success: function (data, status, xhr) {
-            const contentDisposition = xhr.getResponseHeader("Content-Disposition");
-
-            let fileName = "";
-
-            const utf8FileNameMatch = contentDisposition.match(/filename\*=UTF-8''(.+)/);
-            if (utf8FileNameMatch) {
-                fileName = decodeURIComponent(utf8FileNameMatch[1]);
-            }
-
-            if (!fileName) {
-                const filenameMatch = contentDisposition.match(/filename=\"(.+?)\"/);
-                if (filenameMatch) {
-                    fileName = filenameMatch[1];
-                }
-            }
-
-            const url = window.URL.createObjectURL(data)
-            var link = document.createElement("a");
-            link.href = url;
-            link.download = fileName;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            window.URL.revokeObjectURL(url);
-        }
-    });
-}

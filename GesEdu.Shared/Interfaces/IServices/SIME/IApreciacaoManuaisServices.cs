@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace GesEdu.Shared.Interfaces.IServices.SIME
 {
-    public interface IApreciacaoManuaisServices
+    public interface IApreciacaoManuaisServices : ISIMEBaseServices
     {
-        Task<List<GetCiclosUOResponseItem>?> GetCiclos(string ano_letivo);
         Task<List<GetAnosEscolaresResponseItem>?> GetAnoEscolares(string ano_letivo);
         Task<List<GetDisciplinasAnoEscResponseItem>?> GetDisciplinas(string ano_letivo, string ano_escolar, string tipologia);
         Task<PaginatedResult<GetManuaisApreciadosResponseItem>> GetManuaisApreciados(GetManuaisApreciadosParams filter);

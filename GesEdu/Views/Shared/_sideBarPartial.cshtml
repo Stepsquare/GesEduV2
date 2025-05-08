@@ -203,6 +203,9 @@
                     <li class="@(Html.IsActive(["Index"], ["ApreciacaoManuais"], "SIME"))">
                         <a href="@Url.Action("Index", "ApreciacaoManuais", new { Area = "SIME" })">Apreciação de manuais</a>
                     </li>
+                    <li class="@(Html.IsActive(["Index"], ["NovasAdocoes"], "SIME"))">
+                        <a href="@Url.Action("Index", "NovasAdocoes", new { Area = "SIME" })">Novas adoções</a>
+                    </li>
                     @* <li>
                         <a href="#">Adoções de anos anteriores</a>
                     </li>

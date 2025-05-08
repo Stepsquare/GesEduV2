@@ -31,7 +31,7 @@ namespace GesEdu.Areas.SIME.Controllers
         {
             var model = new ApreciacaoManuaisViewModel
             {
-                Ciclos = await _apreciacaoManuaisServices.GetCiclos(User.GetAnoLetivoSIME()) ?? new List<GetCiclosUOResponseItem>()
+                Ciclos = await _apreciacaoManuaisServices.GetCiclos() ?? new List<GetCiclosUOResponseItem>()
             };
 
             return View(model);
@@ -57,7 +57,7 @@ namespace GesEdu.Areas.SIME.Controllers
             
             var model = new PdfExportModel<GetManuaisSIMEResponse>(manuais, HttpContext);
 
-            var fileName = $"Manuais - {manuais.ciclo} - Ano Letivo {manuais.ano_letivo}";
+            var fileName = $"Manuais - {manuais.ciclo} - Ano Letivo {manuais.ano_letivo}.pdf";
             var fileContentType = "application/pdf";
             var fileContent = await _pdfRenderer.RenderComponent<GetManuaisSIMEPdf>(model.GetAsDictionary());
 
