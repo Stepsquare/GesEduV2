@@ -142,7 +142,19 @@ namespace GesEdu.ServiceLayer.Services.SIME
 
         public async Task<string?> SetManualApreciado(SetManualAprDetRequest requestObj)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, "auth/setManualAprDet");
+            var request = new HttpRequestMessage(HttpMethod.Post, "sime/setManualAprDet");
+
+            if (_httpContext.User.IsEscolaPrivada())
+            {
+                requestObj.cod_uo = "0";
+                requestObj.cod_escola_me = _httpContext.User.GetCodigoServico();
+            }
+            else
+            {
+                requestObj.cod_uo = _httpContext.User.GetCodigoServico();
+            }
+
+            requestObj.utilizador = _httpContext.User.GetCodigoServico();
 
             request.Content = JsonContent.Create(requestObj);
 

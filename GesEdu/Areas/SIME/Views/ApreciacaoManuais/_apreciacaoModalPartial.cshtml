@@ -47,7 +47,7 @@
                         <td>
                             <ol class="ig-bookappreciation-description">
                                 <li>
-                                    <label class="form-label"><span>1.</span> Organização e Método</label>
+                                    <label class="form-label"><span>@criterio.alinea</span> @criterio.descricao</label>
                                     <ol class="ig-bookappreciation-description">
                                         @foreach (var subCriterio in criterio.subalineas)
                                         {
@@ -207,7 +207,7 @@
 
     @if (Model.editavel)
     {
-        <button type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Apreciar manual</button>
+        <button id="submitApreciacao" type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Apreciar manual</button>
     }
 </div>
 
@@ -216,14 +216,17 @@
         $(".tab-pane :input[type=radio]").on('change', function () {
             var total = $(this).closest('tbody').find('tr').length;
             var checked = $(this).closest(".tab-pane").find('input[type=radio]:checked').length;
-            console.log(total);
-            console.log(checked);
+            
             if (total === checked) {
                 var tabId = $(this).closest(".tab-pane").prop('id');
                 var tabBtn = $('a[href="#' + tabId + '"] > .ig-2line-tabheader');
                 tabBtn.find('span').remove();
                 tabBtn.append($('<span class="badge ig-badge-success"><i class="fas fa-check"></i> Apreciado</span>'));
             }
+        });
+
+        $('#submitApreciacao').on('click', function () {
+            submitApreciacao();
         });
     });
 
@@ -248,7 +251,7 @@
     }
 
     function validateApreciacoes() {
-        var isCertified = "@(Model.certificado)" === "true";
+        var isCertified = @(Model.certificado ? "true" : "false");
 
         var total = 0;
         var checked = $('input[type=radio]:checked').length;
@@ -260,6 +263,9 @@
                 total += $(this).find('tbody > tr').length;
             });
         }
+        console.log(isCertified);
+        console.log(total);
+        console.log(checked);
         return total === checked;
     }
 
