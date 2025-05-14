@@ -7,6 +7,7 @@ using GesEdu.Helpers.ExportPdf.Models;
 using GesEdu.Helpers.ExportPdf.Models.SIME;
 using GesEdu.Shared.Extensions;
 using GesEdu.Shared.Interfaces.IServices.SIME;
+using GesEdu.Shared.WebserviceModels.SIME;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,6 +35,65 @@ namespace GesEdu.Areas.SIME.Controllers
                 Escolas = await _novasAdocoesServices.GetEscolas() ?? []
             };
             return View(model);
+        }
+
+        public async Task<IActionResult> ManuaisAdotadosCicloPartial(string ciclo)
+        {
+            var getEscolasCicloResponse = await _novasAdocoesServices.GetEscolasCiclos(ciclo) ?? [];
+
+            var model = new ManuaisAdotadosCicloPartialViewModel()
+            {
+                ManuaisAdotados = await _novasAdocoesServices.GetManuaisAdotados(ciclo) ?? new(),
+                TotalEscolasCiclo = getEscolasCicloResponse.Count()
+            };
+
+            return PartialView("_manuaisAdotadosCicloTabPartial", model);
+        }
+
+        public async Task<IActionResult> ManuaisAdotadosDetailModal(string ciclo, string ano_escolar, int id_disciplina)
+        {
+            var manuaisAdotadosResponse = await _novasAdocoesServices.GetManuaisAdotados(ciclo);
+
+            var getEscolasCicloResponse = await _novasAdocoesServices.GetEscolasCiclos(ciclo) ?? [];
+
+            var model = manuaisAdotadosResponse?.anos_escolares
+                            .Where(a => a.ano_escolar == ano_escolar)
+                            .SelectMany(a => a.disciplinas
+                                .Where(d => d.id_disciplina == id_disciplina)
+                                .Select(d => new ManuaisAdotadosDetailViewModel
+                                {
+                                    TotalEscolasCiclo = getEscolasCicloResponse.Count(),
+                                    Manuais = d.manuais,
+                                    AnoEscolar = a.ano_escolar,
+                                    DisciplinaId = d.id_disciplina,
+                                    DisciplinaDesc = d.des_disciplina
+                                }))
+                            .FirstOrDefault();
+
+            return PartialView("_manuaisAdotadosModalPartial", model);
+        }
+
+        public async Task<IActionResult> NovaAdocaoModal(string ciclo, string ano_escolar, string id_disciplina)
+        {
+            var model = new NovaAdocaoModalViewModel
+            {
+                Escolas = await _novasAdocoesServices.GetEscolasCiclos(ciclo) ?? [],
+                Manuais = await _novasAdocoesServices.GetManuaisEscola("ADO", ano_escolar, id_disciplina) ?? []
+            };
+
+            return PartialView("_novaAdocaoModalPartial", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SetManuaisEscola([FromBody] SetManuaisEscolaRequest requestObj)
+        {
+            return SuccessMessages(await _novasAdocoesServices.SetManuaisEscola(requestObj));
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DelManuaisEscola(int id_manual)
+        {
+            return SuccessMessages(await _novasAdocoesServices.DelManuaisEscola(id_manual));
         }
 
         public async Task<IActionResult> ManuaisAdotadosPdfExport(string cod_escola_me)

@@ -13,6 +13,7 @@ using GesEdu.Shared.Extensions;
 using Newtonsoft.Json;
 using System.Collections;
 using System.Security.Principal;
+using GesEdu.Shared.WebserviceModels;
 
 namespace GesEdu.ServiceLayer.Services
 {
@@ -126,7 +127,7 @@ namespace GesEdu.ServiceLayer.Services
             return (claims, chooseUo, changePassword);
         }
 
-        public async Task<string?> PasswordRecovery(string? email)
+        public async Task<List<GenericPostResponse.Message>?> PasswordRecovery(string? email)
         {
             var obj = new ResetPasswordRequest
             {
@@ -140,10 +141,10 @@ namespace GesEdu.ServiceLayer.Services
 
             var resetPasswordResponse = await SendAsync<ResetPasswordResponse>(resetPasswordRequest);
 
-            return resetPasswordResponse?.messages.FirstOrDefault()?.msg;
+            return resetPasswordResponse?.messages;
         }
 
-        public async Task<string?> PasswordChange(string? username, string? oldPassword, string? newPassword)
+        public async Task<List<GenericPostResponse.Message>?> PasswordChange(string? username, string? oldPassword, string? newPassword)
         {
             var obj = new AlterarPasswordRequest
             {
@@ -158,7 +159,7 @@ namespace GesEdu.ServiceLayer.Services
 
             var alterarPasswordResponse = await SendAsync<AlterarPasswordResponse>(alterarPasswordRequest);
 
-            return alterarPasswordResponse?.messages.FirstOrDefault()?.msg;
+            return alterarPasswordResponse?.messages;
         }
 
         public async Task<List<GetUoResponseItem>?> GetUo()

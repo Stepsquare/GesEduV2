@@ -70,7 +70,7 @@ namespace GesEdu.ServiceLayer.Services
             return await SendAsync<List<GetPerfisAppResponseItem>>(getPerfisRequest);
         }
 
-        public async Task<string?> CriarUtilizador(string nome, string email, string password, IDictionary<int, bool> profiles)
+        public async Task<List<GenericPostResponse.Message>?> CriarUtilizador(string nome, string email, string password, IDictionary<int, bool> profiles)
         {
             var requestBody = new CriarUtilizadorRequest
             {
@@ -94,10 +94,10 @@ namespace GesEdu.ServiceLayer.Services
 
             var criarUtilizadorResponse = await SendAsync<GenericPostResponse>(criarUtilizadorRequest);
 
-            return criarUtilizadorResponse?.messages.FirstOrDefault()?.msg;
+            return criarUtilizadorResponse?.messages;
         }
 
-        public async Task<string?> AlterarPerfilUtilizador(int userId, int profileId, bool isChecked)
+        public async Task<List<GenericPostResponse.Message>?> AlterarPerfilUtilizador(int userId, int profileId, bool isChecked)
         {
             var requestBody = new AlterarPerfilUtzRequest
             {
@@ -119,10 +119,10 @@ namespace GesEdu.ServiceLayer.Services
             var alterarPerfilUtzResponse = await SendAsync<GenericPostResponse>(alterarPerfilUtzRequest);
 
 
-            return alterarPerfilUtzResponse?.messages.FirstOrDefault()?.msg;
+            return alterarPerfilUtzResponse?.messages;
         }
 
-        public async Task<string?> AlterarEstadoUtilizador(int userId, bool isActive, bool isIgefeUser)
+        public async Task<List<GenericPostResponse.Message>?> AlterarEstadoUtilizador(int userId, bool isActive, bool isIgefeUser)
         {
             var requestBody = new AlterarEstadoUtilizadorRequest
             {
@@ -137,7 +137,7 @@ namespace GesEdu.ServiceLayer.Services
 
             var alterarEstadoUtilizadorResponse = await SendAsync<GenericPostResponse>(alterarEstadoUtilizadorRequest);
 
-            return alterarEstadoUtilizadorResponse?.messages.FirstOrDefault()?.msg;
+            return alterarEstadoUtilizadorResponse?.messages;
         }
     }
 }

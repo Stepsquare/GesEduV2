@@ -1,0 +1,106 @@
+﻿@model ManuaisAdotadosCicloPartialViewModel
+
+
+@foreach (var anoEscolar in Model.ManuaisAdotados.anos_escolares)
+{
+    @if (string.IsNullOrEmpty(anoEscolar.ano_escolar))
+    {
+        <h4 class="mt-3">Comum a todos os anos de escolaridade</h4>
+    }
+    else
+    {
+        <h4 class="mt-3">@(anoEscolar.ano_escolar).ºano</h4>
+    }
+    <div class="row">
+        @foreach (var disciplinaItem in anoEscolar.disciplinas)
+        {
+            if (disciplinaItem.manuais.Count() == 0)
+            {
+                <div class="col-md-4 mb-3">
+                    <a id="@($"{anoEscolar.ano_escolar}_{disciplinaItem.id_disciplina}")" name="nova_adocao_btn" class="ig-biglink" href="javascript:void(0)" title="Adotar manual">
+                        <div class="card ig-card card-body">
+                            <h4><span class="badge ig-badge-warning"><i class="fas fa-exclamation-triangle"></i> @disciplinaItem.des_disciplina</span></h4>
+                            <p class="mb-0"><strong>Sem manual adotado</strong></p>
+                        </div>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-4 mb-3">
+                    <a id="@($"{anoEscolar.ano_escolar}_{disciplinaItem.id_disciplina}")" name="detalhe_adocao_btn" class="ig-biglink" href="javascript:void(0)" title="Ver manuais adotados">
+                        <div class="card ig-card card-body">
+                            <h4>@disciplinaItem.des_disciplina</h4>
+                            @if (disciplinaItem.manuais.Count() > 1)
+                            {
+                                <p class="mb-1"><strong>@disciplinaItem.manuais.Count() manuais adotados</strong></p>
+                            }
+                            else
+                            {
+                                var manualItem = disciplinaItem.manuais.First();
+                                bool isAdotadoTodaUo = manualItem.escolas.Count() == Model.TotalEscolasCiclo;
+                                int somaEstimativas = manualItem.escolas.Sum(x => x.estimativa);
+                                int somaAdaptados = manualItem.escolas.Sum(x => x.num_manuais_adaptados);
+
+                                <p class="mb-1"><strong>@manualItem.titulo</strong></p>
+                                <p class="mb-1">
+                                    <span class="me-3"><i class="fas fa-school"></i> @(isAdotadoTodaUo ? "Toda a UO" : $"{manualItem.escolas.Count()} escola(s)")</span>
+                                    <span><i class="fas fa-user"></i> @somaEstimativas alunos</span>
+                                </p>
+                                @if (somaAdaptados > 0)
+                                {
+                                    <p class="mb-1">
+                                        <span><i class="fas fa-edit"></i> @somaAdaptados manual(is) adaptado(s)</span>
+                                    </p>
+                                }
+                                <p class="mb-0">
+                                    <strong>ISBN:</strong> @manualItem.ISBN
+                                </p>
+                            }
+                        </div>
+                    </a>
+                </div>
+            }
+        }
+    </div>
+}
+
+<script>
+    $(function () {
+       $('a[name="detalhe_adocao_btn"]').on('click', function () {
+            var activeTab = $('.tab-content .tab-pane.active').prop('id');
+
+            $.ajax({
+                url: '@Url.Action("ManuaisAdotadosDetailModal", "NovasAdocoes")',
+                type: "GET",
+                data: {
+                    ciclo: activeTab.split('_')[1],
+                    ano_escolar: $(this).prop('id').split('_')[0],
+                    id_disciplina: $(this).prop('id').split('_')[1]
+                },
+                success: function (data) {
+                    $('#detalhe_adocao_modal .modal-content').html(data);
+                    $('#detalhe_adocao_modal').modal('show');
+                }
+            });
+        });
+
+        $('a[name="nova_adocao_btn"]').on('click', function () {
+            var activeTab = $('.tab-content .tab-pane.active').prop('id');
+
+            $.ajax({
+                url: '@Url.Action("NovaAdocaoModal", "NovasAdocoes")',
+                type: "GET",
+                data: {
+                    ciclo: activeTab.split('_')[1],
+                    ano_escolar: $(this).prop('id').split('_')[0],
+                    id_disciplina: $(this).prop('id').split('_')[1]
+                },
+                success: function (data) {
+                    $('#nova_adocao_modal .modal-content').html(data);
+                    $('#nova_adocao_modal').modal('show');
+                }
+            });
+        });
+    });
+</script>

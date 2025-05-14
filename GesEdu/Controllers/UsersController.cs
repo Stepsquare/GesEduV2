@@ -49,6 +49,7 @@ namespace GesEdu.Controllers
 
 
         #region Requests
+
         [HttpPost]
         public async Task<IActionResult> Search(GetUtilizadoresParams searchParams)
         {
@@ -64,25 +65,19 @@ namespace GesEdu.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var responseMessage = await _userServices.CriarUtilizador(model.Nome!, model.Email!, model.Password!, model.Perfis.ToDictionary(x => x.Id, x => x.IsChecked));
-
-            return SuccessMessage(responseMessage);
+            return SuccessMessages(await _userServices.CriarUtilizador(model.Nome!, model.Email!, model.Password!, model.Perfis.ToDictionary(x => x.Id, x => x.IsChecked)));
         }
 
         [HttpPost]
         public async Task<IActionResult> ToggleUser(int userId, bool isActive, bool isIgefeUser)
         {
-            var responseMessage = await _userServices.AlterarEstadoUtilizador(userId, isActive, isIgefeUser);
-
-            return SuccessMessage(responseMessage);
+            return SuccessMessages(await _userServices.AlterarEstadoUtilizador(userId, isActive, isIgefeUser));
         }
 
         [HttpPost]
         public async Task<IActionResult> ToggleUserProfile(int userId, int profileId, bool isActive, bool isIgefeUser)
         {
-            var responseMessage = await _userServices.AlterarPerfilUtilizador(userId, profileId, isActive);
-
-            return SuccessMessage(responseMessage);
+            return SuccessMessages(await _userServices.AlterarPerfilUtilizador(userId, profileId, isActive));
         }
 
         #endregion

@@ -85,17 +85,13 @@ namespace GesEdu.Areas.AreaReservada.Controllers
         [HttpPost]
         public async Task<IActionResult> SetDocenteEstadoHabilitacao([FromBody] SetDocenteEstadoHabilitacaoRequest requestObj)
         {
-            var responseMessage = await _trabalhadoresServices.SetDocenteEstadoHabilitacao(requestObj);
-
-            return SuccessMessage(responseMessage);
+            return SuccessMessages(await _trabalhadoresServices.SetDocenteEstadoHabilitacao(requestObj));
         }
 
         [HttpPost]
         public async Task<IActionResult> SetDocenteEstadoFormacao([FromBody] SetDocenteEstadoFormacaoRequest requestObj)
         {
-            var responseMessage = await _trabalhadoresServices.SetDocenteEstadoFormacao(requestObj);
-
-            return SuccessMessage(responseMessage);
+            return SuccessMessages(await _trabalhadoresServices.SetDocenteEstadoFormacao(requestObj));
         }
     }
 }

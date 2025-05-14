@@ -67,9 +67,7 @@ namespace GesEdu.Areas.SIME.Controllers
         [HttpPost]
         public async Task<IActionResult> SetManualApreciado([FromBody] SetManualAprDetRequest requestObj)
         {
-            var responseMessage = await _apreciacaoManuaisServices.SetManualApreciado(requestObj);
-
-            return SuccessMessage(responseMessage);
+            return SuccessMessages(await _apreciacaoManuaisServices.SetManualApreciado(requestObj));
         }
 
         [HttpGet]

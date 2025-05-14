@@ -28,8 +28,60 @@
     <breadcrumb></breadcrumb>
 </div>
 
+<div class="ig-tabs">
+    <ul class="nav nav-tabs">
+        @foreach (var item in Model.Ciclos)
+        {
+            var badgeCssClass = item.ciclo switch
+            {
+                "B" => "ig-cycle-01",
+                "C" => "ig-cycle-02",
+                "D" => "ig-cycle-03",
+                "E" => "ig-cycle-se",
+                _ => string.Empty
+            };
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#ciclo_@item.ciclo"> <span class="badge rounded-pill @badgeCssClass">@item.descricao</span></a>
+            </li>
+        }
+    </ul>
+
+    <div class="tab-content card ig-card ig-loadable-div">
+        @foreach (var item in Model.Ciclos)
+        {
+            <div class="tab-pane card-body" id="ciclo_@item.ciclo">
+            </div>
+        }
+    </div>
+</div>
+
+@* Modal nova adoção *@
+<div class="modal fade ig-modal" id="nova_adocao_modal" tabindex="-1" aria-labelledby="nova_adocao_label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
+@* Modal detalhe manuais adotados *@
+<div class="modal fade ig-modal" id="detalhe_adocao_modal" tabindex="-1" aria-labelledby="detalhe_adocao_label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
 <script>
     $(function () {
+        $('.ig-tabs .nav-tabs .nav-link').on('shown.bs.tab', function () {
+            refreshTab();
+        });
+
+        var firstTab = $('.nav-tabs .nav-link');
+        var tab = new bootstrap.Tab(firstTab);
+        tab.show();
+
         $('[name="manuais_pdf_export"]').on('click', function () {
             var cod_escola_me = $(this).prop('id');
 
@@ -39,4 +91,25 @@
         });
     });
 
+    function refreshTab() {
+        var activeTab = $('.tab-content .tab-pane.active').prop('id');
+
+        $.ajax({
+            url: '@Url.Action("ManuaisAdotadosCicloPartial", "NovasAdocoes")',
+            type: "GET",
+            global: false,
+            data: {
+                ciclo: activeTab.split('_')[1]
+            },
+            success: function (data) {
+                $(`#${activeTab}`).html(data);
+                HideDivLoader();
+            },
+            error: function (error) {
+                ErrorHandling(error);
+                HideDivLoader();
+            },
+            beforeSend: ShowDivLoader()
+        });
+    }
 </script>

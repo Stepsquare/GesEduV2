@@ -89,9 +89,8 @@ namespace GesEdu.Controllers
             {
                 return View(model);
             }
-            var responseMessage = await _loginServices.PasswordRecovery(model.Email!);
 
-            return SuccessMessage(responseMessage);
+            return SuccessMessages(await _loginServices.PasswordRecovery(model.Email!));
         }
 
         [HttpPost]

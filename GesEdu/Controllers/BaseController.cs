@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GesEdu.Shared.WebserviceModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GesEdu.Controllers
 {
     public abstract class BaseController : Controller
     {
-        public IActionResult SuccessMessage(string? message)
+        public IActionResult SuccessMessages(List<GenericPostResponse.Message>? messages)
         {
-            return Ok(new 
+            return Ok(new
             {
                 isMessage = true,
-                message
+                messages = messages?.Select(x => x.msg).ToArray() ?? []
             });
         }
 

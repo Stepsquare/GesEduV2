@@ -140,7 +140,7 @@ namespace GesEdu.ServiceLayer.Services.SIME
             return await SendAsync<GetManuaisSIMEResponse>(request);
         }
 
-        public async Task<string?> SetManualApreciado(SetManualAprDetRequest requestObj)
+        public async Task<List<GenericPostResponse.Message>?> SetManualApreciado(SetManualAprDetRequest requestObj)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, "sime/setManualAprDet");
 
@@ -160,7 +160,7 @@ namespace GesEdu.ServiceLayer.Services.SIME
 
             var response = await SendAsync<GenericPostResponse>(request);
 
-            return response?.messages.FirstOrDefault()?.msg;
+            return response?.messages;
         }
     }
 }

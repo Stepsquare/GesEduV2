@@ -89,12 +89,11 @@
         $.ajax({
             url: '@Url.Action("SetDocenteEstadoHabilitacao", "Trabalhadores")',
             type: "POST",
-            global: false,
             contentType: 'application/json; charset=UTF-8',
             data: JSON.stringify(requestObj),
             success: function (response) {
                 refreshTab();
-                SuccessToast(response.message);
+                SuccessToast(response.messages);
             }
         });
     }

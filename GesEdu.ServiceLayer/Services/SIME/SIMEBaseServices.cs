@@ -1,7 +1,6 @@
 ﻿using GesEdu.Shared.Extensions;
 using GesEdu.Shared.Interfaces.IConfiguration;
 using GesEdu.Shared.Interfaces.IServices.SIME;
-using GesEdu.Shared.WebserviceModels.Adm;
 using GesEdu.Shared.WebserviceModels.SIME;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
@@ -54,6 +53,54 @@ namespace GesEdu.ServiceLayer.Services.SIME
             var result = await SendAsync<GetEscolasResponse>(request);
 
             return result?.escolas;
+        }
+
+        public async Task<List<GetEscolasCiclosResponse.Escola>?> GetEscolasCiclos(string ciclo)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, "sime/getEscolasCiclos");
+
+            if (_httpContext.User.IsEscolaPrivada())
+            {
+                request.Headers.Add("cod_uo", "0");
+                request.Headers.Add("cod_escola_me", _httpContext.User.GetCodigoServico());
+            }
+            else
+            {
+                request.Headers.Add("cod_uo", _httpContext.User.GetCodigoServico());
+            }
+
+            request.Headers.Add("id_ano_letivo", _httpContext.User.GetAnoLetivoSIME());
+
+            request.Headers.Add("ciclo", ciclo);
+
+            var result = await SendAsync<GetEscolasCiclosResponse>(request);
+
+            return result?.escolas;
+        }
+
+        public async Task<List<GetManuaisEscolaResponseItem>?> GetManuaisEscola(string tipo_acao, string ano_escolar, string id_disciplina)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, "sime/getManuaisEscola");
+
+            if (_httpContext.User.IsEscolaPrivada())
+            {
+                request.Headers.Add("cod_uo", "0");
+                request.Headers.Add("cod_escola_me", _httpContext.User.GetCodigoServico());
+            }
+            else
+            {
+                request.Headers.Add("cod_uo", _httpContext.User.GetCodigoServico());
+            }
+
+            request.Headers.Add("id_ano_letivo", _httpContext.User.GetAnoLetivoSIME());
+
+            request.Headers.Add("utilizador", _httpContext.User.GetUsername());
+
+            request.Headers.Add("tipo_acao", tipo_acao);
+            request.Headers.Add("ano_escolar", ano_escolar);
+            request.Headers.Add("id_disciplina", id_disciplina);
+
+            return await SendAsync<List<GetManuaisEscolaResponseItem>>(request);
         }
     }
 }
