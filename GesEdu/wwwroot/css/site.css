@@ -29,6 +29,7 @@
     --ig-green-4: #c9f4db;
     --ig-green-5: #f1ffd9;
     --ig-green-6: #fffff7;
+    --ig-green-7: #fffffb;
     --ig-blue-1: #284652;
     --ig-blue-2: #3c7685;
     --ig-blue-3: #c1e4e8;
@@ -44,6 +45,7 @@
     --ig-green-2-alpha: #008d5c23;
     --ig-blue-1-alpha: #3c768588;
     --ig-grey-form: #ced4da;
+    --ig-grey-form-2: #e4e7eb;
     --ig-transition: ease 0.3s;
     --ig-shadow: 0 0 1.5rem rgb(0 0 0 / 13%);
     --ig-focus-shadow: 0 0 0 0.25rem var(--ig-blue-3);
@@ -189,7 +191,7 @@ nav.ig-sidebar-menu {
     height: calc(100vh - 74px);
 }
 .ig-submenu {
-    background: var(--ig-white);
+    background: var(--ig-green-7);
     box-shadow: var(--ig-shadow);
     height: 100%;
     width: 200px;
@@ -839,6 +841,7 @@ th.ig-th-4rem{
     background: var(--ig-blue-4);
     border-top: solid 1px var(--ig-blue-2);
     border-bottom: none;
+    padding: 1rem;
 }
 table.ig-grid .ig-noresults{
     padding:1rem;
@@ -1317,8 +1320,14 @@ footer.ig-footer {
 .igk-searchable-ddl span.k-dropdown-wrap {
     border-radius: 0.5rem;
     font-family: Inter, sans-serif;
+    background: var(--ig-white);
+    border-color: var(--ig-grey-form);
 }
-
+.igk-searchable-ddl span.k-dropdown-wrap.k-state-disabled {
+    background: var(--ig-grey-form-2);
+    opacity: 0.6;
+    cursor: not-allowed;
+}
 .igk-searchable-ddl.k-combobox .k-select {
     border-radius: 0 0.5rem 0.5rem 0;
 }
@@ -1327,6 +1336,7 @@ footer.ig-footer {
     border-color: var(--ig-blue-2);
     box-shadow: var(--ig-focus-shadow);
 }
+
 .k-list-container .k-nodata {
     font-family: Inter, sans-serif;
     font-weight: normal;
