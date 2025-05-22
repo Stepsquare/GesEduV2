@@ -61,9 +61,11 @@
     <tfoot>
         <tr>
             <th colspan="100">
-                @{
-                    await Html.RenderPartialAsync("_paginationPartial", new PaginationViewModel(Model.PageIndex, Model.PageSize, Model.TotalCount, "searchTrabalhadores({0}, {1})"));
-                }
+                <pagination page-index="@Model.PageIndex"
+                            page-size="@Model.PageSize"
+                            total-count="@Model.TotalCount"
+                            ajax-request-method="searchTrabalhadores({0}, {1})">
+                </pagination>
             </th>
         </tr>
     </tfoot>
