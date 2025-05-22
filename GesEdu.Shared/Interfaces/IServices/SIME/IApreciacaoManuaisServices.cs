@@ -12,8 +12,6 @@ namespace GesEdu.Shared.Interfaces.IServices.SIME
 {
     public interface IApreciacaoManuaisServices : ISIMEBaseServices
     {
-        Task<List<GetAnosEscolaresResponseItem>?> GetAnoEscolares(string ano_letivo);
-        Task<List<GetDisciplinasAnoEscResponseItem>?> GetDisciplinas(string ano_letivo, string ano_escolar, string tipologia);
         Task<PaginatedResult<GetManuaisApreciadosResponseItem>> GetManuaisApreciados(GetManuaisApreciadosParams filter);
         Task<GetManuaisAprDetResponse?> GetManualApreciado(string id_manual, string id_ano_letivo);
         Task<GetManuaisSIMEResponse?> GetManuaisSIMEPdfExport(string ano_letivo, string ciclo);

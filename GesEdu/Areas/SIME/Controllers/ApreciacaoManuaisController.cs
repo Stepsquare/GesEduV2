@@ -73,13 +73,13 @@ namespace GesEdu.Areas.SIME.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAnosEscolares(string ano_letivo)
         {
-            return Json(await _apreciacaoManuaisServices.GetAnoEscolares(ano_letivo));
+            return Json(await _apreciacaoManuaisServices.GetAnoEscolares("APR", ano_letivo));
         }
 
         [HttpGet]
         public async Task<IActionResult> GetDisciplinasAnoEscolar(string ano_letivo, string ano_escolar, string tipologia)
         {
-            return Json(await _apreciacaoManuaisServices.GetDisciplinas(ano_letivo, ano_escolar, tipologia));
+            return Json(await _apreciacaoManuaisServices.GetDisciplinas("APR", ano_letivo, ano_escolar, tipologia));
         }
     }
 }

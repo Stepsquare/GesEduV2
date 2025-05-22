@@ -17,48 +17,6 @@ namespace GesEdu.ServiceLayer.Services.SIME
         IUnitOfWork unitOfWork,
         IHostEnvironment environment) : SIMEBaseServices(httpContextAccessor, httpClientFactory, unitOfWork, environment), IApreciacaoManuaisServices
     {
-        public async Task<List<GetAnosEscolaresResponseItem>?> GetAnoEscolares(string ano_letivo)
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get, "sime/getAnosEscolares");
-
-            if (_httpContext.User.IsEscolaPrivada())
-            {
-                request.Headers.Add("cod_uo", "0");
-                request.Headers.Add("cod_escola_me", _httpContext.User.GetCodigoServico());
-            }
-            else
-            {
-                request.Headers.Add("cod_uo", _httpContext.User.GetCodigoServico());
-            }
-
-            request.Headers.Add("id_ano_letivo", ano_letivo);
-            request.Headers.Add("tipo_acao", "APR");
-
-            return await SendAsync<List<GetAnosEscolaresResponseItem>>(request);
-        }
-
-        public async Task<List<GetDisciplinasAnoEscResponseItem>?> GetDisciplinas(string ano_letivo, string ano_escolar, string tipologia)
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get, "sime/getDisciplinasAnoEsc");
-
-            if (_httpContext.User.IsEscolaPrivada())
-            {
-                request.Headers.Add("cod_uo", "0");
-                request.Headers.Add("cod_escola_me", _httpContext.User.GetCodigoServico());
-            }
-            else
-            {
-                request.Headers.Add("cod_uo", _httpContext.User.GetCodigoServico());
-            }
-
-            request.Headers.Add("id_ano_letivo", ano_letivo);
-            request.Headers.Add("ano_escolar", ano_escolar);
-            request.Headers.Add("tipo_acao", "APR");
-            request.Headers.Add("tipologia", tipologia);
-
-            return await SendAsync<List<GetDisciplinasAnoEscResponseItem>>(request);
-        }
-
         public async Task<PaginatedResult<GetManuaisApreciadosResponseItem>> GetManuaisApreciados(GetManuaisApreciadosParams filter)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, "sime/getManuaisApreciados");

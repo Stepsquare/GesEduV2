@@ -140,7 +140,7 @@
                     read: {
                         dataType: "json",
                         global: false,
-                        url: "@Url.Action("GetAnosLetivosSIME", "Home", new { Area = "SIME" })"
+                        url: "@Url.Action("GetAnosLetivosSIME", "Home")"
                     }
                 },
                 serverFiltering: true
@@ -163,7 +163,7 @@
                     read: {
                         dataType: "json",
                         global: false,
-                        url: "@Url.Action("GetAnosEscolares", "ApreciacaoManuais", new { Area = "SIME" })",
+                        url: "@Url.Action("GetAnosEscolares", "ApreciacaoManuais")",
                         data: function () {
                             return {
                                 ano_letivo: $("#ano_letivo_dropdown").val()
@@ -186,7 +186,7 @@
                     read: {
                         dataType: "json",
                         global: false,
-                        url: "@Url.Action("GetDisciplinasAnoEscolar", "ApreciacaoManuais", new { Area = "SIME" })",
+                        url: "@Url.Action("GetDisciplinasAnoEscolar", "ApreciacaoManuais")",
                         data: function () {
                             var selectedObj = $("#ano_escolar_combobox").data('kendoComboBox').dataItem();
 
@@ -204,7 +204,7 @@
 
     function searchApreciacao(pageIndex, pageSize) {
         $.ajax({
-            url: '@Url.Action("SearchManuaisApreciados", "ApreciacaoManuais", new { Area = "SIME" })',
+            url: '@Url.Action("SearchManuaisApreciados", "ApreciacaoManuais")',
             type: "GET",
             global: false,
             data: {
@@ -232,7 +232,7 @@
 
     function openManualDetModal(ano_letivo, id_manual) {
         $.ajax({
-            url: '@Url.Action("ModalManualApreciadoDetailModal", "ApreciacaoManuais", new { Area = "SIME" })',
+            url: '@Url.Action("ModalManualApreciadoDetailModal", "ApreciacaoManuais")',
             type: "GET",
             data: {
                 ano_letivo: ano_letivo,
