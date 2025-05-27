@@ -203,21 +203,18 @@
                     <li class="@(Html.IsActive(["Index"], ["ApreciacaoManuais"], "SIME"))">
                         <a href="@Url.Action("Index", "ApreciacaoManuais", new { Area = "SIME" })">Apreciação de manuais</a>
                     </li>
-                    @* <li>
-                        <a href="#">Adoções de anos anteriores</a>
+                    <li class="@(Html.IsActive(["Index"], ["AdocoesAnosAnteriores"], "SIME"))">
+                        <a href="@Url.Action("Index", "AdocoesAnosAnteriores", new { Area = "SIME" })">Adoções de anos anteriores</a>
                     </li>
-                    <li>
-                        <a href="#">Novas adoções</a>
+                    <li class="@(Html.IsActive(["Index"], ["NovasAdocoes"], "SIME"))">
+                        <a href="@Url.Action("Index", "NovasAdocoes", new { Area = "SIME" })">Novas adoções</a>
                     </li>
-                    <li>
-                        <a href="#">Manuais adaptados</a>
+                    <li class="@(Html.IsActive(["Index"], ["ManuaisAdaptados"], "SIME"))">
+                        <a href="@Url.Action("Index", "ManuaisAdaptados", new { Area = "SIME" })">Manuais adaptados</a>
                     </li>
-                    <li>
-                        <a href="#">Pedidos de exceção</a>
+                    <li class="@(Html.IsActive(["Index"], ["PedidosExcecao"], "SIME"))">
+                        <a href="@Url.Action("Index", "PedidosExcecao", new { Area = "SIME" })">Pedidos de exceção</a>
                     </li>
-                    <li>
-                        <a href="#">Suporte</a>
-                    </li> *@
                 </ul>
             </div>
         }

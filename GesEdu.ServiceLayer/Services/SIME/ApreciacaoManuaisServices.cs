@@ -15,70 +15,8 @@ namespace GesEdu.ServiceLayer.Services.SIME
         IHttpContextAccessor httpContextAccessor,
         IHttpClientFactory httpClientFactory,
         IUnitOfWork unitOfWork,
-        IHostEnvironment environment) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork, environment), IApreciacaoManuaisServices
+        IHostEnvironment environment) : SIMEBaseServices(httpContextAccessor, httpClientFactory, unitOfWork, environment), IApreciacaoManuaisServices
     {
-        public async Task<List<GetCiclosUOResponseItem>?> GetCiclos(string ano_letivo)
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get, "sime/getCiclosUO");
-
-            if (_httpContext.User.IsEscolaPrivada())
-            {
-                request.Headers.Add("coduo", "0");
-                request.Headers.Add("cod_escola_me", _httpContext.User.GetCodigoServico());
-            }
-            else
-            {
-                request.Headers.Add("coduo", _httpContext.User.GetCodigoServico());
-            }
-
-            request.Headers.Add("id_ano_letivo", ano_letivo);
-            request.Headers.Add("utilizador", _httpContext.User.GetUsername());
-
-            return await SendAsync<List<GetCiclosUOResponseItem>>(request);
-        }
-
-        public async Task<List<GetAnosEscolaresResponseItem>?> GetAnoEscolares(string ano_letivo)
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get, "sime/getAnosEscolares");
-
-            if (_httpContext.User.IsEscolaPrivada())
-            {
-                request.Headers.Add("coduo", "0");
-                request.Headers.Add("cod_escola_me", _httpContext.User.GetCodigoServico());
-            }
-            else
-            {
-                request.Headers.Add("coduo", _httpContext.User.GetCodigoServico());
-            }
-
-            request.Headers.Add("id_ano_letivo", ano_letivo);
-            request.Headers.Add("tipo_acao", "APR");
-
-            return await SendAsync<List<GetAnosEscolaresResponseItem>>(request);
-        }
-
-        public async Task<List<GetDisciplinasAnoEscResponseItem>?> GetDisciplinas(string ano_letivo, string ano_escolar, string tipologia)
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get, "sime/getDisciplinasAnoEsc");
-
-            if (_httpContext.User.IsEscolaPrivada())
-            {
-                request.Headers.Add("coduo", "0");
-                request.Headers.Add("cod_escola_me", _httpContext.User.GetCodigoServico());
-            }
-            else
-            {
-                request.Headers.Add("coduo", _httpContext.User.GetCodigoServico());
-            }
-
-            request.Headers.Add("id_ano_letivo", ano_letivo);
-            request.Headers.Add("ano_escolar", ano_escolar);
-            request.Headers.Add("tipo_acao", "APR");
-            request.Headers.Add("tipologia", tipologia);
-
-            return await SendAsync<List<GetDisciplinasAnoEscResponseItem>>(request);
-        }
-
         public async Task<PaginatedResult<GetManuaisApreciadosResponseItem>> GetManuaisApreciados(GetManuaisApreciadosParams filter)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, "sime/getManuaisApreciados");
@@ -87,12 +25,12 @@ namespace GesEdu.ServiceLayer.Services.SIME
 
             if (_httpContext.User.IsEscolaPrivada())
             {
-                request.Headers.Add("coduo", "0");
+                request.Headers.Add("cod_uo", "0");
                 request.Headers.Add("cod_escola_me", _httpContext.User.GetCodigoServico());
             }
             else
             {
-                request.Headers.Add("coduo", _httpContext.User.GetCodigoServico());
+                request.Headers.Add("cod_uo", _httpContext.User.GetCodigoServico());
             }
 
             if (!string.IsNullOrEmpty(filter.certificado))
@@ -101,8 +39,8 @@ namespace GesEdu.ServiceLayer.Services.SIME
             if (!string.IsNullOrEmpty(filter.custom))
                 request.Headers.Add("custom", filter.custom);
 
-            if (!string.IsNullOrEmpty(filter.ano_letivo))
-                request.Headers.Add("ano_letivo", filter.ano_letivo);
+            if (!string.IsNullOrEmpty(filter.id_ano_letivo))
+                request.Headers.Add("id_ano_letivo", filter.id_ano_letivo);
 
             if (!string.IsNullOrEmpty(filter.ano_escolar))
                 request.Headers.Add("ano_escolar", filter.ano_escolar);
@@ -135,12 +73,12 @@ namespace GesEdu.ServiceLayer.Services.SIME
 
             if (_httpContext.User.IsEscolaPrivada())
             {
-                request.Headers.Add("coduo", "0");
+                request.Headers.Add("cod_uo", "0");
                 request.Headers.Add("cod_escola_me", _httpContext.User.GetCodigoServico());
             }
             else
             {
-                request.Headers.Add("coduo", _httpContext.User.GetCodigoServico());
+                request.Headers.Add("cod_uo", _httpContext.User.GetCodigoServico());
             }
 
             request.Headers.Add("id_ano_letivo", id_ano_letivo);
@@ -160,15 +98,27 @@ namespace GesEdu.ServiceLayer.Services.SIME
             return await SendAsync<GetManuaisSIMEResponse>(request);
         }
 
-        public async Task<string?> SetManualApreciado(SetManualAprDetRequest requestObj)
+        public async Task<List<GenericPostResponse.Message>?> SetManualApreciado(SetManualAprDetRequest requestObj)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, "auth/setManualAprDet");
+            var request = new HttpRequestMessage(HttpMethod.Post, "sime/setManualAprDet");
+
+            if (_httpContext.User.IsEscolaPrivada())
+            {
+                requestObj.cod_uo = "0";
+                requestObj.cod_escola_me = _httpContext.User.GetCodigoServico();
+            }
+            else
+            {
+                requestObj.cod_uo = _httpContext.User.GetCodigoServico();
+            }
+
+            requestObj.utilizador = _httpContext.User.GetCodigoServico();
 
             request.Content = JsonContent.Create(requestObj);
 
             var response = await SendAsync<GenericPostResponse>(request);
 
-            return response?.messages.FirstOrDefault()?.msg;
+            return response?.messages;
         }
     }
 }

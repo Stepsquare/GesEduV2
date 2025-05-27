@@ -59,15 +59,15 @@
     }
 
     $(function () {
-    var errorObj;
-    try {
-    errorObj = JSON.parse(`@Html.Raw(errorJsonString)`);
+        var errorObj;
+        try {
+            errorObj = JSON.parse(`@Html.Raw(errorJsonString)`);
 
-    if (errorObj.messages.length > 0)
-    ErrorToast(errorObj.messages);
-    } catch {
-    return;
-    }
+            if (errorObj.messages.length > 0)
+            ErrorToast(errorObj.messages);
+        } catch {
+            return;
+        }
     });
 </script>
 

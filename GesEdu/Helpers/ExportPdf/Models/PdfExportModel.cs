@@ -1,9 +1,12 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using GesEdu.Shared.Extensions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GesEdu.Helpers.ExportPdf.Models
 {
     public class PdfExportModel<T> where T : class
     {
+        public string CodServico { get; set; }
+        public string NomeServico { get; set; }
         public required T Data { get; set; }
         public string BaseUrl { get; set; }
 
@@ -12,6 +15,8 @@ namespace GesEdu.Helpers.ExportPdf.Models
         {
             Data = data;
             BaseUrl = GetBaseUrl(httpContext);
+            CodServico = httpContext.User.GetCodigoServico();
+            NomeServico = httpContext.User.GetNomeServico();
         }
 
         public Dictionary<string, object?> GetAsDictionary()

@@ -20,7 +20,7 @@ namespace GesEdu.Shared.WebserviceModels.SIME
         public bool certificado { get; set; }
         public bool editavel { get; set; }
 
-        public List<ApreciacaoObj> apreciacoes { get; set; } = new List<ApreciacaoObj>();
+        public List<ApreciacaoObj> apreciacoes { get; set; } = [];
 
         public class ApreciacaoObj
         {

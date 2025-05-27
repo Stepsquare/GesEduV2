@@ -19,6 +19,7 @@ namespace GesEdu.ServiceLayer.Extensions
             #region SIME
 
             services.AddScoped<IApreciacaoManuaisServices, ApreciacaoManuaisServices>();
+            services.AddScoped<INovasAdocoesServices, NovasAdocoesServices>();
 
             #endregion
 

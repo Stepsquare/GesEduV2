@@ -61,9 +61,11 @@ else
                 </div>
             }
             <div class="list-group-item ig-item-pagination">
-                @{
-                    await Html.RenderPartialAsync("_paginationPartial", new PaginationViewModel(Model.PageIndex, Model.PageSize, Model.TotalCount, "searchApreciacao({0}, {1})"));
-                }
+                <pagination page-index="@Model.PageIndex"
+                            page-size="@Model.PageSize"
+                            total-count="@Model.TotalCount"
+                            ajax-request-method="searchApreciacao({0}, {1})">
+                </pagination>
             </div>
         </div>
     </div>

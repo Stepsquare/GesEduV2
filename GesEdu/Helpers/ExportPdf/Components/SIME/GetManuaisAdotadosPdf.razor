@@ -1,0 +1,237 @@
+﻿@using System.Globalization
+@using GesEdu.Helpers.ExportPdf.Models
+@using GesEdu.Helpers.ExportPdf.Models.SIME
+@using GesEdu.Shared.WebserviceModels.SIME
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Manuais escolares adotados @AnoLetivo - @Model.NomeServico</title>
+
+    <link href="@($"{Model.BaseUrl}/css/print.css")" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="igp-doc-header">
+        <img src="@($"{Model.BaseUrl}/images/logo.svg")">
+        <div class="igp-details">
+            <p class="text-right"><strong>Unidade Orgânica:</strong> @Model.NomeServico (@Model.CodServico)</p>
+            <p class="text-right"><strong>Data:</strong> @DateTime.Now.ToString("g", CultureInfo.CreateSpecificCulture("pt-PT"))</p>
+        </div>
+        <hr />
+        <h3>Manuais escolares adotados @AnoLetivo</h3>
+    </div>
+
+    @if (EnsinoRegular != null && EnsinoRegular.escolas.Any())
+    {
+        <h4>Ensino Regular</h4>
+        foreach (var escola in EnsinoRegular.escolas)
+        {
+            <div class="igp-details igp-det-ponly">
+                <p>
+                    <span><strong>Código:</strong> @escola.cod_escola_me</span>
+                    <span><strong>Escola:</strong>@escola.nome_escola</span>
+                </p>
+                <p>
+                    <span><strong>Endereço:</strong> @escola.morada_escola</span>
+                </p>
+                <p>
+                    <span><strong>Localidade:</strong> @escola.localidade_escola</span>
+                    <span><strong>Código Postal:</strong>@escola.cp4_escola - @escola.cp3_escola</span>
+                </p>
+            </div>
+
+            @if (escola.ano_escolar != null && escola.ano_escolar.Any())
+            {
+                foreach (var anoEscolar in escola.ano_escolar)
+                {
+                    <div class="igp-details">
+                        <h5>@anoEscolar.des_ano_escolar</h5>
+                        <div class="igp-grid">
+                            <table>
+                                <thead>
+                                    <tr class="igp-headrow">
+                                        <th>Disciplina</th>
+                                        <th>Título do manual</th>
+                                        <th>ISBN</th>
+                                        <th>Autores</th>
+                                        <th>Editora</th>
+                                        <th>Preço</th>
+                                        <th class="igp-right igp-col-shrink">N.º alunos (Estimativa)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (anoEscolar.manuais != null && anoEscolar.manuais.Any())
+                                    {
+                                        foreach (var itemManual in anoEscolar.manuais)
+                                        {
+                                            <tr>
+                                                <td>@itemManual.des_disciplina</td>
+                                                <td>@itemManual.titulo</td>
+                                                <td class="igp-nobreak">@itemManual.isbn</td>
+                                                <td>@itemManual.autor </td>
+                                                <td>@itemManual.editora</td>
+                                                <td class="igp-right igp-nobreak">@itemManual.preco.ToString("C", CultureInfo.CreateSpecificCulture("pt-PT"))</td>
+                                                <td class="igp-right">@itemManual.num_alunos</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    }
+
+    @if (EnsinoProfessional != null && EnsinoProfessional.escolas.Any())
+    {
+        <div class="pagebreak"></div>
+        <h4>Ensino Profissional</h4>
+        foreach (var escola in EnsinoProfessional.escolas)
+        {
+            <div class="igp-details igp-det-ponly">
+                <p>
+                    <span><strong>Código:</strong> @escola.cod_escola_me</span>
+                    <span><strong>Escola:</strong>@escola.nome_escola</span>
+                </p>
+                <p>
+                    <span><strong>Endereço:</strong> @escola.morada_escola</span>
+                </p>
+                <p>
+                    <span><strong>Localidade:</strong> @escola.localidade_escola</span>
+                    <span><strong>Código Postal::</strong>@escola.cp4_escola - @escola.cp3_escola</span>
+                </p>
+            </div>
+
+            @if (escola.ano_escolar != null && escola.ano_escolar.Any())
+            {
+                foreach (var anoEscolar in escola.ano_escolar)
+                {
+                    <div class="igp-details">
+                        <h5>@anoEscolar.des_ano_escolar</h5>
+                        <div class="igp-grid">
+                            <table>
+                                <thead>
+                                    <tr class="igp-headrow">
+                                        <th>Disciplina</th>
+                                        <th>Título do manual</th>
+                                        <th>ISBN</th>
+                                        <th>Autores</th>
+                                        <th>Editora</th>
+                                        <th>Preço</th>
+                                        <th class="igp-right igp-col-shrink">N.º alunos (Estimativa)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (anoEscolar.manuais != null && anoEscolar.manuais.Any())
+                                    {
+                                        foreach (var itemManual in anoEscolar.manuais)
+                                        {
+                                            <tr>
+                                                <td>@itemManual.des_disciplina</td>
+                                                <td>@itemManual.titulo</td>
+                                                <td class="igp-nobreak">@itemManual.isbn</td>
+                                                <td>@itemManual.autor </td>
+                                                <td>@itemManual.editora</td>
+                                                <td class="igp-right igp-nobreak">@itemManual.preco.ToString("C", CultureInfo.CreateSpecificCulture("pt-PT"))</td>
+                                                <td class="igp-right">@itemManual.num_alunos</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    }
+
+    @if (CursosEducacaoFormacao != null && CursosEducacaoFormacao.escolas.Any())
+    {
+        <div class="pagebreak"></div>
+        <h4>Cursos de Educação e Formação</h4>
+        foreach (var escola in CursosEducacaoFormacao.escolas)
+        {
+            <div class="igp-details igp-det-ponly">
+                <p>
+                    <span><strong>Código:</strong> @escola.cod_escola_me</span>
+                    <span><strong>Escola:</strong>@escola.nome_escola</span>
+                </p>
+                <p>
+                    <span><strong>Endereço:</strong> @escola.morada_escola</span>
+                </p>
+                <p>
+                    <span><strong>Localidade:</strong> @escola.localidade_escola</span>
+                    <span><strong>Código Postal::</strong>@escola.cp4_escola - @escola.cp3_escola</span>
+                </p>
+            </div>
+
+            @if (escola.ano_escolar != null && escola.ano_escolar.Any())
+            {
+                foreach (var anoEscolar in escola.ano_escolar)
+                {
+                    <div class="igp-details">
+                        <h5>@anoEscolar.des_ano_escolar</h5>
+                        <div class="igp-grid">
+                            <table>
+                                <thead>
+                                    <tr class="igp-headrow">
+                                        <th>Disciplina</th>
+                                        <th>Título do manual</th>
+                                        <th>ISBN</th>
+                                        <th>Autores</th>
+                                        <th>Editora</th>
+                                        <th>Preço</th>
+                                        <th class="igp-right igp-col-shrink">N.º alunos (Estimativa)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (anoEscolar.manuais != null && anoEscolar.manuais.Any())
+                                    {
+                                        foreach (var itemManual in anoEscolar.manuais)
+                                        {
+                                            <tr>
+                                                <td>@itemManual.des_disciplina</td>
+                                                <td>@itemManual.titulo</td>
+                                                <td class="igp-nobreak">@itemManual.isbn</td>
+                                                <td>@itemManual.autor </td>
+                                                <td>@itemManual.editora</td>
+                                                <td class="igp-right igp-nobreak">@itemManual.preco.ToString("C", CultureInfo.CreateSpecificCulture("pt-PT"))</td>
+                                                <td class="igp-right">@itemManual.num_alunos</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    }
+</body>
+
+</html>
+
+
+@code {
+    [Parameter]
+    public required PdfExportModel<GetManuaisAdotadosPdfModel> Model { get; set; }
+
+    public string? AnoLetivo { get => this.Model.Data.AnoLetivo; }
+    public GetManuaisAdotadosListagemResponse? EnsinoRegular { get => this.Model.Data.EnsinoRegular; }
+    public GetManuaisAdotadosListagemResponse? EnsinoProfessional { get => this.Model.Data.EnsinoProfessional; }
+    public GetManuaisAdotadosListagemResponse? CursosEducacaoFormacao { get => this.Model.Data.CursosEducacaoFormacao; }
+}

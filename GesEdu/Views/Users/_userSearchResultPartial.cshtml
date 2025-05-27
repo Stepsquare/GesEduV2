@@ -27,9 +27,11 @@
                 </div>
             }
             <div class="list-group-item ig-item-pagination">
-                @{
-                    await Html.RenderPartialAsync("_paginationPartial", new PaginationViewModel(Model.PageIndex, Model.PageSize, Model.TotalCount, "searchUsers({0}, {1})"));
-                }
+                <pagination page-index="@Model.PageIndex"
+                            page-size="@Model.PageSize"
+                            total-count="@Model.TotalCount"
+                            ajax-request-method="searchUsers({0}, {1})">
+                </pagination>
             </div>
         </div>
     </div>
@@ -59,7 +61,7 @@ else
             success: function (response) {
                 $("label[for='user_" + userId + "']").text(isChecked ? 'Ativo' : 'Inativo');
 
-                SuccessToast(response.message);
+                SuccessToast(response.messages);
             },
             error: function (error) {
                 ErrorHandling(error)

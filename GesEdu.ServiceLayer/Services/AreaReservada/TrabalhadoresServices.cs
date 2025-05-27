@@ -98,7 +98,7 @@ namespace GesEdu.ServiceLayer.Services.AreaReservada
             return await SendAsync<GetAnexoPessoaResponse>(request);
         }
 
-        public async Task<string?> SetDocenteEstadoHabilitacao(SetDocenteEstadoHabilitacaoRequest requestObj)
+        public async Task<List<GenericPostResponse.Message>?> SetDocenteEstadoHabilitacao(SetDocenteEstadoHabilitacaoRequest requestObj)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, "cadastro/setDocenteEstadoHabilitacao");
 
@@ -108,10 +108,10 @@ namespace GesEdu.ServiceLayer.Services.AreaReservada
 
             var response = await SendAsync<GenericPostResponse>(request);
 
-            return response?.messages.FirstOrDefault()?.msg;
+            return response?.messages;
         }
 
-        public async Task<string?> SetDocenteEstadoFormacao(SetDocenteEstadoFormacaoRequest requestObj)
+        public async Task<List<GenericPostResponse.Message>?> SetDocenteEstadoFormacao(SetDocenteEstadoFormacaoRequest requestObj)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, "cadastro/setDocenteEstadoFormacao");
 
@@ -121,7 +121,7 @@ namespace GesEdu.ServiceLayer.Services.AreaReservada
 
             var response = await SendAsync<GenericPostResponse>(request);
 
-            return response?.messages.FirstOrDefault()?.msg;
+            return response?.messages;
         }
     }
 }

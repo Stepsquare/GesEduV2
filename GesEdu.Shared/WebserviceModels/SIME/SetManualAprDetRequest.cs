@@ -2,7 +2,7 @@
 {
     public class SetManualAprDetRequest
     {
-        public string? uo { get; set; }
+        public string? cod_uo { get; set; }
         public string? cod_escola_me { get; set; }
         public string? id_ano_letivo { get; set; }
         public string? id_manual { get; set; }

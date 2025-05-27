@@ -1,0 +1,140 @@
+﻿@model ManuaisAdotadosDetailViewModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="detalhe_adocao_label">@($"Adoção de Manuais: {Model.DisciplinaDesc} ({Model.AnoEscolar}.º ano)")</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <h4>Manual(is) adotado(s):</h4>
+    @foreach (var manual in Model.Manuais)
+    {
+        <div id="manual_@manual.id_manual" class="ig-card card card-body mb-3">
+            <div class="row d-flex align-items-center">
+                <div class="col-md">
+                    <h5>@manual.titulo</h5>
+                    <p class="mb-1">
+                        @($"{Model.AnoEscolar}.º Ano, {Model.DisciplinaDesc}")
+                    </p>
+                    <p class="mb-1">
+                        <span class="me-3">
+                            <i class="fas fa-school"></i> @(Model.TotalEscolasCiclo == manual.escolas.Count() ? "Toda a unidade orgânica" : $"{manual.escolas.Count()} escola(s)")
+                        </span>
+                    </p>
+                    <p name="total_estimativas" class="mb-1">
+                        <span><i class="fas fa-user"></i> @manual.escolas.Sum(x => x.estimativa) aluno(s) estimado(s)</span>
+                    </p>
+                    <p class="mb-2">
+                        <a class="ig-collapse-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#estimativas_@manual.id_manual" aria-expanded="false" aria-controls="collapseMFs">
+                            Detalhe das estimativas de alunos
+                            <i class="fas fa-caret-up"></i>
+                        </a>
+                    </p>
+                </div>
+                <div class="col-md text-md-end">
+                    <p class="mb-1"><strong>Editora:</strong> @manual.editora</p>
+                    <p class="mb-1"><strong>ISBN:</strong> @manual.ISBN</p>
+                    <p class="mb-0">@($"{manual.vlr_manual.ToString("C", CultureInfo.CreateSpecificCulture("pt-PT"))}/un")</p>
+                </div>
+            </div>
+
+            <div class="collapse mt-3" id="estimativas_@manual.id_manual">
+                <table class="table ig-grid">
+                    <thead>
+                        <tr>
+                            <th>Escola</th>
+                            <th class="ig-col-shrink">Estimativa de alunos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var escola in manual.escolas)
+                        {
+                            <tr>
+                                <td><span class="badge rounded-pill ig-uo-code">@escola.cod_escola_me</span> @escola.nome_escola</td>
+                                <td><input name="estimativa_escola" id="@($"{manual.id_manual}_{escola.cod_escola_me}")" type="number" class="ig-studentestimate-field form-control" onwheel="return false" value="@escola.estimativa"></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <a name="delete_man_btn" href="javascript:void(0);">
+                <i class="far fa-trash-alt"></i> Remover manual
+            </a>
+        </div>
+    }
+    <button type="button" class="btn ig-btn-blue" data-bs-target="#nova_adocao_modal" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fas fa-plus"></i> Adotar manual adicional</button>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Sair</button>
+</div>
+
+<script>
+    $(function () {
+        let previousValue = '';
+
+        $('input[name="estimativa_escola"]').on('focus', function () {
+                previousValue = $(this).val();
+        }).on('change', function () {
+            var inputEstimativa = $(this);
+
+            var divManual = $(this).closest('.ig-card');
+
+            var requestObj = {
+                id_manual: $(this).prop('id').split('_')[0],
+                escolas: [
+                    {
+                        cod_escola_me: $(this).prop('id').split('_')[1],
+                        num_alunos: $(this).val()
+                    }
+                ]
+            };
+
+            $.ajax({
+                url: '@Url.Action("SetManuaisEscola", "NovasAdocoes")',
+                type: "POST",
+                contentType: 'application/json; charset=UTF-8',
+                data: JSON.stringify(requestObj),
+                success: function (response) {
+                    var total = 0;
+
+                    divManual.find('input[type="number"]').each(function () {
+                        total += parseFloat($(this).val()) || 0;
+                    });
+
+                    divManual.find('p[name="total_estimativas"]').first().html(`<span><i class="fas fa-user"></i> ${total} aluno(s) estimado(s)</span>`);
+
+                    refreshTab();
+
+                    SuccessToast(response.messages);
+                },
+                error: function (error) {
+                    inputEstimativa.val(previousValue);
+                    ErrorToast(error.responseJSON.messages);
+                }
+            });
+
+        });
+
+        $('a[name="delete_man_btn"]').on('click', function () {
+            var id_manual = $(this).closest('.ig-card').prop('id').split('_')[1];
+
+            ShowConfirmModal({
+                title: "Remover manual",
+                message: "Tem a certeza que deseja remover o manual?",
+                previousModalId: "detalhe_adocao_modal",
+                callbackfunction: function () {
+                    $.ajax({
+                        url: '@Url.Action("DelManuaisEscola", "NovasAdocoes")',
+                        type: "DELETE",
+                        data: {
+                            id_manual: id_manual
+                        },
+                        success: function (response) {
+                            refreshTab();
+                            SuccessToast(response.messages);
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>

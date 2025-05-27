@@ -1,5 +1,5 @@
 ﻿
-$(document).on("ajaxError", function (event, jqxhr, settings, thrownError) {
+$(document).on('ajaxError', function (event, jqxhr, settings, thrownError) {
     ErrorHandling(jqxhr);
 });
 
@@ -13,55 +13,55 @@ function ErrorHandling(error) {
     }
 }
 
-$(document).on("ajaxSuccess", function (event, jqxhr, settings, response) {
+$(document).on('ajaxSuccess', function (event, jqxhr, settings, response) {
     if (response.isRedirect) {
         window.location.href = response.url;
     }
     if (response.isMessage) {
-        SuccessToast(response.message);
+        SuccessToast(response.messages);
     }
 });
 
-$(document).on("ajaxStart", function () {
+$(document).on('ajaxStart', function () {
     ToggleFullPageLoader();
 });
 
-$(document).on("ajaxComplete", function () {
+$(document).on('ajaxComplete', function () {
     ToggleFullPageLoader();
 });
 
 function ToggleFullPageLoader() {
     $('body').toggleClass('overflow-hidden');
 
-    $('#loader').fadeToggle("fast");
+    $('#loader').fadeToggle('fast');
 }
 
 function ShowDivLoader(containerDivId) {
-    var divLoader = $("<div id=\"divloader\" style=\"display:none\" class=\"ig-load\"><span class=\"spinner-grow\" role=\"status\"></span> Aguarde por favor...</div>");
+    var divLoader = $('<div id=\"divloader\" style=\"display:none\" class=\"ig-load\"><span class=\"spinner-grow\" role=\"status\"></span> Aguarde por favor...</div>');
 
     if (typeof containerDivId !== 'undefined') {
         $(`#${containerDivId} .ig-loadable-div`).append(divLoader);
     } else {
-        $(".ig-loadable-div").append(divLoader);
+        $('.ig-loadable-div').append(divLoader);
     }
 
-    $("#divloader").fadeIn("fast");
+    $('#divloader').fadeIn("fast");
 }
 
 function HideDivLoader() {
-    $("#divloader").fadeOut("fast", function () {
+    $('#divloader').fadeOut('fast', function () {
         this.remove()
     });
 }
 
 function ShowErrorModal(messages, onclose) {
 
-    var errorList = $("#error_modal .modal-body ul");
+    var errorList = $('#error_modal .modal-body ul');
     errorList.empty();
 
     for (var i = 0; i < messages.length; i++) {
 
-        var li = $("<li></li>");
+        var li = $('<li></li>');
         li.html(messages[i]);
         errorList.append(li);
     }
@@ -76,57 +76,93 @@ function ShowErrorModal(messages, onclose) {
         $('#error_modal').on('hidden.bs.modal', false);
     }
 
-    $("#error_modal").modal("show");
+    $('#error_modal').modal('show');
 }
+
+//function ShowConfirmModal(obj) {
+//    $('#confirm_modal_title').text(obj.title);
+//    $('#confirm_modal .modal-body p').text(obj.message);
+
+//    if (obj.previousModalId != null) {
+//        $('#confirm_modal_deny_btn').removeAttr('data-bs-dismiss');
+//        $('#confirm_modal_deny_btn').attr('data-bs-toggle', 'modal');
+//        $('#confirm_modal_deny_btn').attr('data-bs-target', `#${obj.previousModalId}`);
+//    } else {
+//        $('#confirm_modal_deny_btn').attr('data-bs-dismiss', 'modal');
+//        $('#confirm_modal_deny_btn').removeAttr('data-bs-toggle');
+//        $('#confirm_modal_deny_btn').removeAttr('data-bs-target');
+//    }
+
+//    $('#confirm_modal_approve_btn').prop('onclick', null).off('click');
+//    $('#confirm_modal_approve_btn').on('click', function () {
+//        obj.callbackfunction();
+//    });
+
+//    $('#confirm_modal').modal('show');
+//}
 
 function ShowConfirmModal(obj) {
-    $("#confirm_modal_title").text(obj.title);
-    $("#confirm_modal .modal-body p").text(obj.message);
+    const confirmModalEl = document.getElementById('confirm_modal');
+    const confirmModal = bootstrap.Modal.getInstance(confirmModalEl) || new bootstrap.Modal(confirmModalEl);
 
-    if (obj.previousModalId != null) {
-        $("#confirm_modal_deny_btn").removeAttr("data-bs-dismiss");
-        $("#confirm_modal_deny_btn").attr("data-bs-toggle", "modal");
-        $("#confirm_modal_deny_btn").attr("data-bs-target", `#${obj.previousModalId}`);
+    $('#confirm_modal_title').text(obj.title);
+    $('#confirm_modal .modal-body p').text(obj.message);
+
+    // Reset buttons
+    $('#confirm_modal_deny_btn').off('click');
+    $('#confirm_modal_approve_btn').off('click');
+
+    // Lógica do botão de negação
+    if (obj.previousModalId) {
+        $('#confirm_modal_deny_btn').on('click', function () {
+            confirmModal.hide();
+
+            const prevModalEl = document.getElementById(obj.previousModalId);
+            const prevModal = bootstrap.Modal.getInstance(prevModalEl) || new bootstrap.Modal(prevModalEl);
+
+            // Esperar a confirmação fechar antes de abrir a anterior
+            $(confirmModalEl).one('hidden.bs.modal', function () {
+                prevModal.show();
+            });
+        });
     } else {
-        $("#confirm_modal_deny_btn").attr("data-bs-dismiss", "modal");
-        $("#confirm_modal_deny_btn").removeAttr("data-bs-toggle");
-        $("#confirm_modal_deny_btn").removeAttr("data-bs-target");
+        $('#confirm_modal_deny_btn').on('click', function () {
+            confirmModal.hide();
+        });
     }
 
-    $("#confirm_modal_approve_btn").prop("onclick", null).off("click");
-    $("#confirm_modal_approve_btn").on('click', function () {
+    // Botão de aprovação
+    $('#confirm_modal_approve_btn').on('click', function () {
         obj.callbackfunction();
+        confirmModal.hide(); // Opcional: fecha após ação
     });
 
-    $("#confirm_modal").modal("show");
+    // Se a modal anterior está visível, fecha ela primeiro
+    if (obj.previousModalId) {
+        const prevModalEl = document.getElementById(obj.previousModalId);
+        const prevModal = bootstrap.Modal.getInstance(prevModalEl);
+
+        if (prevModal) {
+            $(prevModalEl).one('hidden.bs.modal', function () {
+                confirmModal.show();
+            });
+            prevModal.hide();
+        } else {
+            confirmModal.show();
+        }
+    } else {
+        confirmModal.show();
+    }
 }
 
-function SuccessToast(message) {
-    var toastContainer = $("#toast_container");
+function SuccessToast(messages) {
+    var toastContainer = $('#toast_container');
     toastContainer.empty();
 
-    var toastDiv = $("<div class=\"ig-toast-success toast hide\" role=\alert\" aria-live=\"assertive\" aria-atomic=\"true\"></div>");
-    var toastHeader = $("<div class=\"toast-header\"><strong class=\"me-auto\"> <i class=\"fas fa-check\"></i> Sucesso</strong><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\"aria-label=\"Close\"></button></div> ");
-    var toastBody = $("<div class=\"toast-body\">" + message + "</div >");
-
-    toastDiv.append(toastHeader);
-    toastDiv.append(toastBody);
-
-    toastContainer.append(toastDiv);
-
-    $("#toast_container .toast").each(function () {
-        $(this).toast('show');
-    });
-}
-
-function ErrorToast(errors) {
-    var toastContainer = $("#toast_container");
-    toastContainer.empty();
-
-    for (var i = 0; i < errors.length; i++) {
-        var toastDiv = $("<div class=\"ig-toast-error toast hide\" role=\alert\" aria-live=\"assertive\" aria-atomic=\"true\"></div>");
-        var toastHeader = $("<div class=\"toast-header\"><strong class=\"me-auto\"> <i class=\"fas fa-exclamation-triangle\"></i> Erro</strong><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\"aria-label=\"Close\"></button></div> ");
-        var toastBody = $("<div class=\"toast-body\">" + errors[i] + "</div >");
+    for (var i = 0; i < messages.length; i++) {
+        var toastDiv = $('<div class="ig-toast-success toast hide" role="alert" aria-live="assertive" aria-atomic="true"></div>');
+        var toastHeader = $('<div class="toast-header"><strong class="me-auto"> <i class="fas fa-check"></i> Sucesso</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button></div>');
+        var toastBody = $(`<div class="toast-body">${messages[i]}</div >`);
 
         toastDiv.append(toastHeader);
         toastDiv.append(toastBody);
@@ -134,43 +170,27 @@ function ErrorToast(errors) {
         toastContainer.append(toastDiv);
     }
 
-    $("#toast_container .toast").each(function () {
+    $('#toast_container .toast').each(function () {
         $(this).toast('show');
     });
 }
 
-function requestDownload(url) {
-    $.ajax({
-        url: url,
-        method: "GET",
-        xhrFields: {
-            responseType: "blob"
-        },
-        success: function (data, status, xhr) {
-            const contentDisposition = xhr.getResponseHeader("Content-Disposition");
+function ErrorToast(errors) {
+    var toastContainer = $('#toast_container');
+    toastContainer.empty();
 
-            let fileName = "";
+    for (var i = 0; i < errors.length; i++) {
+        var toastDiv = $('<div class="ig-toast-error toast hide" role="alert" aria-live="assertive" aria-atomic="true"></div>');
+        var toastHeader = $('<div class="toast-header"><strong class="me-auto"> <i class="fas fa-exclamation-triangle"></i> Erro</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button></div>');
+        var toastBody = $(`<div class="toast-body">${errors[i]}</div>`);
 
-            const utf8FileNameMatch = contentDisposition.match(/filename\*=UTF-8''(.+)/);
-            if (utf8FileNameMatch) {
-                fileName = decodeURIComponent(utf8FileNameMatch[1]);
-            }
+        toastDiv.append(toastHeader);
+        toastDiv.append(toastBody);
 
-            if (!fileName) {
-                const filenameMatch = contentDisposition.match(/filename=\"(.+?)\"/);
-                if (filenameMatch) {
-                    fileName = filenameMatch[1];
-                }
-            }
+        toastContainer.append(toastDiv);
+    }
 
-            const url = window.URL.createObjectURL(data)
-            var link = document.createElement("a");
-            link.href = url;
-            link.download = fileName;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            window.URL.revokeObjectURL(url);
-        }
+    $('#toast_container .toast').each(function () {
+        $(this).toast('show');
     });
 }

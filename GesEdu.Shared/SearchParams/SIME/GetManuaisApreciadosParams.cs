@@ -5,7 +5,7 @@ namespace GesEdu.Shared.SearchParams.SIME
     public class GetManuaisApreciadosParams : PaginationParams
     {
         public string? custom { get; set; }
-        public string? ano_letivo { get; set; }
+        public string? id_ano_letivo { get; set; }
         public string? ano_escolar { get; set; }
         public string? id_disciplina { get; set; }
         public string? estado { get; set; }
