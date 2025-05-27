@@ -49,6 +49,7 @@
     --ig-transition: ease 0.3s;
     --ig-shadow: 0 0 1.5rem rgb(0 0 0 / 13%);
     --ig-focus-shadow: 0 0 0 0.25rem var(--ig-blue-3);
+    --ig-focus-yellow: 0 0 0 0.25rem var(--ig-yellow-3);
     --ig-filter-blue-2: brightness(0) saturate(100%) invert(41%) sepia(23%) saturate(871%) hue-rotate(145deg) brightness(94%) contrast(86%);
 }
 
@@ -1382,12 +1383,25 @@ ol.ig-bookappreciation-description {
     padding-left: 2.5rem;
 }
 /*Estimativas*/
-input[type="number"].ig-studentestimate-field {
+input[type="number"].ig-studentestimate-field, input[type="number"].ig-studentestimate-update {
     -moz-appearance: textfield;
-    min-width:5rem;
 }
-
-.ig-studentestimate-field::-webkit-outer-spin-button, .ig-studentestimate-field::-webkit-inner-spin-button {
+.ig-studentestimate-field::-webkit-outer-spin-button, .ig-studentestimate-field::-webkit-inner-spin-button, .ig-studentestimate-update::-webkit-outer-spin-button, .ig-studentestimate-update::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+.ig-studentestimate-update.is-invalid {
+    border-color: var(--ig-yellow-2);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23f8971d'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23f8971d' stroke='none'/%3e%3c/svg%3e");
+}
+.ig-studentestimate-update.is-invalid:focus {
+    box-shadow: var(--ig-focus-yellow);
+    border-color: var(--ig-yellow-2);
+}
+input[type="number"].ig-studentestimate-field {
+    min-width: 5rem;
+}
+input[type="number"].ig-studentestimate-update{
+    min-width: 7rem;
+}
+
