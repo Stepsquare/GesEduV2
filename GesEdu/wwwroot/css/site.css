@@ -485,6 +485,7 @@ span.ig-stepname {
 .ig-statistics-card {
     padding-left: 1.5rem;
     overflow: hidden;
+    flex-grow: 0;
 }
 
 .ig-statistics-card h3 {
@@ -683,7 +684,7 @@ a.ig-biglink p {
 }
 
 a.list-group-item:hover {
-    background: var(--ig-blue-4);
+    background: var(--ig-green-2-alpha);
     transition: background var(--ig-transition);
     box-shadow: var(--ig-shadow);
 }
@@ -697,7 +698,7 @@ a.list-group-item:hover {
     border-color: var(--ig-blue-3);
 }
 a.list-group-item.active, a.list-group-item:active:hover {
-    background: var(--ig-green-2-alpha);
+    background: var(--ig-blue-4);
 }
 .ig-card .list-group-item.active p {
     color: var(--bs-list-group-color)
@@ -1017,6 +1018,28 @@ table.ig-grid .ig-noresults{
     max-width: 9rem;
     min-height: 6.5rem;
 }
+.ig-tabs a.nav-link.active:after, .ig-tabs a.nav-link.active:focus::after {
+    content: "";
+    width: 100%;
+    position: absolute;
+    background: #ffffff;
+    height: 2rem;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    transition: var(--ig-transition);
+}
+.ig-tabs a.nav-link.active *, .ig-tabs a.nav-link.active:focus * {
+    z-index: 2;
+    position: relative;
+}
+.ig-tabs a.nav-link.active:hover::after{
+    background:var(--ig-blue-4);
+    transition:var(--ig-transition);
+}
+.ig-tabs a.nav-link.active:focus {
+    isolation: unset;
+}
 
 /*Listagens*/
 
@@ -1069,6 +1092,9 @@ span.badge.ig-badge-warning {
 
 span.badge {
     border-radius: 0.5rem;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
     span.badge.ig-cycle-01 {
         background: var(--ig-blue-4);
