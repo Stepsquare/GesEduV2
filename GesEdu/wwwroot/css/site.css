@@ -552,7 +552,7 @@ span.ig-stepname {
     color: var(--ig-blue-2);
 }
 
-.ig-btn-blue:hover {
+.ig-btn-blue:hover, .input-group .btn.ig-btn-blue:hover {
     color: var(--ig-white);
     background: var(--ig-blue-2);
     border-color: var(--ig-blue-2);
@@ -818,6 +818,9 @@ th.ig-col-shrink {
 }
 th.ig-th-4rem{
     width:4rem;
+}
+th.ig-th-9rem {
+    width: 9rem;
 }
 
 .table.ig-grid td {
@@ -1412,22 +1415,19 @@ ol.ig-bookappreciation-description {
 input[type="number"].ig-studentestimate-field, input[type="number"].ig-studentestimate-update {
     -moz-appearance: textfield;
 }
-.ig-studentestimate-field::-webkit-outer-spin-button, .ig-studentestimate-field::-webkit-inner-spin-button, .ig-studentestimate-update::-webkit-outer-spin-button, .ig-studentestimate-update::-webkit-inner-spin-button {
+.ig-studentestimate-field::-webkit-outer-spin-button, .ig-studentestimate-field::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-.ig-studentestimate-update.is-invalid {
+.ig-studentestimate-field.is-invalid {
     border-color: var(--ig-yellow-2);
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23f8971d'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23f8971d' stroke='none'/%3e%3c/svg%3e");
 }
-.ig-studentestimate-update.is-invalid:focus {
+.ig-studentestimate-field.is-invalid:focus {
     box-shadow: var(--ig-focus-yellow);
     border-color: var(--ig-yellow-2);
 }
 input[type="number"].ig-studentestimate-field {
     min-width: 5rem;
-}
-input[type="number"].ig-studentestimate-update{
-    min-width: 7rem;
 }
 

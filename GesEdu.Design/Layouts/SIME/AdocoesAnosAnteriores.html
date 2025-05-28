@@ -399,7 +399,7 @@
                         <th scope="col">Ano de escolaridade e disciplina</th>
                         <th scope="col">Título, ISBN e Editora</th>
                         <th class="ig-col-shrink" scope="col">Adquirir manual</th>
-                        <th class="ig-col-shrink" scope="col">Estimativa de alunos</th>
+                        <th class="ig-th-9rem" scope="col">Estimativa de alunos</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -421,7 +421,7 @@
                             </div>
                         </td>
                         <td>
-                            <input type="number" class="form-control ig-studentestimate-update is-valid" />
+                            <input type="number" class="form-control ig-studentestimate-field is-valid" />
                         </td>
                     </tr>
                     <tr>
@@ -442,7 +442,10 @@
                             </div>
                         </td>
                         <td>
-                            <input type="number" class="form-control ig-studentestimate-update is-invalid" />
+                            <div class="input-group">
+                                <input type="number" class="form-control ig-studentestimate-field is-invalid" />
+                                <button class="btn ig-btn-blue" type="button" title="Atualizar estimativa"><i class="fas fa-arrows-rotate"></i></button>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -463,13 +466,16 @@
                             </div>
                         </td>
                         <td>
-                            <input type="number" class="form-control ig-studentestimate-update is-invalid" />
+                            <div class="input-group">
+                                <input type="number" class="form-control ig-studentestimate-field is-invalid" />
+                                <button class="btn ig-btn-blue" type="button" title="Atualizar estimativa"><i class="fas fa-arrows-rotate"></i></button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="100%">
+                        <th colspan="100">
                             <div class="row ig-pagination">
                                 <div class="col-md align-middle">
                                     <p class="ig-grid-record">
