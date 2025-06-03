@@ -12,3 +12,203 @@
     </div>
     <breadcrumb></breadcrumb>
 </div>
+
+<div class="alert ig-alert-info" role="alert">
+    <i class="fas fa-info-circle"></i> As listas de manuais escolares adotados pela sua unidade orgânica só serão disponibilizadas após o preenchimento de todas as estimativas do n.º de alunos nesta página, cujos campos deverão estar assinalados a verde.
+</div>
+
+<div class="card ig-card mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-2 mb-3">
+                <label class="form-label">Ano letivo:</label>
+                <input id="ano_letivo_dropdown" type="text" class="igk-searchable-ddl" />
+            </div>
+            <div class="col-xl-5 mb-3">
+                <label class="form-label">Título, ISBN ou editor do manual:</label>
+                <input type="text" class="form-control" />
+            </div>
+            @if (!User.IsEscolaPrivada())
+            {
+                <div class="col-xl-5 mb-3">
+                    <label class="form-label">Escola:</label>
+                    <input id="escolas_dropdown" type="text" class="igk-searchable-ddl" />
+                </div>
+            }
+        </div>
+        <div class="collapse" id="collapseMFs">
+            <div class="row">
+                <div class="col-xl-2 mb-3">
+                    <label class="form-label">Estado da estimativa:</label>
+                    <input id="estado_dropdown" type="text" class="igk-searchable-ddl" />
+                </div>
+
+                <div class="col-xl-2 mb-3">
+                    <label class="form-label">Ano de escolaridade:</label>
+                    <input id="ano_escolar_combobox" type="text" class="igk-searchable-ddl" />
+                </div>
+                <div class="col-xl-8 mb-3">
+                    <label class="form-label">Disciplina:</label>
+                    <input id="disciplina_combobox" type="text" class="igk-searchable-ddl" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a class="ig-collapse-link collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#collapseMFs" aria-expanded="false" aria-controls="collapseMFs">
+                    <i class="fas fa-plus"></i> Mais filtros
+                    <i class="fas fa-caret-up"></i>
+                </a>
+            </div>
+            <div class="col-auto">
+                <button class="btn ig-btn-green" onclick="searchEstimativas()">
+                    <i class="fas fa-search"></i> Pesquisar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* SEARCH RESULT CONTAINER *@
+<div class="ig-loadable-div">
+    <table id="search_result_table" class="table ig-grid">
+    </table>
+</div>
+
+<script>
+    $(function () {
+        $('#collapseMFs').on('hide.bs.collapse', function () {
+            $('#estado_dropdown').data("kendoDropDownList").value("");
+            $('#ano_escolar_combobox').data("kendoComboBox").value("");
+            $('#disciplina_combobox').data("kendoComboBox").value("");
+        });
+
+        $("#ano_letivo_dropdown").kendoDropDownList({
+            dataTextField: "descricao",
+            dataValueField: "codigo",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        global: false,
+                        url: "@Url.Action("GetAnosLetivosSIME", "Home")"
+                    }
+                },
+                serverFiltering: true
+            },
+            index: 0,
+            dataBound: function () {
+                searchEstimativas();
+            }
+        });
+
+        $("#escolas_dropdown").kendoComboBox({
+            cascadeFrom: "ano_letivo_dropdown",
+            cascadeFromField: "codigo",
+            operator: "eq",
+            dataTextField: "nome",
+            dataValueField: "cod_escola_me",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        global: false,
+                        url: "@Url.Action("GetEscolas", "AdocoesAnosAnteriores")",
+                        data: function () {
+                            return { ano_letivo: $("#ano_letivo_dropdown").data("kendoDropDownList").value() };
+                        }
+                    }
+                },
+                serverFiltering: true
+            }
+        });
+
+        $("#ano_escolar_combobox").kendoComboBox({
+            cascadeFrom: "ano_letivo_dropdown",
+            cascadeFromField: "codigo",
+            operator: "eq",
+            dataTextField: "des_ano_escolar",
+            dataValueField: "ano_escolar",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        global: false,
+                        url: "@Url.Action("GetAnosEscolares", "AdocoesAnosAnteriores")",
+                        data: function () {
+                            return {
+                                ano_letivo: $("#ano_letivo_dropdown").data("kendoDropDownList").value()
+                            };
+                        }
+                    }
+                },
+                serverFiltering: true
+            }
+        });
+
+        $("#disciplina_combobox").kendoComboBox({
+            cascadeFrom: "ano_escolar_combobox",
+            cascadeFromField: "ano_escolar",
+            operator: "eq",
+            dataTextField: "des_disciplina",
+            dataValueField: "id_disciplina",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        global: false,
+                        url: "@Url.Action("GetDisciplinasAnoEscolar", "AdocoesAnosAnteriores")",
+                        data: function () {
+                            var selectedObj = $("#ano_escolar_combobox").data('kendoComboBox').dataItem();
+
+                            return {
+                                ano_letivo: $("#ano_letivo_dropdown").val(),
+                                ano_escolar: selectedObj.ano_escolar,
+                                tipologia: selectedObj.tipologia
+                            };
+                        }
+                    }
+                },
+                serverFiltering: true
+            }
+        });
+
+        $("#estado_dropdown").kendoDropDownList({
+            dataTextField: "descricao",
+            dataValueField: "codigo",
+            dataSource: [
+                { codigo: "", descricao: "Todas" },
+                { codigo: "0", descricao: "Por atualizar" },
+                { codigo: "1", descricao: "Atualizadas" }
+            ]
+        });
+    });
+
+    function searchEstimativas(pageIndex, pageSize) {
+        $.ajax({
+            url: '@Url.Action("SearchEstimativasManuais", "AdocoesAnosAnteriores")',
+            type: "GET",
+            global: false,
+            data: {
+                filtro: $('#filtro_txt').val(),
+                id_ano_letivo: $('#ano_letivo_dropdown').data("kendoDropDownList").value(),
+                cod_escola_me: $('#escolas_dropdown').length ? $('#escolas_dropdown').data("kendoComboBox").value() : null,
+                id_ano_escolar: $('#ano_escolar_combobox').data("kendoComboBox").value(),
+                id_disciplina: $('#disciplina_combobox').data("kendoComboBox").value(),
+                estado_estimativa: $('#estado_dropdown').data("kendoDropDownList").value(),
+                tipologia: $("#ano_escolar_combobox").data('kendoComboBox').dataItem()?.tipologia,
+                PageIndex: pageIndex,
+                PageSize: pageSize
+            },
+            success: function (data) {
+                $('#search_result_table').html(data);
+                HideDivLoader();
+            },
+            error: function (error) {
+                ErrorHandling(error);
+                HideDivLoader();
+            },
+            beforeSend: ShowDivLoader(),
+        });
+    }
+</script>

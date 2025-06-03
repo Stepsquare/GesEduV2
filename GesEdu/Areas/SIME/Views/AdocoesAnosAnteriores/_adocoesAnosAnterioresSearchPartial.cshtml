@@ -1,0 +1,194 @@
+﻿@model SearchEstimativasManuaisViewModel
+
+<thead>
+    <tr>
+        <th scope="col">Escola</th>
+        <th scope="col">Ano de escolaridade e disciplina</th>
+        <th scope="col">Título, ISBN e Editora</th>
+        <th class="ig-col-shrink" scope="col">Adquirir manual</th>
+        <th class="ig-th-9rem" scope="col">Estimativa de alunos</th>
+    </tr>
+</thead>
+<tbody>
+    @if (Model.Results?.TotalCount == 0)
+    {
+        <tr>
+            <td colspan="100">
+                <div class="ig-noresults text-center">
+                    <h3><i class="fas fa-search"></i>  Sem resultados</h3>
+                    <p class="mb-0">Não foram encontrados resultados para a pesquisa efetuada.</p>
+                </div>
+            </td>
+        </tr>
+    }
+    else
+    {
+        foreach (var manual in Model.Results!.Data)
+        {
+            <tr>
+                <td><span class="badge rounded-pill ig-uo-code">@manual.cod_escola_me</span> @manual.nome_escola</td>
+                <td>
+                    <p class="mb-1">@manual.des_ano_escolar</p>
+                    <p class="mb-0">@manual.des_disciplina</p>
+                </td>
+                <td>
+                    <p class="mb-1">@manual.titulo</p>
+                    <p class="mb-1"><span class="badge rounded-pill ig-blue-badge">@manual.isbn</span></p>
+                    <p class="mb-0">@manual.editora</p>
+                </td>
+                <td>
+                    <div class="form-check form-switch ig-check">
+                        <input type="checkbox" id="@($"checkbox_{manual.cod_escola_me}_{manual.id_manual}")" class="form-check-input" @(manual.adquirir_manual ? "checked" : "") @(Model.IsReadOnly ? "disabled" : "") />
+                        <label class="form-check-label" for="@($"checkbox_{manual.cod_escola_me}_{manual.id_manual}")"></label>
+                    </div>
+                </td>
+                <td>
+                    @if (Model.IsReadOnly)
+                    {
+                        <input type="number"
+                               class="form-control ig-studentestimate-field"
+                               id="@($"input_{manual.cod_escola_me}_{manual.id_manual}")"
+                               value="@manual.num_alunos" disabled />
+                    }
+                    else
+                    {
+                        if (manual.atualizado)
+                        {
+                            <input type="number"
+                                   class="form-control ig-studentestimate-field @(!Model.IsReadOnly && manual.adquirir_manual ? "is-valid" : "")"
+                                   id="@($"input_{manual.cod_escola_me}_{manual.id_manual}")"
+                                   value="@manual.num_alunos" @(Model.IsReadOnly || !manual.adquirir_manual ? "disabled" : "") />
+                        }
+                        else
+                        {
+                            <div class="input-group">
+                                <input type="number"
+                                       class="form-control ig-studentestimate-field @(!Model.IsReadOnly && !manual.adquirir_manual ? "is-invalid" : "")"
+                                       id="@($"input_{manual.cod_escola_me}_{manual.id_manual}")"
+                                       value="@manual.num_alunos" @(Model.IsReadOnly || !manual.adquirir_manual ? "disabled" : "") />
+                                <button name="refresh_estimativa" class="btn ig-btn-blue" title="Atualizar estimativa">
+                                    <i class="fas fa-arrows-rotate"></i>
+                                </button>
+                            </div>
+                        }
+
+                    }
+                </td>
+            </tr>
+        }
+    }
+</tbody>
+
+@if (Model.Results?.TotalCount != 0)
+{
+    <tfoot>
+        <tr>
+            <th colspan="100">
+                <pagination page-index="@Model.Results!.PageIndex"
+                            page-size="@Model.Results!.PageSize"
+                            total-count="@Model.Results!.TotalCount"
+                            ajax-request-method="searchEstimativas({0}, {1})">
+                </pagination>
+            </th>
+        </tr>
+    </tfoot>
+}
+
+<script>
+    $(function () {
+        let previousValue = '';
+
+        $('input[type="checkbox"]').on('change', function () {
+            var cod_escola_me = $(this).prop('id').split('_')[1];
+            var id_manual = $(this).prop('id').split('_')[2];
+
+            if ($(this).is(':checked')) {
+                $(`#input_${cod_escola_me}_${id_manual}`).prop('disabled', false);
+
+                $(`#input_${cod_escola_me}_${id_manual}`).val('');
+            } else {
+                previousValue = $(`#input_${cod_escola_me}_${id_manual}`).val();
+
+                $(`#input_${cod_escola_me}_${id_manual}`).prop('disabled', true);
+
+                $(`#input_${cod_escola_me}_${id_manual}`).val(0);
+
+                setNumAlunos(cod_escola_me, id_manual, 0);
+            }
+        });
+
+        $('input[type="number"]').on('focus', function () {
+                previousValue = $(this).val();
+        }).on('change', function () {
+            var cod_escola_me = $(this).prop('id').split('_')[1];
+            var id_manual = $(this).prop('id').split('_')[2];
+            var num_alunos = $(this).val();
+
+            setNumAlunos(cod_escola_me, id_manual, num_alunos);
+        });
+
+        $('button[name="refresh_estimativa"]').on("click", function () {
+            var input = $(this).closest('div').find("input");
+
+            var cod_escola_me = input.prop('id').split('_')[1];
+            var id_manual = input.prop('id').split('_')[2];
+            var num_alunos = input.val();
+
+            setNumAlunos(cod_escola_me, id_manual, num_alunos);
+        });
+
+        function setNumAlunos(cod_escola_me, id_manual, num_alunos) {
+            $.ajax({
+                url: '@Url.Action("SetNumAlunos", "AdocoesAnosAnteriores")',
+                type: "POST",
+                global: false,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    cod_escola_me: cod_escola_me,
+                    id_manual: id_manual,
+                    num_alunos: $(`#checkbox_${cod_escola_me}_${id_manual}`).is(':checked') ? num_alunos : 0,
+                    adquirir_manual: $(`#checkbox_${cod_escola_me}_${id_manual}`).is(':checked') ? 1 : 0
+                }),
+                success: function (response) {
+                    replaceInput(cod_escola_me, id_manual, num_alunos);
+
+                    SuccessToast(response.messages);
+                },
+                error: function (error) {
+                    if (previousValue != '')
+                        $(`#input_${cod_escola_me}_${id_manual}`).val(previousValue);
+
+                    if (!$(`#checkbox_${cod_escola_me}_${id_manual}`).is(':checked')) {
+                        $(`#checkbox_${cod_escola_me}_${id_manual}`).prop('checked', true);
+                        $(`#input_${cod_escola_me}_${id_manual}`).prop('disabled', false);
+                    }
+
+                    ErrorToast(error.responseJSON.messages);
+                }
+            });
+        }
+
+        function replaceInput(cod_escola_me, id_manual, num_alunos) {
+            var tdInput = $(`#input_${cod_escola_me}_${id_manual}`).closest('td');
+
+            tdInput.empty();
+
+            var newInput = $(`<input type="number" class="form-control ig-studentestimate-field" id="input_${cod_escola_me}_${id_manual}" value="${num_alunos}" />`)
+
+            newInput.prop("disabled", !$(`#checkbox_${cod_escola_me}_${id_manual}`).is(':checked'))
+
+            if ($(`#checkbox_${cod_escola_me}_${id_manual}`).is(':checked'))
+                newInput.addClass('is-valid');
+
+            newInput.on("change", function () {
+                var cod_escola_me = $(this).prop('id').split('_')[1];
+                var id_manual = $(this).prop('id').split('_')[2];
+                var num_alunos = $(this).val();
+
+                setNumAlunos(cod_escola_me, id_manual, num_alunos);
+            });
+
+            tdInput.append(newInput);
+        }
+    });
+</script>

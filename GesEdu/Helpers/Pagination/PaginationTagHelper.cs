@@ -64,6 +64,11 @@ namespace GesEdu.Helpers.Pagination
 
             content.AppendLine("</ul></nav></div>");
 
+            content.AppendLine("<script>");
+            content.AppendLine($"function getPageIndex() {{ return {PageIndex}; }}");
+            content.AppendLine($"function getPageSize() {{ return {PageSize}; }}");
+            content.AppendLine("</script>");
+
             output.Content.SetHtmlContent(content.ToString());
         }
 

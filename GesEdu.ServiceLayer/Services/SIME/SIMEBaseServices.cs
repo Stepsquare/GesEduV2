@@ -75,7 +75,7 @@ namespace GesEdu.ServiceLayer.Services.SIME
             return await SendAsync<List<GetCiclosUOResponseItem>>(request);
         }
 
-        public async Task<List<GetEscolasResponse.Escola>?> GetEscolas()
+        public async Task<List<GetEscolasResponse.Escola>?> GetEscolas(string? id_ano_letivo = null)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, "sime/getEscolas");
 
@@ -89,7 +89,7 @@ namespace GesEdu.ServiceLayer.Services.SIME
                 request.Headers.Add("cod_uo", _httpContext.User.GetCodigoServico());
             }
 
-            request.Headers.Add("id_ano_letivo", _httpContext.User.GetAnoLetivoSIME());
+            request.Headers.Add("id_ano_letivo", id_ano_letivo ?? _httpContext.User.GetAnoLetivoSIME());
             request.Headers.Add("utilizador", _httpContext.User.GetUsername());
 
             var result = await SendAsync<GetEscolasResponse>(request);

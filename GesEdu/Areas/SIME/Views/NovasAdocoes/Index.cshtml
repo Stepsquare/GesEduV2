@@ -28,6 +28,31 @@
     <breadcrumb></breadcrumb>
 </div>
 
+@if (Model.Ciclos.Any())
+{
+    <h4 class="mt-3">Estimativa do n.º de alunos:</h4>
+    <div class="card ig-card ig-statistics-card card-body mb-5">
+        <div class="row ">
+            @foreach (var item in Model.Ciclos)
+            {
+                var badgeCssClass = item.ciclo switch
+                {
+                    "B" => "ig-cycle-01",
+                    "C" => "ig-cycle-02",
+                    "D" => "ig-cycle-03",
+                    "E" => "ig-cycle-se",
+                    _ => string.Empty
+                };
+
+                <div class="col-md">
+                    <h4><span class="badge rounded-pill @badgeCssClass">@item.descricao</span></h4>
+                    <h3><i class="fas fa-users"></i> @(!string.IsNullOrEmpty(item.total_aluno) ? $"{item.total_aluno} alunos" : "N/A")</h3>
+                </div>
+            }
+        </div>
+    </div>
+}
+
 <div class="ig-tabs">
     <ul class="nav nav-tabs">
         @foreach (var item in Model.Ciclos)

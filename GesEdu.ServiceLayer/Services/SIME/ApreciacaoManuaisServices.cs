@@ -112,7 +112,7 @@ namespace GesEdu.ServiceLayer.Services.SIME
                 requestObj.cod_uo = _httpContext.User.GetCodigoServico();
             }
 
-            requestObj.utilizador = _httpContext.User.GetCodigoServico();
+            requestObj.utilizador = _httpContext.User.GetUsername();
 
             request.Content = JsonContent.Create(requestObj);
 
