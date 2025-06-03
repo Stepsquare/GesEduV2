@@ -261,6 +261,7 @@ li.ig-menutitle h4 {
     border: none;
     border-radius: 1rem;
     box-shadow: var(--ig-shadow);
+    flex-grow: 0;
 }
 
 .ig-pagetitle {
@@ -1122,6 +1123,7 @@ span.badge {
 
 .ig-uo-code, .ig-id-code {
     background: var(--ig-blue-2);
+    vertical-align: text-bottom;
 }
 .ig-user-permissions, .ig-blue-badge {
     background: var(--ig-blue-4);

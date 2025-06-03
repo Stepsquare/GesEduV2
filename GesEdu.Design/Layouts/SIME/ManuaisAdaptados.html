@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Gerir utilizadores</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../../../GesEdu/wwwroot/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="">
+    <!--Style-->
+    <link href="../../../GesEdu/wwwroot/css/site.css" rel="stylesheet">
+    <!--JQuery-->
+    <script type="text/javascript" src="../../../GesEdu/wwwroot/lib/jquery/dist/jquery.min.js"></script>
+    <!--FontAwesome-->
+    <link href="../../../GesEdu/wwwroot/lib/font-awesome/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="ig-body">
+    <nav class="ig-navbar navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="ig-brand nav-link" href="#">
+                        <img class="ig-logo" title="GesEdu" src="../../../GesEdu/wwwroot/images/logo.svg">
+                    </a>
+                </li>
+            </ul>
+            <!--NOTA DB: acrescentar classes d-flex align-items-center-->
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+                <li class="nav-item">
+                    <a class="btn ig-btn-blue  me-3" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#igModal03">
+                        <i class="fas fa-phone"></i> Contactos da Unidade Orgânica
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="ig-user-ddl nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="ig-userdet-cont">
+                            <span class="ig-uo-name">
+                                <span class="badge rounded-pill ig-uo-code">172420</span>
+                                Agrupamento de Escolas de Vila Viçosa
+                            </span>
+                            <span class="ig-uo-user">
+                                <i class="fas fa-user"></i>
+                                david.barradas@squad.pt
+                            </span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Gerir utilizadores</a></li>
+                        <li><a class="dropdown-item" href="#">Repor palavra-passe</a></li>
+                        <li><a class="dropdown-item" href="#">Sair</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--Container geral-->
+    <section class="ig-main-container">
+        <!--Menu lateral-->
+        <nav class="d-flex align-items-start ig-sidebar-menu" id="ig-menu">
+            <section class="ig-main-menu nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                     aria-orientation="vertical">
+                <button class="ig-menulink" id="ig_home_tab" data-bs-toggle="pill" data-bs-target=""
+                        type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                    <img src="../../../GesEdu/wwwroot/images/sidebar/si-home.svg" alt="Início" />
+                    <span>Início</span>
+                </button>
+                <button class="ig-menulink" id="ig_personal_tab" data-bs-toggle="pill"
+                        data-bs-target="#ig_personal_tabmenu" type="button" role="tab" aria-controls="ig_personal_tabmenu"
+                        aria-selected="false">
+                    <img src="../../../GesEdu/wwwroot/images/sidebar/si-areares.svg" alt="Área Reservada" />
+                    <span>Área Reservada</span>
+                </button>
+                <button class="ig-menulink" id="ig_mega_tab" data-bs-toggle="pill" data-bs-target="#ig_mega_tabmenu"
+                        type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                    <img src="../../../GesEdu/wwwroot/images/sidebar/si-mega.svg" alt="MEGA" />
+                    <span>MEGA</span>
+                </button>
+                <button class="ig-menulink active" id="ig_sime_tab" data-bs-toggle="pill" data-bs-target="#ig_sime_tabmenu"
+                        type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                    <img src="../../../GesEdu/wwwroot/images/sidebar/si-sime.svg" alt="SIME-MEGA" />
+                    <span>SIME-MEGA</span>
+                </button>
+            </section>
+            <section class="tab-content ig-submenu" id="v-pills-tabContent">
+                <!--<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">...</div>-->
+                <div class="tab-pane fade" id="ig_personal_tabmenu" role="tabpanel" aria-labelledby="ig_personal_tab"
+                     tabindex="0">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                        aria-controls="flush-collapseOne">
+                                    Pessoal
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>
+                                            <a class="ig-menuactive" href="#">Trabalhadores da UO</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Contratos</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">REACT</a>
+                                        </li>
+                                        <li class="ig-menutitle">
+                                            <h4>Pessoal Docente: Progressão na carreira</h4>
+                                        </li>
+                                        <li>
+                                            <a href="#">Sem recuperação de tempo</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Com recuperação de tempo</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Reposicionamentos</a>
+                                        </li>
+                                        <li class="ig-menutitle">
+                                            <h4>Pessoal não Docente: Progressão na carreira</h4>
+                                        </li>
+                                        <li>
+                                            <a href="#">Trabalhadores</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                        aria-controls="flush-collapseTwo">
+                                    Orçamento
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                 data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Propor orçamento</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Orçamento proposto</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Orçamento atribuído</a>
+                                        </li>
+                                        <li class="ig-menutitle">
+                                            <h4>Outras atividades</h4>
+                                        </li>
+                                        <li>
+                                            <a href="#">Atividade 190</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Atividade 191</a>
+                                        </li>
+                                        <li class="ig-menutitle">
+                                            <h4>Disponibilidades POCH</h4>
+                                        </li>
+                                        <li>
+                                            <a href="#">Disponibilidades</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Notas de receita</a>
+                                        </li>
+                                        <li class="ig-menutitle">
+                                            <h4>Outras disponibilidades</h4>
+                                        </li>
+                                        <li>
+                                            <a href="#">Disponibilidades</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Notas de receita</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Justificação de saldos da gerência</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                        aria-controls="flush-collapseThree">
+                                    Receita
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                 data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Receita</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Requisições de fundos</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Certidões de receita</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Reposições abatidas</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Exportação de movimentos</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Pedidos de exceção</a>
+                                        </li>
+                                        <li class="ig-menutitle">
+                                            <h4>Autorização de pagamentos</h4>
+                                        </li>
+                                        <li>
+                                            <a href="#">Mensal</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Anual</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="ig_budget_tabmenu" role="tabpanel" aria-labelledby="ig_budget_tab"
+                     tabindex="0">
+
+
+                </div>
+                <div class="tab-pane fade" id="ig_profit_tabmenu" role="tabpanel" aria-labelledby="ig_profit_tab"
+                     tabindex="0">
+
+                </div>
+                <div id="ig_mega_tabmenu" class="tab-pane fade" role="tabpanel" aria-labelledby="v-pills-settings-tab"
+                     tabindex="0">
+                    <ul>
+                        <li>
+                            <a href="#">Gerir vouchers</a>
+                        </li>
+                        <li>
+                            <a href="#">Registar devolução de manuais</a>
+                        </li>
+                        <li>
+                            <a href="#">Projeto-piloto Manuais Digitais</a>
+                        </li>
+                        <li>
+                            <a href="#">Livrarias aderentes</a>
+                        </li>
+                        <li>
+                            <a href="#">Suporte</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="ig_sime_tabmenu" class="tab-pane fade active show" role="tabpanel" aria-labelledby="v-pills-settings-tab"
+                     tabindex="0">
+                    <ul>
+                        <li>
+                            <a href="#">Apreciação de manuais</a>
+                        </li>
+                        <li>
+                            <a href="#">Adoções de anos anteriores</a>
+                        </li>
+                        <li>
+                            <a href="#">Novas adoções</a>
+                        </li>
+                        <li>
+                            <a href="#">Manuais adaptados</a>
+                        </li>
+                        <li>
+                            <a href="#">Pedidos de exceção</a>
+                        </li>
+                        <li>
+                            <a href="#">Suporte</a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </nav>
+        <!--Conteúdo, inclui footer-->
+        <section class="ig-content container">
+            <div class="ig-pagetitle mb-3">
+                <div class="row">
+                    <div class="col-md">
+                        <h2>
+                            Alunos com manuais adaptados
+                        </h2>
+                    </div>
+                    <div class="col-md-auto text-end">
+                        <button class="btn ig-btn-blue" data-bs-toggle="modal" data-bs-target="#igModal01">
+                            <i class="fas fa-plus"></i> Adicionar aluno
+                        </button>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <a href="javascript:void(0)" class="btn ig-btn-back" title="Voltar">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="#">Início</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            SIME-MEGA
+                        </li>
+                        <li class="breadcrumb-item active">
+                            Alunos com manuais adaptados
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="card ig-card card-body mb-3">
+                <div class="row">
+                    <div class="col-md mb-3">
+                        <label class="form-label">Tipo Documento:</label>
+                        <select class="form-select">
+                            <option>Visto de Autorização de residência ou documento legalmente equiparado</option>
+                        </select>
+                    </div>
+                    <div class="col-md mb-3">
+                        <label class="form-label">N.º Documento:</label>
+                        <input class="form-control" type="text">
+                    </div>
+                    <div class="col-md mb-3">
+                        <label class="form-label">Nome Aluno:</label>
+                        <input class="form-control" type="text">
+                    </div>
+                    <div class="col-md-auto ig-searchbtn-cont">
+                        <a href="javascript:void(0)" class="btn ig-btn-green btn-block">
+                            <i class="fas fa-search"></i>
+                            Pesquisar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table ig-grid">
+                <thead>
+                    <tr>
+                        <th class="ig-col-shrink" scope="col">Tipo Documento</th>
+                        <th class="ig-col-shrink" scope="col">N.º Documento</th>
+                        <th scope="col">Nome</th>
+                        <th class="ig-col-shrink" scope="col">Total de manuais adaptados</th>
+                        <th class="ig-col-shrink" scope="col">Detalhe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CAC</td>
+                        <td class="text-nowrap">123456789 0AB1</td>
+                        <td>
+                            <a class="ig-gridlink" href="#">Maria Ermelinda de Jesus da Silva Costa</a>
+                        </td>
+                        <td>
+                            4
+                        </td>
+                        <td>
+                            <a href="#" class="btn ig-btn-blue" title="Detalhe"><i class="fas fa-info-circle"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CAC</td>
+                        <td class="text-nowrap">123456789 0AB1</td>
+                        <td>
+                            <a class="ig-gridlink" href="#">Maria Ermelinda de Jesus da Silva Costa</a>
+                        </td>
+                        <td>
+                            4
+                        </td>
+                        <td>
+                            <a href="#" class="btn ig-btn-blue" title="Detalhe"><i class="fas fa-info-circle"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CAC</td>
+                        <td class="text-nowrap">123456789 0AB1</td>
+                        <td>
+                            <a class="ig-gridlink" href="#">Maria Ermelinda de Jesus da Silva Costa</a>
+                        </td>
+                        <td>
+                            4
+                        </td>
+                        <td>
+                            <a href="#" class="btn ig-btn-blue" title="Detalhe"><i class="fas fa-info-circle"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CAC</td>
+                        <td class="text-nowrap">123456789 0AB1</td>
+                        <td>
+                            <a class="ig-gridlink" href="#">Maria Ermelinda de Jesus da Silva Costa</a>
+                        </td>
+                        <td>
+                            4
+                        </td>
+                        <td>
+                            <a href="#" class="btn ig-btn-blue" title="Detalhe"><i class="fas fa-info-circle"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="100">
+                            <div class="row ig-pagination">
+                                <div class="col-md align-middle">
+                                    <p class="ig-grid-record">
+                                        1 - 3 de 3 registos
+                                    </p>
+                                </div>
+                                <div class="col-md-auto">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination mb-0 float-end">
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Anterior"><i class="fas fa-angles-left"></i></a></li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Anterior"><i class="fas fa-angle-left"></i></a></li>
+                                            <li class="page-item"><a class="page-link active" href="javascript:void(0);">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Seguinte"><i class="fas fa-angle-right"></i></a></li>
+                                            <li class="page-item"><a class="page-link" href="javascript:void(0);" title="Seguinte"><i class="fas fa-angles-right"></i></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <footer class="ig-footer">
+                <div class="row">
+                    <div class="col-md ig-footer-logos">
+                        <div class="row g-5">
+                            <div class="col-auto">
+                                <img src="../../../GesEdu/wwwroot/images/footer/logo_igefe_footer.svg"
+                                     alt="IGeFE - Instituto de Gestão Financeira da Educação, I.P."
+                                     title="IGeFE - Instituto de Gestão Financeira da Educação, I.P." />
+                            </div>
+                            <div class="col-auto">
+                                <img src="../../../GesEdu/wwwroot/images/footer/logo_me_footer.svg"
+                                     alt="República Portuguesa - Educação" title="República Portuguesa - Educação" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md ig-copyright-pages">
+                        2023 — Instituto de Gestão Financeira da Educação, I.P.
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </section>
+    <!--MODALS-->
+    <!--Modal 01 - Dados iniciais do aluno-->
+    <div class="modal fade ig-modal" id="igModal01" tabindex="-1" aria-labelledby="igModal03Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="igModal03Label">Adicionar aluno</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>Identificação do Aluno</h4>
+                    <div class="alert ig-alert-info mb-3" role="alert">
+                        <i class="fas fa-info-circle"></i> Os alunos a quem serão atribuídos manuais adaptados deverão estar inscritos no Portal das Matrículas.
+                    </div>
+                    <div class="row">
+                        <div class="col-md mb-3">
+                            <label class="form-label">Tipo de documento:</label>
+                            <select class="form-select">
+                                <option>Visto de Autorização de residência ou documento legalmente equiparado</option>
+                            </select>
+                        </div>
+                        <div class="col-md mb-3">
+                            <label class="form-label">N.º documento:</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Sair</button>
+                    <button type="button" class="btn ig-btn-green" data-bs-target="#igModal02" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fas fa-user-check"></i> Identificar aluno</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Modal 02 - Apreciar manual não certificado-->
+    <div class="modal fade ig-modal" id="igModal02" tabindex="-1" aria-labelledby="igModal02Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="igModal02Label">Adicionar aluno</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md">
+                            <label class="form-label">Nome:</label>
+                            <p>
+                                ANA LEONOR MARINHO OLIVEIRA
+                            </p>
+                        </div>
+                        <div class="col-md-auto pe-md-5">
+                            <label class="form-label">Ano de escolaridade:</label>
+                            <p>6.º ano</p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tipo da adaptação de manuais:</label>
+                        <div>
+                            <div class="form-check form-check-inline ig-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="igRadioDefault1" checked="">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Formato digital
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline ig-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="igRadioDefault2">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Formato Braille
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline ig-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="igRadioDefault3">
+                                <label class="form-check-label" for="flexRadioDefault3">
+                                    Ambos os formatos
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table ig-grid">
+                        <thead>
+                            <tr>
+                                <th>Disciplina</th>
+                                <th>Nome manual</th>
+                                <th class="ig-col-shrink">ISBN</th>
+                                <th class="ig-col-shrink">Adaptar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Português Língua Não Materna (PLNM) - Nível de Iniciação/A1 (D00A1) - 6º ano</td>
+                                <td>Aprender Português 1 - Português para estrangeiros - Níveis A1, A2 (QECR)</td>
+                                <td class="text-nowrap">978-972-47-4754-5</td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="igCheck02">
+                                        <label class="form-check-label" for="igCheck02"> </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Português Língua Não Materna (PLNM) - Nível de Iniciação/A1 (D00A1) - 6º ano</td>
+                                <td>Aprender Português 1 - Português para estrangeiros - Níveis A1, A2 (QECR)</td>
+                                <td class="text-nowrap">978-972-47-4754-5</td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="igCheck02">
+                                        <label class="form-check-label" for="igCheck02"> </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Português Língua Não Materna (PLNM) - Nível de Iniciação/A1 (D00A1) - 6º ano</td>
+                                <td>Aprender Português 1 - Português para estrangeiros - Níveis A1, A2 (QECR)</td>
+                                <td class="text-nowrap">978-972-47-4754-5</td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="igCheck02">
+                                        <label class="form-check-label" for="igCheck02"> </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Português Língua Não Materna (PLNM) - Nível de Iniciação/A1 (D00A1) - 6º ano</td>
+                                <td>Aprender Português 1 - Português para estrangeiros - Níveis A1, A2 (QECR)</td>
+                                <td class="text-nowrap">978-972-47-4754-5</td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="igCheck02">
+                                        <label class="form-check-label" for="igCheck02"> </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Português Língua Não Materna (PLNM) - Nível de Iniciação/A1 (D00A1) - 6º ano</td>
+                                <td>Aprender Português 1 - Português para estrangeiros - Níveis A1, A2 (QECR)</td>
+                                <td class="text-nowrap">978-972-47-4754-5</td>
+                                <td>
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="igCheck02">
+                                        <label class="form-check-label" for="igCheck02"> </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Português Língua Não Materna (PLNM) - Nível de Iniciação/A1 (D00A1) - 6º ano</td>
+                                <td>Aprender Português 1 - Português para estrangeiros - Níveis A1, A2 (QECR)</td>
+                                <td class="text-nowrap">978-972-47-4754-5</td>
+                                <td class="text-center">
+                                    <div class="form-check ig-check d-flex justify-content-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="igCheck02">
+                                        <label class="form-check-label" for="igCheck02"> </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
+                    <button type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Adicionar aluno</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../GesEdu/wwwroot/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
