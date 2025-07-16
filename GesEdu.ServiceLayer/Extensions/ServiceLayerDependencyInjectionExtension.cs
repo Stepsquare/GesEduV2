@@ -21,9 +21,9 @@ namespace GesEdu.ServiceLayer.Extensions
             services.AddScoped<IApreciacaoManuaisServices, ApreciacaoManuaisServices>();
             services.AddScoped<INovasAdocoesServices, NovasAdocoesServices>();
             services.AddScoped<IAdocoesAnosAnterioresServices, AdocoesAnosAnterioresServices>();
+            services.AddScoped<IManuaisAdaptadosServices, ManuaisAdaptadosServices>();
 
             #endregion
-
 
             #region Area Reservada
 

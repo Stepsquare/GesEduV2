@@ -1,0 +1,158 @@
+﻿@model AdocaoAdaptadosModalViewModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="adocao_adaptados_label">Adicionar aluno</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md">
+            <label class="form-label">Nome:</label>
+            <p>
+                @Model.NomeAluno
+            </p>
+        </div>
+        <div class="col-md-auto pe-md-5">
+            <label class="form-label">Ano de escolaridade:</label>
+            <p>@($"{Model.AnoEscolarAluno}.º ano")</p>
+        </div>
+    </div>
+    @if (Model.IsReadOnly)
+    {
+        <div class="mb-3">
+            <label class="form-label">Tipo da adaptação de manuais:</label>
+            <p>
+                @Model.TipoAdaptacao
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="mb-3">
+            <label class="form-label">Tipo da adaptação de manuais:</label>
+            <div>
+                <div class="form-check form-check-inline ig-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="Dig" value="Dig">
+                    <label class="form-check-label" for="Dig">
+                        Formato digital
+                    </label>
+                </div>
+                <div class="form-check form-check-inline ig-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="Bra" value="Bra">
+                    <label class="form-check-label" for="Bra">
+                        Formato Braille
+                    </label>
+                </div>
+                <div class="form-check form-check-inline ig-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="Amb" value="Amb">
+                    <label class="form-check-label" for="Amb">
+                        Ambos os formatos
+                    </label>
+                </div>
+            </div>
+        </div>
+    }
+    <table class="table ig-grid">
+        <thead>
+            <tr>
+                <th>Disciplina</th>
+                <th>Nome manual</th>
+                <th class="ig-col-shrink">ISBN</th>
+                @if (!Model.IsReadOnly)
+                {
+                    <th class="ig-col-shrink">Adaptar</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Manuais == null || !Model.Manuais.Any())
+            {
+                <tr>
+                    <td colspan="100">
+                        <div class="ig-noresults text-center">
+                            <h3><i class="fas fa-search"></i>  Sem resultados</h3>
+                            <p class="mb-0">Não foram encontrados Manuais.</p>
+                        </div>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model.Manuais)
+                {
+                    <tr>
+                        <td>@($"{item.DescDisciplina} - {Model.AnoEscolarAluno}.º ano")</td>
+                        <td>@item.Titulo</td>
+                        <td class="text-nowrap">@item.Isbn</td>
+                        @if (!Model.IsReadOnly)
+                        {
+                            <td>
+                                <div class="form-check ig-check d-flex justify-content-center">
+                                    <input class="form-check-input" type="checkbox" id="@item.IdManualEscola">
+                                    <label class="form-check-label" for="@item.IdManualEscola"> </label>
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
+    <button id="submit_aluno_btn" type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Adicionar aluno</button>
+</div>
+
+<script>
+    $(function () {
+        $('#submit_aluno_btn').on('click', function () {
+            var obj = {
+                id_aluno: parseInt('@(Model.IdAluno)',10),
+                manuais_adaptados: []
+            };
+
+            var tiposAdaptacao = [];
+
+            switch ($("input[type=radio]:checked").val()) {
+                case "Bra":
+                    tiposAdaptacao.push("Bra");
+                    break;
+                case "Dig":
+                    tiposAdaptacao.push("Dig");
+                    break;
+                case "Amb":
+                    tiposAdaptacao.push("Bra", "Dig");
+                    break;
+                default:
+                    ErrorToast(["Obrigatório escolher tipo de Adaptação."]);
+                    return;
+            }
+
+            $("input[type=checkbox]").each(function () {
+                if ($(this).is(':checked')) {
+                    for (let i = 0; i < tiposAdaptacao.length; i++) {
+                        obj.manuais_adaptados.push({
+                            id_manual_escola: $(this).prop('id'),
+                            tp_adaptacao: tiposAdaptacao[i]
+                        });
+                    }
+                }
+            });
+
+            $.ajax({
+                url: '@Url.Action("SetAlunosManuaisAdaptados", "ManuaisAdaptados")',
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(obj),
+                success: function (response) {
+                    $('#adocao_adaptados_modal').modal('hide');
+
+                    searchAlunosAdaptados(getPageIndex(), getPageSize());
+
+                    SuccessToast(response.messages);
+                }
+            });
+        });
+    });
+</script>

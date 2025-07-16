@@ -55,7 +55,7 @@
                         if (manual.atualizado)
                         {
                             <input type="number"
-                                   class="form-control ig-studentestimate-field @(!Model.IsReadOnly && manual.adquirir_manual ? "is-valid" : "")"
+                                   class="form-control ig-studentestimate-field is-valid"
                                    id="@($"input_{manual.cod_escola_me}_{manual.id_manual}")"
                                    value="@manual.num_alunos" @(Model.IsReadOnly || !manual.adquirir_manual ? "disabled" : "") />
                         }
@@ -63,7 +63,7 @@
                         {
                             <div class="input-group">
                                 <input type="number"
-                                       class="form-control ig-studentestimate-field @(!Model.IsReadOnly && !manual.adquirir_manual ? "is-invalid" : "")"
+                                       class="form-control ig-studentestimate-field is-invalid"
                                        id="@($"input_{manual.cod_escola_me}_{manual.id_manual}")"
                                        value="@manual.num_alunos" @(Model.IsReadOnly || !manual.adquirir_manual ? "disabled" : "") />
                                 <button name="refresh_estimativa" class="btn ig-btn-blue" title="Atualizar estimativa">

@@ -9,6 +9,178 @@
                 @ViewData["Title"]
             </h2>
         </div>
+        <div class="col-md-auto text-end">
+            <button class="btn ig-btn-blue" data-bs-toggle="modal" data-bs-target="#novo_aluno_modal">
+                <i class="fas fa-plus"></i> Adicionar aluno
+            </button>
+        </div>
     </div>
     <breadcrumb></breadcrumb>
 </div>
+
+<div class="card ig-card card-body mb-3">
+    <div class="row">
+        <div class="col-md mb-3">
+            <label class="form-label">Tipo Documento:</label>
+            <input id="tipo_doc_combobox" class="igk-searchable-ddl">
+        </div>
+        <div class="col-md mb-3">
+            <label class="form-label">N.º Documento:</label>
+            <input id="num_doc_input" class="form-control" type="text">
+        </div>
+        <div class="col-md mb-3">
+            <label class="form-label">Nome Aluno:</label>
+            <input id="nome_aluno_input" class="form-control" type="text">
+        </div>
+        <div class="col-md-auto ig-searchbtn-cont">
+            <a href="javascript:void(0)" class="btn ig-btn-green btn-block" onclick="searchAlunosAdaptados()">
+                <i class="fas fa-search"></i>
+                Pesquisar
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="ig-loadable-div">
+    <table id="search_result_table" class="table ig-grid">
+    </table>
+</div>
+
+@* Modal pesquisa de aluno *@
+<div class="modal fade ig-modal" id="novo_aluno_modal" tabindex="-1" aria-labelledby="novo_aluno_modal_label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="novo_aluno_modal_label">Adicionar aluno</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>Identificação do Aluno</h4>
+                <div class="alert ig-alert-info mb-3" role="alert">
+                    <i class="fas fa-info-circle"></i> Os alunos a quem serão atribuídos manuais adaptados deverão estar inscritos no Portal das Matrículas.
+                </div>
+                <div class="row">
+                    <div class="col-md mb-3">
+                        <label class="form-label">Tipo de documento:</label>
+                        <input id="tipo_doc_combobox_modal" class="igk-searchable-ddl">
+                    </div>
+                    <div class="col-md mb-3">
+                        <label class="form-label">N.º documento:</label>
+                        <input id="num_doc_input_modal" type="text" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Sair</button>
+                <button id="novo_aluno_modal_btn" type="button" class="btn ig-btn-green"><i class="fas fa-user-check"></i> Identificar aluno</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Modal detalhe/adoção adaptados *@
+<div class="modal fade ig-modal" id="adocao_adaptados_modal" tabindex="-1" aria-labelledby="adocao_adaptados_label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#tipo_doc_combobox").kendoComboBox({
+            dataTextField: "descricao",
+            dataValueField: "codigo",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        url: "@Url.Action("GetDominios", "Home", new { Area = "" })",
+                        global: false,
+                        data: function () {
+                            return { code: "DOCUMENTOS_IDENTIFICACAO" };
+                        }
+                    }
+                }
+            }
+        });
+
+        $("#tipo_doc_combobox_modal").kendoComboBox({
+            dataTextField: "descricao",
+            dataValueField: "codigo",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        url: "@Url.Action("GetDominios", "Home", new { Area = "" })",
+                        global: false,
+                        data: function () {
+                            return { code: "DOCUMENTOS_IDENTIFICACAO" };
+                        }
+                    }
+                }
+            }
+        });
+
+        $('#novo_aluno_modal_btn').on('click', function () {
+            $.ajax({
+                url: '@Url.Action("AdocaoManuaisAdaptadosModal", "ManuaisAdaptados")',
+                type: "GET",
+                data: {
+                    tipoDoc: $('#tipo_doc_combobox_modal').data("kendoComboBox").value(),
+                    numDoc: $('#num_doc_input_modal').val()
+                },
+                success: function (data) {
+                    $('#adocao_adaptados_modal .modal-content').html(data);
+
+                    $('#novo_aluno_modal').one('hidden.bs.modal', function () {
+                        $('#adocao_adaptados_modal').modal('show');
+                    });
+
+                    $('#novo_aluno_modal').modal('hide');
+                }
+            });
+        });
+    });
+
+    function searchAlunosAdaptados(pageIndex, pageSize) {
+        $.ajax({
+            url: '@Url.Action("SearchAlunosAdaptados", "ManuaisAdaptados")',
+            type: "GET",
+            global: false,
+            data: {
+                tipoDoc: $('#tipo_doc_combobox').data("kendoComboBox").value(),
+                numDoc: $('#num_doc_input').val(),
+                nome: $('#nome_aluno_input').val(),
+                PageIndex: pageIndex,
+                PageSize: pageSize
+            },
+            success: function (data) {
+                $('#search_result_table').html(data);
+                HideDivLoader();
+            },
+            error: function (error) {
+                ErrorHandling(error);
+                HideDivLoader();
+            },
+            beforeSend: ShowDivLoader(),
+        });
+    }
+
+    function openDetail(tipoDoc, numDoc) {
+        $.ajax({
+            url: '@Url.Action("DetalheManuaisAdaptadosModal", "ManuaisAdaptados")',
+            type: "GET",
+            data: {
+                tipoDoc: tipoDoc,
+                numDoc: numDoc
+            },
+            success: function (data) {
+                $('#adocao_adaptados_modal .modal-content').html(data);
+                $('#adocao_adaptados_modal').modal('show');
+            }
+        });
+    }
+</script>

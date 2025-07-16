@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace GesEdu.ServiceLayer.Services.SIME
 {
-    public class SIMEBaseServices(
+    public abstract class SIMEBaseServices(
         IHttpContextAccessor httpContextAccessor,
         IHttpClientFactory httpClientFactory,
         IUnitOfWork unitOfWork,

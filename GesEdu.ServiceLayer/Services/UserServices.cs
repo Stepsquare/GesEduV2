@@ -32,7 +32,7 @@ namespace GesEdu.ServiceLayer.Services
 
             var getUtilizadoresRequest = new HttpRequestMessage(HttpMethod.Get, "auth/getUtilizadores");
 
-            getUtilizadoresRequest.Headers.Add("id_servico", searchParams.IsIgefeUsers ? _httpContext.User.GetIdServicoOrigem() : _httpContext.User.GetIdServico());
+            getUtilizadoresRequest.Headers.Add("id_servico", _httpContext.User.IsAdmin() && searchParams.IsIgefeUsers ? _httpContext.User.GetIdServicoOrigem() : _httpContext.User.GetIdServico());
 
             var getUtilizadoresResponse = await SendAsync<List<GetUtilizadoresResponseItem>>(getUtilizadoresRequest);
 
