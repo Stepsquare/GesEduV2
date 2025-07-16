@@ -22,7 +22,7 @@
                     <div class="ig-userdet-cont">
                         <span class="ig-uo-name">
                             <span class="badge rounded-pill ig-uo-code">@User.GetCodigoServico()</span>
-                            @User.GetNomeServico()
+                            @(User.IsEscolaPrivada() ? $"{User.GetNomeServico()} (Privada)" : $"{User.GetNomeServico()}")
                         </span>
                         <span class="ig-uo-user">
                             <i class="fas fa-user"></i> @User.GetUsername() @(User.IsAdmin() ? "(Admin)" : "")
