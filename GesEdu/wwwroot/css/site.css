@@ -601,11 +601,11 @@ a.ig-collapse-link:hover {
     text-decoration:underline
 }
 a.ig-collapse-link.collapsed i {
-    transform: rotate(0);
+    transform: rotate(180deg);
 }
 
 a.ig-collapse-link i {
-    transform: rotate(180deg);
+    transform: rotate(0);
 }
 /*módulos - interface*/
 
@@ -859,6 +859,20 @@ table.ig-grid .ig-noresults{
 .ig-grid .ig-pagination {
     margin-top: 0;
 }
+.ig-grid th .form-check.ig-check {
+    min-height: auto;
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.ig-grid th .form-check.ig-check .form-check-label {
+    font-size: 0.75rem;
+    vertical-align: bottom;
+}
+
+.ig-grid th .form-check.ig-check .form-check-input {
+    margin-top: 6px;
+}
 
 .ig-pagination a.page-link {
     border-color: transparent;
@@ -1076,6 +1090,11 @@ table.ig-grid .ig-noresults{
     margin-left: 0.5rem;
 }
 
+span.badge.ig-badge-neutral {
+    background: var(--ig-blue-4);
+    border: solid 1px var(--ig-blue-3);
+    color: var(--ig-blue-2);
+}
 span.badge.ig-badge-success {
     background: var(--ig-green-4);
     border: solid 1px var(--ig-green-3);
