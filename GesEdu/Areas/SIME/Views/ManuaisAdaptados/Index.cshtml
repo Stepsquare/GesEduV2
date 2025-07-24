@@ -83,7 +83,6 @@
 <div class="modal fade ig-modal" id="adocao_adaptados_modal" tabindex="-1" aria-labelledby="adocao_adaptados_label" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            
         </div>
     </div>
 </div>
@@ -125,24 +124,39 @@
         });
 
         $('#novo_aluno_modal_btn').on('click', function () {
-            $.ajax({
-                url: '@Url.Action("AdocaoManuaisAdaptadosModal", "ManuaisAdaptados")',
-                type: "GET",
-                data: {
-                    tipoDoc: $('#tipo_doc_combobox_modal').data("kendoComboBox").value(),
-                    numDoc: $('#num_doc_input_modal').val()
-                },
-                success: function (data) {
-                    $('#adocao_adaptados_modal .modal-content').html(data);
+            var errors = [];
 
-                    $('#novo_aluno_modal').one('hidden.bs.modal', function () {
-                        $('#adocao_adaptados_modal').modal('show');
-                    });
+            if (!$('#tipo_doc_combobox_modal').data("kendoComboBox").value()
+                || $('#tipo_doc_combobox_modal').data("kendoComboBox").selectedIndex < 0)
+                errors.push("Escolha um tipo de documento.")
 
-                    $('#novo_aluno_modal').modal('hide');
-                }
-            });
+            if (!$('#num_doc_input_modal').val())
+                errors.push("Preencha o número do documento.")
+
+            if (errors.length != 0) {
+                ErrorToast(errors);
+            } else {
+                $.ajax({
+                    url: '@Url.Action("AdocaoManuaisAdaptadosModal", "ManuaisAdaptados")',
+                    type: "GET",
+                    data: {
+                        tipoDoc: $('#tipo_doc_combobox_modal').data("kendoComboBox").value(),
+                        numDoc: $('#num_doc_input_modal').val()
+                    },
+                    success: function (data) {
+                        $('#adocao_adaptados_modal .modal-content').html(data);
+
+                        $('#novo_aluno_modal').one('hidden.bs.modal', function () {
+                            $('#adocao_adaptados_modal').modal('show');
+                        });
+
+                        $('#novo_aluno_modal').modal('hide');
+                    }
+                });
+            }
         });
+
+        searchAlunosAdaptados();
     });
 
     function searchAlunosAdaptados(pageIndex, pageSize) {
