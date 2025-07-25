@@ -63,7 +63,7 @@
             </p>
         </div>
     }
-    <button type="button" class="btn ig-btn-blue" data-bs-target="#nova_adocao_modal" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fas fa-plus"></i> Adotar manual adicional</button>
+    <button name="nova_adocao_modal_btn" type="button" class="btn ig-btn-blue"><i class="fas fa-plus"></i> Adotar manual adicional</button>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Sair</button>
@@ -135,6 +135,27 @@
                             SuccessToast(response.messages);
                         }
                     });
+                }
+            });
+        });
+
+        $('button[name="nova_adocao_modal_btn"]').on('click', function () {
+            $.ajax({
+                url: '@Url.Action("NovaAdocaoModal", "NovasAdocoes")',
+                type: "GET",
+                data: {
+                    ciclo: "@Model.Ciclo",
+                    ano_escolar: "@Model.AnoEscolar",
+                    id_disciplina: @Model.DisciplinaId
+                },
+                success: function (data) {
+                    $('#nova_adocao_modal .modal-content').html(data);
+
+                    $('#detalhe_adocao_modal').one('hidden.bs.modal', function () {
+                        $('#nova_adocao_modal').modal('show');
+                    });
+
+                    $('#detalhe_adocao_modal').modal('hide');
                 }
             });
         });

@@ -50,7 +50,16 @@
                     <p class="mb-0">@item.dt_inicio_funcoes</p>
                 </td>
                 <td>
-                    <a href="@Url.Action("Detalhe", "Trabalhadores", new { Area = "AreaReservada", nif = item.nif })" class="btn ig-btn-blue" title="Detalhe"><i class="fas fa-info-circle"></i></a>
+                    @if (item.regime == "1")
+                    {
+                        <a href="@Url.Action("Detalhe", "Trabalhadores", new { Area = "AreaReservada", nif = item.nif })" class="btn ig-btn-blue" title="Detalhe"><i class="fas fa-info-circle"></i></a>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn ig-btn-blue" disabled>
+                            <i class="fas fa-info-circle"></i>
+                        </button>
+                    }
                 </td>
             </tr>
         }

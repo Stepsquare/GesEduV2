@@ -62,6 +62,7 @@ namespace GesEdu.Areas.SIME.Controllers
                                 .Where(d => d.id_disciplina == id_disciplina)
                                 .Select(d => new ManuaisAdotadosDetailViewModel
                                 {
+                                    Ciclo = manuaisAdotadosResponse.ciclo,
                                     TotalEscolasCiclo = getEscolasCicloResponse.Count(),
                                     Manuais = d.manuais,
                                     AnoEscolar = a.ano_escolar,

@@ -32,7 +32,7 @@ namespace GesEdu.Areas.AreaReservada.Controllers
             return PartialView("~/Areas/AreaReservada/Views/Trabalhadores/Listagem/_trabalhadoresSearchPartial.cshtml", model);
         }
 
-        [Breadcrumb]
+        [Breadcrumb(ResetAreaNodes = false)]
         public async Task<IActionResult> Detalhe(string nif)
         {
             var response = await _trabalhadoresServices.GetFuncionarioUoResp(nif);

@@ -79,28 +79,6 @@ function ShowErrorModal(messages, onclose) {
     $('#error_modal').modal('show');
 }
 
-//function ShowConfirmModal(obj) {
-//    $('#confirm_modal_title').text(obj.title);
-//    $('#confirm_modal .modal-body p').text(obj.message);
-
-//    if (obj.previousModalId != null) {
-//        $('#confirm_modal_deny_btn').removeAttr('data-bs-dismiss');
-//        $('#confirm_modal_deny_btn').attr('data-bs-toggle', 'modal');
-//        $('#confirm_modal_deny_btn').attr('data-bs-target', `#${obj.previousModalId}`);
-//    } else {
-//        $('#confirm_modal_deny_btn').attr('data-bs-dismiss', 'modal');
-//        $('#confirm_modal_deny_btn').removeAttr('data-bs-toggle');
-//        $('#confirm_modal_deny_btn').removeAttr('data-bs-target');
-//    }
-
-//    $('#confirm_modal_approve_btn').prop('onclick', null).off('click');
-//    $('#confirm_modal_approve_btn').on('click', function () {
-//        obj.callbackfunction();
-//    });
-
-//    $('#confirm_modal').modal('show');
-//}
-
 function ShowConfirmModal(obj) {
     const confirmModalEl = document.getElementById('confirm_modal');
     const confirmModal = bootstrap.Modal.getInstance(confirmModalEl) || new bootstrap.Modal(confirmModalEl);
@@ -134,7 +112,7 @@ function ShowConfirmModal(obj) {
     // Botão de aprovação
     $('#confirm_modal_approve_btn').on('click', function () {
         obj.callbackfunction();
-        confirmModal.hide(); // Opcional: fecha após ação
+        confirmModal.hide();
     });
 
     // Se a modal anterior está visível, fecha ela primeiro
