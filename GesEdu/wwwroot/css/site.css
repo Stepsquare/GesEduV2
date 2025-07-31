@@ -936,7 +936,7 @@ table.ig-grid .ig-noresults{
 /*Loaders*/
 
 .ig-load {
-    z-index: 10;
+    z-index: 9;
     position: absolute;
     top: 0;
     left: 0;
