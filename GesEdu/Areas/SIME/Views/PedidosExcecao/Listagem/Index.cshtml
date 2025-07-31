@@ -1,0 +1,479 @@
+﻿@model PedidosExcecaoListagemViewModel
+
+@{
+    ViewData["Title"] = "Pedidos de exceção à adoção de manuais";
+}
+
+@* HEADER *@
+<div class="ig-pagetitle mb-3">
+    <div class="row">
+        <div class="col-md">
+            <h2>
+                @ViewData["Title"]
+            </h2>
+        </div>
+        <div class="col-md-auto text-end">
+            <button class="btn ig-btn-blue" data-bs-toggle="modal" data-bs-target="#novo_pedido_modal">
+                <i class="fas fa-plus"></i> Pedir nova exceção
+            </button>
+        </div>
+    </div>
+    <breadcrumb></breadcrumb>
+</div>
+
+@* FILTERS *@
+<div class="card ig-card mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-3 mb-3">
+                <label class="form-label">Ano letivo:</label>
+                <input id="ano_letivo_dropdown" type="text" class="igk-searchable-ddl" />
+            </div>
+            <div class="col-xl-6 mb-3">
+                <label class="form-label">Tipo de exceção:</label>
+                <input id="tipo_excecao_combobox" type="text" class="igk-searchable-ddl" />
+            </div>
+            <div class="col-xl-3 mb-3">
+                <label class="form-label">Estado:</label>
+                <input id="estado_excecao_combobox" type="text" class="igk-searchable-ddl" />
+            </div>
+        </div>
+        <div class="collapse" id="collapseMFs">
+            <div class="row">
+                <div class="col-xl-3 mb-3">
+                    <label class="form-label">Ano de escolaridade:</label>
+                    <input id="ano_escolar_combobox" type="text" class="igk-searchable-ddl" />
+                </div>
+                <div class="col-xl mb-3">
+                    <label class="form-label">Disciplina:</label>
+                    <input id="disciplina_combobox" type="text" class="igk-searchable-ddl" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a class="ig-collapse-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseMFs" aria-expanded="false" aria-controls="collapseMFs">
+                    <i class="fas fa-plus"></i> Mais filtros
+                    <i class="fas fa-caret-up"></i>
+                </a>
+            </div>
+            <div class="col-auto">
+                <button class="btn ig-btn-green" onclick="searchPedidosExcecao()">
+                    <i class="fas fa-search"></i> Pesquisar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* SEARCH RESULT CONTAINER *@
+<div class="ig-loadable-div">
+    <div id="search_result_container">
+        <div class="card ig-card ig-load-placeholder">
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade ig-modal" id="novo_pedido_modal" tabindex="-1" aria-labelledby="criar_pedido_label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="criar_pedido_label">Pedir exceção</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>Dados do pedido:</h4>
+                <div class="mb-3">
+                    <label class="form-label">Tipo de exceção:</label>
+                    <div>
+                        @foreach (var tipoExcecao in Model.TiposExcecao)
+                        {
+                            <div class="form-check ig-check">
+                                <input class="form-check-input" type="radio" name="novo_pedido_tipo" id="radio_@tipoExcecao.codigo" value="@tipoExcecao.codigo">
+                                <label class="form-check-label" for="radio_@tipoExcecao.codigo">
+                                    @tipoExcecao.descricao
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">
+                        Tipo de ensino:
+                    </label>
+                    <input id="tipo_ensino_modal" type="text" class="igk-searchable-ddl" />
+                </div>
+                @foreach (var tipoExcecao in Model.TiposExcecao)
+                {
+                    switch (tipoExcecao.codigo)
+                    {
+                        case "1":
+                            @* Campos Adoção manual ano escolaridade diferente *@
+                            <div name="novo_pedido_campos" id="campos_@tipoExcecao.codigo" class="row" style="display:none;">
+                                <div class="col-md-auto mb-3">
+                                    <label class="form-label">
+                                        Ano de escolaridade da disciplina:
+                                    </label>
+                                    <input name="ano_escolaridade_modal" type="text" class="igk-searchable-ddl" />
+                                </div>
+                                <div class="col-md mb-3">
+                                    <label class="form-label">
+                                        Disciplina:
+                                    </label>
+                                    <input name="disciplina_modal" type="text" class="igk-searchable-ddl" />
+                                </div>
+                            </div>
+                            break;
+                        case "2":
+                            @* Campos Adição de disciplina *@
+                            <div name="novo_pedido_campos" id="campos_@tipoExcecao.codigo" class="row" style="display:none;">
+                                <div class="col-md-auto mb-3">
+                                    <label class="form-label">
+                                        Ano de escolaridade da disciplina:
+                                    </label>
+                                    <input name="ano_escolaridade_modal" type="text" class="igk-searchable-ddl" />
+                                </div>
+                                <div class="col-md mb-3">
+                                    <label class="form-label">
+                                        Disciplina:
+                                    </label>
+                                    <input name="disciplina_modal" type="text" class="igk-searchable-ddl" />
+                                </div>
+                            </div>
+                            break;
+                        case "3":
+                            @* Campos PLNM *@
+                            <div name="novo_pedido_campos" id="campos_@tipoExcecao.codigo" class="row" style="display:none;">
+                                <div class="col-md mb-3">
+                                    <label class="form-label">
+                                        Disciplina:
+                                    </label>
+                                    <input name="disciplina_modal" type="text" class="igk-searchable-ddl" />
+                                </div>
+                            </div>
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                <div class="mb-3">
+                    <label class="form-label">
+                        Justificação do pedido:
+                    </label>
+                    <textarea id="just_ped_modal" class="form-control" rows="2"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Sair</button>
+                <button type="button" class="btn ig-btn-blue" onclick="submitNovoPedido()"><i class="far fa-file-alt"></i> Guardar e ir para a lista</button>
+                <button type="button" class="btn ig-btn-green" onclick="submitNovoPedido({goDetail: true})"><i class="fas fa-arrow-right"></i> Guardar e ir para o detalhe</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#collapseMFs').on('hide.bs.collapse', function () {
+            $('#ano_escolar_combobox').data("kendoComboBox").value("");
+        });
+
+        $('#novo_pedido_modal').on('show.bs.modal', function () {
+            $("#novo_pedido_modal input[type='radio'][name='novo_pedido_tipo']:first").prop("checked", true).trigger('change');
+        });
+
+        $("#ano_letivo_dropdown").kendoDropDownList({
+            dataTextField: "descricao",
+            dataValueField: "codigo",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        global: false,
+                        url: "@Url.Action("GetAnosLetivosSIME", "Home")"
+                    }
+                },
+                serverFiltering: true
+            },
+            index: 0,
+            dataBound: function () {
+                searchPedidosExcecao();
+            }
+        });
+
+        $("#tipo_excecao_combobox").kendoComboBox({
+            dataTextField: "descricao",
+            dataValueField: "codigo",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        global: false,
+                        url: "@Url.Action("GetDominios", "Home", new { Area = "" })",
+                        data: function () {
+                            return { code: "EXCECAO_SIME" };
+                        }
+                    }
+                }
+            }
+        });
+
+        $("#estado_excecao_combobox").kendoComboBox({
+            dataTextField: "descricao",
+            dataValueField: "codigo",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        global: false,
+                        url: "@Url.Action("GetDominios", "Home", new { Area = "" })",
+                        data: function () {
+                            return { code: "ESTADO_SIME" };
+                        }
+                    }
+                }
+            }
+        });
+
+        $("#ano_escolar_combobox").kendoComboBox({
+            cascadeFrom: "ano_letivo_dropdown",
+            cascadeFromField: "codigo",
+            operator: "eq",
+            dataTextField: "des_ano_escolar",
+            dataValueField: "ano_escolar",
+            dataSource: {
+                serverFiltering: true,
+                transport: {
+                    read: {
+                        dataType: "json",
+                        global: false,
+                        url: "@Url.Action("GetAnosEscolares", "PedidosExcecao")",
+                        data: function () {
+                            return {
+                                ano_letivo: $("#ano_letivo_dropdown").val()
+                            };
+                        }
+                    }
+                }
+            }
+        });
+
+        $("#disciplina_combobox").kendoComboBox({
+            cascadeFrom: "ano_escolar_combobox",
+            cascadeFromField: "ano_escolar",
+            operator: "eq",
+            dataTextField: "des_disciplina",
+            dataValueField: "id_disciplina",
+            dataSource: {
+                serverFiltering: true,
+                transport: {
+                    read: {
+                        dataType: "json",
+                        global: false,
+                        url: "@Url.Action("GetDisciplinasAnoEscolar", "PedidosExcecao")",
+                        data: function () {
+                            var selectedObj = $("#ano_escolar_combobox").data('kendoComboBox').dataItem();
+
+                            return {
+                                ano_letivo: $("#ano_letivo_dropdown").val(),
+                                ano_escolar: selectedObj.ano_escolar,
+                                tipologia: selectedObj.tipologia
+                            };
+                        }
+                    }
+                }
+            }
+        });
+
+        $("#tipo_ensino_modal").kendoComboBox({
+            dataTextField: "descricao",
+            dataValueField: "codigo",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        global: false,
+                        url: "@Url.Action("GetDominios", "Home", new { Area = "" })",
+                        data: function () {
+                            return { code: "TIPO_ENSINO" };
+                        }
+                    }
+                }
+            }
+        });
+
+        $("input[name='novo_pedido_tipo']").each(function () {
+            var idTipoPedido = $(this).val();
+
+            if (idTipoPedido == 3) {
+                $(`#campos_${idTipoPedido} input[name='disciplina_modal']`).kendoComboBox({
+                    cascadeFrom: "tipo_ensino_modal",
+                    cascadeFromField: "codigo",
+                    operator: "eq",
+                    dataTextField: "des_disciplina",
+                    dataValueField: "cod_agr_disc",
+                    dataSource: {
+                        transport: {
+                            read: {
+                                dataType: "json",
+                                global: false,
+                                url: "@Url.Action("GetDisciplinasPLNM", "PedidosExcecao")",
+                                data: function () {
+                                    return {
+                                        tipologia: $("#tipo_ensino_modal").data("kendoComboBox").value(),
+                                    };
+                                }
+                            }
+                        },
+                        serverFiltering: true
+                    }
+                });
+            }
+
+            if (idTipoPedido == 1 || idTipoPedido == 2) {
+                $(`#campos_${idTipoPedido} input[name='ano_escolaridade_modal']`).kendoComboBox({
+                    cascadeFrom: "tipo_ensino_modal",
+                    cascadeFromField: "codigo",
+                    operator: "eq",
+                    dataTextField: "des_ano_escolar",
+                    dataValueField: "ano_escolar",
+                    dataSource: {
+                        transport: {
+                            read: {
+                                dataType: "json",
+                                global: false,
+                                url: "@Url.Action("GetAnosEscolares", "PedidosExcecao")",
+                                data: function () {
+                                    return {
+                                        tipologia: $("#tipo_ensino_modal").data("kendoComboBox").value()
+                                    };
+                                }
+                            }
+                        },
+                        serverFiltering: true
+                    }
+                });
+
+                $(`#campos_${idTipoPedido} input[name='disciplina_modal']`).kendoComboBox({
+                    cascadeFrom: `campos_${idTipoPedido} input[name='ano_escolaridade_modal']`,
+                    cascadeFromField: "ano_escolar",
+                    operator: "eq",
+                    dataTextField: "des_disciplina",
+                    dataValueField: "id_disciplina",
+                    dataSource: {
+                        transport: {
+                            read: {
+                                dataType: "json",
+                                global: false,
+                                url: "@Url.Action("GetDisciplinasAnoEscolar", "PedidosExcecao")",
+                                data: function () {
+                                    var selectedObj = $(`#campos_${idTipoPedido} input[name='ano_escolaridade_modal']`).data('kendoComboBox').dataItem();
+
+                                    return {
+                                        ano_escolar: selectedObj.ano_escolar,
+                                        tipologia: selectedObj.tipologia
+                                    };
+                                }
+                            }
+                        },
+                        serverFiltering: true
+                    }
+                });
+            }
+        });
+
+        $("input[name='novo_pedido_tipo']").change(function () {
+            var tipoPedido = $("input[type='radio'][name='novo_pedido_tipo']:checked").val();
+
+            $('div[name="novo_pedido_campos"]').hide();
+
+            $('#just_ped_modal').val('');
+
+            $("#tipo_ensino_modal").data("kendoComboBox").value(null);
+
+            $(`#campos_${tipoPedido} input[data-role='combobox']`).each(function () {
+                $(this).data("kendoComboBox").value(null);
+            });
+
+            $(`#campos_${tipoPedido}`).show();
+        });
+    });
+
+    function searchPedidosExcecao(pageIndex, pageSize) {
+        $.ajax({
+            url: '@Url.Action("SearchPedidosExcecao", "PedidosExcecao")',
+            type: "GET",
+            global: false,
+            data: {
+                ano_letivo: $('#ano_letivo_dropdown').data("kendoDropDownList").value(),
+                ano_escolar: $('#ano_escolar_combobox').data("kendoComboBox").value(),
+                id_disciplina: $('#disciplina_combobox').data("kendoComboBox").value(),
+                tipo_excecao: $('#tipo_excecao_combobox').data("kendoComboBox").value(),
+                estado_excecao: $('#estado_excecao_combobox').data("kendoComboBox").value(),
+                pageIndex: pageIndex,
+                pageSize: pageSize
+            },
+            success: function (data) {
+                $('#search_result_container').html(data);
+                HideDivLoader();
+            },
+            error: function (error) {
+                ErrorHandling(error);
+                HideDivLoader();
+            },
+            beforeSend: ShowDivLoader(),
+        });
+    }
+
+    function submitNovoPedido({ goDetail = false } = {}) {
+        var cenas = getNovoPedidoObj();
+        console.log(cenas);
+
+        $.ajax({
+            url: '@Url.Action("SetPedExcecao", "PedidosExcecao")',
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(cenas),
+            headers: {
+                'goDetail': goDetail
+            },
+            success: function (response) {
+                $('#novo_pedido_modal').modal('hide');
+
+                searchPedidosExcecao();
+
+                SuccessToast(response.messages);
+            }
+        });
+    }
+
+    function getNovoPedidoObj() {
+        var tipoPedido = $("input[type='radio'][name='novo_pedido_tipo']:checked").val();
+        var disciplina = $(`#campos_${tipoPedido} input[name='disciplina_modal']`).data('kendoComboBox').value();
+
+        switch(tipoPedido) {
+            case "1":
+                return {
+                    id_disciplina: disciplina ? parseInt(disciplina) : null,
+                    id_excecao: tipoPedido ? parseInt(tipoPedido) : null,
+                    justif_pedido: $("#just_ped_modal").val()
+                };
+            case "2":
+                return {
+                    id_disciplina: disciplina ? parseInt(disciplina) : null,
+                    id_excecao: tipoPedido ? parseInt(tipoPedido) : null,
+                    justif_pedido: $("#just_ped_modal").val()
+                };
+            case "3":
+                return {
+                    tipo_ensino: $("#tipo_ensino_modal").data("kendoComboBox").value(),
+                    cod_agr_disc: disciplina ? parseInt(disciplina) : null,
+                    id_excecao: tipoPedido ? parseInt(tipoPedido) : null,
+                    justif_pedido: $("#just_ped_modal").val()
+                };
+            default:
+                return;
+        }
+    }
+</script>

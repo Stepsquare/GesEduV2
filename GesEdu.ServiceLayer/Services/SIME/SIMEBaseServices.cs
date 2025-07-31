@@ -1,6 +1,7 @@
 ﻿using GesEdu.Shared.Extensions;
 using GesEdu.Shared.Interfaces.IConfiguration;
 using GesEdu.Shared.Interfaces.IServices.SIME;
+using GesEdu.Shared.WebserviceModels.Adm;
 using GesEdu.Shared.WebserviceModels.SIME;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
@@ -13,7 +14,17 @@ namespace GesEdu.ServiceLayer.Services.SIME
         IUnitOfWork unitOfWork,
         IHostEnvironment environment) : BaseServices(httpContextAccessor, httpClientFactory, unitOfWork, environment), ISIMEBaseServices
     {
-        public async Task<List<GetAnosEscolaresResponseItem>?> GetAnoEscolares(string tipo_acao, string ano_letivo)
+
+        public async Task<List<GetDominiosResponseItem>?> GetDominios(string code)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, "adm/getDominios");
+
+            request.Headers.Add("codigo", code);
+
+            return await SendAsync<List<GetDominiosResponseItem>>(request);
+        }
+
+        public async Task<List<GetAnosEscolaresResponseItem>?> GetAnoEscolares(string tipo_acao, string ano_letivo, string? tipologia = null)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, "sime/getAnosEscolares");
 
@@ -29,6 +40,9 @@ namespace GesEdu.ServiceLayer.Services.SIME
 
             request.Headers.Add("tipo_acao", tipo_acao);
             request.Headers.Add("id_ano_letivo", ano_letivo);
+
+            if (!string.IsNullOrEmpty(tipologia))
+                request.Headers.Add("tipologia", tipologia);
 
             return await SendAsync<List<GetAnosEscolaresResponseItem>>(request);
         }

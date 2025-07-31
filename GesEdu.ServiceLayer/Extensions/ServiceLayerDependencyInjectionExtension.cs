@@ -22,6 +22,7 @@ namespace GesEdu.ServiceLayer.Extensions
             services.AddScoped<INovasAdocoesServices, NovasAdocoesServices>();
             services.AddScoped<IAdocoesAnosAnterioresServices, AdocoesAnosAnterioresServices>();
             services.AddScoped<IManuaisAdaptadosServices, ManuaisAdaptadosServices>();
+            services.AddScoped<IPedidosExcecaoServices, PedidosExcecaoServices>();
 
             #endregion
 

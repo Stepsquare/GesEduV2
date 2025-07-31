@@ -1,0 +1,76 @@
+﻿@model PaginatedResult<GetPedidosExcecaoResponseItem>
+
+@if (Model.TotalCount == 0)
+{
+    <div class="card ig-card card-body ig-noresults text-center">
+        <h3><i class="fas fa-search"></i>  Sem resultados</h3>
+        <p class="mb-0">Não foram encontrados resultados para a pesquisa efetuada.</p>
+    </div>
+}
+else
+{
+    <div class="card ig-card ig-itemlist">
+        <div class="list-group list-group-flush">
+            @foreach (var item in Model.Data)
+            {
+                var detailUrl = Url.Action("Detalhe", "PedidosExcecao", new { idPedido = item.id_pedido_cab, anoLetivo = item.id_ano_letivo });
+
+                var spanCss = item.id_estado switch
+                {
+                    1 => "ig-badge-neutral",    @* Por Submeter *@
+                    2 => "ig-badge-warning",    @* Por Aprovar *@   
+                    3 => "ig-badge-error",      @* Reprovado *@   
+                    4 => "ig-badge-success",    @* Aprovado *@   
+                    5 => "ig-badge-neutral",    @* Anulado *@   
+                    _ => string.Empty
+                };
+
+                var badgeCss = item.id_estado switch
+                {
+                    1 => "fa-pencil-alt",       @* Por Submeter *@
+                    2 => "fa-history",          @* Por Aprovar *@
+                    3 => "fas fa-ban",          @* Reprovado *@
+                    4 => "fa-check",            @* Aprovado *@
+                    5 => "fa-trash-alt",        @* Anulado *@
+                    _ => string.Empty
+                };
+
+                <div class="list-group-item">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl">
+                            <h5><span class="badge rounded-pill ig-id-code">#@item.id_pedido_cab</span> <a href="@detailUrl">@(item.id_excecao == 3 ? item.des_disciplina : $"{item.des_ano_escolar} - {item.des_disciplina}")</a></h5>
+                            <p class="mb-0">
+                                <span class="badge rounded-pill ig-blue-badge">
+                                    @item.des_excecao
+                                </span>
+                                @item.dt_pedido
+                            </p>
+                        </div>
+                        <div class="col-xl-auto text-xl-end">
+                            <p class="mb-1">
+                                <span class="badge @spanCss m-0">
+                                    <i class="fas @badgeCss"></i>
+                                    @item.des_estado
+                                </span>
+                            </p>
+                            <p class="mb-0">@item.dt_estado_alt</p>
+                        </div>
+                        <div class="col-xl-auto">
+                            <a href="@detailUrl" class="btn ig-btn-blue" title="Detalhe pedido @item.id_pedido_cab">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="list-group-item ig-item-pagination">
+            <pagination page-index="@Model.PageIndex"
+                        page-size="@Model.PageSize"
+                        total-count="@Model.TotalCount"
+                        ajax-request-method="searchPedidosExcecao({0}, {1})">
+            </pagination>
+        </div>
+    </div>
+
+}

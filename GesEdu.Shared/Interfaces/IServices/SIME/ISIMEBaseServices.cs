@@ -1,11 +1,13 @@
 ﻿using GesEdu.Shared.WebserviceModels;
+using GesEdu.Shared.WebserviceModels.Adm;
 using GesEdu.Shared.WebserviceModels.SIME;
 
 namespace GesEdu.Shared.Interfaces.IServices.SIME
 {
     public interface ISIMEBaseServices
     {
-        Task<List<GetAnosEscolaresResponseItem>?> GetAnoEscolares(string tipo_acao, string ano_letivo);
+        Task<List<GetDominiosResponseItem>?> GetDominios(string code);
+        Task<List<GetAnosEscolaresResponseItem>?> GetAnoEscolares(string tipo_acao, string ano_letivo, string? tipologia = null);
         Task<List<GetDisciplinasAnoEscResponseItem>?> GetDisciplinas(string tipo_acao, string ano_letivo, string ano_escolar, string tipologia);
         Task<List<GetCiclosUOResponseItem>?> GetCiclos();
         Task<List<GetEscolasResponse.Escola>?> GetEscolas(string? id_ano_letivo = null);

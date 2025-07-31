@@ -18,7 +18,7 @@ namespace GesEdu.ServiceLayer.Services
     {
         protected readonly HttpClient _client = httpClientFactory.CreateClient("sigefeClient");
         protected readonly IUnitOfWork _unitOfWork = unitOfWork;
-        protected readonly HttpContext _httpContext = httpContextAccessor.HttpContext;
+        protected readonly HttpContext _httpContext = httpContextAccessor.HttpContext!;
         private readonly IHostEnvironment _environment = environment;
 
         protected async Task<T?> SendAsync<T>(HttpRequestMessage request) where T : class
