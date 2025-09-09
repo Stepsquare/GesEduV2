@@ -1,0 +1,214 @@
+﻿@model AdotarManualPedidoPartialViewModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="adotar_manual_label">Adotar manual</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <div>
+        <label class="form-label">Escolas onde a disciplina será leccionada:</label>
+        <table id="escolas_table" class="table ig-grid">
+            <thead>
+                <tr>
+                    <th class="ig-col-shrink">
+                        <div class="form-check ig-check">
+                            <input type="checkbox" id="checkbox_todas_escolas" class="form-check-input">
+                            <label class="form-check-label" for="checkbox_todas_escolas" title="Adotar em todos as escolas">Adotar</label>
+                        </div>
+
+                    </th>
+                    <th>Escola</th>
+                    <th class="ig-col-shrink">Estimativa de alunos</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Escolas.Any())
+                {
+                    <tr>
+                        <td colspan="100">
+                            <div class="ig-noresults text-center">
+                                <h3><i class="fas fa-search"></i>  Sem resultados</h3>
+                                <p class="mb-0">Não foram encontradas escolas.</p>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var escola in Model.Escolas)
+                    {
+                        <tr>
+                            <td>
+                                <div class="form-check ig-check">
+                                    <input type="checkbox" name="checkbox_escola" id="checkbox_@escola.cod_escola_me" class="form-check-input" />
+                                    <label class="form-check-label" for="checkbox_@escola.cod_escola_me"></label>
+                                </div>
+                            </td>
+                            <td><span class="badge rounded-pill ig-uo-code">@escola.cod_escola_me</span> @escola.nome_escola</td>
+                            <td><input type="number" id="num_@escola.cod_escola_me" class="ig-studentestimate-field form-control" onwheel="return false" disabled></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <label class="form-label">Selecione um dos seguintes manuais:</label>
+    @if (!Model.Manuais.Any())
+    {
+        <div class="card ig-card card-body ig-noresults text-center mb-3">
+            <h3><i class="fas fa-search"></i>  Sem manuais selecionados</h3>
+            <p class="mb-0">Adote pelo menos um manual para submeter o pedido.</p>
+        </div>
+    }
+    else
+    {
+        <div class="card ig-card">
+            <div class="list-group list-group-flush">
+                @foreach (var manual in Model.Manuais)
+                {
+                    <a class="list-group-item" name="manual_btn" id="manual_@manual.id_manual" href="javascript:void(0);">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-md">
+                                <h5>@manual.titulo - @manual.des_disciplina - @manual.des_ano_escolar</h5>
+                                <p class="mb-0"><strong>ISBN:</strong> @manual.isbn</p>
+                            </div>
+                            <div class="col-md text-md-end">
+                                <p class="mb-0">@manual.editora</p>
+                                <p class="mb-0">@(manual.preco.ToString("C", new CultureInfo("pt-PT")))</p>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+
+    }
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal"><i class="fas fa-times"></i> Sair</button>
+    <button type="button" class="btn ig-btn-green" onclick="adotarManual()"><i class="fas fa-check"></i> Adotar manual</button>
+</div>
+
+<script>
+    $('a[name="manual_btn"]').on('click', function (){
+        $('.active').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    $('#checkbox_todas_escolas').on('change', function () {
+        var isChecked = $(this).is(':checked');
+
+        $('#escolas_table input[type="number"]').each(function () {
+            $(this).val('');
+            $(this).prop('disabled', !isChecked);
+        });
+
+        $('#escolas_table input[name="checkbox_escola"]').each(function () {
+            $(this).prop('checked', isChecked);
+        });
+    });
+
+    $('input[type="checkbox"][name="checkbox_escola"]').on("change", function () {
+        var row = $(this).closest('tr');
+        var input = row.find('input[type="number"]');
+        input.val('');
+        input.prop('disabled', !$(this).is(':checked'))
+
+        var totalEscolas = $('input[type="checkbox"][name="checkbox_escola"]').length;
+        var totalEscolaSelecionadas = $('input[type="checkbox"][name="checkbox_escola"]:checked').length;
+
+        $('#checkbox_todas_escolas').prop('checked', totalEscolas === totalEscolaSelecionadas);
+    });
+
+    function adotarManual() {
+        var errors = getValidationErrors();
+
+        if (errors.length === 0) {
+            $.ajax({
+                url: '@Url.Action("UpdPedExcecao", "PedidosExcecao")',
+                type: "POST",
+                contentType: 'application/json; charset=UTF-8',
+                global: false,
+                data: JSON.stringify(getAdocaoObj()),
+                success: function (data) {
+                    localStorage.setItem("successMessages", JSON.stringify(data.messages));
+
+                    $('#adotar_manual_modal').one('hide.bs.modal', function(e) {
+                        location.reload();
+                    });
+
+                    $('#adotar_manual_modal').modal('hide');
+                },
+                error: function (error) {
+                    ErrorHandling(error);
+                },
+                beforeSend: ToggleFullPageLoader(),
+                complete: ToggleFullPageLoader()
+            });
+        }else {
+            ErrorToast(errors);
+        }
+    }
+
+    function getValidationErrors() {
+        var errors = [];
+
+        var numManuais = @(Model.Manuais != null ? Model.Manuais.Count() : 0);
+
+        if (numManuais === 0){
+            errors.push("Não existem manuais válidos para a adoção. Selecione outro ano de escolaridade.")
+            return errors;
+        }
+
+        if ($('#checkbox_todas_escolas').is('checked')) {
+            $('#escolas_table input[type="number"]').each(function () {
+                if($(this).val() === '' || $(this).val() <= 0){
+                    errors.push("Introduza uma estimativa válida para todas as escolas.")
+                    return false;
+                }
+            });
+        }else {
+            if ($('#escolas_table input[type="checkbox"]:checked').length === 0) {
+                errors.push("Selecione uma escola.")
+            }else {
+                $('#escolas_table  input[type="checkbox"]:checked').each(function () {
+                    if ($(this).closest('tr').find('input[type="number"]').val() === '' || $(this).closest('tr').find('input[type="number"]').val() <= 0) {
+                        errors.push("Introduza uma estimativa válida para as escolas selecionadas.")
+                        return false;
+                    }
+                });
+            }
+        }
+
+        if ($('a.active[name="manual_btn"]').length !== 1)
+            errors.push("Selecione um manual da lista.")
+
+        return errors;
+    }
+
+    function getAdocaoObj() {
+        var obj = {
+            id_pedido_cab: '@Model.IdPedido',
+            manuais: []
+        };
+
+        $('a.active[name="manual_btn"]').each(function () {
+            let manualObj = {
+                id_manual: $(this).prop('id').split('_')[1],
+                escolas: []
+            }
+
+            $('#escolas_table tbody input[type="checkbox"]:checked').each(function () {
+                manualObj.escolas.push({
+                    cod_escola_me: $(this).closest('tr').find('input[type="number"]').prop('id').split('_')[1],
+                    num_alunos: $(this).closest('tr').find('input[type="number"]').val()
+                });
+            });
+
+            obj.manuais.push(manualObj)
+        });
+
+        return obj;
+    }
+</script>

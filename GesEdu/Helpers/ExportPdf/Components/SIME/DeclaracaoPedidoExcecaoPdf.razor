@@ -1,0 +1,117 @@
+﻿@using System.Globalization
+@using GesEdu.Helpers.ExportPdf.Models
+@using GesEdu.Shared.WebserviceModels.SIME
+
+@inject IWebHostEnvironment HostingEnvironment
+
+@{
+    var title = Data.id_excecao switch
+    {
+        1 => "Pedido excecional de adoção de manual para nova oferta curricular",
+        2 => "Pedido excecional de adoção de manual para um ano escolar não correspondente ao ano a que o manual se destina",
+        3 => "Pedido excecional de adoção de manual para nova oferta curricular",
+        _ => string.Empty
+    };
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@title</title>
+
+    <link href="@($"{Model.BaseUrl}/css/print.css")" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="igp-doc-header">
+        <img src="@($"{Model.BaseUrl}/images/logo.svg")">
+        <div class="igp-details">
+            <p>
+                <strong>Data impressão:</strong>@DateTime.Now.ToString("g", CultureInfo.CreateSpecificCulture("pt-PT"))
+            </p>
+        </div>
+        <hr />
+        <h3>@title.ToUpper()</h3>
+    </div>
+
+    <div class="igp-details">
+        <h4>Dados do pedido:</h4>
+        <p>
+            <strong>Unidade Orgânica:</strong>@Model.NomeServico (@Model.CodServico)
+        </p>
+        <p>
+            <span><strong>Disciplina:</strong> @Data.des_disciplina</span>
+            <span><strong>Ano de escolaridade:</strong> @Data.des_ano_escolar</span>
+        </p>
+        <p>
+            <strong>Data do pedido:</strong> @DateTime.Now.ToString("dd/MM/yyyy")
+        </p>
+    </div>
+    <div class="igp-details">
+        <h5>Manuais a adotar:</h5>
+        @foreach (var manual in Data.manuais)
+        {
+            <p>
+                <span><strong>Manual:</strong> @manual.titulo</span>
+                @if (Data.id_excecao != 2)
+                {
+                    <span><strong>Ano escolaridade do manual:</strong> @manual.des_ano_escolar</span>
+                }
+            </p>
+            <p>
+                <span><strong>ISBN:</strong> @manual.isbn</span>
+                <span><strong>Editora:</strong> @manual.editora</span>
+            </p>
+            <div class="igp-grid">
+                <table>
+                    <thead>
+                        <tr class="igp-headrow">
+                            <th>Escola</th>
+                            <th>Estimativa de alunos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var escola in manual.escolas)
+                        {
+                            <tr>
+                                <td>@escola.nome_escola</td>
+                                <td>@escola.num_alunos</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+    <div class="igp-details">
+        <h4>Justificação do pedido:</h4>
+        <p>
+            @Data.justif_pedido
+        </p>
+    </div>
+    <div class="igp-signatures-cont">
+        <div class="ig-signature">
+            <p>
+                O (A) diretor(a) do Agrupamento
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
+
+@code {
+    [Parameter]
+    public required PdfExportModel<GetPedExcecaoResponse> Model { get; set; }
+
+    public GetPedExcecaoResponse Data { get => this.Model.Data; }
+}

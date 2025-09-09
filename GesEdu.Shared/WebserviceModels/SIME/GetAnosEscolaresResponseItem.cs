@@ -5,5 +5,6 @@
         public int ano_escolar { get; set; }
         public string? des_ano_escolar { get; set; }
         public string? tipologia { get; set; }
+        public string? ciclo { get; set; }
     }
 }

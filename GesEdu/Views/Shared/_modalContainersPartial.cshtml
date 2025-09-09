@@ -29,7 +29,7 @@
             </div>
             <div class="modal-footer">
                 <button id="confirm_modal_deny_btn" type="button" class="btn ig-btn-blue"><i class="fas fa-times"></i> Cancelar</button>
-                <button id="confirm_modal_approve_btn" type="button" class="btn ig-btn-green" data-bs-dismiss="modal"><i class="fas fa-check"></i> Guardar alterações</button>
+                <button id="confirm_modal_approve_btn" type="button" class="btn ig-btn-green" data-bs-dismiss="modal"><i class="fas fa-check"></i> Confirmar</button>
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@
             errorObj = JSON.parse(`@Html.Raw(errorJsonString)`);
 
             if (errorObj.messages.length > 0)
-            ErrorToast(errorObj.messages);
+                ErrorToast(errorObj.messages);
         } catch {
             return;
         }

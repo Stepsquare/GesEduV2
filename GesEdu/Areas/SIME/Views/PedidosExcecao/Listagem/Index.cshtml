@@ -428,7 +428,6 @@
 
     function submitNovoPedido({ goDetail = false } = {}) {
         var cenas = getNovoPedidoObj();
-        console.log(cenas);
 
         $.ajax({
             url: '@Url.Action("SetPedExcecao", "PedidosExcecao")',
@@ -439,11 +438,15 @@
                 'goDetail': goDetail
             },
             success: function (response) {
-                $('#novo_pedido_modal').modal('hide');
+                if (goDetail) {
+                    window.location.href = response.url;
+                } else {
+                    $('#novo_pedido_modal').modal('hide');
 
-                searchPedidosExcecao();
+                    searchPedidosExcecao();
 
-                SuccessToast(response.messages);
+                    SuccessToast(response.messages);
+                }
             }
         });
     }
@@ -457,20 +460,20 @@
                 return {
                     id_disciplina: disciplina ? parseInt(disciplina) : null,
                     id_excecao: tipoPedido ? parseInt(tipoPedido) : null,
-                    justif_pedido: $("#just_ped_modal").val()
+                    justif_pedido: $("#just_ped_modal").val()//.replace(/[\t\n]+/g, ' ')
                 };
             case "2":
                 return {
                     id_disciplina: disciplina ? parseInt(disciplina) : null,
                     id_excecao: tipoPedido ? parseInt(tipoPedido) : null,
-                    justif_pedido: $("#just_ped_modal").val()
+                    justif_pedido: $("#just_ped_modal").val()//.replace(/[\t\n]+/g, ' ')
                 };
             case "3":
                 return {
                     tipo_ensino: $("#tipo_ensino_modal").data("kendoComboBox").value(),
                     cod_agr_disc: disciplina ? parseInt(disciplina) : null,
                     id_excecao: tipoPedido ? parseInt(tipoPedido) : null,
-                    justif_pedido: $("#just_ped_modal").val()
+                    justif_pedido: $("#just_ped_modal").val()//.replace(/[\t\n]+/g, ' ')
                 };
             default:
                 return;

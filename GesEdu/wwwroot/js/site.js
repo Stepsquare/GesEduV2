@@ -1,5 +1,4 @@
-﻿
-$(document).on('ajaxError', function (event, jqxhr, settings, thrownError) {
+﻿$(document).on('ajaxError', function (event, jqxhr, settings, thrownError) {
     ErrorHandling(jqxhr);
 });
 

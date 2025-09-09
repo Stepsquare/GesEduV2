@@ -1,7 +1,10 @@
-﻿
+﻿@model PedidoExcecaoDetalheViewModel
 
 @{
     ViewData["Title"] = "Pedido de Exceção à adoção de manuais";
+
+    var detalhe = Model.Detalhe!;
+    var isAnoLetivoAtual = detalhe.id_ano_letivo.ToString().Equals(User.GetAnoLetivoSIME());
 }
 
 @* HEADER *@
@@ -9,9 +12,724 @@
     <div class="row">
         <div class="col-md">
             <h2>
-                @ViewData["Title"]
+                <span class="badge rounded-pill ig-id-code">#@detalhe.id_pedido_cab</span> @ViewData["Title"]
+            </h2>
+        </div>
+        <div class="col-md-auto">
+            <h2>
+                @if ((User.IsAdmin() || User.IsSimeEscUser() || User.IsSimeDgeUser()) && detalhe.id_estado == 1 && isAnoLetivoAtual)
+                {
+                    @* Admin, users SIME escolas e DGE para pedidos no estado Inserido(1) *@
+                    <button id="submeter_pedido_btn" class="btn ig-btn-green">
+                        <i class="fas fa-check"></i> Submeter pedido
+                    </button>
+                }
+
+                @if ((User.IsAdmin() || User.IsSimeDgeUser()) && detalhe.id_estado == 2 && isAnoLetivoAtual)
+                {
+                    @* Admin e users SIME DGE para pedidos no estado Por Aprovar(2) *@
+                    <button class="btn ig-btn-green" data-bs-toggle="modal" data-bs-target="#fechar_pedido_modal">
+                        <i class="fas fa-check"></i> Fechar pedido
+                    </button>
+                }
             </h2>
         </div>
     </div>
     <breadcrumb></breadcrumb>
 </div>
+
+<h5 class="mt-3">Dados do pedido:</h5>
+<div class="card ig-card  mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl">
+                <label class="form-label">Tipo de exceção:</label>
+                <p>@detalhe.des_excecao</p>
+            </div>
+            <div class="col-xl">
+                <label class="form-label">Tipo de ensino:</label>
+                <p>@detalhe.des_tipo_ensino</p>
+            </div>
+            @if (detalhe.id_excecao != 3)
+            {
+                <div class="col-xl">
+                    <label class="form-label">Ano de escolaridade:</label>
+                    <p>@detalhe.des_ano_escolar</p>
+                </div>
+            }
+            <div class="col-xl">
+                <label class="form-label"> Disciplina:</label>
+                <p>@detalhe.des_disciplina</p>
+            </div>
+            <div class="col-xl-12">
+                <label class="form-label">Justificação do pedido:</label>
+                <p class="mb-1">
+                    @Html.Raw(detalhe.justif_pedido!.Replace("\n", "<br />"))
+                </p>
+                @if ((User.IsSimeEscUser() || User.IsSimeDgeUser() || User.IsAdmin()) && detalhe.id_estado == 1 && isAnoLetivoAtual)
+                {
+                    <p class="mb-0">
+                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#editar_justificacao_modal"><i class="fas fa-pencil-alt"></i> Editar justificação</a>
+                    </p>
+                }
+            </div>
+            <div class="col-xl-12">
+                <hr />
+                <label class="form-label"> Estado do pedido:</label>
+                <p>
+                    @{
+                        var spanCss = detalhe.id_estado switch
+                        {
+                            1 => "ig-badge-neutral",    @* Por Submeter *@
+                            2 => "ig-badge-warning",    @* Por Aprovar *@
+                            3 => "ig-badge-error",      @* Reprovado *@
+                            4 => "ig-badge-success",    @* Aprovado *@
+                            5 => "ig-badge-neutral",    @* Anulado *@
+                            _ => string.Empty
+                        };
+
+                        var badgeCss = detalhe.id_estado switch
+                        {
+                            1 => "fa-pencil-alt",       @* Por Submeter *@
+                            2 => "fa-history",          @* Por Aprovar *@
+                            3 => "fa-ban",              @* Reprovado *@
+                            4 => "fa-check",            @* Aprovado *@
+                            5 => "fa-trash-alt",        @* Anulado *@
+                            _ => string.Empty
+                        };
+
+                        <span class="badge @spanCss">
+                            <i class="fas @badgeCss"></i>
+                            @detalhe.des_estado
+                        </span>
+                    }
+                </p>
+                @if (!string.IsNullOrEmpty(detalhe.justif_estado))
+                {
+                    <label class="form-label">Justificação do estado:</label>
+                    <p>
+                        @Html.Raw(detalhe.justif_estado.Replace("\n", "<br />"))
+                    </p>
+                }
+            </div>
+            @if (detalhe.manuais_adotados.Any() && (detalhe.id_estado == 1 || detalhe.id_estado == 2))
+            {
+                <div class="col-xl-12">
+                    <div class="alert ig-alert-warning mb-0" role="alert">
+                        <div class="row">
+                            <div class="col">
+                                <i class="fas fa-exclamation-triangle"></i> Considere se é realmente necessário avançar com este pedido, tendo em conta que a disciplina solicitada já tem, pelo menos, um manual adotado.
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn ig-btn-blue" data-bs-toggle="modal" data-bs-target="#manuais_adotados_modal"><i class="fas fa-book"></i> Ver manual(is)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="d-flex align-items-end justify-content-between mb-2 mt-3">
+    <h5 class="mb-0">Manuais a adotar:</h5>
+    @if ((User.IsSimeEscUser() || User.IsSimeDgeUser() || User.IsAdmin()) && detalhe.id_estado == 1 && isAnoLetivoAtual)
+    {
+        if (detalhe.id_excecao == 2)
+        {
+            <button name="adotar_manual_btn" class="btn ig-btn-blue" type="button">
+                <i class="fas fa-book"></i> Adotar manual(is)
+            </button>
+        }
+        else
+        {
+            <button class="btn ig-btn-blue dropdown-toggle" type="button" id="adotar_manual_ano_esc_btn" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-book"></i> Adotar manual(is)
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adotar_manual_ano_esc_btn">
+                <li><h6 class="dropdown-header">Selecione o ano de escolaridade do manual a adotar:</h6></li>
+                @foreach (var item in Model.AnosEscolaridade)
+                {
+                    <li><a name="adotar_manual_btn" id="@($"{item.ano_escolar}_{item.ciclo}")" class="dropdown-item" href="javascript:void(0);">@item.des_ano_escolar</a></li>
+                }
+            </ul>
+        }
+    }
+</div>
+
+@* Info para pedidos para pedidos PLNM por submeter do ano letivo corrente *@
+@if (detalhe.id_excecao == 3 && detalhe.id_estado == 1 && isAnoLetivoAtual)
+{
+    <div class="alert ig-alert-info mb-3" role="alert">
+        <i class="fas fa-info-circle"></i> Pode adotar manuais para anos de escolaridade diferentes que lecionem o mesmo nível de PLNM neste pedido de exceção.
+    </div>
+}
+@if (detalhe.manuais == null || !detalhe.manuais.Any())
+{
+    <div class="card ig-card card-body ig-noresults text-center mb-3">
+        <h3><i class="fas fa-search"></i>  Sem manuais selecionados</h3>
+        <p class="mb-0">Adote pelo menos um manual para submeter o pedido.</p>
+    </div>
+}
+else
+{
+    <div class="card ig-card ig-itemlist mb-3">
+        <div class="list-group list-group-flush">
+            @foreach (var manual in detalhe.manuais)
+            {
+                <div class="list-group-item">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-md">
+                            <h5 class="mb-1">@manual.titulo</h5>
+                            <p class="mb-1">
+                                <span class="badge rounded-pill ig-blue-badge">
+                                    @($"{manual.des_ano_escolar} - {manual.des_disciplina}")
+                                </span>
+                            </p>
+                            <p class="mb-1">
+                                <span class="me-3">
+                                    <i class="fas fa-school"></i> @($"{manual.escolas.Count()} escola(s)")
+                                </span>
+                                <span>
+                                    <i class="fas fa-user"></i> @($"{manual.escolas.Sum(x => x.num_alunos)}  aluno(s) estimados")
+                                </span>
+                            </p>
+
+                        </div>
+                        <div class="col-md-auto text-md-end">
+                            <p class="mb-1">@manual.editora</p>
+                            <p class="mb-1"><strong>ISBN:</strong> @manual.isbn</p>
+                            <p class="mb-0">@($"{manual.preco.ToString("C", new CultureInfo("pt-PT"))}/un")</p>
+                        </div>
+                        <p class="mb-2">
+                            <a class="ig-collapse-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#estimativas_@manual.id_manual" aria-expanded="false" aria-controls="collapseMFs">
+                                Detalhe das estimativas de alunos
+                                <i class="fas fa-caret-up"></i>
+                            </a>
+                        </p>
+                        <div class="collapse mt-3" id="estimativas_@manual.id_manual">
+                            <table class="table ig-grid">
+                                <thead>
+                                    <tr>
+                                        <th>Escola</th>
+                                        <th class="ig-col-shrink">Estimativa de alunos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var escola in manual.escolas)
+                                    {
+                                        <tr>
+                                            <td><span class="badge rounded-pill ig-uo-code">@escola.cod_escola_me</span> @escola.nome_escola</td>
+                                            <td>@escola.num_alunos</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        @if ((User.IsSimeEscUser() || User.IsSimeDgeUser() || User.IsAdmin()) && detalhe.id_estado == 1 && isAnoLetivoAtual)
+                        {
+                            <p class="mb-0">
+                                <a name="delete_manual_btn" id="@($"{manual.id_pedido_man}_{manual.id_manual}")" href="javascript:void(0);"><i class="far fa-trash-alt"></i> Remover manual</a>
+                            </p>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<h5 class="mt-3">Declarações:</h5>
+@if (detalhe.manuais == null || !detalhe.manuais.Any())
+{
+    <div class="alert ig-alert-info mb-3" role="alert">
+        <i class="fas fa-exclamation-triangle"></i> Adote pelo menos um manual antes de carregar as declarações.
+    </div>
+}
+else
+{
+    <div class="card ig-card  mb-3">
+        <div class="card-body">
+            <p>
+                Os seguintes documentos deverão ser descarregados e assinados pelo/a Diretor/a da Unidade Orgânica, e de seguida carregados no campo para o efeito.
+            </p>
+            <div class="row">
+                @foreach (var tipoAnexo in Model.TiposAnexo)
+                {
+                    if ((detalhe.id_excecao == 1 && (tipoAnexo.codigo == "2" || tipoAnexo.codigo == "3")) // Manual escolaridade diferente(1) respetiva declaração(2) e declaração editora(3)
+                    || (detalhe.id_excecao == 2 && tipoAnexo.codigo == "1") // Adição de disciplina(2) só a respetiva declaração(1)
+                    || (detalhe.id_excecao == 3 && tipoAnexo.codigo == "4")) // PLNM(3) só a respetiva declaração(4)
+                    {
+                        var anexo = detalhe.anexos.FirstOrDefault(x => x.tipo_anexo.ToString() == tipoAnexo.codigo);
+
+                        <div class="col-xl">
+                            <label class="form-label">@($"{tipoAnexo.descricao}:")</label>
+                            @if (anexo is null)
+                            {
+                                <input class="form-control" type="file" accept="application/pdf" name="upload_declaracao" id="declaracao_@tipoAnexo.codigo">
+                                <p class="mb-1"><a href="@Url.Action("DeclaracoesPdfExport", "PedidosExcecao", new { idPedido = detalhe.id_pedido_cab, anoLetivo = detalhe.id_ano_letivo})"><i class="fas fa-pencil-alt"></i> Descarregar documento para assinar</a></p>
+                            }
+                            else
+                            {
+                                <p class="mb-1">
+                                    <a href="@Url.Action("GetAnexoPed", "PedidosExcecao", new { idPedido = detalhe.id_pedido_cab, idAnexo = anexo.id_anexo, tipoAnexo = anexo.tipo_anexo })">
+                                        <i class="far fa-file-alt"></i> @anexo.filename
+                                    </a>
+                                </p>
+                                <p class="mb-0">
+                                    <a href="javascript:void(0);" name="delete_declaracao" id="@($"{anexo.id_anexo}_{tipoAnexo.codigo}")">
+                                        <i class="far fa-trash-alt"></i> Remover
+                                    </a>
+                                </p>
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}
+
+@if ((User.IsAdmin() || User.IsSimeEscUser() || User.IsSimeDgeUser()) && detalhe.id_estado == 1 && isAnoLetivoAtual)
+{
+    <p class="mb-0">
+        <a href="javascript:void(0);" id="anular_pedido_btn">
+            <i class="far fa-trash-alt"></i> Anular pedido
+        </a>
+    </p>
+}
+
+
+@if ((User.IsAdmin() || User.IsSimeDgeUser()) && detalhe.id_estado == 2 && isAnoLetivoAtual)
+{
+    @* Modal fechar pedido exceção *@
+    <div class="modal fade ig-modal" id="fechar_pedido_modal" tabindex="-1" aria-labelledby="fechar_pedido_label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="fechar_pedido_label">
+                        Fechar pedido de exceção
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Aprovação do pedido:</label>
+                        <div>
+                            <div class="form-check form-check-inline ig-check">
+                                <input class="form-check-input" type="radio" name="fechar_pedido_estado"
+                                       id="aprovar_pedido" value="4">
+                                <label class="form-check-label" for="aprovar_pedido">
+                                    Aprovar pedido
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline ig-check">
+                                <input class="form-check-input" type="radio" name="fechar_pedido_estado"
+                                       id="reprovar_pedido" value="3">
+                                <label class="form-check-label" for="reprovar_pedido">
+                                    Reprovar pedido
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Justificação:</label>
+                        <textarea id="just_estado_pedido_txt" class="form-control" rows="3"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal">
+                        Sair
+                    </button>
+                    <button id="fechar_pedido_btn" type="button" class="btn ig-btn-green">
+                        <i class="fas fa-check"></i> Fechar pedido
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if ((User.IsSimeEscUser() || User.IsSimeDgeUser() || User.IsAdmin()) && detalhe.id_estado == 1 && isAnoLetivoAtual)
+{
+    @* Modal editar justificação do pedido *@
+    <div class="modal modal-lg fade ig-modal" id="editar_justificacao_modal" tabindex="-1" aria-labelledby="editar_justificacao_label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editar_justificacao_label">
+                        Editar justificação
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label">Justificação:</label>
+                    <textarea id="just_pedido_modal_txt" class="form-control" rows="@(detalhe.justif_pedido != null ? detalhe.justif_pedido.Split('\n').Length : 3)">@detalhe.justif_pedido</textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal">Sair</button>
+                    <button id="editar_just_pedido_btn" type="button" class="btn ig-btn-green"><i class="fas fa-check"></i> Guardar alterações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (detalhe.manuais_adotados.Any() && (detalhe.id_estado == 1 || detalhe.id_estado == 2))
+{
+    @* Modal manuais adotados na disciplina *@
+    <div class="modal fade ig-modal" id="manuais_adotados_modal" tabindex="-1" aria-labelledby="manuais_adotados_label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="manuais_adotados_label">Manuais adotados na disciplina</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card ig-card ig-itemlist">
+                        <div class="list-group list-group-flush">
+                            @foreach (var manual in detalhe.manuais_adotados)
+                            {
+                                <div class="list-group-item">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-md">
+                                            <h5 class="mb-1">@manual.titulo</h5>
+                                            <p class="mb-1">
+                                                <span class="badge rounded-pill ig-blue-badge">
+                                                    @($"{manual.des_ano_escolar} - {manual.des_disciplina}")
+                                                </span>
+                                            </p>
+                                            <p class="mb-1">
+                                                <span class="me-3"><i class="fas fa-school"></i> @($"{manual.escolas.Count()} escola(s)")</span>
+                                                <span><i class="fas fa-user"></i> @($"{manual.escolas.Sum(x => x.num_alunos)}  aluno(s) estimados")</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-auto text-md-end">
+                                            <p class="mb-1">@manual.editora</p>
+                                            <p class="mb-1"><strong>ISBN:</strong> @manual.isbn</p>
+                                            <p class="mb-0">@($"{manual.preco.ToString("C", new CultureInfo("pt-PT"))}/un")</p>
+                                        </div>
+                                        <p class="mb-2">
+                                            <a class="ig-collapse-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#estimativas_modal_@manual.id_manual" aria-expanded="false" aria-controls="collapseMFs">
+                                                Detalhe das estimativas de alunos
+                                                <i class="fas fa-caret-up"></i>
+                                            </a>
+                                        </p>
+                                        <div class="collapse mt-3" id="estimativas_modal_@manual.id_manual">
+                                            <table class="table ig-grid">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Escola</th>
+                                                        <th class="ig-col-shrink">Estimativa de alunos</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var escola in manual.escolas)
+                                                    {
+                                                        <tr>
+                                                            <td><span class="badge rounded-pill ig-uo-code">@escola.cod_escola_me</span> @escola.nome_escola</td>
+                                                            <td>@escola.num_alunos</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn ig-btn-blue" data-bs-dismiss="modal">Sair</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@* Modal Adotar manual *@
+<div class="modal fade ig-modal" id="adotar_manual_modal" tabindex="-1" aria-labelledby="adotar_manual_label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        let messages = JSON.parse(localStorage.getItem("successMessages") || "[]");
+
+        if (messages.length > 0) {
+            SuccessToast(messages);
+            localStorage.removeItem("successMessages");
+        }
+
+        $('[name="adotar_manual_btn"]').on('click', function () {
+            var tipo_excecao = '@detalhe.id_excecao';
+
+            var obj;
+
+            switch (tipo_excecao) {
+                case "1":
+                    obj = {
+                        idPedido: '@detalhe.id_pedido_cab',
+                        tipoExcecao: '@detalhe.id_excecao',
+                        idDisciplina: '@detalhe.id_disciplina',
+                        ciclo: '@detalhe.ciclo',
+                        anoEscolar: $(this).prop('id').split('_')[1]
+                    };
+                    break;
+                case "2":
+                    obj = {
+                        idPedido: '@detalhe.id_pedido_cab',
+                        tipoExcecao: '@detalhe.id_excecao',
+                        idDisciplina: '@detalhe.id_disciplina',
+                        ciclo: '@detalhe.ciclo',
+                        anoEscolar: '@detalhe.ano_escolar'
+                    };
+                    break;
+                case "3":
+                    obj = {
+                        idPedido: '@detalhe.id_pedido_cab',
+                        tipoExcecao: '@detalhe.id_excecao',
+                        codAgrDisc: '@detalhe.cod_agr_disc',
+                        ciclo: $(this).prop('id').split('_')[1],
+                        anoEscolar: $(this).prop('id').split('_')[0]
+                    };
+                    break;
+                default:
+                    break;
+            }
+            $.ajax({
+                url: '@Url.Action("ModalAdocaoManualExcecaoPartial", "PedidosExcecao")',
+                type: "GET",
+                data: obj,
+                success: function (data) {
+                    $('#adotar_manual_modal .modal-content').html(data);
+                    $('#adotar_manual_modal').modal('show');
+                }
+            });
+        });
+
+        $('#submeter_pedido_btn').on('click', function () {
+            ShowConfirmModal({
+                title: "Submeter pedido",
+                message: "Tem a certeza que deseja submeter o pedido de exceção #@(detalhe.id_pedido_cab)?",
+                callbackfunction: function () {
+                    $.ajax({
+                        url: '@Url.Action("SetPedEstado", "PedidosExcecao")',
+                        type: "POST",
+                        contentType: 'application/json; charset=UTF-8',
+                        global: false,
+                        data: JSON.stringify({
+                            id_pedido_cab: '@detalhe.id_pedido_cab',
+                            id_excecao: '@detalhe.id_excecao',
+                            estado: 2
+                        }),
+                        success: function (data) {
+                            localStorage.setItem("successMessages", JSON.stringify(data.messages));
+
+                            location.reload()
+                        },
+                        error: function (error) {
+                            ErrorHandling(error);
+                        },
+                        beforeSend: ToggleFullPageLoader(),
+                        complete: ToggleFullPageLoader()
+                    });
+                }
+            });
+        });
+
+        $('#anular_pedido_btn').on('click', function () {
+            ShowConfirmModal({
+                title: "Anular pedido",
+                message: "Tem a certeza que deseja anular o pedido de exceção #@(detalhe.id_pedido_cab)?",
+                callbackfunction: function () {
+                    $.ajax({
+                        url: '@Url.Action("SetPedEstado", "PedidosExcecao")',
+                        type: "POST",
+                        contentType: 'application/json; charset=UTF-8',
+                        global: false,
+                        data: JSON.stringify({
+                            id_pedido_cab: '@detalhe.id_pedido_cab',
+                            id_excecao: '@detalhe.id_excecao',
+                            estado: 5
+                        }),
+                        success: function (data) {
+                            localStorage.setItem("successMessages", JSON.stringify(data.messages));
+
+                            location.reload()
+                        },
+                        error: function (error) {
+                            ErrorHandling(error);
+                        },
+                        beforeSend: ToggleFullPageLoader(),
+                        complete: ToggleFullPageLoader()
+                    });
+                }
+            });
+        });
+
+        $('#fechar_pedido_btn').on('click', function () {
+            var descricaoEstado = $("input[type='radio'][name='fechar_pedido_estado']:checked").prop('id') == 'aprovar_pedido' ? 'Aprovar' : 'Reprovar';
+
+            var idEstado = $("input[type='radio'][name='fechar_pedido_estado']:checked").val();
+
+            ShowConfirmModal({
+                title: `${descricaoEstado} pedido`,
+                message: `Tem a certeza que deseja ${descricaoEstado} o pedido de exceção #@(detalhe.id_pedido_cab)?`,
+                previousModalId: "fechar_pedido_modal",
+                callbackfunction: function () {
+                    $.ajax({
+                        url: '@Url.Action("SetPedEstado", "PedidosExcecao")',
+                        type: "POST",
+                        contentType: 'application/json; charset=UTF-8',
+                        global: false,
+                        data: JSON.stringify({
+                            id_pedido_cab: '@detalhe.id_pedido_cab',
+                            id_excecao: '@detalhe.id_excecao',
+                            justif_estado: $('#just_estado_pedido_txt').val(),
+                            estado: idEstado
+                        }),
+                        success: function (data) {
+                            localStorage.setItem("successMessages", JSON.stringify(data.messages));
+
+                            location.reload()
+                        },
+                        error: function (error) {
+                            ErrorHandling(error);
+                        },
+                        beforeSend: ToggleFullPageLoader(),
+                        complete: ToggleFullPageLoader()
+                    });
+                }
+            });
+        });
+
+        $('#editar_just_pedido_btn').on('click', function () {
+            $.ajax({
+                url: '@Url.Action("UpdPedExcecao", "PedidosExcecao")',
+                type: "POST",
+                contentType: 'application/json; charset=UTF-8',
+                global: false,
+                data: JSON.stringify({
+                    id_pedido_cab: '@detalhe.id_pedido_cab',
+                    justif_pedido: $('#just_pedido_modal_txt').val()//.replace(/[\t\n]+/g, ' '),
+                }),
+                success: function (data) {
+                    localStorage.setItem("successMessages", JSON.stringify(data.messages));
+
+                    location.reload()
+                },
+                error: function (error) {
+                    ErrorHandling(error);
+                },
+                beforeSend: ToggleFullPageLoader(),
+                complete: ToggleFullPageLoader()
+            });
+        });
+
+        $('[name="delete_manual_btn"]').on('click', function () {
+            var idPedido = $(this).prop('id').split('_')[0];
+            var idManual = $(this).prop('id').split('_')[1];
+
+            ShowConfirmModal({
+                title: "Remover manual",
+                message: "Tem a certeza que deseja remover o manual?",
+                callbackfunction: function () {
+                    $.ajax({
+                        url: '@Url.Action("DelManualExcecao", "PedidosExcecao")',
+                        type: "DELETE",
+                        contentType: 'application/json; charset=UTF-8',
+                        global: false,
+                        data: JSON.stringify({
+                            id_pedido_cab: "@detalhe.id_pedido_cab",
+                            manuais: [
+                                {
+                                    id_pedido_man: idPedido,
+                                    id_manual: idManual
+                                }
+                            ]
+                        }),
+                        success: function (data) {
+                            localStorage.setItem("successMessages", JSON.stringify(data.messages));
+
+                            location.reload()
+                        },
+                        error: function (error) {
+                            ErrorHandling(error);
+                        },
+                        beforeSend: ToggleFullPageLoader(),
+                        complete: ToggleFullPageLoader()
+                    });
+                }
+            });
+        });
+
+        $('[name="upload_declaracao"]').on('change', function () {
+            var tipoAnexo = $(this).prop('id').split('_')[1];
+            var file = $(this).prop('files')[0];
+
+            var formData = new FormData();
+
+            formData.append("idPedido", "@detalhe.id_pedido_cab");
+            formData.append("tipoAnexo", tipoAnexo);
+            formData.append("file", file);
+
+            $.ajax({
+                url: '@Url.Action("SetAnexoPed", "PedidosExcecao")',
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                data: formData,
+                global: false,
+                success: function (data) {
+                    localStorage.setItem("successMessages", JSON.stringify(data.messages));
+
+                    location.reload()
+                },
+                error: function (error) {
+                    ErrorHandling(error);
+                },
+                beforeSend: ToggleFullPageLoader(),
+                complete: ToggleFullPageLoader()
+            });
+        });
+
+        $('[name="delete_declaracao"]').on('click', function () {
+            var idAnexo = $(this).prop('id').split('_')[0];
+            var tipoAnexo = $(this).prop('id').split('_')[1];
+
+            ShowConfirmModal({
+                title: "Remover declaraçao",
+                message: "Tem a certeza que deseja remover a declaração?",
+                callbackfunction: function () {
+                    $.ajax({
+                        url: '@Url.Action("DelAnexoPed", "PedidosExcecao")',
+                        type: "DELETE",
+                        global: false,
+                        data: {
+                            idPedido: "@detalhe.id_pedido_cab",
+                            idAnexo: idAnexo,
+                            tipoAnexo: tipoAnexo
+                        },
+                        success: function (data) {
+                            localStorage.setItem("successMessages", JSON.stringify(data.messages));
+
+                            location.reload()
+                        },
+                        error: function (error) {
+                            ErrorHandling(error);
+                        },
+                        beforeSend: ToggleFullPageLoader(),
+                        complete: ToggleFullPageLoader()
+                    });
+                }
+            });
+        });
+    });
+</script>
