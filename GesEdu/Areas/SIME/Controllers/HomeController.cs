@@ -11,7 +11,7 @@ namespace GesEdu.Areas.SIME.Controllers
     [Authorize(Policy = "SimeAccess")]
     public class HomeController : BaseController
     {
-        [Breadcrumb(Title = "SIME")]
+        [Breadcrumb(Title = "SIME-MEGA")]
         public IActionResult Index()
         {
             return View();

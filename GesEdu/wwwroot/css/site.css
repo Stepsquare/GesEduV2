@@ -234,7 +234,7 @@ nav.ig-sidebar-menu {
     font-weight: bold;
     color: var(--ig-blue-2);
 }
-.ig-submenu .accordion-button:not(.collapsed) {
+.ig-submenu .accordion-button:not(.collapsed), .ig-accordion-link.active {
     color: var(--ig-blue-2);
     background-color: var(--ig-green-1-alpha);
 }
@@ -242,9 +242,11 @@ nav.ig-sidebar-menu {
     border-color: var(--ig-blue-2);
     box-shadow: var(--ig-focus-shadow);
 }
+.ig-submenu .accordion-button.ig-accordion-link::after{
+    display:none;
+}
 li.ig-menutitle {
     padding-top: 2rem;
-    
 }
 li.ig-menutitle h4 {
     color: var(--ig-green-1);

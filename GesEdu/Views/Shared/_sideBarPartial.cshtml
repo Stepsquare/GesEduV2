@@ -30,6 +30,11 @@
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
+                            <a class="accordion-button ig-accordion-link collapsed @(Html.IsActive(["Index"], ["Home"], "AreaReservada"))" href="@Url.Action("Index", "Home", new { Area = "AreaReservada" })">Página inicial</a>
+                        </h2>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
                             <button class="accordion-button @(Html.IsCollapsed(["Listagem", "Detalhe"], ["Trabalhadores"], "AreaReservada", "collapsed"))" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseOne" aria-expanded="false"
                                     aria-controls="flush-collapseOne">
@@ -177,6 +182,9 @@
         {
             <div>
                 <ul>
+                    <li class="@(Html.IsActive(["Index"], ["Home"], "MEGA"))">
+                        <a class="ig-menuactive" href="@Url.Action("Index", "Home", new { Area = "MEGA" })">Página inicial</a>
+                    </li>
                     @* <li>
                         <a href="#">Gerir vouchers</a>
                     </li>
@@ -200,6 +208,9 @@
         {
             <div>
                 <ul>
+                    <li class="@(Html.IsActive(["Index"], ["Home"], "SIME"))">
+                        <a class="ig-menuactive" href="@Url.Action("Index", "Home", new { Area = "SIME" })">Página inicial</a>
+                    </li>
                     <li class="@(Html.IsActive(["Index"], ["ApreciacaoManuais"], "SIME"))">
                         <a href="@Url.Action("Index", "ApreciacaoManuais", new { Area = "SIME" })">Apreciação de manuais</a>
                     </li>
