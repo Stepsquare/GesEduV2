@@ -80,7 +80,7 @@ namespace GesEdu.Areas.SIME.Controllers
             var model = new PedidoExcecaoDetalheViewModel
             {
                 Detalhe = await _pedidosExcecaoServicesServices.GetPedExcecao(idPedido, anoLetivo) ?? throw new Exception("Pedido de exceção não encontrado."),
-                TiposAnexo = await _pedidosExcecaoServicesServices.GetDominios("EXCECAO_SIME") ?? [],
+                TiposAnexo = await _pedidosExcecaoServicesServices.GetDominios("SIME_ANEXO") ?? [],
             };
 
             model.AnosEscolaridade = await _pedidosExcecaoServicesServices.GetAnoEscolares("EXE", anoLetivo, model.Detalhe.tipo_ensino) ?? [];

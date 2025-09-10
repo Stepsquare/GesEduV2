@@ -266,7 +266,7 @@ else
                             <label class="form-label">@($"{tipoAnexo.descricao}:")</label>
                             @if (anexo is null)
                             {
-                                <input class="form-control" type="file" accept="application/pdf" name="upload_declaracao" id="declaracao_@tipoAnexo.codigo">
+                                <input class="form-control mb-3" type="file" accept="application/pdf" name="upload_declaracao" id="declaracao_@tipoAnexo.codigo">
                                 <p class="mb-1"><a href="@Url.Action("DeclaracoesPdfExport", "PedidosExcecao", new { idPedido = detalhe.id_pedido_cab, anoLetivo = detalhe.id_ano_letivo})"><i class="fas fa-pencil-alt"></i> Descarregar documento para assinar</a></p>
                             }
                             else
@@ -705,7 +705,7 @@ else
             var tipoAnexo = $(this).prop('id').split('_')[1];
 
             ShowConfirmModal({
-                title: "Remover declaraçao",
+                title: "Remover declaração",
                 message: "Tem a certeza que deseja remover a declaração?",
                 callbackfunction: function () {
                     $.ajax({

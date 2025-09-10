@@ -8,7 +8,7 @@
     var title = Data.id_excecao switch
     {
         1 => "Pedido excecional de adoção de manual para nova oferta curricular",
-        2 => "Pedido excecional de adoção de manual para um ano escolar não correspondente ao ano a que o manual se destina",
+        2 => "Pedido excecional de adoção de manual para um ano de escolaridade não correspondente ao ano a que o manual se destina",
         3 => "Pedido excecional de adoção de manual para nova oferta curricular",
         _ => string.Empty
     };
@@ -50,7 +50,10 @@
         </p>
         <p>
             <span><strong>Disciplina:</strong> @Data.des_disciplina</span>
-            <span><strong>Ano de escolaridade:</strong> @Data.des_ano_escolar</span>
+            @if (Data.id_excecao != 3) @* PLNM *@
+            {
+                <span><strong>Ano de escolaridade:</strong> @Data.des_ano_escolar</span>
+            }
         </p>
         <p>
             <strong>Data do pedido:</strong> @DateTime.Now.ToString("dd/MM/yyyy")
