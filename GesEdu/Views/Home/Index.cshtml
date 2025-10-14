@@ -31,7 +31,7 @@
                         <img src="~/images/icon-mega.svg">
                         <div class="ig-homebtn-txt">
                             <h4>
-                                PROGRAMA MEGA
+                                Programa MEGA
                             </h4>
                             <p>Manuais Escolares Gratuitos</p>
                         </div>
@@ -50,6 +50,22 @@
                                 SIME - MEGA
                             </h4>
                             <p>Sistema de Informação de Manuais Escolares</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+        @if (User.IsAdmin() || User.IsMegaUser())
+        {
+            <a class="ig-biglink-hp" href="#" title="Manuais Escolares Gratuitos">
+                <div class="card ig-card">
+                    <div class="card-body">
+                        <img src="~/images/icon-alunos.svg">
+                        <div class="ig-homebtn-txt">
+                            <h4>
+                                Alunos
+                            </h4>
+                            <p>Acesso ao Repositório Central</p>
                         </div>
                     </div>
                 </div>

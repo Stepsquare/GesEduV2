@@ -23,15 +23,15 @@
 
 :root {
     --ig-font-family: "Inter", Helvetica, Arial, sans-serif;
-    --ig-green-1: #007236;
-    --ig-green-2: #008d5b;
-    --ig-green-3: #83ba9a;
+    --ig-green-1: #1c9b4f;
+    --ig-green-2: #21ce6b;
+    --ig-green-3: #2de27f;
     --ig-green-4: #c9f4db;
     --ig-green-5: #f1ffd9;
     --ig-green-6: #fffff7;
     --ig-green-7: #fffffb;
-    --ig-blue-1: #284652;
-    --ig-blue-2: #3c7685;
+    --ig-blue-1: #12295f;
+    --ig-blue-2: #125e85;
     --ig-blue-3: #c1e4e8;
     --ig-blue-4: #e5f5f9;
     --ig-red-1: #7c3939;
@@ -41,9 +41,9 @@
     --ig-yellow-2: #f8971d;
     --ig-yellow-3: #fee8c3;
     --ig-white: #ffffff;
-    --ig-green-1-alpha: #0072360f;
-    --ig-green-2-alpha: #008d5c23;
-    --ig-blue-1-alpha: #3c768588;
+    --ig-green-1-alpha: #1c9b4f0f;
+    --ig-green-2-alpha: #21ce6b23;
+    --ig-blue-1-alpha: #12295f88;
     --ig-grey-form: #ced4da;
     --ig-grey-form-2: #e4e7eb;
     --ig-transition: ease 0.3s;
@@ -276,7 +276,7 @@ li.ig-menutitle h4 {
 
 .ig-pagetitle:before {
     content: "";
-    background: var(--ig-green-2);
+    background: var(--ig-blue-1);
     width: 1rem;
     height: 100%;
     position: absolute;
@@ -285,9 +285,6 @@ li.ig-menutitle h4 {
     border-radius: 1rem 0 0 1rem;
 }
 
-.ig-pagetitle h2 {
-    color: var(--ig-blue-2);
-}
 
 .ig-pagetitle .breadcrumb {
     font-size: 0.75rem;
@@ -580,15 +577,15 @@ button.btn.ig-btn-blue:disabled, button.btn.ig-btn-blue:disabled:hover {
 }
 
 .ig-btn-green {
-    background: var(--ig-green-2);
-    border-color: var(--ig-green-2);
+    background: var(--ig-green-1);
+    border-color: var(--ig-green-1);
     color: var(--ig-white);
 }
 
 .ig-btn-green:hover {
     color: var(--ig-white);
-    background: var(--ig-green-1);
-    border-color: var(--ig-green-1);
+    background: var(--ig-green-2);
+    border-color: var(--ig-green-2);
 }
 
 .btn.ig-btn-green:focus {
@@ -1137,8 +1134,8 @@ span.badge {
     }
     span.badge.ig-cycle-02 {
         background: var(--ig-green-4);
-        border: solid 1px var(--ig-green-3);
-        color: var(--ig-green-2);
+        border: solid 1px var(--ig-green-1);
+        color: var(--ig-green-1);
     }
     span.badge.ig-cycle-03 {
         background: var(--ig-yellow-3);
@@ -1361,19 +1358,18 @@ footer.ig-footer {
     height: 2rem;
     -webkit-font-smoothing: antialiased;
 }
-
-.ig-copyright {
-    color: var(--ig-green-1);
-    text-align: center;
+.ig-copyright, .ig-copyright-pages {
+    color: var(--ig-blue-1);
     font-size: .875rem;
+}
+.ig-copyright {
+    text-align: center;
     margin: 3rem 0;
 }
 .ig-copyright-pages {
     display: flex;
     align-items: center;
     text-align: right;
-    color: var(--ig-green-1);
-    font-size: .875rem;
     justify-content: end;
 }
 /*Kendo*/
